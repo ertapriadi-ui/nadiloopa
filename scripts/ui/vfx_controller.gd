@@ -290,8 +290,9 @@ func spawn_cross_beam(center_pos: Vector2, board_rect: Rect2, color: Color) -> v
 	v_beam.pivot_offset = Vector2(beam_thickness * 0.5, board_rect.size.y * 0.5)
 	add_child(v_beam)
 
-	for beam in [h_beam, v_beam]:
-		var tw := beam.create_tween()
+	var beams: Array[ColorRect] = [h_beam, v_beam]
+	for beam in beams:
+		var tw: Tween = beam.create_tween()
 		tw.set_parallel(true)
 		if beam == h_beam:
 			tw.tween_property(beam, "scale", Vector2(1.0, 0.08), dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)

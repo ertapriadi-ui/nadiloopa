@@ -154,7 +154,9 @@ func _init_board_styles() -> void:
 	_sb_cell_odd.shadow_size = 4
 	_sb_cell_odd.shadow_color = Color(0.02, 0.10, 0.12, 0.22)
 	_sb_cell_odd.shadow_offset = Vector2(0, 3)
-	set_board_theme(str(SaveManager.get_setting("board_theme", "garden")))
+	var save_node := get_node_or_null("/root/SaveManager")
+	var saved_theme := str(save_node.get_setting("board_theme", "garden")) if save_node != null else "garden"
+	set_board_theme(saved_theme)
 
 
 func set_board_theme(theme_id: String) -> void:
