@@ -940,7 +940,48 @@ func _test_board_renderer_tutorial_stage_init() -> void:
 	_assert_true(br._hint_chain.size() >= 3, "BoardRenderer computes FTUE spotlight hint chain without crashing")
 	_assert_eq(br._tile_nodes.size(), BoardState.TOTAL_CELLS, "BoardRenderer spawns all organ tile nodes on Stage 1")
 	br.queue_free()
+
+	# Full Main scene integrity test at 1080x2400 portrait: ensures board fills center host & never shrinks to 30px!
+	var main_packed: PackedScene = load("res://scenes/main.tscn")
+	_assert_true(main_packed != null, "Main scene loads cleanly")
+	if main_packed != null:
+		var main_inst: Control = main_packed.instantiate()
+		main_inst.size = Vector2(1080, 2400)
+		root.add_child(main_inst)
+		main_inst.set_size(Vector2(1080, 2400))
+		main_inst.show_screen("welcome")
+		main_inst.show_screen("menu")
+		main_inst.show_screen("levels")
+
+		# Test Hard 7x12 layout on Stage 1
+		_save_mgr.set_setting("difficulty", "hard")
+		main_inst.start_level(1)
+		main_inst._board_host.size = Vector2(1040, 1480)
+		main_inst._board_renderer.refresh_layout_after_show()
+		var m_hard: Dictionary = main_inst.get_layout_metrics()
+		var br_rect_h: Rect2 = m_hard.get("board_rect", Rect2())
+		_assert_true(int(m_hard.get("cell_px", 0)) >= 95, "Hard 7x12 cell_px fills phone viewport (>=95px, not 30px)")
+		_assert_true(br_rect_h.position.y >= 0.0, "Hard 7x12 board origin Y is non-negative (never overlaps HUD)")
+		_assert_true(main_inst._board_renderer.size.y >= 1000.0, "BoardRenderer matches BoardHost full height")
+
+		# Test Easy 5x7 layout on Stage 1
+		_save_mgr.set_setting("difficulty", "easy")
+		main_inst.start_level(1)
+		main_inst._board_host.size = Vector2(1040, 1480)
+		main_inst._board_renderer.refresh_layout_after_show()
+		var m_easy: Dictionary = main_inst.get_layout_metrics()
+		_assert_true(int(m_easy.get("cell_px", 0)) >= 150, "Easy 5x7 cell_px fills phone viewport (>=150px)")
+
+		# Test Daily & Endless modes start cleanly without errors
+		main_inst.start_daily_challenge()
+		_assert_true(main_inst.board_state != null and main_inst.board_state.has_any_valid_chain(3), "Daily Sanctuary initializes playable board")
+		main_inst.start_endless_mode()
+		_assert_true(main_inst.board_state != null and main_inst.board_state.has_any_valid_chain(3), "Endless Zen initializes playable board")
+		main_inst.queue_free()
+
+	_save_mgr.set_setting("difficulty", "hard")
 	BoardState.set_difficulty_grid("hard")
+
 
 
 

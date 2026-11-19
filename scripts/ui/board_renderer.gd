@@ -61,6 +61,7 @@ var _victory_dance: bool = false
 var _victory_dance_time: float = 0.0
 var _fever_active: bool = false
 var _ftue_spotlight: bool = false
+var _last_layout_size: Vector2 = Vector2.ZERO
 
 var _sb_tray_outer: StyleBoxFlat
 var _sb_tray_inner: StyleBoxFlat
@@ -77,22 +78,24 @@ func _ready() -> void:
 	_tile_layer = Control.new()
 	_tile_layer.name = "TileLayer"
 	_tile_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_tile_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_tile_layer)
+	_tile_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	_pulse_overlay = Control.new()
 	_pulse_overlay.name = "PulseOverlay"
 	_pulse_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_pulse_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_pulse_overlay.draw.connect(_draw_pulse_overlay)
 	add_child(_pulse_overlay)
+	_pulse_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	_vfx = VFXController.new()
 	_vfx.name = "VFXController"
-	_vfx.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_vfx)
+	_vfx.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	resized.connect(_on_resized)
+	if get_parent() is Control:
+		(get_parent() as Control).resized.connect(_on_resized)
 	_recompute_geometry()
 
 
@@ -159,26 +162,26 @@ func set_board_theme(theme_id: String) -> void:
 		return
 	match theme_id:
 		"sunset":
-			_sb_tray_outer.bg_color = Color(0.54, 0.22, 0.24, 0.95)
-			_sb_tray_outer.border_color = Color(1.0, 0.78, 0.42, 0.90)
-			_sb_tray_inner.bg_color = Color(0.99, 0.955, 0.915, 0.95)
-			_sb_tray_inner.border_color = Color(0.86, 0.46, 0.24, 0.55)
-			_sb_cell_even.bg_color = Color(0.97, 0.895, 0.835, 0.86)
-			_sb_cell_odd.bg_color = Color(0.995, 0.95, 0.905, 0.86)
+			_sb_tray_outer.bg_color = Color(0.50, 0.18, 0.22, 0.98)
+			_sb_tray_outer.border_color = Color(1.0, 0.80, 0.42, 0.96)
+			_sb_tray_inner.bg_color = Color(0.32, 0.14, 0.18, 0.96)
+			_sb_tray_inner.border_color = Color(0.88, 0.48, 0.24, 0.72)
+			_sb_cell_even.bg_color = Color(0.95, 0.86, 0.78, 0.94)
+			_sb_cell_odd.bg_color = Color(0.99, 0.94, 0.88, 0.96)
 		"starlight":
-			_sb_tray_outer.bg_color = Color(0.11, 0.14, 0.34, 0.96)
-			_sb_tray_outer.border_color = Color(0.96, 0.82, 0.44, 0.92)
-			_sb_tray_inner.bg_color = Color(0.17, 0.21, 0.42, 0.94)
-			_sb_tray_inner.border_color = Color(0.46, 0.56, 0.92, 0.60)
-			_sb_cell_even.bg_color = Color(0.22, 0.27, 0.50, 0.88)
-			_sb_cell_odd.bg_color = Color(0.27, 0.33, 0.57, 0.88)
+			_sb_tray_outer.bg_color = Color(0.10, 0.13, 0.34, 0.98)
+			_sb_tray_outer.border_color = Color(0.98, 0.84, 0.44, 0.96)
+			_sb_tray_inner.bg_color = Color(0.08, 0.11, 0.26, 0.96)
+			_sb_tray_inner.border_color = Color(0.46, 0.58, 0.96, 0.72)
+			_sb_cell_even.bg_color = Color(0.20, 0.26, 0.50, 0.94)
+			_sb_cell_odd.bg_color = Color(0.28, 0.35, 0.62, 0.96)
 		_:
-			_sb_tray_outer.bg_color = Color(0.08, 0.36, 0.33, 0.94)
-			_sb_tray_outer.border_color = Color(0.96, 0.84, 0.52, 0.85)
-			_sb_tray_inner.bg_color = Color(0.96, 0.985, 0.955, 0.94)
-			_sb_tray_inner.border_color = Color(0.14, 0.54, 0.46, 0.55)
-			_sb_cell_even.bg_color = Color(0.87, 0.945, 0.915, 0.86)
-			_sb_cell_odd.bg_color = Color(0.945, 0.985, 0.965, 0.86)
+			_sb_tray_outer.bg_color = Color(0.06, 0.30, 0.28, 0.98)
+			_sb_tray_outer.border_color = Color(0.98, 0.86, 0.48, 0.96)
+			_sb_tray_inner.bg_color = Color(0.11, 0.22, 0.24, 0.96)
+			_sb_tray_inner.border_color = Color(0.18, 0.64, 0.56, 0.72)
+			_sb_cell_even.bg_color = Color(0.76, 0.90, 0.87, 0.94)
+			_sb_cell_odd.bg_color = Color(0.92, 0.98, 0.96, 0.96)
 	queue_redraw()
 
 
@@ -211,14 +214,23 @@ func _on_resized() -> void:
 
 
 func _recompute_geometry() -> void:
-	var usable_w := maxf(210.0, size.x)
-	var usable_h := maxf(360.0, size.y)
+	var avail := size
+	var par := get_parent()
+	if par is Control:
+		var psz := (par as Control).size
+		if psz.x > 50.0 and psz.y > 50.0:
+			avail = psz
+			if size.distance_to(psz) > 0.5:
+				size = psz
+	_last_layout_size = avail
+	var usable_w := maxf(210.0, avail.x - 32.0)
+	var usable_h := maxf(360.0, avail.y - 32.0)
 	cell_px = int(floor(minf(usable_w / float(BoardState.COLS), usable_h / float(BoardState.ROWS))))
 	cell_px = maxi(24, cell_px)
 	board_pixel_size = Vector2(float(cell_px * BoardState.COLS), float(cell_px * BoardState.ROWS))
 	board_origin = Vector2(
-		floor((size.x - board_pixel_size.x) * 0.5),
-		floor((size.y - board_pixel_size.y) * 0.5)
+		floor((avail.x - board_pixel_size.x) * 0.5),
+		maxf(16.0, floor((avail.y - board_pixel_size.y) * 0.5))
 	)
 
 
@@ -732,6 +744,19 @@ func _process(delta: float) -> void:
 	_anim_time += delta
 	if _is_animating or _board_state == null:
 		return
+
+	var cur_avail := size
+	var par := get_parent()
+	if par is Control:
+		var psz := (par as Control).size
+		if psz.x > 50.0 and psz.y > 50.0:
+			cur_avail = psz
+	if cur_avail.x > 50.0 and cur_avail.y > 50.0 and cur_avail.distance_to(_last_layout_size) > 2.0:
+		_recompute_geometry()
+		sync_board_immediate()
+		queue_redraw()
+		if is_instance_valid(_pulse_overlay):
+			_pulse_overlay.queue_redraw()
 
 	if _victory_dance:
 		_victory_dance_time += delta

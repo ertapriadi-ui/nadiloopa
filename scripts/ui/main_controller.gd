@@ -357,7 +357,7 @@ func _style_button(btn: Button, bg: Color, hover_bg: Color, text_col: Color = Co
 	btn.add_theme_color_override("font_color", text_col)
 	btn.add_theme_color_override("font_hover_color", text_col)
 	btn.add_theme_color_override("font_pressed_color", text_col)
-	btn.add_theme_color_override("font_disabled_color", Color(0.45, 0.54, 0.54))
+	btn.add_theme_color_override("font_disabled_color", Color(0.14, 0.24, 0.24))
 	btn.add_theme_color_override("font_outline_color", Color(0.03, 0.14, 0.12, 0.45) if text_col == Color.WHITE else Color(1, 1, 1, 0.0))
 	btn.add_theme_constant_override("outline_size", 3 if text_col == Color.WHITE else 0)
 	var lip := 7 if font_px >= 28 else 5
@@ -967,13 +967,13 @@ func _build_levels_screen(parent: Control) -> void:
 func _build_game_screen(parent: Control) -> void:
 	_screen_game = Control.new()
 	_screen_game.name = "GameplayScreen"
-	_screen_game.set_anchors_preset(Control.PRESET_FULL_RECT)
 	parent.add_child(_screen_game)
+	_screen_game.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	var root_vb := VBoxContainer.new()
-	root_vb.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root_vb.add_theme_constant_override("separation", 8)
 	_screen_game.add_child(root_vb)
+	root_vb.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	# --- Compact Elevated Top HUD (Hero Moves + Stage/Score/Stars + Pause) ---
 	_hud_panel = PanelContainer.new()
@@ -995,8 +995,8 @@ func _build_game_screen(parent: Control) -> void:
 	var moves_hb := HBoxContainer.new()
 	moves_hb.add_theme_constant_override("separation", 8)
 	_moves_pill.add_child(moves_hb)
-	_lbl_moves_title = _make_label("Moves", 28, Color(0.55, 0.28, 0.08), true)
-	_lbl_moves_val = _make_label("14", 48, Color(0.75, 0.30, 0.06), true)
+	_lbl_moves_title = _make_label("Moves", 34, Color(0.55, 0.28, 0.08), true)
+	_lbl_moves_val = _make_label("14", 54, Color(0.75, 0.30, 0.06), true)
 	moves_hb.add_child(_lbl_moves_title)
 	moves_hb.add_child(_lbl_moves_val)
 
@@ -1009,7 +1009,7 @@ func _build_game_screen(parent: Control) -> void:
 	mid_top.add_theme_constant_override("separation", 10)
 	mid_vb.add_child(mid_top)
 
-	_lbl_stage = _make_label("Stage 1", 32, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_lbl_stage = _make_label("Stage 1", 38, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
 	_lbl_stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_stage.clip_text = true
 	mid_top.add_child(_lbl_stage)
@@ -1020,8 +1020,8 @@ func _build_game_screen(parent: Control) -> void:
 	var score_hb := HBoxContainer.new()
 	score_hb.add_theme_constant_override("separation", 6)
 	score_pill.add_child(score_hb)
-	_lbl_score_title = _make_label("Score", 28, Color(0.18, 0.40, 0.36), true)
-	_lbl_score_val = _make_label("0", 36, Color(0.05, 0.26, 0.24), true)
+	_lbl_score_title = _make_label("Score", 34, Color(0.18, 0.40, 0.36), true)
+	_lbl_score_val = _make_label("0", 42, Color(0.05, 0.26, 0.24), true)
 	score_hb.add_child(_lbl_score_title)
 	score_hb.add_child(_lbl_score_val)
 
@@ -1029,8 +1029,8 @@ func _build_game_screen(parent: Control) -> void:
 	row_stars.add_theme_constant_override("separation", 8)
 	mid_vb.add_child(row_stars)
 
-	_lbl_star_icons = _make_label("☆☆☆", 34, Color(0.88, 0.58, 0.08), true)
-	_lbl_star_icons.custom_minimum_size = Vector2(114, 0)
+	_lbl_star_icons = _make_label("☆☆☆", 38, Color(0.88, 0.58, 0.08), true)
+	_lbl_star_icons.custom_minimum_size = Vector2(126, 0)
 	row_stars.add_child(_lbl_star_icons)
 
 	_star_progress_bar = ProgressBar.new()
@@ -1038,7 +1038,7 @@ func _build_game_screen(parent: Control) -> void:
 	_star_progress_bar.max_value = 3000
 	_star_progress_bar.value = 0
 	_star_progress_bar.show_percentage = false
-	_star_progress_bar.custom_minimum_size = Vector2(0, 20)
+	_star_progress_bar.custom_minimum_size = Vector2(0, 22)
 	_star_progress_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_star_progress_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_star_progress_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.90, 0.86), 8, Color(0.78, 0.62, 0.20, 0.35), 1, 0, 0))
@@ -1046,8 +1046,8 @@ func _build_game_screen(parent: Control) -> void:
 	row_stars.add_child(_star_progress_bar)
 
 	_btn_pause = Button.new()
-	_btn_pause.custom_minimum_size = Vector2(118, 78)
-	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 30, 18, 10, 6)
+	_btn_pause.custom_minimum_size = Vector2(142, 82)
+	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 36, 18, 10, 6)
 	_btn_pause.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		pause_game()
@@ -1059,7 +1059,7 @@ func _build_game_screen(parent: Control) -> void:
 	row2.add_theme_constant_override("separation", 10)
 	hud_vb.add_child(row2)
 
-	_lbl_pulse_label = _make_label("Pulse", 32, Color(0.10, 0.34, 0.32), true)
+	_lbl_pulse_label = _make_label("Pulse", 36, Color(0.10, 0.34, 0.32), true)
 	row2.add_child(_lbl_pulse_label)
 
 	_pulse_bar = ProgressBar.new()
@@ -1067,33 +1067,33 @@ func _build_game_screen(parent: Control) -> void:
 	_pulse_bar.max_value = 100
 	_pulse_bar.value = 100
 	_pulse_bar.show_percentage = false
-	_pulse_bar.custom_minimum_size = Vector2(0, 28)
+	_pulse_bar.custom_minimum_size = Vector2(0, 30)
 	_pulse_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_pulse_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_pulse_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 12, Color(0.12, 0.38, 0.36, 0.25), 2, 0, 0))
 	_pulse_bar.add_theme_stylebox_override("fill", _make_box(Color(0.12, 0.76, 0.48), 10, Color(0, 0, 0, 0), 0, 0, 0))
 	row2.add_child(_pulse_bar)
 
-	_lbl_pulse_val = _make_label("100/100", 32, Color(0.06, 0.32, 0.24), true)
+	_lbl_pulse_val = _make_label("100/100", 36, Color(0.06, 0.32, 0.24), true)
 	row2.add_child(_lbl_pulse_val)
 
 	_shield_pill = PanelContainer.new()
 	_shield_pill.add_theme_stylebox_override("panel", _make_box(Color(0.88, 0.94, 0.92), 14, Color(0.2, 0.5, 0.4, 0.3), 2, 12, 4))
 	row2.add_child(_shield_pill)
-	_lbl_shield = _make_label("Shield 0", 30, Color(0.24, 0.38, 0.36), true)
+	_lbl_shield = _make_label("Shield 0", 34, Color(0.20, 0.36, 0.34), true)
 	_shield_pill.add_child(_lbl_shield)
 
 	_fever_pill = PanelContainer.new()
 	_fever_pill.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.95, 0.94), 14, Color(0.24, 0.56, 0.50, 0.45), 2, 12, 4))
 	row2.add_child(_fever_pill)
-	_lbl_fever = _make_label("Fever 0/3", 30, Color(0.14, 0.40, 0.36), true)
+	_lbl_fever = _make_label("Fever 0/3", 34, Color(0.14, 0.40, 0.36), true)
 	_fever_pill.add_child(_lbl_fever)
 
 	_streak_pill = PanelContainer.new()
 	_streak_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.88, 0.42), 14, Color(0.84, 0.48, 0.08), 2, 12, 4))
 	_streak_pill.visible = false
 	row2.add_child(_streak_pill)
-	_lbl_streak = _make_label("x1.2", 30, Color(0.48, 0.20, 0.04), true)
+	_lbl_streak = _make_label("x1.2", 34, Color(0.48, 0.20, 0.04), true)
 	_streak_pill.add_child(_lbl_streak)
 
 	_boss_bar_panel = PanelContainer.new()
@@ -1113,14 +1113,14 @@ func _build_game_screen(parent: Control) -> void:
 	boss_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	boss_vb.add_theme_constant_override("separation", 4)
 	boss_hb.add_child(boss_vb)
-	_lbl_boss_name = _make_label("Boss", 30, Color(0.70, 0.14, 0.12), true)
+	_lbl_boss_name = _make_label("Boss", 34, Color(0.70, 0.14, 0.12), true)
 	boss_vb.add_child(_lbl_boss_name)
 	_boss_hp_bar = ProgressBar.new()
 	_boss_hp_bar.min_value = 0
 	_boss_hp_bar.max_value = 100
 	_boss_hp_bar.value = 100
 	_boss_hp_bar.show_percentage = false
-	_boss_hp_bar.custom_minimum_size = Vector2(0, 18)
+	_boss_hp_bar.custom_minimum_size = Vector2(0, 20)
 	_boss_hp_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.78, 0.76), 8, Color(0, 0, 0, 0), 0, 0, 0))
 	_boss_hp_bar.add_theme_stylebox_override("fill", _make_box(Color(0.88, 0.22, 0.18), 8, Color(0, 0, 0, 0), 0, 0, 0))
 	boss_vb.add_child(_boss_hp_bar)
@@ -1134,26 +1134,28 @@ func _build_game_screen(parent: Control) -> void:
 	_tutorial_bar = PanelContainer.new()
 	_tutorial_bar.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.56, 0.46, 0.95), 16, Color(1, 1, 1, 0.50), 2, 16, 8))
 	hud_vb.add_child(_tutorial_bar)
-	_lbl_tutorial = _make_label("", 34, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_tutorial = _make_label("", 38, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_tutorial.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tutorial_bar.add_child(_lbl_tutorial)
 
 	# --- Center Adaptive Board Container ---
 	_board_host = Control.new()
 	_board_host.name = "BoardHost"
+	_board_host.custom_minimum_size = Vector2(0, 480)
 	_board_host.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_board_host.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	root_vb.add_child(_board_host)
 
 	_board_renderer = BoardRenderer.new()
 	_board_renderer.name = "BoardRenderer"
-	_board_renderer.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_board_host.add_child(_board_renderer)
+	_board_renderer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_board_host.resized.connect(_board_renderer.refresh_layout_after_show)
 
 	_touch_ctrl = TouchInputController.new()
 	_touch_ctrl.name = "TouchInputController"
-	_touch_ctrl.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_board_host.add_child(_touch_ctrl)
+	_touch_ctrl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_touch_ctrl.bind(_board_renderer)
 	_touch_ctrl.chain_updated.connect(_on_chain_updated)
 	_touch_ctrl.chain_committed.connect(_on_chain_committed)
@@ -1172,7 +1174,7 @@ func _build_game_screen(parent: Control) -> void:
 	bot_top.add_theme_constant_override("separation", 10)
 	bot_vb.add_child(bot_top)
 
-	_lbl_preview = _make_label("", 36, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_preview = _make_label("", 40, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_preview.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_preview.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	bot_top.add_child(_lbl_preview)
@@ -1199,12 +1201,12 @@ func _build_game_screen(parent: Control) -> void:
 	)
 	bot_top.add_child(_btn_game_help)
 
-	# Full-Width Energy Row (34px bold label + thick golden energy bar)
+	# Full-Width Energy Row (38px bold label + thick golden energy bar)
 	var en_hb := HBoxContainer.new()
 	en_hb.add_theme_constant_override("separation", 14)
 	bot_vb.add_child(en_hb)
 
-	_lbl_energy_val = _make_label("Energy 0/100", 34, Color(0.06, 0.36, 0.26), true)
+	_lbl_energy_val = _make_label("Energy 0/100", 38, Color(0.06, 0.36, 0.26), true)
 	en_hb.add_child(_lbl_energy_val)
 
 	_energy_bar = ProgressBar.new()
@@ -1212,14 +1214,14 @@ func _build_game_screen(parent: Control) -> void:
 	_energy_bar.max_value = 100
 	_energy_bar.value = 0
 	_energy_bar.show_percentage = false
-	_energy_bar.custom_minimum_size = Vector2(0, 28)
+	_energy_bar.custom_minimum_size = Vector2(0, 30)
 	_energy_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_energy_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_energy_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 11, Color(0.12, 0.38, 0.36, 0.30), 2, 0, 0))
 	_energy_bar.add_theme_stylebox_override("fill", _make_box(Color(0.95, 0.72, 0.14), 9, Color(0, 0, 0, 0), 0, 0, 0))
 	en_hb.add_child(_energy_bar)
 
-	# 2x2 Tactical Weapon & Care Dock (huge 96px tall buttons, 34px bold text so zero clipping on phones!)
+	# 2x2 Tactical Weapon & Care Dock (92px tall buttons, 38px bold text for effortless phone reading!)
 	var dock_grid := GridContainer.new()
 	dock_grid.columns = 2
 	dock_grid.add_theme_constant_override("h_separation", 12)
@@ -1246,11 +1248,11 @@ func _build_game_screen(parent: Control) -> void:
 func _make_ability_btn(icon_tex: Texture2D, bg: Color) -> Button:
 	var b := Button.new()
 	b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	b.custom_minimum_size = Vector2(0, 96)
+	b.custom_minimum_size = Vector2(0, 92)
 	b.icon = icon_tex
 	b.expand_icon = true
 	b.clip_text = true
-	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 34, 20, 14, 8)
+	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 38, 20, 14, 8)
 	return b
 
 
