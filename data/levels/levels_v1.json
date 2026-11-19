@@ -1,0 +1,6980 @@
+{
+  "schema_version": 2,
+  "total_levels": 100,
+  "levels": [
+    {
+      "id": 1,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Morning Beat",
+      "title_id": "Denyut Pagi",
+      "tutorial_key": "TUTORIAL_L1",
+      "seed": 1001,
+      "moves": 12,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 36,
+        "brain": 22,
+        "lungs": 22,
+        "kidneys": 20
+      },
+      "objectives": {
+        "collect": {
+          "heart": 12
+        }
+      },
+      "care_positions": [],
+      "overload_positions": [],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 0,
+      "star_thresholds": [
+        1478,
+        1803,
+        2187
+      ]
+    },
+    {
+      "id": 2,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Twin Currents",
+      "title_id": "Arus Kembar",
+      "tutorial_key": "TUTORIAL_L2",
+      "seed": 1002,
+      "moves": 14,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 20,
+        "brain": 30,
+        "lungs": 30,
+        "kidneys": 20
+      },
+      "objectives": {
+        "collect": {
+          "brain": 14,
+          "lungs": 14
+        }
+      },
+      "care_positions": [],
+      "overload_positions": [],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 0,
+      "star_thresholds": [
+        1506,
+        1837,
+        2228
+      ]
+    },
+    {
+      "id": 3,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Spark of Care",
+      "title_id": "Percik Peduli",
+      "tutorial_key": "TUTORIAL_L3",
+      "seed": 1003,
+      "moves": 14,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 22,
+        "brain": 22,
+        "lungs": 22,
+        "kidneys": 34
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 16
+        },
+        "score": 1400
+      },
+      "care_positions": [],
+      "overload_positions": [],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 0,
+      "star_thresholds": [
+        1400,
+        1708,
+        2072
+      ]
+    },
+    {
+      "id": 4,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Watch the Pulse",
+      "title_id": "Jaga Ritme",
+      "tutorial_key": "TUTORIAL_L4",
+      "seed": 1004,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 31,
+        "brain": 19,
+        "lungs": 31,
+        "kidneys": 19
+      },
+      "objectives": {
+        "collect": {
+          "heart": 16,
+          "lungs": 16
+        }
+      },
+      "care_positions": [],
+      "overload_positions": [
+        [
+          3,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1562,
+        1905,
+        2311
+      ]
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Detour Path",
+      "title_id": "Jalan Memutar",
+      "tutorial_key": "",
+      "seed": 1005,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 20,
+        "brain": 30,
+        "lungs": 20,
+        "kidneys": 30
+      },
+      "objectives": {
+        "collect": {
+          "brain": 18,
+          "kidneys": 18
+        }
+      },
+      "care_positions": [],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        1590,
+        1939,
+        2353
+      ]
+    },
+    {
+      "id": 6,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Steady Tempo",
+      "title_id": "Tempo Tenang",
+      "tutorial_key": "",
+      "seed": 1006,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 25,
+        "brain": 25,
+        "lungs": 25,
+        "kidneys": 25
+      },
+      "objectives": {
+        "score": 2100,
+        "keep_pulse": 60
+      },
+      "care_positions": [],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 0,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2100,
+        2562,
+        3108
+      ]
+    },
+    {
+      "id": 7,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Green Shield",
+      "title_id": "Perisai Hijau",
+      "tutorial_key": "TUTORIAL_L7",
+      "seed": 1007,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 32,
+        "brain": 22,
+        "lungs": 24,
+        "kidneys": 22
+      },
+      "objectives": {
+        "activate_care": 1,
+        "collect": {
+          "heart": 18
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1646,
+        2008,
+        2436
+      ]
+    },
+    {
+      "id": 8,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Safe Harbor",
+      "title_id": "Pelabuhan Aman",
+      "tutorial_key": "",
+      "seed": 1008,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 20,
+        "brain": 29,
+        "lungs": 31,
+        "kidneys": 20
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "lungs": 20,
+          "brain": 18
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        1674,
+        2042,
+        2477
+      ]
+    },
+    {
+      "id": 9,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Neutralize!",
+      "title_id": "Netralkan!",
+      "tutorial_key": "TUTORIAL_L9",
+      "seed": 1009,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 22,
+        "brain": 22,
+        "lungs": 22,
+        "kidneys": 34
+      },
+      "objectives": {
+        "neutralize_overload": 1,
+        "collect": {
+          "kidneys": 20
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        1702,
+        2076,
+        2518
+      ]
+    },
+    {
+      "id": 10,
+      "chapter": 1,
+      "chapter_en": "Tropical Dawn",
+      "chapter_id": "Fajar Tropis",
+      "tier": 1,
+      "is_boss": true,
+      "title_en": "Tropical Dawn Boss",
+      "title_id": "Bos Fajar Tropis",
+      "tutorial_key": "",
+      "seed": 1010,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 26,
+        "brain": 24,
+        "lungs": 26,
+        "kidneys": 24
+      },
+      "objectives": {
+        "score": 2800,
+        "neutralize_overload": 2
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2800,
+        3416,
+        4144
+      ]
+    },
+    {
+      "id": 11,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Bamboo Crossing",
+      "title_id": "Lintas Bambu",
+      "tutorial_key": "",
+      "seed": 1011,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 28,
+          "brain": 22
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1758,
+        2144,
+        2601
+      ]
+    },
+    {
+      "id": 12,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Rippling Pebbles",
+      "title_id": "Riak Kerikil",
+      "tutorial_key": "",
+      "seed": 1012,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 35,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "heart": 32
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1786,
+        2178,
+        2643
+      ]
+    },
+    {
+      "id": 13,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Clear Rivulet",
+      "title_id": "Anak Sungai",
+      "tutorial_key": "",
+      "seed": 1013,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "heart": 32
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1814,
+        2213,
+        2684
+      ]
+    },
+    {
+      "id": 14,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Emerald Bend",
+      "title_id": "Kelok Zamrud",
+      "tutorial_key": "",
+      "seed": 1014,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "score": 2876,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        2876,
+        3508,
+        4256
+      ]
+    },
+    {
+      "id": 15,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Shaded Ford",
+      "title_id": "Arungan Teduh",
+      "tutorial_key": "",
+      "seed": 1015,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "neutralize_overload": 2,
+        "collect": {
+          "heart": 30
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1870,
+        2281,
+        2767
+      ]
+    },
+    {
+      "id": 16,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Floating Reed",
+      "title_id": "Alang Mengapung",
+      "tutorial_key": "",
+      "seed": 1016,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 26,
+          "brain": 20
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1898,
+        2315,
+        2809
+      ]
+    },
+    {
+      "id": 17,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Still Water",
+      "title_id": "Air Tenang",
+      "tutorial_key": "",
+      "seed": 1017,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 35,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "heart": 36
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1926,
+        2349,
+        2850
+      ]
+    },
+    {
+      "id": 18,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Bridge of Leaves",
+      "title_id": "Jembatan Daun",
+      "tutorial_key": "",
+      "seed": 1018,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "heart": 30
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        1954,
+        2383,
+        2891
+      ]
+    },
+    {
+      "id": 19,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": false,
+      "title_en": "Rapid Cascade",
+      "title_id": "Riam Deras",
+      "tutorial_key": "",
+      "seed": 1019,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "score": 3046,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        3046,
+        3716,
+        4508
+      ]
+    },
+    {
+      "id": 20,
+      "chapter": 2,
+      "chapter_en": "Bamboo Stream",
+      "chapter_id": "Arus Bambu",
+      "tier": 1,
+      "is_boss": true,
+      "title_en": "Bamboo Stream Boss",
+      "title_id": "Bos Arus Bambu",
+      "tutorial_key": "",
+      "seed": 1020,
+      "moves": 20,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "brain": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 33,
+          "brain": 24
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2460,
+        3001,
+        3640
+      ]
+    },
+    {
+      "id": 21,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Warm Welcome",
+      "title_id": "Sambutan Hangat",
+      "tutorial_key": "TUTORIAL_STOMACH",
+      "seed": 1021,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "stomach": 28,
+        "muscle": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 26,
+          "stomach": 24
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 1,
+      "star_thresholds": [
+        2038,
+        2486,
+        3016
+      ]
+    },
+    {
+      "id": 22,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Ginger Step",
+      "title_id": "Langkah Jahe",
+      "tutorial_key": "",
+      "seed": 1022,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 35,
+        "muscle": 28,
+        "heart": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "brain": 36
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2066,
+        2520,
+        3057
+      ]
+    },
+    {
+      "id": 23,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Mint Breeze",
+      "title_id": "Semilir Mint",
+      "tutorial_key": "",
+      "seed": 1023,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "stomach": 28,
+        "brain": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "muscle": 36
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2094,
+        2554,
+        3099
+      ]
+    },
+    {
+      "id": 24,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Terrace Dew",
+      "title_id": "Embun Teras",
+      "tutorial_key": "",
+      "seed": 1024,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "kidneys": 28,
+        "stomach": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "score": 3216,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        3216,
+        3923,
+        4759
+      ]
+    },
+    {
+      "id": 25,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Honeycomb Ridge",
+      "title_id": "Punggung Madu",
+      "tutorial_key": "",
+      "seed": 1025,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "heart": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "neutralize_overload": 2,
+        "collect": {
+          "muscle": 34
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2150,
+        2623,
+        3182
+      ]
+    },
+    {
+      "id": 26,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Saffron Sun",
+      "title_id": "Surya Kunyit",
+      "tutorial_key": "",
+      "seed": 1026,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "stomach": 28,
+        "muscle": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 30,
+          "stomach": 22
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2178,
+        2657,
+        3223
+      ]
+    },
+    {
+      "id": 27,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Lemongrass Row",
+      "title_id": "Baris Serai",
+      "tutorial_key": "",
+      "seed": 1027,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 35,
+        "kidneys": 28,
+        "muscle": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "lungs": 34
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2206,
+        2691,
+        3264
+      ]
+    },
+    {
+      "id": 28,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Calm Apothecary",
+      "title_id": "Taman Rimpang",
+      "tutorial_key": "",
+      "seed": 1028,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "brain": 28,
+        "kidneys": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "stomach": 34
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2234,
+        2725,
+        3306
+      ]
+    },
+    {
+      "id": 29,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Highland Steep",
+      "title_id": "Leran Tinggi",
+      "tutorial_key": "",
+      "seed": 1029,
+      "moves": 15,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "heart": 28,
+        "kidneys": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "score": 3386,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        3386,
+        4130,
+        5011
+      ]
+    },
+    {
+      "id": 30,
+      "chapter": 3,
+      "chapter_en": "Herbal Terrace",
+      "chapter_id": "Teras Herbal",
+      "tier": 2,
+      "is_boss": true,
+      "title_en": "Herbal Terrace Boss",
+      "title_id": "Bos Teras Herbal",
+      "tutorial_key": "",
+      "seed": 1030,
+      "moves": 20,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "kidneys": 28,
+        "brain": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 31,
+          "kidneys": 26
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2740,
+        3342,
+        4055
+      ]
+    },
+    {
+      "id": 31,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Armored Shallows",
+      "title_id": "Dangkal Berlapis",
+      "tutorial_key": "TUTORIAL_ARMOR",
+      "seed": 1031,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "lungs": 28,
+        "muscle": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 30,
+          "lungs": 26
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          1,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2318,
+        2827,
+        3430
+      ]
+    },
+    {
+      "id": 32,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Turquoise Arch",
+      "title_id": "Lengkung Pirus",
+      "tutorial_key": "",
+      "seed": 1032,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 35,
+        "muscle": 28,
+        "heart": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "lungs": 40
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2346,
+        2862,
+        3472
+      ]
+    },
+    {
+      "id": 33,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Starfish Cove",
+      "title_id": "Teluk Bintang",
+      "tutorial_key": "",
+      "seed": 1033,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "stomach": 28,
+        "muscle": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "brain": 34
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          6
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2374,
+        2896,
+        3513
+      ]
+    },
+    {
+      "id": 34,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Pearl Current",
+      "title_id": "Arus Mutiara",
+      "tutorial_key": "",
+      "seed": 1034,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "kidneys": 28,
+        "brain": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "score": 3556,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        3556,
+        4338,
+        5262
+      ]
+    },
+    {
+      "id": 35,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Sea Fan Sway",
+      "title_id": "Ayu Kipas Laut",
+      "tutorial_key": "",
+      "seed": 1035,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "heart": 28,
+        "brain": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "neutralize_overload": 2,
+        "collect": {
+          "muscle": 38
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2430,
+        2964,
+        3596
+      ]
+    },
+    {
+      "id": 36,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Lagoon Rim",
+      "title_id": "Tepi Laguna",
+      "tutorial_key": "",
+      "seed": 1036,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "heart": 28,
+        "muscle": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "lungs": 28,
+          "heart": 24
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2458,
+        2998,
+        3637
+      ]
+    },
+    {
+      "id": 37,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Tidal Pool",
+      "title_id": "Kolam Pasang",
+      "tutorial_key": "",
+      "seed": 1037,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 35,
+        "brain": 28,
+        "kidneys": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "long_chains": 2,
+        "collect": {
+          "stomach": 38
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2486,
+        3032,
+        3679
+      ]
+    },
+    {
+      "id": 38,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Shell Sanctuary",
+      "title_id": "Suaka Kerang",
+      "tutorial_key": "",
+      "seed": 1038,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "muscle": 28,
+        "kidneys": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "brain": 38
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2514,
+        3067,
+        3720
+      ]
+    },
+    {
+      "id": 39,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": false,
+      "title_en": "Deep Barrier",
+      "title_id": "Karang Dalam",
+      "tutorial_key": "",
+      "seed": 1039,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "stomach": 28,
+        "lungs": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "score": 3726,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          6
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3726,
+        4545,
+        5514
+      ]
+    },
+    {
+      "id": 40,
+      "chapter": 4,
+      "chapter_en": "Coral Reef",
+      "chapter_id": "Terumbu Karang",
+      "tier": 2,
+      "is_boss": true,
+      "title_en": "Coral Reef Boss",
+      "title_id": "Bos Terumbu Karang",
+      "tutorial_key": "",
+      "seed": 1040,
+      "moves": 21,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "heart": 28,
+        "brain": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 35,
+          "heart": 28
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3020,
+        3684,
+        4469
+      ]
+    },
+    {
+      "id": 41,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Filter & Bloom",
+      "title_id": "Saring & Mekar",
+      "tutorial_key": "TUTORIAL_LIVER",
+      "seed": 1041,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "lungs": 28,
+        "heart": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 34,
+          "lungs": 28
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          4
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2598,
+        3169,
+        3845
+      ]
+    },
+    {
+      "id": 42,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Sunbeam Bough",
+      "title_id": "Dahan Mentari",
+      "tutorial_key": "",
+      "seed": 1042,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 35,
+        "heart": 28,
+        "lungs": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "kidneys": 38
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 2,
+      "star_thresholds": [
+        2626,
+        3203,
+        3886
+      ]
+    },
+    {
+      "id": 43,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Mossy Branch",
+      "title_id": "Ranting Berlumut",
+      "tutorial_key": "",
+      "seed": 1043,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "muscle": 28,
+        "heart": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "activate_care": 2,
+        "collect": {
+          "brain": 38
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2654,
+        3237,
+        3927
+      ]
+    },
+    {
+      "id": 44,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Orchid Perch",
+      "title_id": "Anggrek Rindang",
+      "tutorial_key": "",
+      "seed": 1044,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "kidneys": 28,
+        "liver": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "score": 3896,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          1,
+          4
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3896,
+        4753,
+        5766
+      ]
+    },
+    {
+      "id": 45,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Canopy Swing",
+      "title_id": "Ayunan Kanopi",
+      "tutorial_key": "",
+      "seed": 1045,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "liver": 28,
+        "kidneys": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "neutralize_overload": 2,
+        "collect": {
+          "heart": 36
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          4
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2710,
+        3306,
+        4010
+      ]
+    },
+    {
+      "id": 46,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Balanced Steps",
+      "title_id": "Langkah Seimbang",
+      "tutorial_key": "",
+      "seed": 1046,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "heart": 28,
+        "stomach": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 32,
+          "heart": 26
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          5,
+          4
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2738,
+        3340,
+        4052
+      ]
+    },
+    {
+      "id": 47,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Fern Crown",
+      "title_id": "Mahkota Pakis",
+      "tutorial_key": "",
+      "seed": 1047,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 35,
+        "liver": 28,
+        "lungs": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "brain": 42
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          1,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2766,
+        3374,
+        4093
+      ]
+    },
+    {
+      "id": 48,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Vine Spiral",
+      "title_id": "Sulur Melingkar",
+      "tutorial_key": "",
+      "seed": 1048,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "heart": 28,
+        "liver": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "lungs": 36
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          1,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2794,
+        3408,
+        4135
+      ]
+    },
+    {
+      "id": 49,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Green Zenith",
+      "title_id": "Zenit Hijau",
+      "tutorial_key": "",
+      "seed": 1049,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "liver": 30,
+        "muscle": 28,
+        "lungs": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "score": 4066,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          6
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4066,
+        4960,
+        6017
+      ]
+    },
+    {
+      "id": 50,
+      "chapter": 5,
+      "chapter_en": "Emerald Canopy",
+      "chapter_id": "Kanopi Zamrud",
+      "tier": 3,
+      "is_boss": true,
+      "title_en": "Emerald Canopy Boss",
+      "title_id": "Bos Kanopi Zamrud",
+      "tutorial_key": "",
+      "seed": 1050,
+      "moves": 21,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "stomach": 28,
+        "heart": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 39,
+          "stomach": 30
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          1,
+          8
+        ]
+      ],
+      "bloom_positions": [
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3300,
+        4026,
+        4884
+      ]
+    },
+    {
+      "id": 51,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Opening Petal",
+      "title_id": "Kelopak Mekar",
+      "tutorial_key": "",
+      "seed": 1051,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "liver": 28,
+        "kidneys": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 32,
+          "liver": 30
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2878,
+        3511,
+        4259
+      ]
+    },
+    {
+      "id": 52,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Mirror Pond",
+      "title_id": "Kolam Cermin",
+      "tutorial_key": "",
+      "seed": 1052,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 35,
+        "liver": 28,
+        "lungs": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "muscle": 42
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          1,
+          4
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2906,
+        3545,
+        4300
+      ]
+    },
+    {
+      "id": 53,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Dewey Stamen",
+      "title_id": "Benang Sari",
+      "tutorial_key": "",
+      "seed": 1053,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "lungs": 28,
+        "liver": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "stomach": 42
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2934,
+        3579,
+        4342
+      ]
+    },
+    {
+      "id": 54,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Quiet Koi Path",
+      "title_id": "Jalur Koi Tenang",
+      "tutorial_key": "",
+      "seed": 1054,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "stomach": 28,
+        "kidneys": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "score": 4236,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          2,
+          6
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4236,
+        5167,
+        6269
+      ]
+    },
+    {
+      "id": 55,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Dawn Reflection",
+      "title_id": "Pantulan Fajar",
+      "tutorial_key": "",
+      "seed": 1055,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "brain": 28,
+        "lungs": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "neutralize_overload": 3,
+        "collect": {
+          "stomach": 40
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        2990,
+        3647,
+        4425
+      ]
+    },
+    {
+      "id": 56,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Jade Lilypad",
+      "title_id": "Teratai Giok",
+      "tutorial_key": "",
+      "seed": 1056,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "muscle": 28,
+        "stomach": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 36,
+          "muscle": 28
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          4,
+          4
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3018,
+        3681,
+        4466
+      ]
+    },
+    {
+      "id": 57,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Soft Ripple",
+      "title_id": "Riak Halus",
+      "tutorial_key": "",
+      "seed": 1057,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 35,
+        "muscle": 28,
+        "kidneys": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "heart": 40
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          6
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3046,
+        3716,
+        4508
+      ]
+    },
+    {
+      "id": 58,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Moonlit Lotus",
+      "title_id": "Teratai Purnama",
+      "tutorial_key": "",
+      "seed": 1058,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "lungs": 28,
+        "liver": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "kidneys": 40
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          2,
+          6
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3074,
+        3750,
+        4549
+      ]
+    },
+    {
+      "id": 59,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": false,
+      "title_en": "Still Sanctuary",
+      "title_id": "Suaka Hening",
+      "tutorial_key": "",
+      "seed": 1059,
+      "moves": 16,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "muscle": 28,
+        "stomach": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "score": 4406,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          4
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4406,
+        5375,
+        6520
+      ]
+    },
+    {
+      "id": 60,
+      "chapter": 6,
+      "chapter_en": "Lotus Lagoon",
+      "chapter_id": "Danau Teratai",
+      "tier": 3,
+      "is_boss": true,
+      "title_en": "Lotus Lagoon Boss",
+      "title_id": "Bos Danau Teratai",
+      "tutorial_key": "",
+      "seed": 1060,
+      "moves": 21,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "stomach": 28,
+        "muscle": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 37,
+          "stomach": 32
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3580,
+        4367,
+        5298
+      ]
+    },
+    {
+      "id": 61,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "First Raindrop",
+      "title_id": "Rintik Pertama",
+      "tutorial_key": "",
+      "seed": 1061,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "stomach": 28,
+        "kidneys": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 36,
+          "stomach": 32
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3158,
+        3852,
+        4673
+      ]
+    },
+    {
+      "id": 62,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Drum of Cloud",
+      "title_id": "Gendang Awan",
+      "tutorial_key": "",
+      "seed": 1062,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 35,
+        "muscle": 28,
+        "heart": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "kidneys": 46
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3186,
+        3886,
+        4715
+      ]
+    },
+    {
+      "id": 63,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Misty Canopy",
+      "title_id": "Kabut Kanopi",
+      "tutorial_key": "",
+      "seed": 1063,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "muscle": 28,
+        "heart": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "kidneys": 40
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3214,
+        3921,
+        4756
+      ]
+    },
+    {
+      "id": 64,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Silver Gust",
+      "title_id": "Hembusan Perak",
+      "tutorial_key": "",
+      "seed": 1064,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "lungs": 28,
+        "muscle": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "score": 4576,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4576,
+        5582,
+        6772
+      ]
+    },
+    {
+      "id": 65,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Thunder Pulse",
+      "title_id": "Denyut Guruh",
+      "tutorial_key": "",
+      "seed": 1065,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "heart": 28,
+        "stomach": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "neutralize_overload": 3,
+        "collect": {
+          "kidneys": 44
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3270,
+        3989,
+        4839
+      ]
+    },
+    {
+      "id": 66,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Rainy Terrace",
+      "title_id": "Teras Hujan",
+      "tutorial_key": "",
+      "seed": 1066,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "stomach": 28,
+        "muscle": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 34,
+          "stomach": 30
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3298,
+        4023,
+        4881
+      ]
+    },
+    {
+      "id": 67,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Storm Break",
+      "title_id": "Celah Badai",
+      "tutorial_key": "",
+      "seed": 1067,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 35,
+        "lungs": 28,
+        "kidneys": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "brain": 44
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3326,
+        4057,
+        4922
+      ]
+    },
+    {
+      "id": 68,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Rainbow Arc",
+      "title_id": "Busur Pelangi",
+      "tutorial_key": "",
+      "seed": 1068,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "heart": 28,
+        "brain": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "muscle": 44
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3354,
+        4091,
+        4963
+      ]
+    },
+    {
+      "id": 69,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Surging River",
+      "title_id": "Sungai Meluap",
+      "tutorial_key": "",
+      "seed": 1069,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "muscle": 28,
+        "heart": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "score": 4746,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4746,
+        5790,
+        7024
+      ]
+    },
+    {
+      "id": 70,
+      "chapter": 7,
+      "chapter_en": "Monsoon Rhythm",
+      "chapter_id": "Irama Muson",
+      "tier": 4,
+      "is_boss": true,
+      "title_en": "Monsoon Rhythm Boss",
+      "title_id": "Bos Irama Muson",
+      "tutorial_key": "",
+      "seed": 1070,
+      "moves": 22,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "heart": 28,
+        "lungs": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 41,
+          "heart": 34
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3860,
+        4709,
+        5712
+      ]
+    },
+    {
+      "id": 71,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Foothill Trail",
+      "title_id": "Jejak Kaki Bukit",
+      "tutorial_key": "",
+      "seed": 1071,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "kidneys": 28,
+        "brain": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "collect": {
+          "stomach": 40,
+          "kidneys": 34
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3438,
+        4194,
+        5088
+      ]
+    },
+    {
+      "id": 72,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Granite Steps",
+      "title_id": "Tangga Granit",
+      "tutorial_key": "",
+      "seed": 1072,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 35,
+        "kidneys": 28,
+        "lungs": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "long_chains": 3,
+        "collect": {
+          "muscle": 44
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3466,
+        4228,
+        5129
+      ]
+    },
+    {
+      "id": 73,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Pine Horizon",
+      "title_id": "Cakrawala Pinus",
+      "tutorial_key": "",
+      "seed": 1073,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "lungs": 30,
+        "stomach": 28,
+        "heart": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "lungs": 44
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3494,
+        4262,
+        5171
+      ]
+    },
+    {
+      "id": 74,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Cloud Bridge",
+      "title_id": "Jembatan Awan",
+      "tutorial_key": "",
+      "seed": 1074,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "brain": 28,
+        "muscle": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "score": 4916,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4916,
+        5997,
+        7275
+      ]
+    },
+    {
+      "id": 75,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Eagle Outlook",
+      "title_id": "Pandang Elang",
+      "tutorial_key": "",
+      "seed": 1075,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "heart": 28,
+        "kidneys": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "neutralize_overload": 3,
+        "collect": {
+          "stomach": 42
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3550,
+        4331,
+        5254
+      ]
+    },
+    {
+      "id": 76,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Summit Breath",
+      "title_id": "Napas Puncak",
+      "tutorial_key": "",
+      "seed": 1076,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "stomach": 28,
+        "heart": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "collect": {
+          "muscle": 38,
+          "stomach": 32
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3578,
+        4365,
+        5295
+      ]
+    },
+    {
+      "id": 77,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Wind Chime Pass",
+      "title_id": "Celah Genta",
+      "tutorial_key": "",
+      "seed": 1077,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "liver": 35,
+        "lungs": 28,
+        "heart": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "long_chains": 4,
+        "collect": {
+          "liver": 48
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3606,
+        4399,
+        5336
+      ]
+    },
+    {
+      "id": 78,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Starlit Ridge",
+      "title_id": "Punggung Bintang",
+      "tutorial_key": "",
+      "seed": 1078,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "kidneys": 28,
+        "lungs": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "brain": 42
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3634,
+        4433,
+        5378
+      ]
+    },
+    {
+      "id": 79,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": false,
+      "title_en": "Alpine Spring",
+      "title_id": "Mata Air Puncak",
+      "tutorial_key": "",
+      "seed": 1079,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "liver": 30,
+        "lungs": 28,
+        "heart": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "score": 5086,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        5086,
+        6204,
+        7527
+      ]
+    },
+    {
+      "id": 80,
+      "chapter": 8,
+      "chapter_en": "Sanctuary Peak",
+      "chapter_id": "Puncak Suaka",
+      "tier": 4,
+      "is_boss": true,
+      "title_en": "Sanctuary Peak Boss",
+      "title_id": "Bos Puncak Suaka",
+      "tutorial_key": "",
+      "seed": 1080,
+      "moves": 22,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "lungs": 28,
+        "stomach": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "collect": {
+          "brain": 45,
+          "lungs": 36
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "bloom_positions": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4140,
+        5050,
+        6127
+      ]
+    },
+    {
+      "id": 81,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Amber Strait",
+      "title_id": "Selat Ambar",
+      "tutorial_key": "",
+      "seed": 1081,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "lungs": 28,
+        "liver": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 38,
+          "lungs": 36
+        }
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3718,
+        4535,
+        5502
+      ]
+    },
+    {
+      "id": 82,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Spice Harbor",
+      "title_id": "Bandar Rempah",
+      "tutorial_key": "",
+      "seed": 1082,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 35,
+        "heart": 28,
+        "kidneys": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "long_chains": 4,
+        "collect": {
+          "muscle": 48
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3746,
+        4570,
+        5544
+      ]
+    },
+    {
+      "id": 83,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Sunken Atoll",
+      "title_id": "Atol Tenggelam",
+      "tutorial_key": "",
+      "seed": 1083,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "brain": 28,
+        "liver": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "stomach": 48
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3774,
+        4604,
+        5585
+      ]
+    },
+    {
+      "id": 84,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Gilded Sail",
+      "title_id": "Layar Keemasan",
+      "tutorial_key": "",
+      "seed": 1084,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "liver": 28,
+        "muscle": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "score": 5256,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "bloom_positions": [
+        [
+          4,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        5256,
+        6412,
+        7778
+      ]
+    },
+    {
+      "id": 85,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Atoll Ring",
+      "title_id": "Cincin Atol",
+      "tutorial_key": "",
+      "seed": 1085,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "heart": 28,
+        "liver": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "neutralize_overload": 3,
+        "collect": {
+          "stomach": 46
+        }
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3830,
+        4672,
+        5668
+      ]
+    },
+    {
+      "id": 86,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Volcanic Richness",
+      "title_id": "Subur Vulkanik",
+      "tutorial_key": "",
+      "seed": 1086,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "kidneys": 28,
+        "stomach": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "collect": {
+          "muscle": 42,
+          "kidneys": 34
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3858,
+        4706,
+        5709
+      ]
+    },
+    {
+      "id": 87,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Lantern Pier",
+      "title_id": "Dermaga Lentera",
+      "tutorial_key": "",
+      "seed": 1087,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 35,
+        "muscle": 28,
+        "stomach": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "long_chains": 4,
+        "collect": {
+          "brain": 46
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3886,
+        4740,
+        5751
+      ]
+    },
+    {
+      "id": 88,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Saffron Bay",
+      "title_id": "Teluk Kuma",
+      "tutorial_key": "",
+      "seed": 1088,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "brain": 30,
+        "muscle": 28,
+        "heart": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "brain": 46
+        }
+      },
+      "care_positions": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3914,
+        4775,
+        5792
+      ]
+    },
+    {
+      "id": 89,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Beacon Island",
+      "title_id": "Pulau Suar",
+      "tutorial_key": "",
+      "seed": 1089,
+      "moves": 17,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "muscle": 28,
+        "kidneys": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "score": 5426,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          2,
+          9
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        5426,
+        6619,
+        8030
+      ]
+    },
+    {
+      "id": 90,
+      "chapter": 9,
+      "chapter_en": "Golden Archipelago",
+      "chapter_id": "Nusantara Emas",
+      "tier": 5,
+      "is_boss": true,
+      "title_en": "Golden Archipelago Boss",
+      "title_id": "Bos Nusantara Emas",
+      "tutorial_key": "",
+      "seed": 1090,
+      "moves": 22,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 30,
+        "muscle": 28,
+        "heart": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "collect": {
+          "stomach": 43,
+          "muscle": 38
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 60
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4420,
+        5392,
+        6541
+      ]
+    },
+    {
+      "id": 91,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Prelude of Nine",
+      "title_id": "Pembuka Sembilan",
+      "tutorial_key": "",
+      "seed": 1091,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "muscle": 28,
+        "stomach": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 42,
+          "muscle": 38
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        3998,
+        4877,
+        5917
+      ]
+    },
+    {
+      "id": 92,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Circuit Waltz",
+      "title_id": "Dansa Sirkuit",
+      "tutorial_key": "",
+      "seed": 1092,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 35,
+        "brain": 28,
+        "muscle": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "long_chains": 4,
+        "collect": {
+          "stomach": 52
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4026,
+        4911,
+        5958
+      ]
+    },
+    {
+      "id": 93,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Six Hearts United",
+      "title_id": "Enam Organ Bersatu",
+      "tutorial_key": "",
+      "seed": 1093,
+      "moves": 19,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "muscle": 28,
+        "stomach": 21,
+        "kidneys": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "heart": 46
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4054,
+        4945,
+        5999
+      ]
+    },
+    {
+      "id": 94,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Diamond Lattice",
+      "title_id": "Kisi Berlian",
+      "tutorial_key": "",
+      "seed": 1094,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "liver": 30,
+        "lungs": 28,
+        "heart": 21,
+        "stomach": 21
+      },
+      "objectives": {
+        "score": 5596,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        5596,
+        6827,
+        8282
+      ]
+    },
+    {
+      "id": 95,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Amber Resilience",
+      "title_id": "Ketangguhan Ambar",
+      "tutorial_key": "",
+      "seed": 1095,
+      "moves": 19,
+      "initial_pulse": 100,
+      "weights": {
+        "muscle": 30,
+        "kidneys": 28,
+        "heart": 21,
+        "liver": 21
+      },
+      "objectives": {
+        "neutralize_overload": 3,
+        "collect": {
+          "muscle": 50
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4110,
+        5014,
+        6082
+      ]
+    },
+    {
+      "id": 96,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Chorus of Care",
+      "title_id": "Paduan Peduli",
+      "tutorial_key": "",
+      "seed": 1096,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "kidneys": 30,
+        "brain": 28,
+        "liver": 21,
+        "heart": 21
+      },
+      "objectives": {
+        "collect": {
+          "kidneys": 40,
+          "brain": 36
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "bloom_positions": [
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4138,
+        5048,
+        6124
+      ]
+    },
+    {
+      "id": 97,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Mirror of Balance",
+      "title_id": "Cermin Keseimbangan",
+      "tutorial_key": "",
+      "seed": 1097,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "stomach": 35,
+        "liver": 28,
+        "lungs": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "long_chains": 4,
+        "collect": {
+          "stomach": 50
+        }
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [],
+      "min_care_on_board": 3,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4166,
+        5082,
+        6165
+      ]
+    },
+    {
+      "id": 98,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Pulse Crescendo",
+      "title_id": "Kresendo Denyut",
+      "tutorial_key": "",
+      "seed": 1098,
+      "moves": 19,
+      "initial_pulse": 100,
+      "weights": {
+        "liver": 30,
+        "lungs": 28,
+        "stomach": 21,
+        "brain": 21
+      },
+      "objectives": {
+        "activate_care": 3,
+        "collect": {
+          "liver": 50
+        }
+      },
+      "care_positions": [
+        [
+          5,
+          3
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "overload_positions": [
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "bloom_positions": [],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4194,
+        5116,
+        6207
+      ]
+    },
+    {
+      "id": 99,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": false,
+      "title_en": "Threshold of Light",
+      "title_id": "Ambang Cahaya",
+      "tutorial_key": "",
+      "seed": 1099,
+      "moves": 18,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "muscle": 28,
+        "brain": 21,
+        "lungs": 21
+      },
+      "objectives": {
+        "score": 5766,
+        "keep_pulse": 70
+      },
+      "care_positions": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "overload_positions": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "armored_overload_positions": [],
+      "bloom_positions": [
+        [
+          5,
+          4
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "min_care_on_board": 2,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        5766,
+        7034,
+        8533
+      ]
+    },
+    {
+      "id": 100,
+      "chapter": 10,
+      "chapter_en": "Grand Harmony",
+      "chapter_id": "Harmoni Agung",
+      "tier": 5,
+      "is_boss": true,
+      "title_en": "Nadiloopa Grand Finale",
+      "title_id": "Puncak Agung Nadiloopa",
+      "tutorial_key": "",
+      "seed": 1100,
+      "moves": 24,
+      "initial_pulse": 100,
+      "weights": {
+        "heart": 30,
+        "lungs": 28,
+        "brain": 21,
+        "muscle": 21
+      },
+      "objectives": {
+        "collect": {
+          "heart": 42,
+          "lungs": 34
+        },
+        "neutralize_overload": 3,
+        "keep_pulse": 65
+      },
+      "care_positions": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "overload_positions": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "armored_overload_positions": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "bloom_positions": [
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "min_care_on_board": 4,
+      "min_overload_on_board": 3,
+      "star_thresholds": [
+        4700,
+        5734,
+        6956
+      ]
+    }
+  ]
+}

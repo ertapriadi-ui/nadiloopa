@@ -1,0 +1,28 @@
+{
+  "codename": "NADILOOPA",
+  "working_title_notice": "Internal codename only; not trademark-cleared.",
+  "package_id": "com.nadiloopa.puzzle",
+  "version": "1.0.0",
+  "version_code": 1,
+  "default_language": "en",
+  "supported_languages": ["en", "id"],
+  "grid": {
+    "cols": 7,
+    "rows": 12,
+    "min_chain_length": 3
+  },
+  "balance": {
+    "initial_pulse": 100,
+    "max_pulse": 100,
+    "overload_pulse_penalty": 10,
+    "overload_restrict_max_cells": 2,
+    "overload_restrict_turns": 1,
+    "care_pulse_restore": 8,
+    "care_shield_max": 2,
+    "care_score_bonus": 150,
+    "overload_neutralize_bonus": 120,
+    "base_tile_score": 25,
+    "long_chain_threshold": 5,
+    "remaining_move_bonus": 120
+  }
+}

@@ -1,0 +1,1710 @@
+{
+	"avg_move_usage_pct": 57.2,
+	"bot_3star_levels": 82,
+	"generated_by": "tests/test_suite.gd",
+	"levels": [
+		{
+			"avg_moves_used": 2.0,
+			"avg_score": 2373,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 1,
+			"move_budget": 12,
+			"move_usage_pct": 16.7,
+			"star_thresholds": [
+				1478.0,
+				1803.0,
+				2187.0
+			],
+			"title_en": "Morning Beat",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 5.0,
+			"avg_score": 3972,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 2,
+			"move_budget": 14,
+			"move_usage_pct": 35.7,
+			"star_thresholds": [
+				1506.0,
+				1837.0,
+				2228.0
+			],
+			"title_en": "Twin Currents",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 3.3,
+			"avg_score": 2875,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 3,
+			"move_budget": 14,
+			"move_usage_pct": 23.8,
+			"star_thresholds": [
+				1400.0,
+				1708.0,
+				2072.0
+			],
+			"title_en": "Spark of Care",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.3,
+			"avg_score": 5435,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 4,
+			"move_budget": 16,
+			"move_usage_pct": 39.6,
+			"star_thresholds": [
+				1562.0,
+				1905.0,
+				2311.0
+			],
+			"title_en": "Watch the Pulse",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.3,
+			"avg_score": 3666,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 5,
+			"move_budget": 16,
+			"move_usage_pct": 45.8,
+			"star_thresholds": [
+				1590.0,
+				1939.0,
+				2353.0
+			],
+			"title_en": "Detour Path",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 4.0,
+			"avg_score": 4064,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 6,
+			"move_budget": 16,
+			"move_usage_pct": 25.0,
+			"star_thresholds": [
+				2100.0,
+				2562.0,
+				3108.0
+			],
+			"title_en": "Steady Tempo",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 3.3,
+			"avg_score": 3436,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 7,
+			"move_budget": 16,
+			"move_usage_pct": 20.8,
+			"star_thresholds": [
+				1646.0,
+				2008.0,
+				2436.0
+			],
+			"title_en": "Green Shield",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5371,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 8,
+			"move_budget": 17,
+			"move_usage_pct": 47.1,
+			"star_thresholds": [
+				1674.0,
+				2042.0,
+				2477.0
+			],
+			"title_en": "Safe Harbor",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 3.7,
+			"avg_score": 4200,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 9,
+			"move_budget": 17,
+			"move_usage_pct": 21.6,
+			"star_thresholds": [
+				1702.0,
+				2076.0,
+				2518.0
+			],
+			"title_en": "Neutralize!",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 4323,
+			"canonical_seed_won": true,
+			"chapter": 1,
+			"level_id": 10,
+			"move_budget": 18,
+			"move_usage_pct": 44.4,
+			"star_thresholds": [
+				2800.0,
+				3416.0,
+				4144.0
+			],
+			"title_en": "Tropical Dawn Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.7,
+			"avg_score": 7362,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 11,
+			"move_budget": 15,
+			"move_usage_pct": 57.8,
+			"star_thresholds": [
+				1758.0,
+				2144.0,
+				2601.0
+			],
+			"title_en": "Bamboo Crossing",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.7,
+			"avg_score": 5291,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 12,
+			"move_budget": 15,
+			"move_usage_pct": 44.4,
+			"star_thresholds": [
+				1786.0,
+				2178.0,
+				2643.0
+			],
+			"title_en": "Rippling Pebbles",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.3,
+			"avg_score": 4763,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 13,
+			"move_budget": 16,
+			"move_usage_pct": 39.6,
+			"star_thresholds": [
+				1814.0,
+				2213.0,
+				2684.0
+			],
+			"title_en": "Clear Rivulet",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 5.3,
+			"avg_score": 4807,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 14,
+			"move_budget": 15,
+			"move_usage_pct": 35.6,
+			"star_thresholds": [
+				2876.0,
+				3508.0,
+				4256.0
+			],
+			"title_en": "Emerald Bend",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.7,
+			"avg_score": 4704,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 15,
+			"move_budget": 16,
+			"move_usage_pct": 47.9,
+			"star_thresholds": [
+				1870.0,
+				2281.0,
+				2767.0
+			],
+			"title_en": "Shaded Ford",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 7288,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 16,
+			"move_budget": 15,
+			"move_usage_pct": 53.3,
+			"star_thresholds": [
+				1898.0,
+				2315.0,
+				2809.0
+			],
+			"title_en": "Floating Reed",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.0,
+			"avg_score": 4725,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 17,
+			"move_budget": 15,
+			"move_usage_pct": 46.7,
+			"star_thresholds": [
+				1926.0,
+				2349.0,
+				2850.0
+			],
+			"title_en": "Still Water",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.7,
+			"avg_score": 4246,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 18,
+			"move_budget": 16,
+			"move_usage_pct": 47.9,
+			"star_thresholds": [
+				1954.0,
+				2383.0,
+				2891.0
+			],
+			"title_en": "Bridge of Leaves",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.0,
+			"avg_score": 4750,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 19,
+			"move_budget": 15,
+			"move_usage_pct": 40.0,
+			"star_thresholds": [
+				3046.0,
+				3716.0,
+				4508.0
+			],
+			"title_en": "Rapid Cascade",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 14.3,
+			"avg_score": 8706,
+			"canonical_seed_won": true,
+			"chapter": 2,
+			"level_id": 20,
+			"move_budget": 20,
+			"move_usage_pct": 71.7,
+			"star_thresholds": [
+				2460.0,
+				3001.0,
+				3640.0
+			],
+			"title_en": "Bamboo Stream Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 6501,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 21,
+			"move_budget": 15,
+			"move_usage_pct": 60.0,
+			"star_thresholds": [
+				2038.0,
+				2486.0,
+				3016.0
+			],
+			"title_en": "Warm Welcome",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.7,
+			"avg_score": 4282,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 22,
+			"move_budget": 15,
+			"move_usage_pct": 44.4,
+			"star_thresholds": [
+				2066.0,
+				2520.0,
+				3057.0
+			],
+			"title_en": "Ginger Step",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.3,
+			"avg_score": 5151,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 23,
+			"move_budget": 16,
+			"move_usage_pct": 52.1,
+			"star_thresholds": [
+				2094.0,
+				2554.0,
+				3099.0
+			],
+			"title_en": "Mint Breeze",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.7,
+			"avg_score": 4752,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 24,
+			"move_budget": 15,
+			"move_usage_pct": 44.4,
+			"star_thresholds": [
+				3216.0,
+				3923.0,
+				4759.0
+			],
+			"title_en": "Terrace Dew",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 5402,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 25,
+			"move_budget": 16,
+			"move_usage_pct": 62.5,
+			"star_thresholds": [
+				2150.0,
+				2623.0,
+				3182.0
+			],
+			"title_en": "Honeycomb Ridge",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.7,
+			"avg_score": 6464,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 26,
+			"move_budget": 15,
+			"move_usage_pct": 71.1,
+			"star_thresholds": [
+				2178.0,
+				2657.0,
+				3223.0
+			],
+			"title_en": "Saffron Sun",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.3,
+			"avg_score": 4406,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 27,
+			"move_budget": 15,
+			"move_usage_pct": 42.2,
+			"star_thresholds": [
+				2206.0,
+				2691.0,
+				3264.0
+			],
+			"title_en": "Lemongrass Row",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.7,
+			"avg_score": 4676,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 28,
+			"move_budget": 16,
+			"move_usage_pct": 47.9,
+			"star_thresholds": [
+				2234.0,
+				2725.0,
+				3306.0
+			],
+			"title_en": "Calm Apothecary",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.7,
+			"avg_score": 4642,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 29,
+			"move_budget": 15,
+			"move_usage_pct": 44.4,
+			"star_thresholds": [
+				3386.0,
+				4130.0,
+				5011.0
+			],
+			"title_en": "Highland Steep",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 14.3,
+			"avg_score": 7069,
+			"canonical_seed_won": true,
+			"chapter": 3,
+			"level_id": 30,
+			"move_budget": 20,
+			"move_usage_pct": 71.7,
+			"star_thresholds": [
+				2740.0,
+				3342.0,
+				4055.0
+			],
+			"title_en": "Herbal Terrace Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.3,
+			"avg_score": 7171,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 31,
+			"move_budget": 16,
+			"move_usage_pct": 64.6,
+			"star_thresholds": [
+				2318.0,
+				2827.0,
+				3430.0
+			],
+			"title_en": "Armored Shallows",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5771,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 32,
+			"move_budget": 16,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				2346.0,
+				2862.0,
+				3472.0
+			],
+			"title_en": "Turquoise Arch",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 4389,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 33,
+			"move_budget": 17,
+			"move_usage_pct": 47.1,
+			"star_thresholds": [
+				2374.0,
+				2896.0,
+				3513.0
+			],
+			"title_en": "Starfish Cove",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5174,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 34,
+			"move_budget": 16,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				3556.0,
+				4338.0,
+				5262.0
+			],
+			"title_en": "Pearl Current",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.7,
+			"avg_score": 6124,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 35,
+			"move_budget": 17,
+			"move_usage_pct": 51.0,
+			"star_thresholds": [
+				2430.0,
+				2964.0,
+				3596.0
+			],
+			"title_en": "Sea Fan Sway",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 8266,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 36,
+			"move_budget": 16,
+			"move_usage_pct": 62.5,
+			"star_thresholds": [
+				2458.0,
+				2998.0,
+				3637.0
+			],
+			"title_en": "Lagoon Rim",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.7,
+			"avg_score": 5475,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 37,
+			"move_budget": 16,
+			"move_usage_pct": 47.9,
+			"star_thresholds": [
+				2486.0,
+				3032.0,
+				3679.0
+			],
+			"title_en": "Tidal Pool",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 4268,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 38,
+			"move_budget": 17,
+			"move_usage_pct": 52.9,
+			"star_thresholds": [
+				2514.0,
+				3067.0,
+				3720.0
+			],
+			"title_en": "Shell Sanctuary",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5098,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 39,
+			"move_budget": 16,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				3726.0,
+				4545.0,
+				5514.0
+			],
+			"title_en": "Deep Barrier",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 17.0,
+			"avg_score": 6439,
+			"canonical_seed_won": true,
+			"chapter": 4,
+			"level_id": 40,
+			"move_budget": 21,
+			"move_usage_pct": 81.0,
+			"star_thresholds": [
+				3020.0,
+				3684.0,
+				4469.0
+			],
+			"title_en": "Coral Reef Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 12.7,
+			"avg_score": 6360,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 41,
+			"move_budget": 16,
+			"move_usage_pct": 79.2,
+			"star_thresholds": [
+				2598.0,
+				3169.0,
+				3845.0
+			],
+			"title_en": "Filter & Bloom",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5655,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 42,
+			"move_budget": 16,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				2626.0,
+				3203.0,
+				3886.0
+			],
+			"title_en": "Sunbeam Bough",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.7,
+			"avg_score": 6391,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 43,
+			"move_budget": 17,
+			"move_usage_pct": 51.0,
+			"star_thresholds": [
+				2654.0,
+				3237.0,
+				3927.0
+			],
+			"title_en": "Mossy Branch",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 6.7,
+			"avg_score": 5389,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 44,
+			"move_budget": 16,
+			"move_usage_pct": 41.7,
+			"star_thresholds": [
+				3896.0,
+				4753.0,
+				5766.0
+			],
+			"title_en": "Orchid Perch",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 4997,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 45,
+			"move_budget": 17,
+			"move_usage_pct": 52.9,
+			"star_thresholds": [
+				2710.0,
+				3306.0,
+				4010.0
+			],
+			"title_en": "Canopy Swing",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 13.3,
+			"avg_score": 5233,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 46,
+			"move_budget": 16,
+			"move_usage_pct": 83.3,
+			"star_thresholds": [
+				2738.0,
+				3340.0,
+				4052.0
+			],
+			"title_en": "Balanced Steps",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.3,
+			"avg_score": 5398,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 47,
+			"move_budget": 16,
+			"move_usage_pct": 52.1,
+			"star_thresholds": [
+				2766.0,
+				3374.0,
+				4093.0
+			],
+			"title_en": "Fern Crown",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 4813,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 48,
+			"move_budget": 17,
+			"move_usage_pct": 56.9,
+			"star_thresholds": [
+				2794.0,
+				3408.0,
+				4135.0
+			],
+			"title_en": "Vine Spiral",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 5313,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 49,
+			"move_budget": 16,
+			"move_usage_pct": 62.5,
+			"star_thresholds": [
+				4066.0,
+				4960.0,
+				6017.0
+			],
+			"title_en": "Green Zenith",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 14.7,
+			"avg_score": 8881,
+			"canonical_seed_won": true,
+			"chapter": 5,
+			"level_id": 50,
+			"move_budget": 21,
+			"move_usage_pct": 69.8,
+			"star_thresholds": [
+				3300.0,
+				4026.0,
+				4884.0
+			],
+			"title_en": "Emerald Canopy Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 11.7,
+			"avg_score": 6898,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 51,
+			"move_budget": 16,
+			"move_usage_pct": 72.9,
+			"star_thresholds": [
+				2878.0,
+				3511.0,
+				4259.0
+			],
+			"title_en": "Opening Petal",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.0,
+			"avg_score": 5710,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 52,
+			"move_budget": 16,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				2906.0,
+				3545.0,
+				4300.0
+			],
+			"title_en": "Mirror Pond",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.7,
+			"avg_score": 5214,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 53,
+			"move_budget": 17,
+			"move_usage_pct": 62.7,
+			"star_thresholds": [
+				2934.0,
+				3579.0,
+				4342.0
+			],
+			"title_en": "Dewey Stamen",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 5600,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 54,
+			"move_budget": 16,
+			"move_usage_pct": 56.3,
+			"star_thresholds": [
+				4236.0,
+				5167.0,
+				6269.0
+			],
+			"title_en": "Quiet Koi Path",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 12.0,
+			"avg_score": 4334,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 55,
+			"move_budget": 17,
+			"move_usage_pct": 70.6,
+			"star_thresholds": [
+				2990.0,
+				3647.0,
+				4425.0
+			],
+			"title_en": "Dawn Reflection",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 14.0,
+			"avg_score": 7353,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 56,
+			"move_budget": 16,
+			"move_usage_pct": 87.5,
+			"star_thresholds": [
+				3018.0,
+				3681.0,
+				4466.0
+			],
+			"title_en": "Jade Lilypad",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 7.7,
+			"avg_score": 6488,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 57,
+			"move_budget": 16,
+			"move_usage_pct": 47.9,
+			"star_thresholds": [
+				3046.0,
+				3716.0,
+				4508.0
+			],
+			"title_en": "Soft Ripple",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 6012,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 58,
+			"move_budget": 17,
+			"move_usage_pct": 52.9,
+			"star_thresholds": [
+				3074.0,
+				3750.0,
+				4549.0
+			],
+			"title_en": "Moonlit Lotus",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 11.7,
+			"avg_score": 5287,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 59,
+			"move_budget": 16,
+			"move_usage_pct": 72.9,
+			"star_thresholds": [
+				4406.0,
+				5375.0,
+				6520.0
+			],
+			"title_en": "Still Sanctuary",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 15.7,
+			"avg_score": 8721,
+			"canonical_seed_won": true,
+			"chapter": 6,
+			"level_id": 60,
+			"move_budget": 21,
+			"move_usage_pct": 74.6,
+			"star_thresholds": [
+				3580.0,
+				4367.0,
+				5298.0
+			],
+			"title_en": "Lotus Lagoon Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 12.3,
+			"avg_score": 8374,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 61,
+			"move_budget": 17,
+			"move_usage_pct": 72.5,
+			"star_thresholds": [
+				3158.0,
+				3852.0,
+				4673.0
+			],
+			"title_en": "First Raindrop",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 6038,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 62,
+			"move_budget": 17,
+			"move_usage_pct": 52.9,
+			"star_thresholds": [
+				3186.0,
+				3886.0,
+				4715.0
+			],
+			"title_en": "Drum of Cloud",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 4442,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 63,
+			"move_budget": 18,
+			"move_usage_pct": 53.7,
+			"star_thresholds": [
+				3214.0,
+				3921.0,
+				4756.0
+			],
+			"title_en": "Misty Canopy",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.3,
+			"avg_score": 6228,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 64,
+			"move_budget": 17,
+			"move_usage_pct": 54.9,
+			"star_thresholds": [
+				4576.0,
+				5582.0,
+				6772.0
+			],
+			"title_en": "Silver Gust",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.3,
+			"avg_score": 6411,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 65,
+			"move_budget": 18,
+			"move_usage_pct": 51.9,
+			"star_thresholds": [
+				3270.0,
+				3989.0,
+				4839.0
+			],
+			"title_en": "Thunder Pulse",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 13.0,
+			"avg_score": 6203,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 66,
+			"move_budget": 17,
+			"move_usage_pct": 76.5,
+			"star_thresholds": [
+				3298.0,
+				4023.0,
+				4881.0
+			],
+			"title_en": "Rainy Terrace",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.3,
+			"avg_score": 5914,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 67,
+			"move_budget": 17,
+			"move_usage_pct": 54.9,
+			"star_thresholds": [
+				3326.0,
+				4057.0,
+				4922.0
+			],
+			"title_en": "Storm Break",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 6275,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 68,
+			"move_budget": 18,
+			"move_usage_pct": 53.7,
+			"star_thresholds": [
+				3354.0,
+				4091.0,
+				4963.0
+			],
+			"title_en": "Rainbow Arc",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 12.0,
+			"avg_score": 5611,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 69,
+			"move_budget": 17,
+			"move_usage_pct": 70.6,
+			"star_thresholds": [
+				4746.0,
+				5790.0,
+				7024.0
+			],
+			"title_en": "Surging River",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 17.0,
+			"avg_score": 9856,
+			"canonical_seed_won": true,
+			"chapter": 7,
+			"level_id": 70,
+			"move_budget": 22,
+			"move_usage_pct": 77.3,
+			"star_thresholds": [
+				3860.0,
+				4709.0,
+				5712.0
+			],
+			"title_en": "Monsoon Rhythm Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 14.0,
+			"avg_score": 8293,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 71,
+			"move_budget": 17,
+			"move_usage_pct": 82.4,
+			"star_thresholds": [
+				3438.0,
+				4194.0,
+				5088.0
+			],
+			"title_en": "Foothill Trail",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.3,
+			"avg_score": 6013,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 72,
+			"move_budget": 17,
+			"move_usage_pct": 49.0,
+			"star_thresholds": [
+				3466.0,
+				4228.0,
+				5129.0
+			],
+			"title_en": "Granite Steps",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 6767,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 73,
+			"move_budget": 18,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				3494.0,
+				4262.0,
+				5171.0
+			],
+			"title_en": "Pine Horizon",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.3,
+			"avg_score": 6898,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 74,
+			"move_budget": 17,
+			"move_usage_pct": 54.9,
+			"star_thresholds": [
+				4916.0,
+				5997.0,
+				7275.0
+			],
+			"title_en": "Cloud Bridge",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 5867,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 75,
+			"move_budget": 18,
+			"move_usage_pct": 53.7,
+			"star_thresholds": [
+				3550.0,
+				4331.0,
+				5254.0
+			],
+			"title_en": "Eagle Outlook",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 13.3,
+			"avg_score": 7424,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 76,
+			"move_budget": 17,
+			"move_usage_pct": 78.4,
+			"star_thresholds": [
+				3578.0,
+				4365.0,
+				5295.0
+			],
+			"title_en": "Summit Breath",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.7,
+			"avg_score": 5965,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 77,
+			"move_budget": 17,
+			"move_usage_pct": 51.0,
+			"star_thresholds": [
+				3606.0,
+				4399.0,
+				5336.0
+			],
+			"title_en": "Wind Chime Pass",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 6190,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 78,
+			"move_budget": 18,
+			"move_usage_pct": 55.6,
+			"star_thresholds": [
+				3634.0,
+				4433.0,
+				5378.0
+			],
+			"title_en": "Starlit Ridge",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 6873,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 79,
+			"move_budget": 17,
+			"move_usage_pct": 58.8,
+			"star_thresholds": [
+				5086.0,
+				6204.0,
+				7527.0
+			],
+			"title_en": "Alpine Spring",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 19.0,
+			"avg_score": 9445,
+			"canonical_seed_won": true,
+			"chapter": 8,
+			"level_id": 80,
+			"move_budget": 22,
+			"move_usage_pct": 86.4,
+			"star_thresholds": [
+				4140.0,
+				5050.0,
+				6127.0
+			],
+			"title_en": "Sanctuary Peak Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 15.7,
+			"avg_score": 6432,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 81,
+			"move_budget": 17,
+			"move_usage_pct": 92.2,
+			"star_thresholds": [
+				3718.0,
+				4535.0,
+				5502.0
+			],
+			"title_en": "Amber Strait",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 6737,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 82,
+			"move_budget": 17,
+			"move_usage_pct": 58.8,
+			"star_thresholds": [
+				3746.0,
+				4570.0,
+				5544.0
+			],
+			"title_en": "Spice Harbor",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 11.0,
+			"avg_score": 6503,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 83,
+			"move_budget": 18,
+			"move_usage_pct": 61.1,
+			"star_thresholds": [
+				3774.0,
+				4604.0,
+				5585.0
+			],
+			"title_en": "Sunken Atoll",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 11.7,
+			"avg_score": 6180,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 84,
+			"move_budget": 17,
+			"move_usage_pct": 68.6,
+			"star_thresholds": [
+				5256.0,
+				6412.0,
+				7778.0
+			],
+			"title_en": "Gilded Sail",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.3,
+			"avg_score": 6279,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 85,
+			"move_budget": 18,
+			"move_usage_pct": 57.4,
+			"star_thresholds": [
+				3830.0,
+				4672.0,
+				5668.0
+			],
+			"title_en": "Atoll Ring",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 15.7,
+			"avg_score": 7775,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 86,
+			"move_budget": 17,
+			"move_usage_pct": 92.2,
+			"star_thresholds": [
+				3858.0,
+				4706.0,
+				5709.0
+			],
+			"title_en": "Volcanic Richness",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 6510,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 87,
+			"move_budget": 17,
+			"move_usage_pct": 56.9,
+			"star_thresholds": [
+				3886.0,
+				4740.0,
+				5751.0
+			],
+			"title_en": "Lantern Pier",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.3,
+			"avg_score": 5871,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 88,
+			"move_budget": 18,
+			"move_usage_pct": 57.4,
+			"star_thresholds": [
+				3914.0,
+				4775.0,
+				5792.0
+			],
+			"title_en": "Saffron Bay",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 11.3,
+			"avg_score": 6362,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 89,
+			"move_budget": 17,
+			"move_usage_pct": 66.7,
+			"star_thresholds": [
+				5426.0,
+				6619.0,
+				8030.0
+			],
+			"title_en": "Beacon Island",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 17.3,
+			"avg_score": 10341,
+			"canonical_seed_won": true,
+			"chapter": 9,
+			"level_id": 90,
+			"move_budget": 22,
+			"move_usage_pct": 78.8,
+			"star_thresholds": [
+				4420.0,
+				5392.0,
+				6541.0
+			],
+			"title_en": "Golden Archipelago Boss",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 15.0,
+			"avg_score": 8884,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 91,
+			"move_budget": 18,
+			"move_usage_pct": 83.3,
+			"star_thresholds": [
+				3998.0,
+				4877.0,
+				5917.0
+			],
+			"title_en": "Prelude of Nine",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 6868,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 92,
+			"move_budget": 18,
+			"move_usage_pct": 55.6,
+			"star_thresholds": [
+				4026.0,
+				4911.0,
+				5958.0
+			],
+			"title_en": "Circuit Waltz",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.7,
+			"avg_score": 7024,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 93,
+			"move_budget": 19,
+			"move_usage_pct": 50.9,
+			"star_thresholds": [
+				4054.0,
+				4945.0,
+				5999.0
+			],
+			"title_en": "Six Hearts United",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 12.7,
+			"avg_score": 6813,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 94,
+			"move_budget": 18,
+			"move_usage_pct": 70.4,
+			"star_thresholds": [
+				5596.0,
+				6827.0,
+				8282.0
+			],
+			"title_en": "Diamond Lattice",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 13.3,
+			"avg_score": 6843,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 95,
+			"move_budget": 19,
+			"move_usage_pct": 70.2,
+			"star_thresholds": [
+				4110.0,
+				5014.0,
+				6082.0
+			],
+			"title_en": "Amber Resilience",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 15.7,
+			"avg_score": 7423,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 96,
+			"move_budget": 18,
+			"move_usage_pct": 87.0,
+			"star_thresholds": [
+				4138.0,
+				5048.0,
+				6124.0
+			],
+			"title_en": "Chorus of Care",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 9.0,
+			"avg_score": 6713,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 97,
+			"move_budget": 18,
+			"move_usage_pct": 50.0,
+			"star_thresholds": [
+				4166.0,
+				5082.0,
+				6165.0
+			],
+			"title_en": "Mirror of Balance",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 10.0,
+			"avg_score": 7724,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 98,
+			"move_budget": 19,
+			"move_usage_pct": 52.6,
+			"star_thresholds": [
+				4194.0,
+				5116.0,
+				6207.0
+			],
+			"title_en": "Pulse Crescendo",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 8.7,
+			"avg_score": 7911,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 99,
+			"move_budget": 18,
+			"move_usage_pct": 48.1,
+			"star_thresholds": [
+				5766.0,
+				7034.0,
+				8533.0
+			],
+			"title_en": "Threshold of Light",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		},
+		{
+			"avg_moves_used": 17.7,
+			"avg_score": 8632,
+			"canonical_seed_won": true,
+			"chapter": 10,
+			"level_id": 100,
+			"move_budget": 24,
+			"move_usage_pct": 73.6,
+			"star_thresholds": [
+				4700.0,
+				5734.0,
+				6956.0
+			],
+			"title_en": "Nadiloopa Grand Finale",
+			"win_rate": 1.0,
+			"wins_of_3": 3
+		}
+	],
+	"perfect_100pct_levels": 100,
+	"runs_per_level": 3,
+	"total_levels": 100
+}

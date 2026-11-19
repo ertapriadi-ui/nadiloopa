@@ -1,0 +1,19 @@
+# Godot 4 cache & temporary files
+.godot/
+*.tmp
+*.bak
+.import/
+
+# Android / Build binaries (hosted on GitHub Releases & Actions artifacts)
+build/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc

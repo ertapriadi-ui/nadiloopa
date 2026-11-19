@@ -1,0 +1,183 @@
+class_name VFXController
+extends Control
+## Lightweight, Android-friendly particle bursts, pulse rings, combo banners, floating popups, and optional shake.
+
+var _tex_star: Texture2D
+var _tex_heart: Texture2D
+var _tex_leaf: Texture2D
+var _tex_pulse_ring: Texture2D
+var _tex_shield_aura: Texture2D
+var _font_bold: Font
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_rng.seed = 9001
+	_tex_star = _safe_load("res://assets/sprites/tiles/particle_star.png")
+	_tex_heart = _safe_load("res://assets/sprites/tiles/particle_heart.png")
+	_tex_leaf = _safe_load("res://assets/sprites/tiles/particle_leaf.png")
+	_tex_pulse_ring = _safe_load("res://assets/sprites/tiles/pulse_ring.png")
+	_tex_shield_aura = _safe_load("res://assets/sprites/tiles/overlay_shield_aura.png")
+	_font_bold = _safe_load_font("res://assets/fonts/Inter-SemiBold.ttf")
+
+
+func _safe_load(path: String) -> Texture2D:
+	return load(path) if ResourceLoader.exists(path) else null
+
+
+func _safe_load_font(path: String) -> Font:
+	return load(path) if ResourceLoader.exists(path) else ThemeDB.fallback_font
+
+
+func clear_all() -> void:
+	for child in get_children():
+		child.queue_free()
+
+
+func spawn_tile_burst(local_pos: Vector2, kind: String, cell_px: int, is_large: bool = false) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	var count := 3 if reduce else (9 if is_large else 5)
+	var tex := _tex_star
+	var tint := Color(1, 0.9, 0.5)
+	match kind:
+		"heart":
+			tex = _tex_heart
+			tint = Color(1.0, 0.45, 0.58)
+		"brain":
+			tex = _tex_star
+			tint = Color(0.76, 0.56, 1.0)
+		"lungs":
+			tex = _tex_star
+			tint = Color(0.38, 0.92, 0.90)
+		"kidneys":
+			tex = _tex_star
+			tint = Color(1.0, 0.72, 0.28)
+		"stomach":
+			tex = _tex_star
+			tint = Color(1.0, 0.62, 0.36)
+		"liver":
+			tex = _tex_star
+			tint = Color(1.0, 0.84, 0.22)
+		"muscle":
+			tex = _tex_heart
+			tint = Color(0.96, 0.26, 0.64)
+		"care":
+			tex = _tex_leaf
+			tint = Color(0.32, 0.96, 0.56)
+		"bloom":
+			tex = _tex_star
+			tint = Color(1.0, 0.90, 0.32)
+		"overload":
+			tex = _tex_star
+			tint = Color(1.0, 0.42, 0.25)
+
+	if tex == null:
+		return
+
+	var base_scale := clampf(float(cell_px) / 360.0, 0.14, 0.40)
+	for i in range(count):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = tint
+		sp.position = local_pos
+		sp.scale = Vector2.ONE * base_scale * _rng.randf_range(0.75, 1.3)
+		add_child(sp)
+
+		var ang := (TAU / float(count)) * float(i) + _rng.randf_range(-0.35, 0.35)
+		var dist := float(cell_px) * _rng.randf_range(0.45, 1.15 if is_large else 0.75)
+		var target := local_pos + Vector2(cos(ang), sin(ang)) * dist
+		var dur := 0.18 if reduce else _rng.randf_range(0.28, 0.46)
+
+		var tw := sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", target, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "scale", Vector2.ZERO, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		tw.tween_property(sp, "modulate:a", 0.0, dur)
+		tw.chain().tween_callback(sp.queue_free)
+
+
+func spawn_pulse_ring(local_pos: Vector2, color: Color, cell_px: int, radius_cells: float = 1.65) -> void:
+	if DisplayServer.get_name() == "headless" or _tex_pulse_ring == null:
+		return
+	var sp := Sprite2D.new()
+	sp.texture = _tex_pulse_ring
+	sp.modulate = color
+	sp.position = local_pos
+	var start_scale := float(cell_px) * 0.45 / 256.0
+	var end_scale := float(cell_px) * radius_cells * 2.0 / 256.0
+	sp.scale = Vector2.ONE * start_scale
+	add_child(sp)
+
+	var dur := 0.18 if GameManager.is_reduce_motion() else 0.42
+	var tw := sp.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(sp, "scale", Vector2.ONE * end_scale, dur).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(sp, "modulate:a", 0.0, dur)
+	tw.chain().tween_callback(sp.queue_free)
+
+
+func spawn_floating_text(local_pos: Vector2, text_str: String, color: Color, font_px: int = 28) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var lbl := Label.new()
+	lbl.text = text_str
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.add_theme_font_override("font", _font_bold)
+	lbl.add_theme_font_size_override("font_size", font_px)
+	lbl.add_theme_color_override("font_color", color)
+	lbl.add_theme_color_override("font_outline_color", Color(0.08, 0.12, 0.14, 0.94))
+	lbl.add_theme_constant_override("outline_size", 6)
+	lbl.size = Vector2(360, 48)
+	lbl.position = local_pos - Vector2(180, 24)
+	add_child(lbl)
+
+	var rise := 18.0 if GameManager.is_reduce_motion() else 66.0
+	var dur := 0.35 if GameManager.is_reduce_motion() else 0.82
+	var tw := lbl.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(lbl, "position:y", lbl.position.y - rise, dur).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(lbl, "modulate:a", 0.0, dur * 0.45).set_delay(dur * 0.55)
+	tw.chain().tween_callback(lbl.queue_free)
+
+
+func spawn_combo_banner(center_pos: Vector2, text_str: String, color: Color) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var lbl := Label.new()
+	lbl.text = text_str
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.add_theme_font_override("font", _font_bold)
+	lbl.add_theme_font_size_override("font_size", 46)
+	lbl.add_theme_color_override("font_color", color)
+	lbl.add_theme_color_override("font_outline_color", Color(0.06, 0.14, 0.14, 0.96))
+	lbl.add_theme_constant_override("outline_size", 10)
+	lbl.size = Vector2(640, 68)
+	lbl.pivot_offset = Vector2(320, 34)
+	lbl.position = center_pos - Vector2(320, 34)
+	lbl.scale = Vector2.ONE * (1.0 if GameManager.is_reduce_motion() else 0.55)
+	add_child(lbl)
+
+	var dur := 0.45 if GameManager.is_reduce_motion() else 0.95
+	var tw := lbl.create_tween()
+	if not GameManager.is_reduce_motion():
+		tw.tween_property(lbl, "scale", Vector2.ONE * 1.12, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(lbl, "scale", Vector2.ONE, 0.12)
+	tw.tween_property(lbl, "position:y", lbl.position.y - (16.0 if GameManager.is_reduce_motion() else 44.0), dur * 0.6)
+	tw.parallel().tween_property(lbl, "modulate:a", 0.0, dur * 0.4).set_delay(dur * 0.55)
+	tw.chain().tween_callback(lbl.queue_free)
+
+
+func trigger_shake(target: Control, strength: float = 8.0) -> void:
+	if DisplayServer.get_name() == "headless" or target == null:
+		return
+	if not GameManager.is_screen_shake_enabled():
+		return
+	var base_pos := target.position
+	var tw := target.create_tween()
+	tw.tween_property(target, "position", base_pos + Vector2(strength, -strength * 0.5), 0.04)
+	tw.tween_property(target, "position", base_pos + Vector2(-strength * 0.8, strength * 0.6), 0.04)
+	tw.tween_property(target, "position", base_pos + Vector2(strength * 0.4, strength * 0.3), 0.04)
+	tw.tween_property(target, "position", base_pos, 0.04)
