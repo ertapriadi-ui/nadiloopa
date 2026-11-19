@@ -2,7 +2,7 @@
   "en": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Pulse Puzzle Sanctuary",
-    "APP_WORKING_TAG": "v2.6.0 • 100 Stages",
+    "APP_WORKING_TAG": "v2.7.0 • 100 Stages",
     "DIFF_TITLE": "Difficulty & Grid Size",
     "DIFF_EASY": "EASY\n5×7",
     "DIFF_MEDIUM": "MEDIUM\n6×9",
@@ -211,12 +211,15 @@
     "BANNER_SUPER_NOVA": "SUPER NOVA! CROSS BLAST +1 MOVE!",
     "BANNER_MEGA_RESET": "MEGA BLAST! FULL BOARD RESET +2 MOVES!",
     "PREVIEW_SUPER_NOVA": "8+ SUPER NOVA! Row & Column Blast +1 Bonus Move!",
-    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Clears ALL Hazards + FULL BOARD RESET +2 Moves!"
+    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Clears ALL Hazards + FULL BOARD RESET +2 Moves!",
+    "BANNER_CATASTROPHIC_BLAST": "TOXIC FAT BLAST! SCORE SLASHED!",
+    "POPUP_CATASTROPHIC": "-{score} SCORE! -{pulse} PULSE!",
+    "PREVIEW_TOXIC_WARNING": "DANGER! Toxic hazards linked — blast with Detox Bomb before 3 combine!"
   },
   "id": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Suaka Teka-Teki Denyut",
-    "APP_WORKING_TAG": "v2.6.0 • 100 Tahap",
+    "APP_WORKING_TAG": "v2.7.0 • 100 Tahap",
     "DIFF_TITLE": "Tingkat & Luas Kotak",
     "DIFF_EASY": "MUDAH\n5×7",
     "DIFF_MEDIUM": "SEDANG\n6×9",
@@ -425,6 +428,9 @@
     "BANNER_SUPER_NOVA": "SUPER NOVA! LEDAKAN SILANG +1 LANGKAH!",
     "BANNER_MEGA_RESET": "MEGA BLAST! RESET PAPAN +2 LANGKAH!",
     "PREVIEW_SUPER_NOVA": "8+ SUPER NOVA! Ledak 1 Baris & Kolom +1 Langkah!",
-    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Hancurkan SEMUA Ranjau + RESET PAPAN +2 Langkah!"
+    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Hancurkan SEMUA Ranjau + RESET PAPAN +2 Langkah!",
+    "BANNER_CATASTROPHIC_BLAST": "LEDAKAN LEMAK & KALORI! SKOR ANJLOK!",
+    "POPUP_CATASTROPHIC": "-{score} SKOR! -{pulse} NADI!",
+    "PREVIEW_TOXIC_WARNING": "BAHAYA! Racun berdekatan — ledakkan pakai Bom Detoks sebelum 3 bergabung!"
   }
 }

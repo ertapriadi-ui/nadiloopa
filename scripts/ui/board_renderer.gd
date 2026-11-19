@@ -23,6 +23,7 @@ const TILE_TEXTURE_PATHS := {
 	"overload": "res://assets/sprites/tiles/special_overload.png",
 	"overload_soda": "res://assets/sprites/tiles/special_overload_soda.png",
 	"overload_snack": "res://assets/sprites/tiles/special_overload_snack.png",
+	"overload_smoke": "res://assets/sprites/tiles/special_overload_smoke.png",
 	"overload_armor": "res://assets/sprites/tiles/special_overload_armor.png"
 }
 
@@ -97,38 +98,59 @@ func _ready() -> void:
 
 func _init_board_styles() -> void:
 	_sb_tray_outer = StyleBoxFlat.new()
-	_sb_tray_outer.bg_color = Color(0.08, 0.36, 0.33, 0.94)
-	_sb_tray_outer.border_color = Color(0.96, 0.84, 0.52, 0.85)
-	_sb_tray_outer.set_border_width_all(3)
-	_sb_tray_outer.border_width_bottom = 8
-	_sb_tray_outer.set_corner_radius_all(26)
-	_sb_tray_outer.shadow_size = 18
-	_sb_tray_outer.shadow_color = Color(0.02, 0.10, 0.10, 0.42)
-	_sb_tray_outer.shadow_offset = Vector2(0, 8)
+	_sb_tray_outer.bg_color = Color(0.06, 0.30, 0.28, 0.98)
+	_sb_tray_outer.border_color = Color(0.98, 0.86, 0.48, 0.96)
+	_sb_tray_outer.border_width_left = 4
+	_sb_tray_outer.border_width_top = 4
+	_sb_tray_outer.border_width_right = 5
+	_sb_tray_outer.border_width_bottom = 12
+	_sb_tray_outer.set_corner_radius_all(28)
+	_sb_tray_outer.shadow_size = 24
+	_sb_tray_outer.shadow_color = Color(0.01, 0.06, 0.08, 0.56)
+	_sb_tray_outer.shadow_offset = Vector2(0, 10)
 
 	_sb_tray_inner = StyleBoxFlat.new()
-	_sb_tray_inner.bg_color = Color(0.96, 0.985, 0.955, 0.94)
-	_sb_tray_inner.border_color = Color(0.14, 0.54, 0.46, 0.55)
-	_sb_tray_inner.set_border_width_all(3)
+	_sb_tray_inner.bg_color = Color(0.11, 0.22, 0.24, 0.96)
+	_sb_tray_inner.border_color = Color(0.18, 0.64, 0.56, 0.72)
+	_sb_tray_inner.border_width_left = 4
+	_sb_tray_inner.border_width_top = 5
+	_sb_tray_inner.border_width_right = 3
+	_sb_tray_inner.border_width_bottom = 3
 	_sb_tray_inner.set_corner_radius_all(20)
 
 	_sb_tray_fever = StyleBoxFlat.new()
-	_sb_tray_fever.bg_color = Color(0.96, 0.72, 0.12, 0.96)
-	_sb_tray_fever.border_color = Color(1.0, 0.95, 0.62, 0.98)
+	_sb_tray_fever.bg_color = Color(0.96, 0.72, 0.12, 0.98)
+	_sb_tray_fever.border_color = Color(1.0, 0.96, 0.66, 0.99)
 	_sb_tray_fever.set_border_width_all(5)
-	_sb_tray_fever.border_width_bottom = 9
-	_sb_tray_fever.set_corner_radius_all(26)
-	_sb_tray_fever.shadow_size = 24
-	_sb_tray_fever.shadow_color = Color(1.0, 0.78, 0.16, 0.55)
-	_sb_tray_fever.shadow_offset = Vector2(0, 6)
+	_sb_tray_fever.border_width_bottom = 12
+	_sb_tray_fever.set_corner_radius_all(28)
+	_sb_tray_fever.shadow_size = 26
+	_sb_tray_fever.shadow_color = Color(1.0, 0.78, 0.16, 0.60)
+	_sb_tray_fever.shadow_offset = Vector2(0, 8)
 
 	_sb_cell_even = StyleBoxFlat.new()
-	_sb_cell_even.bg_color = Color(0.87, 0.945, 0.915, 0.86)
-	_sb_cell_even.set_corner_radius_all(12)
+	_sb_cell_even.bg_color = Color(0.76, 0.90, 0.87, 0.94)
+	_sb_cell_even.border_color = Color(0.42, 0.64, 0.60, 0.62)
+	_sb_cell_even.border_width_left = 2
+	_sb_cell_even.border_width_top = 2
+	_sb_cell_even.border_width_right = 3
+	_sb_cell_even.border_width_bottom = 5
+	_sb_cell_even.set_corner_radius_all(13)
+	_sb_cell_even.shadow_size = 4
+	_sb_cell_even.shadow_color = Color(0.02, 0.10, 0.12, 0.28)
+	_sb_cell_even.shadow_offset = Vector2(0, 3)
 
 	_sb_cell_odd = StyleBoxFlat.new()
-	_sb_cell_odd.bg_color = Color(0.945, 0.985, 0.965, 0.86)
-	_sb_cell_odd.set_corner_radius_all(12)
+	_sb_cell_odd.bg_color = Color(0.92, 0.98, 0.96, 0.96)
+	_sb_cell_odd.border_color = Color(0.62, 0.80, 0.76, 0.65)
+	_sb_cell_odd.border_width_left = 2
+	_sb_cell_odd.border_width_top = 2
+	_sb_cell_odd.border_width_right = 3
+	_sb_cell_odd.border_width_bottom = 5
+	_sb_cell_odd.set_corner_radius_all(13)
+	_sb_cell_odd.shadow_size = 4
+	_sb_cell_odd.shadow_color = Color(0.02, 0.10, 0.12, 0.22)
+	_sb_cell_odd.shadow_offset = Vector2(0, 3)
 	set_board_theme(str(SaveManager.get_setting("board_theme", "garden")))
 
 
@@ -248,11 +270,22 @@ func set_board_state(state: BoardState, is_tutorial_stage: bool = false) -> void
 	_ftue_spotlight = is_tutorial_stage
 	_idle_hint_timer = 0.0
 	hint_delay_sec = 1.8 if is_tutorial_stage else 5.2
-	_vfx.clear_all()
+	if is_instance_valid(_vfx):
+		_vfx.clear_all()
 	_recompute_geometry()
 	sync_board_immediate()
 	if _ftue_spotlight and _board_state != null:
-		_hint_chain = _board_state.find_first_valid_chain(3)
+		_hint_chain = _board_state.find_sample_chain(3, 4)
+	queue_redraw()
+	if is_instance_valid(_pulse_overlay):
+		_pulse_overlay.queue_redraw()
+	call_deferred("refresh_layout_after_show")
+
+
+func refresh_layout_after_show() -> void:
+	_recompute_geometry()
+	if _board_state != null and not _is_animating:
+		sync_board_immediate()
 	queue_redraw()
 	if is_instance_valid(_pulse_overlay):
 		_pulse_overlay.queue_redraw()
@@ -276,10 +309,21 @@ func _resolve_tex_key(cell: Dictionary, happy: bool = false) -> String:
 	if kind == "overload":
 		if int(cell.get("hp", 1)) > 1:
 			return "overload_armor"
-		var c := int(cell.get("col", 0))
-		var r := int(cell.get("row", 0))
-		var variants := ["overload", "overload_soda", "overload_snack"]
-		return variants[(c * 3 + r) % 3]
+		var htype := str(cell.get("hazard_type", ""))
+		match htype:
+			"cigarette_smoke":
+				return "overload_smoke"
+			"sugary_drink":
+				return "overload_soda"
+			"fast_food":
+				var c := int(cell.get("col", 0))
+				var r := int(cell.get("row", 0))
+				return "overload" if ((c + r) % 2 == 0) else "overload_snack"
+			_:
+				var c2 := int(cell.get("col", 0))
+				var r2 := int(cell.get("row", 0))
+				var variants := ["overload", "overload_soda", "overload_smoke"]
+				return variants[(c2 * 3 + r2) % 3]
 	return kind
 
 
@@ -559,6 +603,26 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 			_vfx.spawn_explosion_splash(cell_center(ovp), Color(1.0, 0.36, 0.16), cell_px, 1.3)
 		_vfx.spawn_floating_text(board_origin + board_pixel_size * 0.5, "+2 MOVES • FULL RESET!", Color(1.0, 0.95, 0.35), 40)
 
+	# Catastrophic Toxic 3-Combo Fat & Calorie Explosion VFX (v2.7.0)
+	var cat_blast: Dictionary = result.get("catastrophic_blast", {})
+	if bool(cat_blast.get("triggered", false)):
+		var cb_center_cell: Vector2i = cat_blast.get("center", Vector2i(BoardState.COLS / 2, BoardState.ROWS / 2))
+		var cb_center := cell_center(cb_center_cell) if BoardState.is_in_bounds(cb_center_cell) else (board_origin + board_pixel_size * 0.5)
+		_vfx.spawn_screen_flash(board_rect, Color(0.72, 0.06, 0.24), 0.58)
+		_vfx.trigger_shake(self, 18.0)
+		_vfx.spawn_explosion_splash(cb_center, Color(0.86, 0.10, 0.28), cell_px, 2.15)
+		_vfx.spawn_explosion_splash(cb_center, Color(0.54, 0.14, 0.72), cell_px, 1.65)
+		for cp in cat_blast.get("cluster", []):
+			_vfx.spawn_explosion_splash(cell_center(cp), Color(0.92, 0.18, 0.14), cell_px, 1.35)
+		for ip in cat_blast.get("injured_organs", []):
+			_vfx.spawn_pulse_ring(cell_center(ip), Color(0.96, 0.16, 0.24, 0.98), cell_px, 1.45)
+		var sc_lost := int(cat_blast.get("score_lost", 0))
+		var pl_lost := int(cat_blast.get("pulse_lost", 0))
+		var cat_txt := LocalizationManager.tr_key("POPUP_CATASTROPHIC", {"score": sc_lost, "pulse": pl_lost})
+		_vfx.spawn_floating_text(cb_center - Vector2(0, float(cell_px) * 0.4), cat_txt, Color(1.0, 0.34, 0.38), 38)
+		_vfx.spawn_combo_banner(board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.36), LocalizationManager.tr_key("BANNER_CATASTROPHIC_BLAST"), Color(0.92, 0.14, 0.28))
+		AudioManager.play_sfx("hazard_trigger", 0.82)
+
 	# Combo, Mega, Fever, Vitality Burst & Loop Celebratory Banners
 	var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.24)
 	if mega_tier >= 3:
@@ -761,6 +825,13 @@ func _draw() -> void:
 			var sb_cell := _sb_cell_even if is_even else _sb_cell_odd
 			if sb_cell != null:
 				draw_style_box(sb_cell, cr)
+			# 3D Bejeweled crystal bevel specular top-left highlight & curved glass sheen
+			var sheen_rect := Rect2(cr.position + Vector2(3.0, 3.0), Vector2(cr.size.x - 6.0, cr.size.y * 0.42))
+			draw_rect(sheen_rect, Color(1.0, 1.0, 1.0, 0.24 if is_even else 0.34), true)
+			draw_line(cr.position + Vector2(6.0, 2.5), cr.position + Vector2(cr.size.x - 6.0, 2.5), Color(1.0, 1.0, 1.0, 0.62), 2.0)
+			draw_line(cr.position + Vector2(2.5, 6.0), cr.position + Vector2(2.5, cr.size.y - 6.0), Color(1.0, 1.0, 1.0, 0.42), 2.0)
+			draw_line(cr.position + Vector2(6.0, cr.size.y - 2.5), cr.position + Vector2(cr.size.x - 6.0, cr.size.y - 2.5), Color(0.03, 0.14, 0.16, 0.34), 2.5)
+			draw_line(cr.position + Vector2(cr.size.x - 2.5, 6.0), cr.position + Vector2(cr.size.x - 2.5, cr.size.y - 6.0), Color(0.03, 0.14, 0.16, 0.26), 2.5)
 
 	if not _active_chain.is_empty() and _board_state != null:
 		var head_cell := _board_state.get_cell(_active_chain[0])
@@ -801,6 +872,22 @@ func _draw() -> void:
 
 
 func _draw_pulse_overlay() -> void:
+	# 0. Live Toxic Hazard Warning Links when 2+ Overloads are adjacent (Catastrophic Combo alert!)
+	if _board_state != null:
+		var warn_pairs := HazardSystem.find_toxic_warning_pairs(_board_state)
+		if not warn_pairs.is_empty():
+			var w_pulse := 0.55 + 0.45 * sin(_anim_time * 6.5)
+			for pair in warn_pairs:
+				var p0: Vector2i = pair[0]
+				var p1: Vector2i = pair[1]
+				var c0 := cell_center(p0)
+				var c1 := cell_center(p1)
+				_pulse_overlay.draw_line(c0, c1, Color(0.96, 0.12, 0.28, 0.40 * w_pulse), 12.0, true)
+				_pulse_overlay.draw_line(c0, c1, Color(1.0, 0.44, 0.18, 0.88 * w_pulse), 4.5, true)
+				for wp in [p0, p1]:
+					var wr := Rect2(cell_top_left(wp), Vector2(float(cell_px), float(cell_px))).grow(-3.5)
+					_pulse_overlay.draw_rect(wr, Color(0.96, 0.14, 0.28, 0.78 * w_pulse), false, 4.0)
+
 	# 1. Interactive Spotlight FTUE & Idle Hint Shimmer with Guiding Pointer Dot
 	if _active_chain.is_empty() and _hint_chain.size() >= 3 and _board_state != null:
 		var hint_set := {}

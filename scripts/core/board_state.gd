@@ -7,6 +7,7 @@ static var ROWS: int = 12
 static var TOTAL_CELLS: int = 84
 static var current_difficulty: String = "hard"
 const ORGANS: Array[String] = ["heart", "brain", "lungs", "kidneys", "stomach", "liver", "muscle"]
+const HAZARD_TYPES: Array[String] = ["fast_food", "sugary_drink", "cigarette_smoke"]
 const DIRS: Array[Vector2i] = [
 	Vector2i(0, -1),
 	Vector2i(1, 0),
@@ -87,6 +88,7 @@ func _make_empty_cell(col: int, row: int) -> Dictionary:
 		"row": row,
 		"kind": "empty",
 		"organ": "",
+		"hazard_type": "",
 		"hp": 1,
 		"restricted_turns": 0,
 		"newly_restricted": false
@@ -102,6 +104,7 @@ func make_organ_cell(col: int, row: int, organ_type: String) -> Dictionary:
 		"row": row,
 		"kind": "organ",
 		"organ": organ_type,
+		"hazard_type": "",
 		"hp": 1,
 		"restricted_turns": 0,
 		"newly_restricted": false
@@ -116,21 +119,33 @@ func set_organ(pos: Vector2i, organ_type: String, restricted_turns: int = 0) -> 
 	cells[idx(pos.x, pos.y)] = cell
 
 
-func set_special(pos: Vector2i, special_kind: String, hp: int = 1) -> void:
+func set_special(pos: Vector2i, special_kind: String, hp: int = 1, hazard_type: String = "") -> void:
 	if not is_in_bounds(pos):
 		return
 	var tid := _next_tile_id
 	_next_tile_id += 1
+	var htype := hazard_type
+	if special_kind == "overload" and htype == "":
+		htype = HAZARD_TYPES[tid % HAZARD_TYPES.size()]
 	cells[idx(pos.x, pos.y)] = {
 		"id": tid,
 		"col": pos.x,
 		"row": pos.y,
 		"kind": special_kind,
 		"organ": "",
+		"hazard_type": htype,
 		"hp": hp,
 		"restricted_turns": 0,
 		"newly_restricted": false
 	}
+
+
+func set_overload(pos: Vector2i, hp: int = 1, hazard_type: String = "") -> void:
+	set_special(pos, "overload", hp, hazard_type)
+
+
+func find_first_valid_chain(min_len: int = 3) -> Array[Vector2i]:
+	return find_sample_chain(min_len, 4)
 
 
 func clear_cell(pos: Vector2i) -> void:

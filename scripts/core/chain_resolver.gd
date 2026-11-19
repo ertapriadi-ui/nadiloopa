@@ -276,6 +276,9 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	var active_min_care := min_care if needs_care_goal else 0
 	var active_min_ov := min_ov if objs.has("neutralize_overload") else mini(min_ov, 1)
 	var refill_info := board.apply_gravity_and_refill(rng, weights, active_min_care, active_min_ov)
+	var catastrophic_blast := HazardSystem.check_catastrophic_toxic_combo(board, progress)
+	if bool(catastrophic_blast.get("triggered", false)):
+		board.apply_gravity_and_refill(rng, weights, 0, 0)
 	var reshuffled := board.ensure_playable_board(rng, min_len, weights)
 
 	var status := "continue"
@@ -315,6 +318,7 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 		"mega_overloads_destroyed": mega_overloads_destroyed,
 		"bonus_moves_gained": bonus_moves_gained,
 		"board_reset_triggered": board_reset_triggered,
+		"catastrophic_blast": catastrophic_blast,
 		"healthy_popped": healthy_popped,
 		"healthy_bonus_score": healthy_bonus_score,
 		"streak": streak,

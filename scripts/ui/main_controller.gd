@@ -2243,6 +2243,10 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 	if int(pulse.get("overloads_triggered", 0)) > 0:
 		_play_sfx_delayed("hazard_trigger", 0.11)
 		GameManager.trigger_haptic(40)
+	var cat_blast: Dictionary = res.get("catastrophic_blast", {})
+	if bool(cat_blast.get("triggered", false)):
+		_play_sfx_delayed("hazard_trigger", 0.18, 0.78, 2.0)
+		GameManager.trigger_haptic(90)
 	if mega_tier >= 2:
 		_play_sfx_delayed("ability_cast", 0.12, 1.15 if mega_tier >= 3 else 1.05)
 		_play_sfx_delayed("star_pop", 0.20, 1.25, 1.0)
@@ -2297,8 +2301,13 @@ func _finish_turn_animations(res: Dictionary) -> void:
 	else:
 		GameManager.play_state = GameManager.PlayState.READY
 		_touch_ctrl.set_input_enabled(true)
-		_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_IDLE")
-		_lbl_preview.add_theme_color_override("font_color", Color(0.08, 0.30, 0.28))
+		var warn_pairs := HazardSystem.find_toxic_warning_pairs(board_state)
+		if not warn_pairs.is_empty():
+			_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_TOXIC_WARNING")
+			_lbl_preview.add_theme_color_override("font_color", Color(0.84, 0.14, 0.22))
+		else:
+			_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_IDLE")
+			_lbl_preview.add_theme_color_override("font_color", Color(0.08, 0.30, 0.28))
 
 
 func _advance_endless_wave() -> void:

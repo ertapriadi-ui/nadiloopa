@@ -29,6 +29,8 @@ func _process(_delta: float) -> bool:
 	_test_booster_hazard_armor_bloom_and_lock_expiry()
 	_test_tactical_care_abilities()
 	_test_detox_bomb_and_mega_combos()
+	_test_catastrophic_toxic_combo()
+	_test_board_renderer_tutorial_stage_init()
 	_test_harmony_fever_mode()
 	_test_second_wind_revival()
 	_test_gravity_refill_and_reshuffle()
@@ -879,5 +881,66 @@ func _test_detox_bomb_and_mega_combos() -> void:
 	_assert_eq(int(prog_m.get("moves_left", 0)), 9, "Net moves rise from 8 to 9 (-1 turn, +2 bonus)")
 	_assert_eq(int(prog_m.get("pulse_meter", 0)), 100, "10+ Mega Blast restores Pulse Meter to 100")
 	_assert_eq(r10.get("mega_overloads_destroyed", []).size(), 3, "10+ Mega Blast destroys ALL Overloads across the entire board")
+
+
+func _test_catastrophic_toxic_combo() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "heart")
+
+	# 1. Two adjacent toxic hazards trigger warning pair but do NOT explode yet
+	b.set_overload(Vector2i(3, 5), 1, "fast_food")
+	b.set_overload(Vector2i(4, 5), 1, "sugary_drink")
+	var pairs := HazardSystem.find_toxic_warning_pairs(b)
+	_assert_eq(pairs.size(), 1, "Two adjacent toxic hazards produce 1 live warning pair")
+	var prog := {"score": 3000, "pulse_meter": 100, "shield_charges": 0, "catastrophic_blasts": 0}
+	var no_boom := HazardSystem.check_catastrophic_toxic_combo(b, prog)
+	_assert_true(not bool(no_boom.get("triggered", false)), "2 adjacent hazards do not trigger Catastrophic Explosion yet")
+
+	# 2. Adding the 3rd toxic type (cigarette_smoke) adjacent triggers Catastrophic Fat & Calorie Explosion!
+	b.set_overload(Vector2i(3, 6), 1, "cigarette_smoke")
+	var boom := HazardSystem.check_catastrophic_toxic_combo(b, prog)
+	_assert_true(bool(boom.get("triggered", false)), "Fast Food + Sugary Drink + Cigarette Smoke triggers Catastrophic Explosion")
+	_assert_true(bool(boom.get("is_triple_toxic", false)), "Catastrophic Explosion detects all 3 toxic types")
+	_assert_eq(int(boom.get("score_lost", 0)), 900, "Catastrophic Explosion slashes 30% of 3000 score (-900)")
+	_assert_eq(int(prog.get("score", 0)), 2100, "Score drops drastically from 3000 to 2100")
+	_assert_eq(int(boom.get("pulse_lost", 0)), 18, "Unshielded Catastrophic Explosion deals 18 Pulse damage")
+	_assert_eq(int(prog.get("pulse_meter", 0)), 82, "Pulse drops from 100 to 82")
+	_assert_true(boom.get("injured_organs", []).size() >= 3, "Catastrophic Explosion injures surrounding organs in 5x5 radius")
+	_assert_true(ResourceLoader.exists("res://assets/sprites/tiles/special_overload_smoke.png"), "3D Cigarette Smoke sprite exists")
+
+	# 3. Shield mitigates Pulse damage from -18 to -8
+	var b2 := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b2.set_organ(Vector2i(c, r), "lungs")
+	b2.set_overload(Vector2i(2, 4), 1, "fast_food")
+	b2.set_overload(Vector2i(3, 4), 1, "sugary_drink")
+	b2.set_overload(Vector2i(2, 5), 1, "cigarette_smoke")
+	var prog2 := {"score": 500, "pulse_meter": 90, "shield_charges": 1, "catastrophic_blasts": 0}
+	var boom2 := HazardSystem.check_catastrophic_toxic_combo(b2, prog2)
+	_assert_true(bool(boom2.get("shield_mitigated", false)), "Shield mitigates Catastrophic Explosion pulse damage")
+	_assert_eq(int(boom2.get("pulse_lost", 0)), 8, "Shielded Catastrophic Explosion reduces Pulse loss to 8")
+	_assert_eq(int(prog2.get("score", 0)), 100, "Minimum 400 score penalty slashes 500 score down to 100")
+
+
+func _test_board_renderer_tutorial_stage_init() -> void:
+	BoardState.set_difficulty_grid("easy")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 27001
+	var b := BoardState.new()
+	b.populate_initial(rng, {"heart": 30, "brain": 30, "lungs": 20, "kidneys": 20}, [], [], [], [])
+	var br := BoardRenderer.new()
+	br.size = Vector2(960, 1280)
+	root.add_child(br)
+	br.set_board_state(b, true)
+	_assert_true(br.cell_px >= 24, "BoardRenderer computes valid cell_px on Stage 1 tutorial init")
+	_assert_true(br._hint_chain.size() >= 3, "BoardRenderer computes FTUE spotlight hint chain without crashing")
+	_assert_eq(br._tile_nodes.size(), BoardState.TOTAL_CELLS, "BoardRenderer spawns all organ tile nodes on Stage 1")
+	br.queue_free()
+	BoardState.set_difficulty_grid("hard")
+
 
 
