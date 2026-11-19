@@ -3555,6 +3555,8 @@ func _notification(what: int) -> void:
 		elif _current_screen == "levels" or _current_screen == "welcome":
 			SaveManager.set_setting("welcome_seen", true)
 			show_screen("menu")
+		elif _current_screen == "menu":
+			get_tree().quit()
 
 
 func get_layout_metrics() -> Dictionary:

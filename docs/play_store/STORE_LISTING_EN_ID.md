@@ -16,7 +16,7 @@
   - **Survive Dynamic Lifestyle Events:** Watch out for Wildfire Smoke, Fast Food Binges, Binge Drinking, All-Nighter Fatigue, Screen Marathons, and Second-Hand Smoke!
   - **330 Shuffled Health & Organ Facts:** Discover a fresh, non-repeating bite-sized educational fact about how your organs work every time you start a stage!
   - **Organ Upgrade Lab:** Earn Wellness Coins to permanently upgrade all 7 organs up to Lv. 5 for lasting score boosts.
-  - **100 Handcrafted Stages + Endless Zen + Daily Challenge:** Choose **Easy (5×7)**, **Medium (6×9)**, or **Hard (7×12)** grid sizes anytime.
+  - **100 Handcrafted Stages across 10 Scenic Biomes + Endless Zen + Daily Challenge:** Play across 10 unique tropical & nature backdrops with natural terrain obstacles (rocks, fallen logs, mini islands) and choose **Easy (5×7)**, **Medium (6×9)**, or **Hard (7×12)** grid sizes anytime.
   - **100% Offline, Bilingual (English & Bahasa Indonesia), Zero Ads & Zero Tracking.**
 
   *Note: NADILOOPA is a casual entertainment puzzle game. Its fictional Pulse Meter and 330 general wellness facts are for fun and general awareness only and do not provide medical diagnosis or advice.*
@@ -37,7 +37,7 @@
   - **Event Gaya Hidup Berbahaya:** Hadapi tantangan mendadak seperti Kabut Asap, Pesta Fast Food, Minum Miras, Begadang, Nonton Marathon, dan Asap Rokok!
   - **330 Fakta Kesehatan Teracak:** Baca fakta unik non-berulang tentang cara kerja organ tubuh setiap memulai tahap!
   - **Lab Peningkatan Organ:** Kumpulkan Koin Sehat untuk meningkatkan 7 organ hingga Lv. 5 secara permanen.
-  - **100 Tahap + Mode Zen + Tantangan Harian** dengan 3 ukuran papan (Mudah 5×7, Sedang 6×9, Sulit 7×12).
+  - **100 Tahap di 10 Tema Alam + Mode Zen + Tantangan Harian:** Nikmati 10 latar belakang biome unik dengan papan kaca transparan, rintangan alam (batu, batang pohon, pulau mini), serta 3 ukuran papan (Mudah 5×7, Sedang 6×9, Sulit 7×12).
   - **100% Offline, Dwibahasa (English & Indonesia), Tanpa Iklan & Tanpa Pelacakan.**
 
   *Catatan: NADILOOPA adalah game hiburan. Meter Nadi fiktif dan 330 fakta kesehatan disajikan untuk hiburan & wawasan umum, bukan nasihat atau diagnosis medis.*
@@ -45,10 +45,23 @@
 ---
 
 ## 3. Play Console Compliance Checklist
+- **Version:** `v2.11.0` (`versionCode = 14`, `package = com.nadiloopa.puzzle`, `minSdk = 24`, `targetSdk = 35`, `arm64-v8a + armeabi-v7a`)
 - **Assets Ready in `docs/play_store/`:**
   - `icon_512.png` (512×512 PNG)
   - `feature_graphic_1024x500.png` (1024×500 PNG)
-- **Privacy Policy URL:** Enable GitHub Pages or link `https://github.com/ertapriadi-ui/nadiloopa/blob/main/docs/PRIVACY_POLICY.md`
+- **Privacy Policy URL:** `https://github.com/ertapriadi-ui/nadiloopa/blob/main/docs/PRIVACY_POLICY.md`
 - **Data Safety:** Select *"No, this app does not collect or share user data"*.
 - **Content Rating (IARC):** Declare **"References to Alcohol & Tobacco"** (due to the educational anti-binge-drinking and anti-smoke hazard events) — expected rating **Teen / 12+**.
-- **Release AAB Signing:** Add 4 GitHub Repository Secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`) and run the **NADILOOPA Release AAB (Google Play)** workflow in GitHub Actions!
+- **Release AAB Signing (One-Time Setup):**
+  1. Generate your private upload keystore locally (keep the file & password safe forever — Google Play requires the same upload key for future updates):
+     ```bash
+     keytool -genkeypair -v -keystore nadiloopa-upload.keystore -alias nadiloopa -keyalg RSA -keysize 2048 -validity 10000
+     base64 -w 0 nadiloopa-upload.keystore > nadiloopa-upload.keystore.b64
+     ```
+     *(Use the same password for both keystore password and key password.)*
+  2. Add 4 GitHub Repository Secrets in **Settings → Secrets and variables → Actions**:
+     - `ANDROID_KEYSTORE_BASE64` (contents of `nadiloopa-upload.keystore.b64`)
+     - `ANDROID_KEYSTORE_PASSWORD`
+     - `ANDROID_KEY_ALIAS` (`nadiloopa`)
+     - `ANDROID_KEY_PASSWORD`
+  3. Open **GitHub Actions → NADILOOPA Release AAB (Google Play) → Run workflow** to build and download the signed `nadiloopa_release.aab` ready to upload to Google Play Console!

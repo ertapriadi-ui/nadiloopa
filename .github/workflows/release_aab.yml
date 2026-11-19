@@ -15,8 +15,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Verify Release Keystore Secrets
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          if [ -z "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || [ -z "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || [ -z "${{ secrets.ANDROID_KEY_ALIAS }}" ] || [ -z "${{ secrets.ANDROID_KEY_PASSWORD }}" ]; then
+          if [ -z "$KEYSTORE_B64" ] || [ -z "$KEYSTORE_PASS" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASS" ]; then
             echo "ERROR: Please configure ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, and ANDROID_KEY_PASSWORD in GitHub Repository Secrets first."
             exit 1
           fi
@@ -61,15 +66,25 @@ jobs:
           unzip -q -j /tmp/templates.tpz 'templates/*' -d ~/.local/share/godot/export_templates/${{ env.GODOT_DIR_VERSION }}
           rm -f /tmp/templates.tpz
 
+      - name: Install Android Gradle Build Template
+        run: |
+          mkdir -p android/build
+          unzip -q -o ~/.local/share/godot/export_templates/${{ env.GODOT_DIR_VERSION }}/android_source.zip -d android/build
+          touch android/build/.gdignore
+
       - name: Import Assets & Run QA Gate
         run: |
           /tmp/godot-bin/godot --headless --path . --import --quit
           /tmp/godot-bin/godot --headless --path . -s res://tests/test_suite.gd
 
       - name: Configure Release Keystore & Export Signed AAB
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           mkdir -p ~/.config/godot ~/.local/share/godot/keystores build/android
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > ~/.local/share/godot/keystores/release.keystore
+          echo "$KEYSTORE_B64" | base64 -d > ~/.local/share/godot/keystores/release.keystore
           cat <<EOF > ~/.config/godot/editor_settings-4.7.tres
           [gd_resource type="EditorSettings" format=3]
 
@@ -77,16 +92,19 @@ jobs:
           export/android/java_sdk_path = "${JAVA_HOME}"
           export/android/android_sdk_path = "${ANDROID_HOME}"
           EOF
-          python3 -c '
+          python3 - <<'PY'
+          import os
           p = "export_presets.cfg"
           t = open(p).read()
-          t = t.replace("keystore/release=\"\"", "keystore/release=\"" + "${HOME}/.local/share/godot/keystores/release.keystore" + "\"")
-          t = t.replace("keystore/release_user=\"\"", "keystore/release_user=\"${{ secrets.ANDROID_KEY_ALIAS }}\"")
-          t = t.replace("keystore/release_password=\"\"", "keystore/release_password=\"${{ secrets.ANDROID_KEY_PASSWORD }}\"")
+          ks_path = os.path.join(os.environ["HOME"], ".local/share/godot/keystores/release.keystore")
+          t = t.replace('keystore/release=""', f'keystore/release="{ks_path}"')
+          t = t.replace('keystore/release_user=""', f'keystore/release_user="{os.environ["KEY_ALIAS"]}"')
+          t = t.replace('keystore/release_password=""', f'keystore/release_password="{os.environ["KEY_PASS"]}"')
           open(p, "w").write(t)
-          '
+          PY
           /tmp/godot-bin/godot --headless --path . --export-release "Android Release AAB" build/android/nadiloopa_release.aab
           ls -lh build/android/nadiloopa_release.aab
+          jarsigner -verify build/android/nadiloopa_release.aab
 
       - name: Upload Signed Google Play AAB Artifact
         uses: actions/upload-artifact@v4
