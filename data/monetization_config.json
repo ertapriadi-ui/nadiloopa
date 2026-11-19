@@ -1,0 +1,22 @@
+{
+  "brand_name": "dr. Erta Pass",
+  "daily_free_seconds": 900,
+  "entitlement_id": "dr_erta_pass",
+  "products": {
+    "monthly": {
+      "product_id": "dr_erta_pass_monthly",
+      "base_plan_id": "monthly",
+      "fallback_price_en": "$2.99 / mo",
+      "fallback_price_id": "Rp 29.000 / bln"
+    },
+    "yearly": {
+      "product_id": "dr_erta_pass_yearly",
+      "base_plan_id": "yearly",
+      "fallback_price_en": "$19.99 / yr",
+      "fallback_price_id": "Rp 199.000 / thn",
+      "badge_save_pct": 44
+    }
+  },
+  "firebase_web_api_key": "",
+  "revenuecat_google_public_api_key": ""
+}

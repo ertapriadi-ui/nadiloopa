@@ -125,6 +125,41 @@ var _lab_rows_vb: VBoxContainer
 var _btn_lab_close: Button
 var _btn_lab: Button
 var _lbl_cycle_badge: Label
+var _btn_menu_pass_pill: Button
+var _hud_timer_pill: PanelContainer
+var _lbl_hud_free_timer: Label
+var _btn_set_pass: Button
+
+# dr. Erta Pass & Cross-App Account modals
+var _modal_pass: PanelContainer
+var _lbl_pass_title: Label
+var _lbl_pass_sub: Label
+var _lbl_pass_status: Label
+var _lbl_pass_perks: Label
+var _btn_plan_monthly: Button
+var _btn_plan_yearly: Button
+var _btn_pass_subscribe: Button
+var _btn_pass_restore: Button
+var _btn_pass_account: Button
+var _btn_pass_close: Button
+var _lbl_pass_legal: Label
+var _lbl_pass_msg: Label
+var _selected_pass_plan: String = "yearly"
+
+var _modal_account: PanelContainer
+var _lbl_acc_title: Label
+var _lbl_acc_sub: Label
+var _lbl_acc_status: Label
+var _inp_acc_email: LineEdit
+var _inp_acc_pass: LineEdit
+var _btn_acc_signin: Button
+var _btn_acc_signup: Button
+var _btn_acc_reset: Button
+var _btn_acc_sync: Button
+var _btn_acc_signout: Button
+var _btn_acc_delete: Button
+var _btn_acc_close: Button
+var _lbl_acc_msg: Label
 
 # Menu widgets
 var _lbl_menu_rank: Label
@@ -284,6 +319,13 @@ func _ready() -> void:
 	_load_resources()
 	_build_ui()
 	LocalizationManager.language_changed.connect(_on_language_changed)
+	if has_node("/root/SubscriptionManager"):
+		var sm := get_node("/root/SubscriptionManager")
+		sm.entitlement_changed.connect(func(_active: bool): _refresh_pass_ui())
+		sm.free_time_updated.connect(func(_rem: int): _refresh_pass_ui())
+		sm.auth_state_changed.connect(func(_signed: bool, _em: String): _refresh_pass_ui())
+		sm.prices_updated.connect(func(): _refresh_pass_ui())
+		sm.billing_message.connect(_on_billing_message)
 	get_viewport().size_changed.connect(_update_safe_area)
 	_selected_chapter = clampi(1 + (SaveManager.get_unlocked_level() - 1) / 10, 1, 10)
 	_update_safe_area()
@@ -750,6 +792,17 @@ func _build_menu_screen(parent: Control) -> void:
 	_lbl_menu_tagline.visible = false
 	pill_vb.add_child(_lbl_menu_tagline)
 
+	var pass_center := CenterContainer.new()
+	hero_vb.add_child(pass_center)
+	_btn_menu_pass_pill = Button.new()
+	_btn_menu_pass_pill.custom_minimum_size = Vector2(620, 56)
+	_style_button(_btn_menu_pass_pill, Color(0.16, 0.14, 0.34, 0.92), Color(0.24, 0.20, 0.48, 0.96), Color(1.0, 0.92, 0.56), 24, 22, 18, 6)
+	_btn_menu_pass_pill.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_open_pass_modal()
+	)
+	pass_center.add_child(_btn_menu_pass_pill)
+
 	var hero_spacer_bot := Control.new()
 	hero_spacer_bot.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	hero_spacer_bot.size_flags_stretch_ratio = 1.00
@@ -1048,6 +1101,12 @@ func _build_game_screen(parent: Control) -> void:
 	mid_top.add_child(cycle_pill)
 	_lbl_cycle_badge = _make_label("🌅 Morning", 28, Color(0.58, 0.30, 0.04), true)
 	cycle_pill.add_child(_lbl_cycle_badge)
+
+	_hud_timer_pill = PanelContainer.new()
+	_hud_timer_pill.add_theme_stylebox_override("panel", _make_box(Color(0.14, 0.18, 0.34, 0.92), 14, Color(0.96, 0.78, 0.32, 0.72), 2, 10, 3))
+	mid_top.add_child(_hud_timer_pill)
+	_lbl_hud_free_timer = _make_label("⏱ 15:00", 24, Color(1.0, 0.94, 0.68), true)
+	_hud_timer_pill.add_child(_lbl_hud_free_timer)
 
 	var score_pill := PanelContainer.new()
 	score_pill.add_theme_stylebox_override("panel", _make_box(Color(0.90, 0.96, 0.93), 14, Color(0.15, 0.55, 0.45, 0.40), 2, 12, 3))
@@ -1757,6 +1816,15 @@ func _build_modals() -> void:
 	_btn_theme_starlight.pressed.connect(func(): _select_board_theme("starlight"))
 	thm_hb.add_child(_btn_theme_starlight)
 
+	_btn_set_pass = Button.new()
+	_btn_set_pass.custom_minimum_size = Vector2(0, 76)
+	_style_button(_btn_set_pass, Color(0.22, 0.16, 0.48), Color(0.30, 0.22, 0.62), Color(1.0, 0.92, 0.56), 28, 18)
+	_btn_set_pass.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_open_pass_modal()
+	)
+	s_vb.add_child(_btn_set_pass)
+
 	var help_hb := HBoxContainer.new()
 	help_hb.add_theme_constant_override("separation", 14)
 	s_vb.add_child(help_hb)
@@ -2068,6 +2136,232 @@ func _build_modals() -> void:
 	)
 	lab_vb.add_child(_btn_lab_close)
 
+	# --- Full-Screen dr. Erta Pass Paywall Modal ---
+	_modal_pass = _create_fullscreen_modal_card(center)
+	var pass_vb := VBoxContainer.new()
+	pass_vb.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	pass_vb.add_theme_constant_override("separation", 18)
+	_modal_pass.add_child(pass_vb)
+
+	_lbl_pass_title = _make_label("👑 dr. Erta Pass", 52, Color(0.18, 0.12, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	pass_vb.add_child(_lbl_pass_title)
+	_lbl_pass_sub = _make_label("", 30, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	pass_vb.add_child(_lbl_pass_sub)
+
+	var pass_status_card := PanelContainer.new()
+	pass_status_card.add_theme_stylebox_override("panel", _make_box(Color(0.98, 0.94, 0.82), 20, Color(0.90, 0.64, 0.14, 0.80), 3, 20, 16))
+	pass_vb.add_child(pass_status_card)
+	_lbl_pass_status = _make_label("", 28, Color(0.46, 0.24, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	pass_status_card.add_child(_lbl_pass_status)
+
+	var perks_card := PanelContainer.new()
+	perks_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.97, 0.95), 22, Color(0.12, 0.58, 0.48, 0.45), 3, 24, 18))
+	pass_vb.add_child(perks_card)
+	_lbl_pass_perks = _make_label("", 28, Color(0.08, 0.30, 0.28), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_lbl_pass_perks.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	perks_card.add_child(_lbl_pass_perks)
+
+	var plans_vb := VBoxContainer.new()
+	plans_vb.add_theme_constant_override("separation", 16)
+	pass_vb.add_child(plans_vb)
+
+	_btn_plan_yearly = Button.new()
+	_btn_plan_yearly.custom_minimum_size = Vector2(0, 132)
+	_btn_plan_yearly.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_selected_pass_plan = "yearly"
+		_refresh_pass_ui()
+	)
+	plans_vb.add_child(_btn_plan_yearly)
+
+	_btn_plan_monthly = Button.new()
+	_btn_plan_monthly.custom_minimum_size = Vector2(0, 122)
+	_btn_plan_monthly.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_selected_pass_plan = "monthly"
+		_refresh_pass_ui()
+	)
+	plans_vb.add_child(_btn_plan_monthly)
+
+	_lbl_pass_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_msg.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_lbl_pass_msg.visible = false
+	pass_vb.add_child(_lbl_pass_msg)
+
+	var pass_spacer := Control.new()
+	pass_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	pass_vb.add_child(pass_spacer)
+
+	_btn_pass_subscribe = Button.new()
+	_btn_pass_subscribe.custom_minimum_size = Vector2(0, 108)
+	_style_button(_btn_pass_subscribe, Color(0.08, 0.66, 0.46), Color(0.12, 0.76, 0.54), Color.WHITE, 38, 24)
+	_btn_pass_subscribe.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.purchase_plan(_selected_pass_plan)
+	)
+	pass_vb.add_child(_btn_pass_subscribe)
+
+	var pass_sec_hb := HBoxContainer.new()
+	pass_sec_hb.add_theme_constant_override("separation", 14)
+	pass_vb.add_child(pass_sec_hb)
+
+	_btn_pass_account = Button.new()
+	_btn_pass_account.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_pass_account.custom_minimum_size = Vector2(0, 86)
+	_style_button(_btn_pass_account, Color(0.22, 0.18, 0.50), Color(0.30, 0.24, 0.64), Color(1.0, 0.94, 0.64), 28, 20)
+	_btn_pass_account.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_open_account_modal()
+	)
+	pass_sec_hb.add_child(_btn_pass_account)
+
+	_btn_pass_restore = Button.new()
+	_btn_pass_restore.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_pass_restore.custom_minimum_size = Vector2(0, 86)
+	_style_button(_btn_pass_restore, Color(0.16, 0.48, 0.66), Color(0.22, 0.58, 0.76), Color.WHITE, 28, 20)
+	_btn_pass_restore.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.restore_purchases()
+	)
+	pass_sec_hb.add_child(_btn_pass_restore)
+
+	_btn_pass_close = Button.new()
+	_btn_pass_close.custom_minimum_size = Vector2(0, 84)
+	_style_button(_btn_pass_close, Color(0.34, 0.42, 0.44), Color(0.42, 0.50, 0.52), Color.WHITE, 28, 20)
+	_btn_pass_close.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_close_modals()
+		_refresh_pass_ui()
+	)
+	pass_vb.add_child(_btn_pass_close)
+
+	_lbl_pass_legal = _make_label("", 22, Color(0.38, 0.44, 0.46), false, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_legal.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	pass_vb.add_child(_lbl_pass_legal)
+
+	# --- Full-Screen dr. Erta Account Modal (Cross-App Sync + Account Deletion) ---
+	_modal_account = _create_fullscreen_modal_card(center)
+	var acc_vb := VBoxContainer.new()
+	acc_vb.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	acc_vb.add_theme_constant_override("separation", 18)
+	_modal_account.add_child(acc_vb)
+
+	_lbl_acc_title = _make_label("dr. Erta Account", 48, Color(0.18, 0.12, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	acc_vb.add_child(_lbl_acc_title)
+	_lbl_acc_sub = _make_label("", 28, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	acc_vb.add_child(_lbl_acc_sub)
+
+	var acc_st_card := PanelContainer.new()
+	acc_st_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.96, 0.98), 18, Color(0.20, 0.46, 0.68, 0.50), 2, 18, 14))
+	acc_vb.add_child(acc_st_card)
+	_lbl_acc_status = _make_label("", 28, Color(0.12, 0.28, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	acc_st_card.add_child(_lbl_acc_status)
+
+	_inp_acc_email = LineEdit.new()
+	_inp_acc_email.custom_minimum_size = Vector2(0, 86)
+	_inp_acc_email.add_theme_font_override("font", _font_reg)
+	_inp_acc_email.add_theme_font_size_override("font_size", 30)
+	_inp_acc_email.add_theme_stylebox_override("normal", _make_box(Color.WHITE, 16, Color(0.18, 0.48, 0.54, 0.65), 3, 18, 12))
+	_inp_acc_email.add_theme_color_override("font_color", Color(0.08, 0.20, 0.22))
+	acc_vb.add_child(_inp_acc_email)
+
+	_inp_acc_pass = LineEdit.new()
+	_inp_acc_pass.secret = true
+	_inp_acc_pass.custom_minimum_size = Vector2(0, 86)
+	_inp_acc_pass.add_theme_font_override("font", _font_reg)
+	_inp_acc_pass.add_theme_font_size_override("font_size", 30)
+	_inp_acc_pass.add_theme_stylebox_override("normal", _make_box(Color.WHITE, 16, Color(0.18, 0.48, 0.54, 0.65), 3, 18, 12))
+	_inp_acc_pass.add_theme_color_override("font_color", Color(0.08, 0.20, 0.22))
+	acc_vb.add_child(_inp_acc_pass)
+
+	var acc_auth_hb := HBoxContainer.new()
+	acc_auth_hb.add_theme_constant_override("separation", 14)
+	acc_vb.add_child(acc_auth_hb)
+
+	_btn_acc_signin = Button.new()
+	_btn_acc_signin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_acc_signin.custom_minimum_size = Vector2(0, 92)
+	_style_button(_btn_acc_signin, Color(0.08, 0.64, 0.46), Color(0.12, 0.74, 0.54), Color.WHITE, 32, 20)
+	_btn_acc_signin.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.sign_in(_inp_acc_email.text, _inp_acc_pass.text)
+	)
+	acc_auth_hb.add_child(_btn_acc_signin)
+
+	_btn_acc_signup = Button.new()
+	_btn_acc_signup.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_acc_signup.custom_minimum_size = Vector2(0, 92)
+	_style_button(_btn_acc_signup, Color(0.16, 0.46, 0.72), Color(0.22, 0.56, 0.82), Color.WHITE, 32, 20)
+	_btn_acc_signup.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.sign_up(_inp_acc_email.text, _inp_acc_pass.text)
+	)
+	acc_auth_hb.add_child(_btn_acc_signup)
+
+	_btn_acc_reset = Button.new()
+	_btn_acc_reset.custom_minimum_size = Vector2(0, 74)
+	_style_button(_btn_acc_reset, Color(0.36, 0.44, 0.50), Color(0.44, 0.52, 0.58), Color.WHITE, 26, 18)
+	_btn_acc_reset.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.send_password_reset(_inp_acc_email.text)
+	)
+	acc_vb.add_child(_btn_acc_reset)
+
+	_btn_acc_sync = Button.new()
+	_btn_acc_sync.custom_minimum_size = Vector2(0, 88)
+	_style_button(_btn_acc_sync, Color(0.12, 0.58, 0.52), Color(0.18, 0.68, 0.60), Color.WHITE, 30, 20)
+	_btn_acc_sync.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.restore_purchases()
+	)
+	acc_vb.add_child(_btn_acc_sync)
+
+	var acc_signed_hb := HBoxContainer.new()
+	acc_signed_hb.add_theme_constant_override("separation", 14)
+	acc_vb.add_child(acc_signed_hb)
+
+	_btn_acc_signout = Button.new()
+	_btn_acc_signout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_acc_signout.custom_minimum_size = Vector2(0, 84)
+	_style_button(_btn_acc_signout, Color(0.34, 0.42, 0.46), Color(0.42, 0.50, 0.54), Color.WHITE, 28, 18)
+	_btn_acc_signout.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.sign_out()
+	)
+	acc_signed_hb.add_child(_btn_acc_signout)
+
+	_btn_acc_delete = Button.new()
+	_btn_acc_delete.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_acc_delete.custom_minimum_size = Vector2(0, 84)
+	_style_button(_btn_acc_delete, Color(0.76, 0.22, 0.22), Color(0.86, 0.28, 0.28), Color.WHITE, 28, 18)
+	_btn_acc_delete.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		SubscriptionManager.delete_account()
+	)
+	acc_signed_hb.add_child(_btn_acc_delete)
+
+	_lbl_acc_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_msg.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_lbl_acc_msg.visible = false
+	acc_vb.add_child(_lbl_acc_msg)
+
+	var acc_spacer := Control.new()
+	acc_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	acc_vb.add_child(acc_spacer)
+
+	_btn_acc_close = Button.new()
+	_btn_acc_close.custom_minimum_size = Vector2(0, 92)
+	_style_button(_btn_acc_close, Color(0.12, 0.56, 0.44), Color(0.16, 0.66, 0.52), Color.WHITE, 34, 22)
+	_btn_acc_close.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_open_pass_modal()
+	)
+	acc_vb.add_child(_btn_acc_close)
+
 
 func _create_modal_card(parent: Control, width_px: int) -> PanelContainer:
 	var card := PanelContainer.new()
@@ -2091,7 +2385,7 @@ func _open_modal(modal: PanelContainer) -> void:
 	if is_instance_valid(_board_renderer):
 		var empty_chain: Array[Vector2i] = []
 		_board_renderer.set_chain_preview(empty_chain, {})
-	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab]:
+	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab, _modal_pass, _modal_account]:
 		if m != null:
 			m.visible = (m == modal)
 	_modal_dim.visible = true
@@ -2106,7 +2400,7 @@ func _open_modal(modal: PanelContainer) -> void:
 
 func _close_modals() -> void:
 	_modal_dim.visible = false
-	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab]:
+	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab, _modal_pass, _modal_account]:
 		if m != null:
 			m.visible = false
 	if _current_screen == "game" and GameManager.play_state == GameManager.PlayState.READY:
@@ -2170,6 +2464,9 @@ func show_screen(screen_name: String) -> void:
 
 
 func start_level(level_id: int) -> void:
+	if has_node("/root/SubscriptionManager") and not SubscriptionManager.can_start_new_game():
+		_open_pass_modal()
+		return
 	var lv := level_manager.get_level(level_id)
 	if lv.is_empty():
 		return
@@ -2180,6 +2477,9 @@ func start_level(level_id: int) -> void:
 
 
 func start_endless_mode() -> void:
+	if has_node("/root/SubscriptionManager") and not SubscriptionManager.can_start_new_game():
+		_open_pass_modal()
+		return
 	_current_mode = "endless"
 	_endless_wave = 1
 	var lv := LevelManager.build_endless_wave_def(_endless_wave, 80000)
@@ -2187,6 +2487,9 @@ func start_endless_mode() -> void:
 
 
 func start_daily_challenge() -> void:
+	if has_node("/root/SubscriptionManager") and not SubscriptionManager.can_start_new_game():
+		_open_pass_modal()
+		return
 	_current_mode = "daily"
 	var dt := Time.get_date_dict_from_system()
 	var lv := LevelManager.build_daily_level(dt)
@@ -2765,6 +3068,10 @@ func _advance_endless_wave() -> void:
 
 
 func _process(delta: float) -> void:
+	if _screen_game != null and _screen_game.visible and not _modal_dim.visible and has_node("/root/SubscriptionManager"):
+		if GameManager.play_state in [GameManager.PlayState.READY, GameManager.PlayState.SELECTING, GameManager.PlayState.RESOLVING]:
+			SubscriptionManager.tick_active_gameplay(delta)
+
 	if _screen_menu != null and _screen_menu.visible and DisplayServer.get_name() != "headless":
 		var t := float(Time.get_ticks_msec()) * 0.001
 		if GameManager.is_reduce_motion():
@@ -2820,6 +3127,8 @@ func _process(delta: float) -> void:
 
 
 func _show_win_modal(stars: int, move_bonus: int) -> void:
+	if has_node("/root/SubscriptionManager"):
+		SubscriptionManager.on_stage_ended()
 	if is_instance_valid(_board_renderer):
 		_board_renderer.start_victory_dance()
 	_win_dance_time = 0.0
@@ -2873,6 +3182,8 @@ func _show_win_modal(stars: int, move_bonus: int) -> void:
 
 
 func _show_lose_modal(reason: String) -> void:
+	if has_node("/root/SubscriptionManager"):
+		SubscriptionManager.on_stage_ended()
 	if _current_mode == "endless":
 		_lbl_lose_reason.text = LocalizationManager.tr_key("LOSE_ENDLESS", {"wave": _endless_wave, "score": int(progress.get("score", 0))})
 	else:
@@ -3514,6 +3825,144 @@ func _refresh_texts() -> void:
 	_lbl_reset_msg.text = LocalizationManager.tr_key("SETTINGS_RESET_CONFIRM")
 	_btn_reset_confirm.text = LocalizationManager.tr_key("BTN_CONFIRM")
 	_btn_reset_cancel.text = LocalizationManager.tr_key("BTN_CANCEL")
+	if is_instance_valid(_btn_set_pass):
+		_btn_set_pass.text = LocalizationManager.tr_key("SETTINGS_PASS_BTN")
+	_refresh_pass_ui()
+
+
+func _open_pass_modal() -> void:
+	if is_instance_valid(_lbl_pass_msg):
+		_lbl_pass_msg.visible = false
+	_refresh_pass_ui()
+	_open_modal(_modal_pass)
+
+
+func _open_account_modal() -> void:
+	if is_instance_valid(_lbl_acc_msg):
+		_lbl_acc_msg.visible = false
+	_refresh_pass_ui()
+	_open_modal(_modal_account)
+
+
+func _on_billing_message(text: String, is_error: bool) -> void:
+	var col := Color(0.76, 0.18, 0.18) if is_error else Color(0.08, 0.48, 0.36)
+	if is_instance_valid(_lbl_pass_msg):
+		_lbl_pass_msg.text = text
+		_lbl_pass_msg.add_theme_color_override("font_color", col)
+		_lbl_pass_msg.visible = true
+	if is_instance_valid(_lbl_acc_msg):
+		_lbl_acc_msg.text = text
+		_lbl_acc_msg.add_theme_color_override("font_color", col)
+		_lbl_acc_msg.visible = true
+	_refresh_pass_ui()
+
+
+func _refresh_pass_ui() -> void:
+	if not has_node("/root/SubscriptionManager"):
+		return
+	var sm := SubscriptionManager
+	var is_sub := sm.is_subscribed()
+	var is_exp := sm.is_free_time_expired()
+	var rem_str := sm.get_remaining_formatted()
+	var lang := LocalizationManager.current_locale
+
+	# 1. Menu status pill
+	if is_instance_valid(_btn_menu_pass_pill):
+		if is_sub:
+			_btn_menu_pass_pill.text = LocalizationManager.tr_key("PASS_PILL_ACTIVE")
+			_style_button(_btn_menu_pass_pill, Color(0.78, 0.54, 0.08, 0.96), Color(0.88, 0.64, 0.14, 0.98), Color(0.14, 0.08, 0.02), 24, 22, 18, 6)
+		elif is_exp:
+			_btn_menu_pass_pill.text = LocalizationManager.tr_key("PASS_PILL_EXPIRED")
+			_style_button(_btn_menu_pass_pill, Color(0.76, 0.22, 0.18, 0.95), Color(0.86, 0.28, 0.22, 0.98), Color.WHITE, 24, 22, 18, 6)
+		else:
+			_btn_menu_pass_pill.text = LocalizationManager.tr_key("PASS_PILL_FREE", {"time": rem_str})
+			_style_button(_btn_menu_pass_pill, Color(0.16, 0.14, 0.34, 0.92), Color(0.24, 0.20, 0.48, 0.96), Color(1.0, 0.92, 0.56), 24, 22, 18, 6)
+
+	# 2. In-game HUD mini timer pill (hidden for active dr. Erta Pass members)
+	if is_instance_valid(_hud_timer_pill) and is_instance_valid(_lbl_hud_free_timer):
+		_hud_timer_pill.visible = not is_sub
+		if not is_sub:
+			if sm.is_grace_finish_active() or is_exp:
+				_lbl_hud_free_timer.text = LocalizationManager.tr_key("PASS_HUD_GRACE")
+				_lbl_hud_free_timer.add_theme_color_override("font_color", Color(1.0, 0.66, 0.44))
+			else:
+				_lbl_hud_free_timer.text = LocalizationManager.tr_key("PASS_HUD_FREE", {"time": rem_str})
+				var low_time := sm.get_remaining_free_seconds() <= 120
+				_lbl_hud_free_timer.add_theme_color_override("font_color", Color(1.0, 0.72, 0.36) if low_time else Color(1.0, 0.94, 0.68))
+
+	# 3. dr. Erta Pass Paywall modal
+	if is_instance_valid(_lbl_pass_title):
+		_lbl_pass_title.text = LocalizationManager.tr_key("PASS_TITLE")
+		_lbl_pass_sub.text = LocalizationManager.tr_key("PASS_SUBTITLE")
+		if is_sub:
+			var exp_date := sm.get_entitlement_expiry_date_str()
+			_lbl_pass_status.text = LocalizationManager.tr_key("PASS_ACTIVE_BANNER") + (("\n" + LocalizationManager.tr_key("PASS_ACTIVE_UNTIL", {"date": exp_date})) if exp_date != "" else "")
+		elif is_exp:
+			_lbl_pass_status.text = LocalizationManager.tr_key("PASS_EXPIRED_BANNER")
+		else:
+			_lbl_pass_status.text = LocalizationManager.tr_key("PASS_FREE_BANNER", {"time": rem_str})
+
+		_lbl_pass_perks.text = "%s\n%s\n%s" % [
+			LocalizationManager.tr_key("PASS_PERK_1"),
+			LocalizationManager.tr_key("PASS_PERK_2"),
+			LocalizationManager.tr_key("PASS_PERK_3")
+		]
+
+		var y_price := sm.get_plan_price_display("yearly", lang)
+		var m_price := sm.get_plan_price_display("monthly", lang)
+		var save_pct := sm.get_yearly_save_pct()
+		_btn_plan_yearly.text = "%s  •  %s\n%s" % [
+			LocalizationManager.tr_key("PASS_PLAN_YEARLY"),
+			y_price,
+			LocalizationManager.tr_key("PASS_PLAN_YEARLY_SUB", {"pct": save_pct})
+		]
+		_btn_plan_monthly.text = "%s  •  %s\n%s" % [
+			LocalizationManager.tr_key("PASS_PLAN_MONTHLY"),
+			m_price,
+			LocalizationManager.tr_key("PASS_PLAN_MONTHLY_SUB")
+		]
+		var y_sel := (_selected_pass_plan == "yearly")
+		_style_button(_btn_plan_yearly,
+			Color(0.18, 0.12, 0.44) if y_sel else Color(0.92, 0.94, 0.96),
+			Color(0.24, 0.18, 0.56) if y_sel else Color(0.86, 0.90, 0.94),
+			Color(1.0, 0.92, 0.52) if y_sel else Color(0.16, 0.24, 0.30), 28, 22, 18, 12)
+		_style_button(_btn_plan_monthly,
+			Color(0.18, 0.12, 0.44) if not y_sel else Color(0.92, 0.94, 0.96),
+			Color(0.24, 0.18, 0.56) if not y_sel else Color(0.86, 0.90, 0.94),
+			Color(1.0, 0.92, 0.52) if not y_sel else Color(0.16, 0.24, 0.30), 28, 22, 18, 12)
+
+		_btn_plan_yearly.visible = not is_sub
+		_btn_plan_monthly.visible = not is_sub
+		_btn_pass_subscribe.visible = not is_sub
+		_btn_pass_subscribe.text = LocalizationManager.tr_key("PASS_BTN_SUBSCRIBE")
+		_btn_pass_account.text = LocalizationManager.tr_key("PASS_BTN_ACCOUNT")
+		_btn_pass_restore.text = LocalizationManager.tr_key("PASS_BTN_RESTORE")
+		_btn_pass_close.text = LocalizationManager.tr_key("PASS_BTN_TOMORROW") if (is_exp and not is_sub) else LocalizationManager.tr_key("BTN_CLOSE")
+		_lbl_pass_legal.text = LocalizationManager.tr_key("PASS_LEGAL_NOTE")
+
+	# 4. dr. Erta Account modal
+	if is_instance_valid(_lbl_acc_title):
+		var signed := sm.is_signed_in()
+		_lbl_acc_title.text = LocalizationManager.tr_key("ACC_TITLE")
+		_lbl_acc_sub.text = LocalizationManager.tr_key("ACC_SUBTITLE")
+		_lbl_acc_status.text = LocalizationManager.tr_key("ACC_STATUS_SIGNED", {"email": sm.get_account_email()}) if signed else LocalizationManager.tr_key("ACC_STATUS_GUEST")
+		_inp_acc_email.placeholder_text = LocalizationManager.tr_key("ACC_EMAIL_PH")
+		_inp_acc_pass.placeholder_text = LocalizationManager.tr_key("ACC_PASS_PH")
+		_inp_acc_email.visible = not signed
+		_inp_acc_pass.visible = not signed
+		_btn_acc_signin.visible = not signed
+		_btn_acc_signup.visible = not signed
+		_btn_acc_reset.visible = not signed
+		_btn_acc_sync.visible = signed
+		_btn_acc_signout.visible = signed
+		_btn_acc_delete.visible = signed
+		_btn_acc_signin.text = LocalizationManager.tr_key("ACC_BTN_SIGNIN")
+		_btn_acc_signup.text = LocalizationManager.tr_key("ACC_BTN_SIGNUP")
+		_btn_acc_reset.text = LocalizationManager.tr_key("ACC_BTN_RESET")
+		_btn_acc_sync.text = LocalizationManager.tr_key("ACC_BTN_SYNC")
+		_btn_acc_signout.text = LocalizationManager.tr_key("ACC_BTN_SIGNOUT")
+		_btn_acc_delete.text = LocalizationManager.tr_key("ACC_BTN_DELETE")
+		_btn_acc_close.text = LocalizationManager.tr_key("BTN_BACK")
 
 
 func _update_safe_area() -> void:

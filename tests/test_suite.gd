@@ -41,6 +41,7 @@ func _process(_delta: float) -> bool:
 	_test_daily_quests_star_chests_and_rank()
 	_test_bilingual_sprites_and_audio_assets()
 	_test_obstacles_and_chapter_biomes()
+	_test_dr_erta_pass_and_daily_timer()
 	_test_endless_and_daily_modes()
 	_test_all_100_levels_and_simulations()
 
@@ -1127,5 +1128,69 @@ func _test_obstacles_and_chapter_biomes() -> void:
 	_assert_eq(int(mega_res.get("mega_tier", 0)), 3, "10-tile chain triggers Grand Harmony Mega Blast")
 	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle is immune to Grand Harmony Mega Blast")
 	_assert_eq(b.count_kind("empty"), 0, "Zero empty cells after Mega Blast around obstacle")
+
+
+func _test_dr_erta_pass_and_daily_timer() -> void:
+	var sm: Node = root.get_node_or_null("SubscriptionManager")
+	_assert_true(sm != null, "SubscriptionManager autoload is registered")
+	if sm == null:
+		return
+
+	var tmp_path := "user://test_dr_erta_pass_v30.json"
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+
+	var day1_unix := 1795000000 # 2026-11-18 UTC
+	sm.call("set_test_clock_unix", day1_unix)
+	sm.call("set_test_state_path", tmp_path)
+
+	_assert_eq(str(sm.call("get_brand_name")), "dr. Erta Pass", "Brand name is dr. Erta Pass")
+	_assert_eq(int(sm.call("get_daily_free_seconds")), 900, "Daily free playtime is 900 seconds (15 minutes)")
+	_assert_eq(str(sm.call("get_remaining_formatted")), "15:00", "Starts with 15:00 free today")
+	_assert_true(bool(sm.call("can_start_new_game")), "Free user can start game when 15:00 remains")
+
+	# Tick 5 minutes (300s) of active gameplay -> 10:00 left
+	sm.call("tick_active_gameplay", 300.0)
+	_assert_eq(int(sm.call("get_remaining_free_seconds")), 600, "Remaining free time drops to 600s after 5 min")
+	_assert_eq(str(sm.call("get_remaining_formatted")), "10:00", "Formatted free time shows 10:00")
+
+	# Tick remaining 10 minutes (600s) mid-stage -> Grace Finish activates, stage NOT interrupted
+	sm.call("tick_active_gameplay", 600.0)
+	_assert_eq(int(sm.call("get_remaining_free_seconds")), 0, "Remaining free time hits 0s after 15 min")
+	_assert_true(bool(sm.call("is_grace_finish_active")), "Grace Finish active until current stage completes")
+	_assert_true(not bool(sm.call("can_start_new_game")), "Cannot start a new stage once 15 min expired")
+
+	# End stage -> Grace Finish ends cleanly
+	var expired_after := bool(sm.call("on_stage_ended"))
+	_assert_true(expired_after, "on_stage_ended reports expired free time")
+	_assert_true(not bool(sm.call("is_grace_finish_active")), "Grace Finish clears after stage end")
+
+	# Clock-rewind anti-tamper: rewinding clock 2 days backwards must NOT reset daily quota
+	sm.call("set_test_clock_unix", day1_unix - 172800)
+	_assert_eq(int(sm.call("get_remaining_free_seconds")), 0, "Clock rewind does NOT reset daily 15-min quota")
+
+	# Legitimate next day (+24h) resets daily 15-min allowance
+	sm.call("set_test_clock_unix", day1_unix + 86400)
+	_assert_eq(int(sm.call("get_remaining_free_seconds")), 900, "Next calendar day resets daily quota to 900s")
+	_assert_true(bool(sm.call("can_start_new_game")), "Free user can play again next day")
+
+	# Active dr. Erta Pass member bypasses daily timer completely
+	sm.call("_grant_entitlement_local", "dr_erta_pass_yearly", day1_unix + 86400 * 365)
+	_assert_true(bool(sm.call("is_subscribed")), "dr. Erta Pass entitlement is active")
+	sm.call("tick_active_gameplay", 1200.0)
+	_assert_true(bool(sm.call("can_start_new_game")), "Subscribed dr. Erta Pass member has unlimited playtime")
+
+	# Expired pass automatically reverts to free tier
+	sm.call("set_test_clock_unix", day1_unix + 86400 * 400)
+	_assert_true(not bool(sm.call("is_subscribed")), "Expired dr. Erta Pass cleanly reverts to free tier")
+
+	# ISO-8601 & HTTP Date parsers
+	var parsed_iso := int(sm.get_script().call("parse_iso8601_utc_to_unix", "2027-01-01T00:00:00Z"))
+	_assert_true(parsed_iso > 1798000000, "ISO-8601 UTC expiry parser returns valid unix timestamp")
+
+	sm.call("clear_test_state_path")
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+
 
 
