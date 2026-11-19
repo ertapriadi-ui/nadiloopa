@@ -946,7 +946,7 @@ func _draw() -> void:
 
 func _draw_pulse_overlay() -> void:
 	# 0. Live Toxic Hazard Warning Links when 2+ Overloads are adjacent (Catastrophic Combo alert!)
-	if _board_state != null:
+	if _board_state != null and _board_state.cells.size() == BoardState.TOTAL_CELLS:
 		var warn_pairs := HazardSystem.find_toxic_warning_pairs(_board_state)
 		if not warn_pairs.is_empty():
 			var w_pulse := 0.55 + 0.45 * sin(_anim_time * 6.5)

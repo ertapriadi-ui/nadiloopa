@@ -172,13 +172,19 @@ func find_first_valid_chain(min_len: int = 3) -> Array[Vector2i]:
 func clear_cell(pos: Vector2i) -> void:
 	if not is_in_bounds(pos):
 		return
-	cells[idx(pos.x, pos.y)] = _make_empty_cell(pos.x, pos.y)
+	var i := idx(pos.x, pos.y)
+	if i < 0 or i >= cells.size():
+		return
+	cells[i] = _make_empty_cell(pos.x, pos.y)
 
 
 func get_cell(pos: Vector2i) -> Dictionary:
 	if not is_in_bounds(pos):
 		return {}
-	return cells[idx(pos.x, pos.y)]
+	var i := idx(pos.x, pos.y)
+	if i < 0 or i >= cells.size():
+		return {}
+	return cells[i]
 
 
 func clone() -> BoardState:
