@@ -25,7 +25,7 @@ def find_latest(prefix: str) -> Path:
 
 
 def install_hero_poster() -> None:
-    src = find_latest("bg_hero_avengers_raw_")
+    src = find_latest("bg_hero_avengers_v2_raw_")
     dst = REPO / "assets/backgrounds/bg_hero_avengers.png"
     dst.parent.mkdir(parents=True, exist_ok=True)
     im = Image.open(src).convert("RGB")
@@ -73,18 +73,15 @@ def cutout_organ(src: Path, size: int = 256, fill_ratio: float = 0.94) -> Image.
     h, w, _ = arr.shape
     rgb = arr[:, :, :3]
 
-    # Sample the 4 corners to determine solid background color (black or white)
-    corners = np.array([
-        rgb[0, 0],
-        rgb[0, w - 1],
-        rgb[h - 1, 0],
-        rgb[h - 1, w - 1],
-    ])
-    bg_rgb = np.median(corners, axis=0)
-
-    # Distance from background color
-    diff = np.abs(rgb - bg_rgb).max(axis=2)
-    bg_candidate = diff < 34
+    # Sample each of the 4 corners independently (handles pure black, pure white, or neutral gray shadows)
+    # Neutral grayscale pixels outside the colorful ruby/sapphire/emerald gem frame are background!
+    sat = rgb.max(axis=2) - rgb.min(axis=2)
+    corners = [rgb[0, 0], rgb[0, w - 1], rgb[h - 1, 0], rgb[h - 1, w - 1]]
+    bg_candidate = np.zeros((h, w), dtype=bool)
+    for c_rgb in corners:
+        bg_candidate |= (np.abs(rgb - c_rgb).max(axis=2) < 34)
+    # Also allow neutral grayscale drop-shadow gradients connected to corners (saturation < 24)
+    bg_candidate |= (sat < 22)
 
     visited = np.zeros((h, w), dtype=bool)
     q = deque()
@@ -156,7 +153,8 @@ def install_organs() -> None:
     out_dir = REPO / "assets/sprites/tiles"
     out_dir.mkdir(parents=True, exist_ok=True)
     for org in organs:
-        src = find_latest(f"organ_{org}_nat_raw_")
+        prefix = "organ_heart_anat_raw_" if org == "heart" else f"organ_{org}_nat_raw_"
+        src = find_latest(prefix)
         base = cutout_organ(src, size=256, fill_ratio=0.94)
         happy = make_happy_variant(base)
         dst_base = out_dir / f"organ_{org}.png"
