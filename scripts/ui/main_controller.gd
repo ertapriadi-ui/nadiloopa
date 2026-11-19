@@ -108,12 +108,15 @@ var _modal_almanac: PanelContainer
 var _modal_quests: PanelContainer
 var _modal_reset_confirm: PanelContainer
 var _modal_fact: PanelContainer
+var _lbl_fact_title: Label
 var _fact_art: TextureRect
 var _fact_cat: Label
 var _fact_counter: Label
 var _fact_body: Label
 var _btn_fact_shuffle: Button
 var _btn_fact_start: Button
+var _current_fact: Dictionary = {}
+var _tex_welcome_banner: Texture2D
 var _modal_lab: PanelContainer
 var _lbl_lab_title: Label
 var _lbl_lab_coins: Label
@@ -307,6 +310,7 @@ func _load_resources() -> void:
 	_tex_bg_menu = _safe_tex(BG_MENU_PATH)
 	_tex_bg_hero_avengers = _safe_tex(BG_HERO_AVENGERS_PATH)
 	_tex_logo_3d = _safe_tex("res://assets/ui/logo_nadiloopa_3d.png")
+	_tex_welcome_banner = _safe_tex("res://assets/ui/banner_welcome_heroes.png")
 	_tex_bg_game = _safe_tex(BG_GAME_PATH)
 	_tex_icon = _safe_tex("res://assets/icons/icon_1024.png")
 	_tex_spark = _safe_tex("res://assets/sprites/tiles/icon_ability_spark.png")
@@ -597,17 +601,17 @@ func _build_welcome_screen(parent: Control) -> void:
 		w_logo.texture = _tex_logo_3d
 		vb.add_child(w_logo)
 
-	# Avengers-Style Full Superhero Organ & Villains Poster Banner (v2.8.0)
+	# Wide 7-Organ Superhero Lineup Banner (all 7 consistent 3D organs side-by-side, zero cropping)
 	var poster_frame := PanelContainer.new()
 	poster_frame.add_theme_stylebox_override("panel", _make_box(Color(0.06, 0.14, 0.18, 0.96), 24, Color(0.98, 0.82, 0.34, 0.96), 4, 6, 6, 12))
 	vb.add_child(poster_frame)
 
 	var poster_rect := TextureRect.new()
-	poster_rect.custom_minimum_size = Vector2(0, 340 if _tex_logo_3d != null else 410)
+	poster_rect.custom_minimum_size = Vector2(0, 420)
 	poster_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	poster_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	poster_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	poster_rect.texture = _tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu
+	poster_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	poster_rect.texture = _tex_welcome_banner if _tex_welcome_banner != null else (_tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu)
 	poster_frame.add_child(poster_rect)
 
 	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 44, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
@@ -1076,7 +1080,7 @@ func _build_game_screen(parent: Control) -> void:
 	var cycle_pill := PanelContainer.new()
 	cycle_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.96, 0.84), 14, Color(0.90, 0.62, 0.14, 0.55), 2, 10, 3))
 	mid_top.add_child(cycle_pill)
-	_lbl_cycle_badge = _make_label("🌅 Pagi", 28, Color(0.58, 0.30, 0.04), true)
+	_lbl_cycle_badge = _make_label("🌅 Morning", 28, Color(0.58, 0.30, 0.04), true)
 	cycle_pill.add_child(_lbl_cycle_badge)
 
 	var score_pill := PanelContainer.new()
@@ -1991,8 +1995,8 @@ func _build_modals() -> void:
 	f_vb.add_theme_constant_override("separation", 18)
 	_modal_fact.add_child(f_vb)
 
-	var f_hdr_lbl := _make_label("💡 Tahukah Kamu?", 40, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
-	f_vb.add_child(_make_ribbon_header(f_hdr_lbl, Color(0.10, 0.56, 0.74), Color(0.06, 0.36, 0.52)))
+	_lbl_fact_title = _make_label("💡 Did You Know?", 40, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	f_vb.add_child(_make_ribbon_header(_lbl_fact_title, Color(0.10, 0.56, 0.74), Color(0.06, 0.36, 0.52)))
 
 	var f_card := PanelContainer.new()
 	f_card.add_theme_stylebox_override("panel", _make_box(Color(0.93, 0.98, 0.97), 24, Color(0.14, 0.62, 0.54, 0.55), 3, 22, 22))
@@ -2023,7 +2027,7 @@ func _build_modals() -> void:
 	f_meta_hb.add_theme_constant_override("separation", 12)
 	f_txt_vb.add_child(f_meta_hb)
 
-	_fact_cat = _make_label("Jantung", 30, Color(0.08, 0.44, 0.56), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_fact_cat = _make_label("Heart", 30, Color(0.08, 0.44, 0.56), true, HORIZONTAL_ALIGNMENT_LEFT)
 	_fact_cat.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	f_meta_hb.add_child(_fact_cat)
 
@@ -2289,13 +2293,23 @@ func _draw_and_display_fact() -> void:
 	var fact := MedicalFactDeck.draw_next_fact()
 	if fact.is_empty():
 		return
+	_current_fact = fact
+	_display_fact(fact)
+
+
+func _display_fact(fact: Dictionary) -> void:
+	if fact.is_empty():
+		return
 	var org := str(fact.get("organ", "heart"))
 	var is_id := (LocalizationManager.current_locale == "id")
 	var tex: Texture2D = _tile_icons.get(org + "_happy", _tile_icons.get(org, _tex_icon))
+	if is_instance_valid(_lbl_fact_title):
+		_lbl_fact_title.text = LocalizationManager.tr_key("FACT_TITLE")
 	if is_instance_valid(_fact_art):
 		_fact_art.texture = tex
 	if is_instance_valid(_fact_cat):
-		_fact_cat.text = str(fact.get("cat_id" if is_id else "cat_en", "Kesehatan"))
+		var fallback_cat := "Kesehatan" if is_id else "Health"
+		_fact_cat.text = str(fact.get("cat_id" if is_id else "cat_en", fallback_cat))
 	if is_instance_valid(_fact_counter):
 		var total := MedicalFactDeck.get_fact_count()
 		var fid := int(fact.get("id", 1))
@@ -3424,10 +3438,15 @@ func _refresh_texts() -> void:
 	_btn_levels.text = LocalizationManager.tr_key("BTN_LEVELS")
 	if is_instance_valid(_btn_lab):
 		_btn_lab.text = LocalizationManager.tr_key("BTN_LAB")
+	if is_instance_valid(_lbl_fact_title):
+		_lbl_fact_title.text = LocalizationManager.tr_key("FACT_TITLE")
 	if is_instance_valid(_btn_fact_shuffle):
 		_btn_fact_shuffle.text = LocalizationManager.tr_key("FACT_SHUFFLE")
 	if is_instance_valid(_btn_fact_start):
 		_btn_fact_start.text = LocalizationManager.tr_key("FACT_START")
+	if not _current_fact.is_empty():
+		_display_fact(_current_fact)
+	_refresh_organ_lab_ui()
 	var unclaimed := SaveManager.get_unclaimed_rewards_count()
 	if is_instance_valid(_btn_quests):
 		if unclaimed > 0:

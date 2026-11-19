@@ -1012,7 +1012,18 @@ func _test_dynamic_health_events() -> void:
 
 func _test_medical_fact_deck_and_organ_upgrades() -> void:
 	_assert_true(FileAccess.file_exists("res://assets/ui/logo_nadiloopa_3d.png"), "3D NADILOOPA title logo asset exists")
+	_assert_true(FileAccess.file_exists("res://assets/ui/banner_welcome_heroes.png"), "Wide 7-organ superhero lineup banner exists")
+	_assert_true(FileAccess.file_exists("res://docs/PRIVACY_POLICY.md"), "Play Store Privacy Policy exists")
+	_assert_true(FileAccess.file_exists("res://docs/play_store/icon_512.png"), "Play Store 512x512 icon exists")
+	_assert_true(FileAccess.file_exists("res://docs/play_store/feature_graphic_1024x500.png"), "Play Store 1024x500 feature graphic exists")
 	_assert_true(FileAccess.file_exists("res://data/medical_facts_300.json"), "300+ medical facts JSON exists")
+	_loc_mgr.set_language("en")
+	var en_cred: String = _loc_mgr.tr_key("CREDITS_BODY")
+	_assert_true(en_cred.find("Working Title") == -1 and en_cred.find("Codename") == -1, "EN Credits free of Working Title/Codename placeholder")
+	_loc_mgr.set_language("id")
+	var id_cred: String = _loc_mgr.tr_key("CREDITS_BODY")
+	_assert_true(id_cred.find("Judul Kerja") == -1 and id_cred.find("Kode Proyek") == -1, "ID Credits free of Working Title placeholder")
+	_loc_mgr.set_language("en")
 	var total := MedicalFactDeck.get_fact_count()
 	_assert_true(total >= 300, "MedicalFactDeck loads >= 300 unique facts (got %d)" % total)
 
