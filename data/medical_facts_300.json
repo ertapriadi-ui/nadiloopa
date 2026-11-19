@@ -1,0 +1,2646 @@
+{
+  "version": 1,
+  "count": 330,
+  "facts": [
+    {
+      "id": 1,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Jantung Anda berdetak sekitar 100.000 kali setiap hari tanpa pernah berhenti istirahat lebih dari satu detik!",
+      "text_en": "Your heart beats around 100,000 times every single day without ever pausing for more than a second!"
+    },
+    {
+      "id": 2,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Saat Anda tidur lelap di malam hari, detak jantung dan tekanan darah ikut melambat agar otot jantung pulih, namun ia tetap bekerja menjaga aliran darah.",
+      "text_en": "During deep sleep at night, your heart rate and blood pressure slow down so the heart muscle can recover, yet it never stops pumping."
+    },
+    {
+      "id": 3,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Dalam satu hari, jantung memompa sekitar 7.200 liter darah melalui pembuluh darah yang panjangnya hampir 96.000 km.",
+      "text_en": "In a single day, your heart pumps about 7,200 liters of blood through nearly 96,000 km of blood vessels."
+    },
+    {
+      "id": 4,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Ukuran jantung dewasa kira-kira sebesar kepalan tangan pemiliknya dan beratnya hanya sekitar 250–350 gram.",
+      "text_en": "An adult heart is roughly the size of its owner's clenched fist and weighs only about 250–350 grams."
+    },
+    {
+      "id": 5,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Jantung memiliki sistem listrik sendiri (nodus sinoatrial) yang mengatur irama detak secara otomatis.",
+      "text_en": "The heart has its own built-in electrical pacemaker (the sinoatrial node) that automatically keeps your rhythm steady."
+    },
+    {
+      "id": 6,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Jalan kaki cepat 30 menit sehari dapat menurunkan risiko penyakit jantung koroner hingga 30%.",
+      "text_en": "A brisk 30-minute daily walk can lower the risk of coronary heart disease by up to 30%."
+    },
+    {
+      "id": 7,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Tertawa lepas membantu melebarkan pembuluh darah hingga 20% sehingga aliran darah ke jantung jadi lebih lancar.",
+      "text_en": "Hearty laughter helps blood vessels widen by up to 20%, improving healthy blood flow to the heart."
+    },
+    {
+      "id": 8,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Katup jantung membuka dan menutup lebih dari 35 juta kali dalam setahun untuk mencegah darah mengalir balik.",
+      "text_en": "Heart valves open and close more than 35 million times a year to keep blood flowing in one direction."
+    },
+    {
+      "id": 9,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Konsumsi garam berlebih menarik cairan ke pembuluh darah sehingga tekanan darah naik dan jantung bekerja ekstra keras.",
+      "text_en": "Excess sodium draws water into blood vessels, raising blood pressure and forcing your heart to work overtime."
+    },
+    {
+      "id": 10,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Lemak omega-3 dari ikan kembung, salmon, dan kacang kenari membantu menjaga irama jantung tetap stabil.",
+      "text_en": "Omega-3 fats from mackerel, salmon, and walnuts help keep your heart rhythm calm and steady."
+    },
+    {
+      "id": 11,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Jika jantung berhenti memompa lebih dari 4–6 menit tanpa pertolongan, sel otak mulai kekurangan oksigen berat.",
+      "text_en": "If the heart stops pumping for more than 4–6 minutes without aid, brain cells begin suffering severe oxygen loss."
+    },
+    {
+      "id": 12,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Bilik kiri jantung berdinding paling tebal karena harus memompa darah kaya oksigen ke seluruh ujung tubuh.",
+      "text_en": "The heart's left ventricle has the thickest muscular wall because it pumps oxygen-rich blood to your entire body."
+    },
+    {
+      "id": 13,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Sisi kanan jantung memompa darah miskin oksigen (warna kebiruan pada ilustrasi vena) menuju paru-paru untuk diisi oksigen baru.",
+      "text_en": "The right side of the heart pumps oxygen-poor blood (shown as blue veins) to the lungs to pick up fresh oxygen."
+    },
+    {
+      "id": 14,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Detak jantung istirahat orang dewasa sehat umumnya berkisar 60–100 kali per menit; atlet terlatih bisa 40–55 kali per menit.",
+      "text_en": "A healthy adult resting heart rate is typically 60–100 beats per minute, while trained athletes may be 40–55 bpm."
+    },
+    {
+      "id": 15,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Berhenti merokok membuat risiko serangan jantung turun separuh hanya dalam waktu 1 tahun!",
+      "text_en": "Quitting smoking cuts your risk of a heart attack roughly in half within just 1 year!"
+    },
+    {
+      "id": 16,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Stres kronis memicu hormon kortisol dan adrenalin yang membuat detak jantung terus tinggi meski tubuh sedang duduk.",
+      "text_en": "Chronic stress floods the body with cortisol and adrenaline, keeping heart rate elevated even while sitting still."
+    },
+    {
+      "id": 17,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Menarik napas pelan 4 detik dan mengembuskannya 6 detik mengaktifkan saraf vagus yang langsung menenangkan detak jantung.",
+      "text_en": "Inhaling gently for 4 seconds and exhaling for 6 seconds activates the vagus nerve, immediately calming heart rate."
+    },
+    {
+      "id": 18,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Darah hanya butuh sekitar 60 detik untuk menyelesaikan satu putaran penuh dari jantung ke seluruh tubuh dan kembali lagi.",
+      "text_en": "Blood takes only about 60 seconds to complete a full loop from the heart through the entire body and back."
+    },
+    {
+      "id": 19,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Serat larut dalam oat, apel, dan kacang-kacangan mengikat kolesterol LDL jahat sebelum sempat menyumbat arteri jantung.",
+      "text_en": "Soluble fiber in oats, apples, and beans binds LDL cholesterol before it can build up in heart arteries."
+    },
+    {
+      "id": 20,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Tekanan darah normal dewasa berada di bawah 120/80 mmHg; cek rutin membantu mendeteksi hipertensi sejak dini.",
+      "text_en": "Normal adult blood pressure is below 120/80 mmHg; regular checks catch silent hypertension early."
+    },
+    {
+      "id": 21,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Minum cukup air menjaga kekentalan darah tetap ideal sehingga jantung tidak perlu memompa darah yang terlalu kental.",
+      "text_en": "Staying hydrated keeps blood viscosity optimal so the heart does not have to pump overly thick blood."
+    },
+    {
+      "id": 22,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Tidur kurang dari 6 jam secara rutin berkaitan dengan peningkatan risiko hipertensi dan gangguan irama jantung.",
+      "text_en": "Regularly sleeping under 6 hours is linked to higher risk of hypertension and irregular heartbeats."
+    },
+    {
+      "id": 23,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Suara 'lub-dub' saat jantung berdetak sebenarnya adalah bunyi dua pasang katup jantung yang menutup rapat.",
+      "text_en": "The classic 'lub-dub' heartbeat sound is actually made by two pairs of heart valves snapping shut."
+    },
+    {
+      "id": 24,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Kalium dari pisang, alpukat, dan bayam membantu menyeimbangkan natrium sehingga dinding pembuluh darah lebih rileks.",
+      "text_en": "Potassium from bananas, avocados, and spinach balances sodium and helps blood vessel walls relax."
+    },
+    {
+      "id": 25,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Olahraga aerobik teratur memperbesar volume sekuncup jantung sehingga setiap detakan memompa lebih banyak oksigen.",
+      "text_en": "Regular aerobic exercise increases stroke volume so each single heartbeat delivers more oxygen."
+    },
+    {
+      "id": 26,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Lemak trans pada gorengan berulang dan margarin keras dapat menaikkan kolesterol jahat sekaligus menurunkan kolesterol baik HDL.",
+      "text_en": "Trans fats in reused frying oils and hard margarines raise bad LDL cholesterol while lowering protective HDL."
+    },
+    {
+      "id": 27,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Kesehatan gusi yang baik turut melindungi jantung, karena infeksi gusi kronis dapat memicu peradangan pembuluh darah.",
+      "text_en": "Good gum health helps protect your heart, as chronic gum inflammation can contribute to vessel inflammation."
+    },
+    {
+      "id": 28,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Jantung mulai berdetak sejak minggu ke-4 kehamilan dan menjadi organ pertama yang bekerja aktif dalam hidup manusia.",
+      "text_en": "The heart starts beating around week 4 of pregnancy, becoming the very first active working organ in human life."
+    },
+    {
+      "id": 29,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Duduk terus-menerus lebih dari 8 jam sehari memperlambat sirkulasi darah kaki; berdiri 2 menit tiap jam sangat membantu jantung.",
+      "text_en": "Sitting continuously for over 8 hours slows leg circulation; standing for 2 minutes every hour gives your heart a boost."
+    },
+    {
+      "id": 30,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Cokelat hitam minimal 70% kakao dalam porsi kecil kaya flavanol yang membantu kelenturan pembuluh darah.",
+      "text_en": "Small portions of 70%+ dark chocolate contain flavanols that support healthy blood vessel flexibility."
+    },
+    {
+      "id": 31,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Konsumsi alkohol berlebihan secara mendadak (binge drinking) dapat memicu 'Holiday Heart Syndrome' atau aritmia jantung.",
+      "text_en": "Sudden heavy binge drinking can trigger 'Holiday Heart Syndrome', causing dangerous irregular heart rhythms."
+    },
+    {
+      "id": 32,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Memelihara hubungan sosial yang hangat terbukti secara medis menurunkan hormon stres dan menjaga kesehatan kardiovaskular.",
+      "text_en": "Warm social connections are medically shown to lower stress hormones and protect long-term cardiovascular health."
+    },
+    {
+      "id": 33,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Arteri koroner adalah pembuluh kecil di permukaan jantung yang bertugas memberi makan otot jantung itu sendiri.",
+      "text_en": "Coronary arteries wrap across the heart's surface to deliver vital oxygen and nutrients to the heart muscle itself."
+    },
+    {
+      "id": 34,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Pemanasan 5 menit sebelum olahraga memberi waktu bagi pembuluh darah jantung untuk melebar secara bertahap dan aman.",
+      "text_en": "A 5-minute warm-up before exercise allows heart vessels to widen gradually and safely."
+    },
+    {
+      "id": 35,
+      "organ": "heart",
+      "cat_id": "Jantung",
+      "cat_en": "Heart",
+      "text_id": "Hingga usia 70 tahun, jantung manusia rata-rata telah berdetak lebih dari 2,5 miliar kali!",
+      "text_en": "By age 70, the average human heart has beaten more than 2.5 billion times!"
+    },
+    {
+      "id": 36,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Meski beratnya hanya sekitar 2% dari tubuh (±1,4 kg), otak memakai 20% dari seluruh energi dan oksigen yang Anda hirup!",
+      "text_en": "Though it makes up only 2% of body weight (~1.4 kg), your brain consumes 20% of all your energy and oxygen!"
+    },
+    {
+      "id": 37,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Otak memiliki sekitar 86 miliar neuron yang saling terhubung melalui triliunan sinapsis super cepat.",
+      "text_en": "Your brain holds roughly 86 billion neurons wired together through trillions of lightning-fast synapses."
+    },
+    {
+      "id": 38,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Saat Anda tidur nyenyak, sistem glimfatik otak aktif 'mencuci' limbah protein harian agar pikiran kembali jernih esok pagi.",
+      "text_en": "During deep sleep, the brain's glymphatic system flushes out daily metabolic waste so you wake up sharp and clear."
+    },
+    {
+      "id": 39,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Sinyal saraf di otak dapat melesat hingga 430 km/jam — lebih cepat dari kereta peluru!",
+      "text_en": "Nerve impulses in your brain can race at up to 430 km/h — faster than a high-speed bullet train!"
+    },
+    {
+      "id": 40,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Sekitar 73% komposisi otak adalah air; dehidrasi ringan 2% saja sudah bisa menurunkan fokus dan daya ingat.",
+      "text_en": "Roughly 73% of the brain is water; even mild 2% dehydration can noticeably reduce focus and short-term memory."
+    },
+    {
+      "id": 41,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Bermain teka-teki, belajar bahasa baru, atau memainkan musik merangsang neuroplastisitas sehingga koneksi otak makin kuat.",
+      "text_en": "Solving puzzles, learning a language, or playing music stimulates neuroplasticity, strengthening brain connections."
+    },
+    {
+      "id": 42,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Begadang 24 jam tanpa tidur menurunkan kecepatan reaksi otak setara dengan kondisi mabuk ringan.",
+      "text_en": "Staying awake for 24 hours impairs brain reaction speed similarly to mild alcohol intoxication."
+    },
+    {
+      "id": 43,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Cahaya biru dari layar ponsel larut malam menekan hormon melatonin, menipu otak seolah-olah masih siang hari.",
+      "text_en": "Blue light from late-night phone screens suppresses melatonin, tricking the brain into thinking it is still daytime."
+    },
+    {
+      "id": 44,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Olahraga aerobik merangsang protein BDNF yang bekerja seperti 'pupuk' bagi pertumbuhan sel saraf memori di hipokampus.",
+      "text_en": "Aerobic exercise boosts BDNF protein, acting like fertilizer for memory-center neurons in the hippocampus."
+    },
+    {
+      "id": 45,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Otak sendiri tidak memiliki reseptor nyeri; sakit kepala sebenarnya berasal dari pembuluh darah, otot, dan selaput di sekitarnya.",
+      "text_en": "Brain tissue itself has no pain receptors; headaches actually come from surrounding blood vessels, muscles, and membranes."
+    },
+    {
+      "id": 46,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Istirahat mata 20 detik setiap 20 menit melihat jarak 6 meter (aturan 20-20-20) mengurangi kelelahan saraf optik dan otak.",
+      "text_en": "Looking 6 meters away for 20 seconds every 20 minutes (the 20-20-20 rule) relieves optic nerve and brain fatigue."
+    },
+    {
+      "id": 47,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Otak menghasilkan daya listrik sekitar 12–25 watt saat terjaga — cukup untuk menyalakan lampu LED kecil!",
+      "text_en": "Your awake brain generates around 12–25 watts of electrical power — enough to light a small LED bulb!"
+    },
+    {
+      "id": 48,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Tidur siang singkat 15–20 menit (power nap) terbukti meningkatkan kewaspadaan dan kreativitas tanpa membuat pusing.",
+      "text_en": "A brief 15–20 minute power nap boosts alertness and creativity without causing grogginess."
+    },
+    {
+      "id": 49,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Konsumsi gula berlebih terus-menerus memicu lonjakan dan penurunan glukosa cepat yang membuat otak terasa 'berkabut' (brain fog).",
+      "text_en": "Frequent sugar spikes cause rapid glucose crashes that leave your brain feeling sluggish and foggy."
+    },
+    {
+      "id": 50,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Hipokampus memindahkan ingatan jangka pendek menjadi ingatan jangka panjang paling efektif saat fase tidur REM dan tidur dalam.",
+      "text_en": "The hippocampus consolidates short-term memories into long-term storage most effectively during deep and REM sleep."
+    },
+    {
+      "id": 51,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Serebelum (otak kecil) hanya 10% dari volume otak, namun menyimpan lebih dari separuh total neuron untuk menjaga keseimbangan gerak.",
+      "text_en": "The cerebellum is just 10% of brain volume yet holds over half of all neurons to coordinate balance and smooth movement."
+    },
+    {
+      "id": 52,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Multitasking berat sebenarnya adalah 'berpindah fokus cepat' yang menguras glukosa otak dan meningkatkan kesalahan hingga 40%.",
+      "text_en": "Heavy multitasking is really rapid task-switching that drains brain glucose and can raise error rates by up to 40%."
+    },
+    {
+      "id": 53,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Kacang kenari, blueberry, dan sayuran hijau kaya antioksidan yang melindungi membran sel saraf otak dari penuaan dini.",
+      "text_en": "Walnuts, blueberries, and leafy greens pack antioxidants that shield brain neuron membranes from premature aging."
+    },
+    {
+      "id": 54,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Paparan udara hijau di taman selama 20 menit terbukti menurunkan aktivitas amigdala yang berkaitan dengan kecemasan.",
+      "text_en": "Spending 20 minutes in a green park lowers activity in the amygdala, the brain's stress and anxiety center."
+    },
+    {
+      "id": 55,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Otak terus berkembang dan mematangkan bagian pengambil keputusan (korteks prefrontal) hingga sekitar usia 25 tahun.",
+      "text_en": "The brain keeps maturing its decision-making hub (the prefrontal cortex) until around age 25."
+    },
+    {
+      "id": 56,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Mengingat kembali materi dengan menuliskannya di kertas mengaktifkan jalur motorik dan memori otak jauh lebih kuat daripada sekadar membaca.",
+      "text_en": "Writing notes by hand engages motor and memory circuits far more deeply than passive reading alone."
+    },
+    {
+      "id": 57,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Aroma segar seperti jeruk atau peppermint dapat memicu sistem limbik otak untuk meningkatkan rasa segar dan fokus.",
+      "text_en": "Fresh scents like citrus or peppermint stimulate the brain's limbic system to boost alertness."
+    },
+    {
+      "id": 58,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Alkohol langsung mengganggu neurotransmitter GABA dan glutamat sehingga koordinasi bicara, keseimbangan, dan penilaian melambat.",
+      "text_en": "Alcohol disrupts GABA and glutamate neurotransmitters, slowing speech, balance, and judgment."
+    },
+    {
+      "id": 59,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Mendengarkan musik yang disukai melepaskan dopamin di pusat hadiah otak sehingga suasana hati langsung membaik.",
+      "text_en": "Listening to music you enjoy triggers dopamine release in the brain's reward center, lifting your mood."
+    },
+    {
+      "id": 60,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Sekitar 60% berat kering otak terdiri dari lemak sehat yang membentuk selubung mielin untuk mempercepat hantaran listrik saraf.",
+      "text_en": "About 60% of the brain's dry weight is healthy fat forming myelin sheaths that speed up nerve signals."
+    },
+    {
+      "id": 61,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Mengunyah makanan dengan tenang memberi waktu 15–20 menit bagi hormon kenyang untuk melapor ke hipotalamus otak.",
+      "text_en": "Chewing slowly gives satiety hormones 15–20 minutes to signal the brain's hypothalamus that you are full."
+    },
+    {
+      "id": 62,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Latihan syukur 3 hal setiap malam melatih sirkuit otak untuk lebih peka terhadap emosi positif dan tidur lebih nyenyak.",
+      "text_en": "Listing 3 things you are grateful for each evening trains brain circuits toward calm emotions and better sleep."
+    },
+    {
+      "id": 63,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Asap rokok menyempitkan pembuluh darah otak sehingga pasokan oksigen berkurang dan risiko stroke meningkat tajam.",
+      "text_en": "Cigarette smoke narrows cerebral blood vessels, cutting oxygen supply and sharply raising stroke risk."
+    },
+    {
+      "id": 64,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Setiap kali Anda mempelajari keterampilan baru, mielin di sekitar jalur saraf menebal sehingga gerakan terasa makin otomatis.",
+      "text_en": "Every time you practice a new skill, myelin thickens around the nerve pathway, making actions feel effortless."
+    },
+    {
+      "id": 65,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Vitamin B12 dari telur, ikan, dan susu sangat penting untuk melindungi selubung saraf dan mencegah kesemutan atau pelupa.",
+      "text_en": "Vitamin B12 from eggs, fish, and dairy is essential for protecting nerve sheaths and preventing memory fog."
+    },
+    {
+      "id": 66,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Otak memproses gambar visual hingga 60.000 kali lebih cepat daripada teks panjang — itulah sebabnya ikon warna mudah dikenali!",
+      "text_en": "The brain processes visual icons far faster than dense text — which is why colorful symbols are so easy to recognize!"
+    },
+    {
+      "id": 67,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Tersenyum — bahkan saat suasana hati biasa saja — mengirim umpan balik otot wajah ke otak untuk melepaskan serotonin ringan.",
+      "text_en": "Smiling sends facial-muscle feedback to the brain that gently nudges mood-lifting serotonin release."
+    },
+    {
+      "id": 68,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Paparan bising berlebihan terus-menerus meningkatkan hormon stres otak; momen hening 10 menit sehari membantu regenerasi fokus.",
+      "text_en": "Constant loud noise raises brain stress hormones; 10 quiet minutes a day helps restore mental focus."
+    },
+    {
+      "id": 69,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Sarapan bergizi seimbang protein dan karbohidrat kompleks memberi suplai glukosa stabil bagi otak sepanjang pagi.",
+      "text_en": "A breakfast balancing protein and complex carbs gives your brain steady fuel all morning."
+    },
+    {
+      "id": 70,
+      "organ": "brain",
+      "cat_id": "Otak",
+      "cat_en": "Brain",
+      "text_id": "Mimpi paling hidup terjadi saat tidur REM, ketika otak sedang mengolah emosi dan merapikan kreativitas Anda.",
+      "text_en": "Your most vivid dreams occur during REM sleep, when the brain processes emotions and sparks creative connections."
+    },
+    {
+      "id": 71,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru manusia memiliki sekitar 300–500 juta kantung udara mikro (alveoli) tempat oksigen berpindah ke darah.",
+      "text_en": "Human lungs contain around 300–500 million tiny air sacs (alveoli) where oxygen transfers into the bloodstream."
+    },
+    {
+      "id": 72,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Jika seluruh permukaan alveoli paru-paru dibentangkan rata, luasnya hampir sebesar satu lapangan tenis (±70 meter persegi)!",
+      "text_en": "If all the alveoli inside your lungs were flattened out, they would cover nearly an entire tennis court (~70 sq meters)!"
+    },
+    {
+      "id": 73,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Anda bernapas sekitar 20.000 kali setiap hari dan menyaring sekitar 11.000 liter udara!",
+      "text_en": "You breathe about 20,000 times every day, filtering roughly 11,000 liters of air!"
+    },
+    {
+      "id": 74,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru kiri sedikit lebih kecil daripada paru-paru kanan agar memberi ruang nyaman bagi organ jantung di dada kiri.",
+      "text_en": "Your left lung is slightly smaller than your right lung to leave cozy room for your heart on the left side."
+    },
+    {
+      "id": 75,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Rambut halus mikroskopis bernama silia di saluran napas terus menyapu debu dan kuman keluar seperti eskalator alami.",
+      "text_en": "Microscopic hairs called cilia line your airways, constantly sweeping dust and germs outward like a natural escalator."
+    },
+    {
+      "id": 76,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Asap kebakaran hutan mengandung partikel halus PM2.5 yang ukurannya 30 kali lebih kecil dari rambut sehingga bisa menembus alveoli.",
+      "text_en": "Wildfire smoke carries tiny PM2.5 particles 30 times thinner than a hair, able to reach deep into lung alveoli."
+    },
+    {
+      "id": 77,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Memakai masker respirator (N95/KN95) saat kabut asap membantu menyaring hingga 95% partikel berbahaya sebelum masuk paru-paru.",
+      "text_en": "Wearing an N95/KN95 respirator during wildfire haze filters up to 95% of harmful fine particles before they hit your lungs."
+    },
+    {
+      "id": 78,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Hanya 2 minggu sampai 3 bulan setelah berhenti merokok, fungsi paru-paru dan silia pembersih mulai pulih drastis.",
+      "text_en": "Within just 2 weeks to 3 months of quitting smoking, lung function and cleaning cilia begin recovering strongly."
+    },
+    {
+      "id": 79,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru adalah satu-satunya organ dalam tubuh manusia yang cukup ringan untuk mengapung di atas air berkat jutaan kantung udaranya.",
+      "text_en": "Lungs are the only human internal organs light enough to float on water thanks to millions of air-filled sacs."
+    },
+    {
+      "id": 80,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Bernapas lewat hidung menghangatkan, melembapkan, dan menyaring udara sebelum mencapai jaringan paru-paru yang sensitif.",
+      "text_en": "Breathing through your nose warms, humidifies, and filters air before it reaches delicate lung tissue."
+    },
+    {
+      "id": 81,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Pernapasan diafragma (pernapasan perut yang dalam) mengisi bagian bawah paru-paru sehingga pertukaran oksigen jauh lebih efisien.",
+      "text_en": "Diaphragmatic belly breathing fills the lower lungs, making oxygen exchange far more efficient."
+    },
+    {
+      "id": 82,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Asap rokok pasif tetap membawa lebih dari 7.000 bahan kimia yang mengiritasi saluran napas orang di sekitar perokok.",
+      "text_en": "Second-hand smoke still carries over 7,000 chemicals that irritate the airways of everyone nearby."
+    },
+    {
+      "id": 83,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Minum air putih yang cukup menjaga lendir saluran napas tetap tipis sehingga debu lebih mudah dibersihkan.",
+      "text_en": "Drinking plenty of water keeps airway mucus thin so trapped dust and pollutants clear out easily."
+    },
+    {
+      "id": 84,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Membuka jendela rumah saat kualitas udara luar pagi hari segar membantu mengganti CO2 ruangan dengan oksigen baru.",
+      "text_en": "Opening windows on fresh mornings replaces stale indoor CO2 with crisp oxygen-rich air."
+    },
+    {
+      "id": 85,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Postur duduk membungkuk menekan diafragma dan mengurangi kapasitas tarikan napas; duduk tegak langsung melapangkan paru!",
+      "text_en": "Slouching compresses your diaphragm and shrinks lung capacity; sitting tall instantly opens your airways!"
+    },
+    {
+      "id": 86,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Batuk adalah refleks pelindung super cepat yang bisa mendorong udara keluar hingga 80 km/jam untuk membuang kotoran saluran napas.",
+      "text_en": "A cough is a rapid protective reflex blasting air at up to 80 km/h to clear irritants from your airways."
+    },
+    {
+      "id": 87,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Antioksidan vitamin C dan E dalam jeruk, jambu biji, serta bayam membantu melindungi sel paru dari stres oksidatif polusi.",
+      "text_en": "Vitamins C and E in citrus, guava, and spinach help defend lung cells against pollution-induced oxidative stress."
+    },
+    {
+      "id": 88,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Otot diafragma di bawah paru-paru melakukan sekitar 75% kerja menarik napas saat tubuh dalam kondisi santai.",
+      "text_en": "The dome-shaped diaphragm beneath your lungs performs about 75% of the work of breathing at rest."
+    },
+    {
+      "id": 89,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru kanan memiliki 3 lobus sedangkan paru-paru kiri memiliki 2 lobus yang bekerja serempak setiap detik.",
+      "text_en": "The right lung has 3 lobes while the left lung has 2 lobes, expanding in harmony every second."
+    },
+    {
+      "id": 90,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Berenang dan jalan cepat secara rutin melatih otot pernapasan sehingga Anda tidak mudah terengah-engah saat naik tangga.",
+      "text_en": "Regular swimming and brisk walking strengthen breathing muscles so stairs feel much easier."
+    },
+    {
+      "id": 91,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Selain mengambil oksigen, paru-paru berperan menjaga keasaman (pH) darah tetap seimbang dengan membuang karbon dioksida.",
+      "text_en": "Beyond taking in oxygen, your lungs balance blood pH by exhaling excess carbon dioxide."
+    },
+    {
+      "id": 92,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Tanaman hias dan kebersihan filter AC di kamar membantu mengurangi debu halus dan spora jamur di udara dalam ruangan.",
+      "text_en": "Clean AC filters and well-kept indoor spaces cut down fine dust and mold spores you inhale."
+    },
+    {
+      "id": 93,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Saat Anda bernyanyi atau tertawa, paru-paru mengosongkan udara sisa lebih tuntas dan menarik udara segar lebih banyak.",
+      "text_en": "Singing and laughing empty stale residual air from your lungs and draw in fresher oxygen."
+    },
+    {
+      "id": 94,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru selalu menyimpan sedikit 'udara residu' bahkan setelah Anda mengembuskan napas maksimal agar kantung udara tidak kolaps.",
+      "text_en": "Your lungs always keep a small reserve of 'residual air' even after a full exhale so alveoli never collapse."
+    },
+    {
+      "id": 95,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Menghindari pembakaran sampah di halaman rumah melindungi paru-paru keluarga dan tetangga dari asap dioksin beracun.",
+      "text_en": "Avoiding backyard trash burning protects your family's and neighbors' lungs from toxic smoke."
+    },
+    {
+      "id": 96,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Kapasitas paru-paru total orang dewasa rata-rata sekitar 6 liter udara, walau napas santai hanya memakai 0,5 liter per tarikan.",
+      "text_en": "Average adult total lung capacity is around 6 liters, though a calm breath uses only about 0.5 liters."
+    },
+    {
+      "id": 97,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Uap hangat saat mandi atau minum teh hangat dapat membantu melegakan saluran napas yang kering.",
+      "text_en": "Warm steam or sipping warm tea helps soothe dry, irritated nasal and throat airways."
+    },
+    {
+      "id": 98,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Cegukan terjadi akibat kejang ringan tiba-tiba pada otot diafragma di bawah paru-paru.",
+      "text_en": "Hiccups happen when the diaphragm muscle beneath your lungs experiences a sudden brief spasm."
+    },
+    {
+      "id": 99,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Mencuci tangan dengan sabun adalah cara paling sederhana namun sangat ampuh mencegah virus flu masuk ke saluran pernapasan.",
+      "text_en": "Washing hands with soap is one of the simplest yet most effective ways to keep respiratory viruses away."
+    },
+    {
+      "id": 100,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Di dataran tinggi dengan oksigen tipis, tubuh merespons dengan bernapas lebih dalam dan memproduksi lebih banyak sel darah merah.",
+      "text_en": "At high altitudes where oxygen is thinner, your body adapts by breathing deeper and making extra red blood cells."
+    },
+    {
+      "id": 101,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Menghirup udara pagi yang bersih sambil peregangan dada membantu membuka alveoli yang sempat kurang aktif saat tidur.",
+      "text_en": "Taking deep breaths with chest stretches in the morning opens up alveoli that rested overnight."
+    },
+    {
+      "id": 102,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Vape atau rokok elektrik tetap menghasilkan aerosol kimia yang dapat memicu peradangan saluran napas kecil.",
+      "text_en": "Vapes and e-cigarettes still produce chemical aerosols that can inflame delicate small airways."
+    },
+    {
+      "id": 103,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Sekitar 70% limbah metabolisme tubuh sebenarnya keluar lewat embusan napas paru-paru dalam bentuk gas CO2!",
+      "text_en": "Roughly 70% of the body's metabolic waste leaves through your lungs as exhaled carbon dioxide!"
+    },
+    {
+      "id": 104,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Mengatur napas lambat sebelum tidur menurunkan ketegangan otot dada dan mempercepat rasa kantuk alami.",
+      "text_en": "Slow, steady breathing before bed releases chest tension and invites natural sleepiness."
+    },
+    {
+      "id": 105,
+      "organ": "lungs",
+      "cat_id": "Paru-Paru",
+      "cat_en": "Lungs",
+      "text_id": "Paru-paru dan jantung bekerja sebagai tim kembar: setiap detik darah dari jantung langsung mampir ke paru untuk diisi oksigen.",
+      "text_en": "Lungs and heart act as twin partners: every second, blood from the heart visits the lungs for a fresh oxygen refill."
+    },
+    {
+      "id": 106,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Sepasang ginjal Anda menyaring sekitar 180 liter cairan darah setiap hari dan menghasilkan 1–2 liter urine bersih dari racun!",
+      "text_en": "Your two kidneys filter about 180 liters of blood fluid every day, producing 1–2 liters of waste-removing urine!"
+    },
+    {
+      "id": 107,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Masing-masing ginjal berisi sekitar 1 juta unit penyaring mikroskopis bernama nefron yang bekerja 24 jam nonstop.",
+      "text_en": "Each kidney packs around 1 million microscopic filtering units called nephrons working 24/7."
+    },
+    {
+      "id": 108,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Warna urine kuning pucat jernih adalah tanda sederhana bahwa tubuh dan ginjal Anda terhidrasi dengan sangat baik.",
+      "text_en": "Pale straw-yellow urine is a simple everyday sign that your body and kidneys are well hydrated."
+    },
+    {
+      "id": 109,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Minum air putih bertahap sepanjang hari membantu mencegah pengkristalan mineral yang memicu batu ginjal.",
+      "text_en": "Sipping water steadily throughout the day helps prevent mineral crystals from forming kidney stones."
+    },
+    {
+      "id": 110,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal menerima sekitar 20–25% dari seluruh aliran darah yang dipompa jantung pada setiap detakan!",
+      "text_en": "Your kidneys receive 20–25% of all the blood pumped by your heart with every single beat!"
+    },
+    {
+      "id": 111,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Selain menyaring racun, ginjal mengaktifkan vitamin D agar tubuh bisa menyerap kalsium untuk tulang yang kuat.",
+      "text_en": "Beyond filtering waste, kidneys activate vitamin D so your body can absorb calcium for strong bones."
+    },
+    {
+      "id": 112,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal memproduksi hormon eritropoietin (EPO) yang memberi sinyal ke sumsum tulang untuk membuat sel darah merah baru.",
+      "text_en": "Kidneys release erythropoietin (EPO), signaling your bone marrow to produce fresh red blood cells."
+    },
+    {
+      "id": 113,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Menahan buang air kecil terlalu lama dan terlalu sering dapat meningkatkan risiko infeksi saluran kemih.",
+      "text_en": "Holding urine for too long too often increases the risk of urinary tract infections."
+    },
+    {
+      "id": 114,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Penggunaan obat antinyeri (NSAID) dosis tinggi tanpa anjuran dokter dalam jangka panjang dapat membebani pembuluh darah ginjal.",
+      "text_en": "Long-term high-dose painkiller (NSAID) use without medical guidance can strain delicate kidney blood vessels."
+    },
+    {
+      "id": 115,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal ikut mengatur tekanan darah melalui sistem renin-angiotensin yang menyeimbangkan kadar air dan garam tubuh.",
+      "text_en": "Kidneys help regulate blood pressure via the renin-angiotensin system, balancing water and salt levels."
+    },
+    {
+      "id": 116,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Minuman manis bersoda berlebihan meningkatkan beban asam fosfat dan gula yang dapat memicu risiko batu ginjal.",
+      "text_en": "Excess sugary sodas add sugar and phosphoric acid loads linked to a higher risk of kidney stones."
+    },
+    {
+      "id": 117,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Manusia sebenarnya tetap bisa hidup sehat dengan satu ginjal karena ginjal yang tersisa mampu beradaptasi memperbesar kapasitas kerjanya.",
+      "text_en": "A person can live a healthy life with just one kidney, as the remaining kidney adapts to boost its filtering capacity."
+    },
+    {
+      "id": 118,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal kanan terletak sedikit lebih rendah daripada ginjal kiri karena memberi ruang bagi organ hati di sisi kanan atas.",
+      "text_en": "Your right kidney sits slightly lower than your left kidney to leave space for the liver above it."
+    },
+    {
+      "id": 119,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Menjaga gula darah dan tekanan darah tetap stabil adalah dua langkah terpenting untuk melindungi nefron ginjal seumur hidup.",
+      "text_en": "Keeping blood sugar and blood pressure in a healthy range are the top two ways to protect kidney nephrons for life."
+    },
+    {
+      "id": 120,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Bentuk ginjal mirip kacang merah berukuran sekitar 10–12 cm dan berat tiap ginjal sekitar 120–150 gram.",
+      "text_en": "Shaped like a kidney bean, each kidney measures about 10–12 cm long and weighs 120–150 grams."
+    },
+    {
+      "id": 121,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Konsumsi garam berlebih memaksa ginjal membuang kalsium tambahan ke urine, yang meningkatkan risiko terbentuknya batu ginjal.",
+      "text_en": "Too much salt makes kidneys excrete extra calcium into urine, raising the chance of kidney stones."
+    },
+    {
+      "id": 122,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Air perasan lemon atau jeruk nipis alami mengandung sitrat yang membantu menghambat pembentukan kristal batu ginjal.",
+      "text_en": "Natural lemon or lime water provides citrate, which helps inhibit kidney stone crystal formation."
+    },
+    {
+      "id": 123,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Alkohol bersifat diuretik yang membuat ginjal membuang terlalu banyak air sehingga tubuh cepat dehidrasi dan pusing.",
+      "text_en": "Alcohol acts as a diuretic, making kidneys flush out too much water and causing dehydration and dizziness."
+    },
+    {
+      "id": 124,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal menyaring ulang hampir 99% air dan nutrisi penting dari filtrat agar tidak terbuang percuma.",
+      "text_en": "Kidneys reabsorb nearly 99% of filtered water and vital nutrients so nothing valuable goes to waste."
+    },
+    {
+      "id": 125,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Makanan ultra-proses sering mengandung pengawet fosfat tersembunyi yang membebani kerja penyaringan ginjal.",
+      "text_en": "Ultra-processed foods often hide phosphate additives that add extra filtering workload to your kidneys."
+    },
+    {
+      "id": 126,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal membantu menjaga keseimbangan elektrolit natrium, kalium, dan magnesium agar saraf dan otot bekerja normal.",
+      "text_en": "Kidneys finely tune sodium, potassium, and magnesium levels so nerves and muscles fire smoothly."
+    },
+    {
+      "id": 127,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Merokok memperlambat aliran darah ke ginjal sehingga kemampuan penyaringan alaminya menurun lebih cepat seiring usia.",
+      "text_en": "Smoking slows blood flow to the kidneys, accelerating the natural age-related decline in filtering power."
+    },
+    {
+      "id": 128,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Buah semangka, mentimun, dan jeruk memiliki kandungan air tinggi yang membantu hidrasi lembut bagi ginjal.",
+      "text_en": "Watermelon, cucumber, and oranges have high water content that gently supports daily kidney hydration."
+    },
+    {
+      "id": 129,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Kelelahan berat tanpa sebab dan bengkak di pergelangan kaki bisa menjadi sinyal dini untuk memeriksakan fungsi ginjal.",
+      "text_en": "Unexplained persistent fatigue and ankle swelling can be early cues to check kidney function with a doctor."
+    },
+    {
+      "id": 130,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Saat cuaca panas atau berkeringat banyak, tambahkan 1–2 gelas air putih ekstra agar ginjal tidak bekerja dalam kondisi kering.",
+      "text_en": "On hot days or after heavy sweating, add 1–2 extra glasses of water so your kidneys stay comfortable."
+    },
+    {
+      "id": 131,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal memproses seluruh volume darah tubuh Anda hingga 35–40 kali dalam satu hari penuh!",
+      "text_en": "Your kidneys filter your entire body's blood volume roughly 35–40 times every single day!"
+    },
+    {
+      "id": 132,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Asupan protein seimbang sesuai kebutuhan tubuh menjaga massa otot sekaligus tetap ramah bagi kerja ginjal.",
+      "text_en": "Balanced protein intake matching your body's needs supports muscles while staying gentle on your kidneys."
+    },
+    {
+      "id": 133,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Rutin bergerak membantu menjaga sirkulasi darah ke ginjal tetap lancar dan tekanan darah lebih terkendali.",
+      "text_en": "Regular movement keeps kidney blood circulation brisk and blood pressure well controlled."
+    },
+    {
+      "id": 134,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Ginjal dilindungi oleh lapisan lemak perirenal alami yang berfungsi seperti bantal peredam benturan.",
+      "text_en": "Kidneys are cushioned by a natural layer of perirenal fat acting like protective shock absorbers."
+    },
+    {
+      "id": 135,
+      "organ": "kidneys",
+      "cat_id": "Ginjal",
+      "cat_en": "Kidneys",
+      "text_id": "Minum segelas air putih setelah bangun tidur pagi membantu ginjal langsung membilas sisa metabolisme semalaman.",
+      "text_en": "Drinking a glass of water upon waking helps your kidneys gently flush overnight metabolic byproducts."
+    },
+    {
+      "id": 136,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Lambung menghasilkan asam klorida sangat kuat (pH 1,5–2) untuk memecah makanan dan membunuh kuman yang ikut tertelan.",
+      "text_en": "Your stomach produces strong hydrochloric acid (pH 1.5–2) to break down food and neutralize swallowed germs."
+    },
+    {
+      "id": 137,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Dinding lambung tidak ikut tercerna asamnya sendiri karena dilapisi mukus pelindung yang terus diperbarui setiap 3–5 hari!",
+      "text_en": "Your stomach doesn't digest itself thanks to a protective mucus lining that renews itself every 3–5 days!"
+    },
+    {
+      "id": 138,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Lambung saat kosong hanya sebesar kepalan tangan (±75 ml), namun dapat mengembang lentur menampung hingga 1–1,5 liter makanan.",
+      "text_en": "An empty stomach holds just ~75 ml, yet stretches flexibly to hold 1–1.5 liters during a meal."
+    },
+    {
+      "id": 139,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Saluran pencernaan memiliki lebih dari 100 juta sel saraf sendiri sehingga sering dijuluki 'otak kedua' manusia.",
+      "text_en": "Your digestive tract houses over 100 million nerve cells, earning it the nickname 'the body's second brain'."
+    },
+    {
+      "id": 140,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Sekitar 90% hormon serotonin — pengatur suasana hati tenang — justru diproduksi di saluran pencernaan Anda!",
+      "text_en": "Roughly 90% of the body's serotonin — a key mood-calming messenger — is actually made in your gut!"
+    },
+    {
+      "id": 141,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Makan terlalu cepat membuat udara ikut tertelan dan lambung kaget; mengunyah 20–30 kali membuat pencernaan jauh lebih nyaman.",
+      "text_en": "Eating too fast swallows air and surprises the stomach; chewing thoroughly makes digestion much smoother."
+    },
+    {
+      "id": 142,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Langsung rebahan setelah makan besar memudahkan asam lambung naik ke kerongkongan (refluks); tunggu 2–3 jam sebelum tidur.",
+      "text_en": "Lying flat right after a heavy meal lets stomach acid creep upward; wait 2–3 hours before bedtime."
+    },
+    {
+      "id": 143,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Makanan berlemak jenuh tinggi seperti fast food membutuhkan waktu 4–6 jam di lambung, jauh lebih lama dari sayur dan buah.",
+      "text_en": "High-fat fast foods linger in the stomach for 4–6 hours, much longer than crisp vegetables and fruits."
+    },
+    {
+      "id": 144,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Makanan fermentasi seperti tempe, yogurt, dan kimchi menyediakan probiotik ramah yang memperkuat mikrobioma usus.",
+      "text_en": "Fermented foods like tempeh, yogurt, and kimchi deliver friendly probiotics that nourish your gut microbiome."
+    },
+    {
+      "id": 145,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Sekitar 70% sel sistem kekebalan tubuh bermarkas di sekitar saluran pencernaan untuk menyaring ancaman sejak dini.",
+      "text_en": "Around 70% of your immune system cells reside along the digestive tract to guard against threats early."
+    },
+    {
+      "id": 146,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Bunyi keroncongan perut (borborygmi) adalah tanda otot lambung dan usus sedang melakukan gerakan 'sapu bersih' alami.",
+      "text_en": "Stomach growling (borborygmi) is actually your gut muscles running a natural 'housekeeping sweep'."
+    },
+    {
+      "id": 147,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Stres emosional langsung memengaruhi gerak lambung melalui sumbu otak-usus, sehingga orang cemas sering merasa mulas.",
+      "text_en": "Emotional stress directly affects stomach motility via the gut-brain axis, causing 'butterflies' or cramps."
+    },
+    {
+      "id": 148,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Serat prebiotik dalam pisang, bawang putih, dan gandum utuh menjadi makanan favorit bakteri baik di usus.",
+      "text_en": "Prebiotic fiber in bananas, garlic, and whole grains feeds beneficial gut bacteria."
+    },
+    {
+      "id": 149,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Otot lambung punya 3 lapisan miring, melingkar, dan memanjang yang mengaduk makanan bagai blender lembut.",
+      "text_en": "The stomach wall has 3 muscular layers that churn and mix food like a gentle natural blender."
+    },
+    {
+      "id": 150,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Kopi hitam pekat saat perut benar-benar kosong dapat merangsang asam lambung berlebih pada orang yang sensitif.",
+      "text_en": "Strong black coffee on a completely empty stomach can trigger excess acid in sensitive individuals."
+    },
+    {
+      "id": 151,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Jalan kaki santai 10–15 menit setelah makan membantu pengosongan lambung lebih lancar dan menstabilkan gula darah.",
+      "text_en": "A gentle 10–15 minute walk after eating aids smooth digestion and steadies post-meal blood sugar."
+    },
+    {
+      "id": 152,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Air liur sudah mulai mencerna karbohidrat sejak di mulut lewat enzim amilase, meringankan tugas lambung.",
+      "text_en": "Saliva begins breaking down carbs right in your mouth via amylase enzymes, lightening your stomach's load."
+    },
+    {
+      "id": 153,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Makan teratur di jam yang konsisten membantu jam biologis lambung memproduksi asam tepat saat dibutuhkan.",
+      "text_en": "Eating on a consistent schedule helps your stomach's internal clock release acid right when needed."
+    },
+    {
+      "id": 154,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Jahe hangat secara alami membantu meredakan rasa mual dan mempercepat pengosongan lambung yang terasa penuh.",
+      "text_en": "Warm ginger tea naturally eases nausea and helps relieve a heavy, overly full stomach."
+    },
+    {
+      "id": 155,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Alkohol dapat mengiritasi lapisan mukus pelindung lambung sehingga meningkatkan risiko maag dan rasa perih.",
+      "text_en": "Alcohol can irritate the stomach's protective mucus barrier, raising the risk of gastritis and heartburn."
+    },
+    {
+      "id": 156,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Berhenti makan saat terasa 80% kenyang (prinsip 'Hara Hachi Bu') menjaga lambung tetap ringan dan energi tetap tinggi.",
+      "text_en": "Stopping when about 80% full ('Hara Hachi Bu') keeps digestion light and afternoon energy steady."
+    },
+    {
+      "id": 157,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Usus halus di bawah lambung panjangnya sekitar 6 meter dengan jutaan vili halus untuk menyerap vitamin dan mineral.",
+      "text_en": "Below the stomach, your small intestine stretches about 6 meters lined with millions of tiny nutrient-absorbing villi."
+    },
+    {
+      "id": 158,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Tidur miring ke sisi kiri secara anatomis menempatkan lambung lebih rendah dari kerongkongan, membantu mencegah naiknya asam.",
+      "text_en": "Sleeping on your left side positions the stomach below the esophagus, helping reduce nighttime acid reflux."
+    },
+    {
+      "id": 159,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Makanan terlalu pedas dan berminyak di larut malam memperlambat kerja lambung dan mengganggu kualitas tidur.",
+      "text_en": "Very spicy, greasy late-night meals slow stomach emptying and can disrupt restful sleep."
+    },
+    {
+      "id": 160,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Air putih hangat atau suhu ruang di sela makan membantu melunakkan serat makanan agar mudah dicerna.",
+      "text_en": "Sipping room-temperature or warm water alongside meals helps soften dietary fiber for easy digestion."
+    },
+    {
+      "id": 161,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Triliunan bakteri baik di saluran cerna turut memproduksi vitamin K dan beberapa vitamin B penting bagi tubuh.",
+      "text_en": "Trillions of friendly gut microbes help synthesize vitamin K and several vital B vitamins."
+    },
+    {
+      "id": 162,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Pakaian terlalu ketat di pinggang sehabis makan dapat menekan lambung dan memicu rasa begah.",
+      "text_en": "Tight waistbands right after eating can press against the stomach and trigger uncomfortable bloating."
+    },
+    {
+      "id": 163,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Buah pepaya mengandung enzim papain alami yang membantu lambung memecah protein dengan lebih ringan.",
+      "text_en": "Papaya contains natural papain enzymes that help your stomach break down proteins gently."
+    },
+    {
+      "id": 164,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Merokok melemahkan katup antara kerongkongan dan lambung sehingga risiko GERD atau nyeri ulu hati meningkat.",
+      "text_en": "Smoking weakens the valve between the esophagus and stomach, making heartburn and GERD more likely."
+    },
+    {
+      "id": 165,
+      "organ": "stomach",
+      "cat_id": "Lambung",
+      "cat_en": "Stomach",
+      "text_id": "Variasi 20–30 jenis bahan nabati berbeda setiap minggu membuat ekosistem mikrobioma pencernaan jauh lebih tangguh!",
+      "text_en": "Eating 20–30 different plant foods a week builds a remarkably diverse and resilient gut microbiome!"
+    },
+    {
+      "id": 166,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Pankreas bekerja ganda: memproduksi enzim pencerna makanan sekaligus hormon insulin untuk menjaga gula darah tetap normal!",
+      "text_en": "Your pancreas pulls double duty: making digestive enzymes and producing insulin to keep blood sugar balanced!"
+    },
+    {
+      "id": 167,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Gugus sel bernama Pulau Langerhans di pankreas memantau kadar gula darah setiap detik bagai sensor cerdas.",
+      "text_en": "Clusters called the Islets of Langerhans inside your pancreas monitor blood sugar every second like smart sensors."
+    },
+    {
+      "id": 168,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Minuman manis kemasan sering mengandung 7–10 sendok teh gula dalam satu botol, membuat pankreas harus memompa lonjakan insulin.",
+      "text_en": "One bottled sweet drink can hide 7–10 teaspoons of sugar, forcing your pancreas to surge insulin."
+    },
+    {
+      "id": 169,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Makan sayur berserat terlebih dahulu sebelum nasi membantu memperlambat lonjakan gula darah sehingga pankreas lebih santai.",
+      "text_en": "Eating fibrous vegetables before rice or bread slows blood sugar spikes, giving your pancreas an easier job."
+    },
+    {
+      "id": 170,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Pankreas juga menghasilkan hormon glukagon yang melepaskan cadangan energi saat gula darah terlalu rendah.",
+      "text_en": "Your pancreas also releases glucagon to unlock stored energy whenever blood sugar dips too low."
+    },
+    {
+      "id": 171,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Konsumsi alkohol berat berulang (binge drinking) merupakan salah satu pemicu utama radang pankreas akut (pankreatitis).",
+      "text_en": "Repeated heavy binge drinking is one of the leading triggers of painful acute pancreatitis."
+    },
+    {
+      "id": 172,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Setiap hari pankreas memproduksi sekitar 1–1,5 liter cairan enzim (amilase, lipase, tripsin) untuk mencerna karbohidrat, lemak, dan protein.",
+      "text_en": "Every day, the pancreas produces 1–1.5 liters of enzyme-rich juice to digest carbs, fats, and proteins."
+    },
+    {
+      "id": 173,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Jalan kaki 15 menit setelah makan membantu otot menyerap glukosa secara langsung, mengurangi beban insulin pankreas.",
+      "text_en": "A 15-minute walk after meals helps muscles soak up glucose directly, easing your pancreas's insulin workload."
+    },
+    {
+      "id": 174,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Panjang pankreas dewasa sekitar 15 cm dan bentuknya mirip daun atau buah pir pipih yang tersembunyi manis di belakang lambung.",
+      "text_en": "An adult pancreas is about 15 cm long, shaped like a flat leaf tucked safely behind the stomach."
+    },
+    {
+      "id": 175,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Kurang tidur 1 malam saja sudah bisa menurunkan sensitivitas insulin tubuh hingga 20% pada keesokan harinya!",
+      "text_en": "Even a single night of poor sleep can reduce insulin sensitivity by up to 20% the very next day!"
+    },
+    {
+      "id": 176,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Karbohidrat utuh seperti nasi merah, ubi, dan oat dicerna perlahan sehingga menjaga kerja pankreas tetap ritmis.",
+      "text_en": "Whole carbs like brown rice, sweet potatoes, and oats digest slowly, keeping your pancreas in a smooth rhythm."
+    },
+    {
+      "id": 177,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Pankreas memproduksi natrium bikarbonat alami untuk menetralkan asam lambung saat makanan masuk ke usus halus.",
+      "text_en": "The pancreas secretes natural sodium bicarbonate to neutralize stomach acid as food enters the small intestine."
+    },
+    {
+      "id": 178,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Merokok merusak sel beta penghasil insulin di pankreas dan meningkatkan risiko diabetes tipe 2 secara signifikan.",
+      "text_en": "Smoking damages insulin-producing beta cells in the pancreas and raises type 2 diabetes risk."
+    },
+    {
+      "id": 179,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Mengganti satu minuman manis per hari dengan air putih atau teh tawar sudah menghemat ratusan gram gula setiap minggu.",
+      "text_en": "Swapping just one sweet drink a day for water or unsweetened tea saves hundreds of grams of sugar weekly."
+    },
+    {
+      "id": 180,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Lemak sehat dari alpukat, minyak zaitun, dan kacang-kacangan mendukung sensitivitas insulin yang baik.",
+      "text_en": "Healthy fats from avocado, olive oil, and nuts support healthy insulin sensitivity."
+    },
+    {
+      "id": 181,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Batas anjuran gula tambahan harian dari WHO idealnya di bawah 25–50 gram (sekitar 6–12 sendok teh) per hari.",
+      "text_en": "WHO guidelines recommend keeping daily added sugars below 25–50 grams (about 6–12 teaspoons)."
+    },
+    {
+      "id": 182,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Latihan otot ringan 2 kali seminggu meningkatkan jumlah 'pintu glukosa' (GLUT4) di otot sehingga gula darah lebih terkendali.",
+      "text_en": "Light strength training twice a week boosts muscle glucose transporters, helping keep blood sugar steady."
+    },
+    {
+      "id": 183,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Makan buah utuh jauh lebih ramah bagi pankreas daripada jus buah manis karena serat utuhnya menahan penyerapan fruktosa.",
+      "text_en": "Whole fruits are far kinder to your pancreas than sweet juices because natural fiber slows sugar absorption."
+    },
+    {
+      "id": 184,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Hati dan pankreas bekerja bahu-membahu menyimpan kelebihan gula sebagai glikogen dan melepaskannya saat Anda beraktivitas.",
+      "text_en": "The liver and pancreas team up to store extra glucose as glycogen and release it when you move."
+    },
+    {
+      "id": 185,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Camilan malam tinggi gula membuat kadar insulin melonjak di saat tubuh seharusnya beristirahat.",
+      "text_en": "Sugary midnight snacks spike insulin right when your metabolic system is meant to rest."
+    },
+    {
+      "id": 186,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Kayu manis, kunyit, dan temulawak adalah rempah Nusantara yang secara tradisional mendukung kesehatan metabolisme.",
+      "text_en": "Cinnamon, turmeric, and Javanese ginger are traditional spices valued for supporting metabolic wellness."
+    },
+    {
+      "id": 187,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Menjaga lingkar pinggang sehat mengurangi penumpukan lemak viseral yang dapat mengganggu sinyal insulin pankreas.",
+      "text_en": "Keeping a healthy waistline reduces visceral fat that can interfere with pancreatic insulin signaling."
+    },
+    {
+      "id": 188,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Pankreas baru mulai melepaskan enzim pencernaannya secara aktif setelah makanan tiba di usus dua belas jari.",
+      "text_en": "Pancreatic digestive enzymes stay safely inactive until they reach the small intestine to break down food."
+    },
+    {
+      "id": 189,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Sarapan kaya protein dan serat mencegah rasa lapar mendadak yang sering memicu ngemil gula berlebih di siang hari.",
+      "text_en": "A protein- and fiber-rich breakfast prevents sudden hunger crashes that trigger sugary midday cravings."
+    },
+    {
+      "id": 190,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Stres berkepanjangan menaikkan hormon kortisol yang secara otomatis menaikkan gula darah meski Anda tidak makan manis.",
+      "text_en": "Prolonged stress raises cortisol, which elevates blood sugar even when you haven't eaten sweets."
+    },
+    {
+      "id": 191,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Cek gula darah puasa setahun sekali membantu mengetahui kesehatan metabolisme pankreas sejak dini.",
+      "text_en": "An annual fasting blood sugar check helps you track pancreatic and metabolic health early."
+    },
+    {
+      "id": 192,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Air putih tanpa pemanis adalah sahabat terbaik pankreas karena menghidrasi tubuh dengan 0 beban lonjakan insulin.",
+      "text_en": "Plain water is your pancreas's best friend — full hydration with zero insulin spike."
+    },
+    {
+      "id": 193,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Kacang kedelai, tahu, dan tempe memiliki indeks glikemik rendah yang menjaga gula darah stabil lebih lama.",
+      "text_en": "Soybeans, tofu, and tempeh have a low glycemic index, keeping blood sugar smooth and steady."
+    },
+    {
+      "id": 194,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Mengunyah perlahan juga membantu pankreas merespons lebih akurat sehingga kadar gula sesudah makan lebih landai.",
+      "text_en": "Chewing slowly helps the pancreas time its response accurately for gentler post-meal blood sugar curves."
+    },
+    {
+      "id": 195,
+      "organ": "liver",
+      "cat_id": "Pankreas",
+      "cat_en": "Pancreas",
+      "text_id": "Pankreas termasuk organ yang tenang dan jarang mengeluh — merawatnya sejak muda adalah investasi kesehatan jangka panjang!",
+      "text_en": "The pancreas works quietly without complaining — caring for it early is a lifelong wellness investment!"
+    },
+    {
+      "id": 196,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Tubuh manusia memiliki lebih dari 600 otot yang menyumbang sekitar 35–40% dari total berat badan Anda!",
+      "text_en": "The human body has over 600 muscles, accounting for roughly 35–40% of your total body weight!"
+    },
+    {
+      "id": 197,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot rangka tidak pernah 'mendorong' — setiap gerakan tubuh terjadi dari kerja sama pasang otot yang saling menarik dan rileks.",
+      "text_en": "Skeletal muscles never push — every movement happens through pairs of muscles pulling and relaxing together."
+    },
+    {
+      "id": 198,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot terbesar di tubuh adalah gluteus maximus (otot pinggul/bokong) yang menjaga Anda tetap tegak saat berdiri dan berjalan.",
+      "text_en": "Your largest muscle is the gluteus maximus, keeping you upright as you stand, walk, and climb."
+    },
+    {
+      "id": 199,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot terkecil berada di dalam telinga tengah (stapedius), panjangnya hanya sekitar 1 milimeter untuk melindungi gendang telinga!",
+      "text_en": "Your tiniest muscle (the stapedius) sits inside the middle ear, measuring just ~1 mm to guard against loud sounds!"
+    },
+    {
+      "id": 200,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot yang paling aktif bergerak setiap hari adalah otot mata — mereka berkontraksi lebih dari 100.000 kali sehari!",
+      "text_en": "Your busiest muscles are your eye muscles — contracting more than 100,000 times every single day!"
+    },
+    {
+      "id": 201,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Nonton marathon berjam-jam tanpa bangkit membuat otot pinggul dan punggung kaku serta sirkulasi kaki melambat; regangkan tiap 45 menit!",
+      "text_en": "Binge-watching for hours stiffens hip and back muscles and slows leg circulation; stretch every 45 minutes!"
+    },
+    {
+      "id": 202,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot bekerja seperti 'mesin pembakar kalori' alami — makin bugar otot Anda, makin tinggi metabolisme bahkan saat istirahat.",
+      "text_en": "Muscles act as natural calorie engines — healthier muscle mass boosts metabolism even while resting."
+    },
+    {
+      "id": 203,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Pertumbuhan dan perbaikan serat otot justru paling banyak terjadi saat Anda tidur nyenyak, bukan saat sedang berolahraga!",
+      "text_en": "Muscle fiber repair and growth happen mostly while you sleep deeply, not during the workout itself!"
+    },
+    {
+      "id": 204,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot rahang (masseter) adalah otot dengan daya tekan terkuat dibanding ukurannya di seluruh tubuh manusia.",
+      "text_en": "The jaw's masseter is the strongest muscle for its size in the entire human body."
+    },
+    {
+      "id": 205,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Peregangan ringan 5 menit di pagi hari melancarkan aliran darah ke serat otot dan mengurangi risiko pegal leher.",
+      "text_en": "A 5-minute morning stretch boosts muscle blood flow and helps prevent neck and shoulder stiffness."
+    },
+    {
+      "id": 206,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Kram otot sering dipicu dehidrasi atau kurang elektrolit magnesium & kalium; minum air dan makan buah membantu mencegahnya.",
+      "text_en": "Muscle cramps are often triggered by dehydration or low potassium and magnesium; water and fruit help prevent them."
+    },
+    {
+      "id": 207,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot menyimpan cadangan energi glikogen lokal agar Anda bisa langsung bergerak cepat saat dibutuhkan.",
+      "text_en": "Muscles store local glycogen fuel so you can spring into action at a moment's notice."
+    },
+    {
+      "id": 208,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Mengangkat beban ringan atau latihan berat badan (squat, push-up) 2x seminggu juga merangsang kepadatan tulang agar kuat di usia tua.",
+      "text_en": "Bodyweight exercises like squats and push-ups twice a week also build bone density for lifelong strength."
+    },
+    {
+      "id": 209,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Saat Anda menggigil kedinginan, otot berkontraksi mikro dengan cepat untuk menghasilkan panas penghangat tubuh.",
+      "text_en": "When you shiver in the cold, muscles rapidly micro-contract to generate warming body heat."
+    },
+    {
+      "id": 210,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Sekitar 85% panas tubuh manusia dihasilkan dari aktivitas kontraksi otot sepanjang hari.",
+      "text_en": "Roughly 85% of human body heat comes from muscle contractions throughout the day."
+    },
+    {
+      "id": 211,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Menaiki tangga selama 3 menit sehari sudah memberi dorongan kebugaran nyata bagi otot kaki dan jantung.",
+      "text_en": "Climbing stairs for just 3 minutes a day gives a real fitness boost to both leg muscles and heart."
+    },
+    {
+      "id": 212,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot jantung (miokardium) adalah satu-satunya jenis otot spesial yang dirancang tahan lelah seumur hidup.",
+      "text_en": "Cardiac muscle (myocardium) is a unique muscle type engineered to resist fatigue for an entire lifetime."
+    },
+    {
+      "id": 213,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Protein dari telur, tempe, ikan, dan kacang-kacangan menyediakan asam amino pembangun serat otot baru.",
+      "text_en": "Protein from eggs, tempeh, fish, and legumes supplies amino acids that rebuild strong muscle fibers."
+    },
+    {
+      "id": 214,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Menunduk menatap layar ponsel berjam-jam memberi beban tambahan hingga 20 kg pada otot leher ('tech neck')!",
+      "text_en": "Hunching over a phone for hours adds up to 20 kg of extra strain on neck muscles ('tech neck')!"
+    },
+    {
+      "id": 215,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Memegang ponsel sejajar tinggi mata dan memutar bahu ke belakang langsung meringankan otot tengkuk.",
+      "text_en": "Holding your phone closer to eye level and rolling your shoulders back relieves neck tension right away."
+    },
+    {
+      "id": 216,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Pegal otot ringan 1–2 hari setelah olahraga baru (DOMS) adalah tanda adaptasi serat otot agar menjadi lebih kuat.",
+      "text_en": "Mild soreness 1–2 days after a new workout (DOMS) signals your muscle fibers adapting to grow stronger."
+    },
+    {
+      "id": 217,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Setelah usia 30 tahun, massa otot bisa menyusut perlahan jika tidak dilatih — kabar baiknya, otot bisa dibangun kembali di usia berapa pun!",
+      "text_en": "After age 30, unused muscle slowly shrinks — the great news is muscle can be rebuilt at any age!"
+    },
+    {
+      "id": 218,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Tersenyum hanya memakai sekitar 12–17 otot wajah, jauh lebih santai daripada cemberut yang mengerutkan puluhan otot!",
+      "text_en": "Smiling uses roughly 12–17 facial muscles, feeling far more relaxed than a tense frown!"
+    },
+    {
+      "id": 219,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot betis sering disebut 'jantung kedua' karena setiap langkah kaki memeras vena betis untuk mendorong darah balik ke jantung.",
+      "text_en": "Your calf muscles are called the 'second heart' because every step squeezes leg veins to push blood back up."
+    },
+    {
+      "id": 220,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Pendinginan (cool-down) 3–5 menit setelah olahraga membantu otot membuang sisa metabolisme dan mencegah rasa kaku.",
+      "text_en": "A 3–5 minute cool-down after exercise helps muscles clear metabolic byproducts and stay limber."
+    },
+    {
+      "id": 221,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Latihan keseimbangan seperti berdiri satu kaki 20 detik melatih otot inti (core) dan melindungi sendi lutut.",
+      "text_en": "Simple balance drills like standing on one foot for 20 seconds strengthen core muscles and protect knees."
+    },
+    {
+      "id": 222,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Sekitar 75% jaringan otot adalah air — otot yang kurang cairan cepat kehilangan tenaga dan elastisitas.",
+      "text_en": "Muscle tissue is about 75% water — dehydrated muscles quickly lose power and flexibility."
+    },
+    {
+      "id": 223,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot yang aktif melepaskan senyawa miokin yang bersifat antiradang dan ikut menyehatkan otak serta imun tubuh.",
+      "text_en": "Active muscles release myokines — anti-inflammatory messengers that also nourish your brain and immunity."
+    },
+    {
+      "id": 224,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Berjalan kaki 7.000–8.000 langkah sehari sudah terbukti secara luas menurunkan risiko penyakit kronis.",
+      "text_en": "Walking 7,000–8,000 steps a day is widely proven to lower the risk of chronic illness."
+    },
+    {
+      "id": 225,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Pijat ringan atau mandi air hangat setelah aktivitas berat melebarkan pembuluh darah otot agar pulih lebih cepat.",
+      "text_en": "A gentle massage or warm shower after heavy activity widens muscle blood vessels for faster recovery."
+    },
+    {
+      "id": 226,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Otot punggung bawah yang kuat melindungi tulang belakang dari nyeri pinggang akibat terlalu lama duduk.",
+      "text_en": "Strong lower-back and core muscles shield your spine from aches caused by long hours of sitting."
+    },
+    {
+      "id": 227,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Setiap langkah berjalan menggerakkan lebih dari 200 otot secara terkoordinasi tanpa Anda sadari!",
+      "text_en": "Every single walking step coordinates over 200 muscles without you even thinking about it!"
+    },
+    {
+      "id": 228,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Tidur yang cukup melepaskan hormon pertumbuhan alami yang sangat dibutuhkan untuk memperbaiki jaringan otot.",
+      "text_en": "Quality sleep releases natural growth hormone essential for repairing everyday muscle wear."
+    },
+    {
+      "id": 229,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Olahraga ringan bersama teman atau keluarga meningkatkan konsistensi gerak hingga 2 kali lipat.",
+      "text_en": "Moving with friends or family doubles the chance of staying consistent with healthy exercise."
+    },
+    {
+      "id": 230,
+      "organ": "muscle",
+      "cat_id": "Otot",
+      "cat_en": "Muscle",
+      "text_id": "Gerakan kecil seperti peregangan tangan, berdiri saat menelepon, dan beres-beres rumah semuanya dihitung sebagai aktivitas otot sehat!",
+      "text_en": "Small moves like hand stretches, standing during calls, and tidying up all count as healthy muscle activity!"
+    },
+    {
+      "id": 231,
+      "organ": "care",
+      "cat_id": "Nutrisi",
+      "cat_en": "Nutrition",
+      "text_id": "Piring makan berwarna-warni ('eat the rainbow') memastikan tubuh mendapat spektrum lengkap vitamin dan fitonutrien pelindung organ.",
+      "text_en": "Eating a colorful plate ('eat the rainbow') delivers a full spectrum of organ-protecting vitamins and phytonutrients."
+    },
+    {
+      "id": 232,
+      "organ": "bloom",
+      "cat_id": "Buah & Antioksidan",
+      "cat_en": "Fruits & Antioxidants",
+      "text_id": "Antioksidan dalam buah beri, anggur, dan delima bertindak seperti perisai yang menetralkan radikal bebas perusak sel.",
+      "text_en": "Antioxidants in berries, grapes, and pomegranates act like shields neutralizing cell-damaging free radicals."
+    },
+    {
+      "id": 233,
+      "organ": "care",
+      "cat_id": "Sayur Hijau",
+      "cat_en": "Leafy Greens",
+      "text_id": "Bayam, kangkung, dan brokoli kaya folat, zat besi, dan magnesium yang menyehatkan darah, otak, dan otot sekaligus.",
+      "text_en": "Spinach, water spinach, and broccoli pack folate, iron, and magnesium for blood, brain, and muscle health."
+    },
+    {
+      "id": 234,
+      "organ": "bloom",
+      "cat_id": "Buah Tropis",
+      "cat_en": "Tropical Fruits",
+      "text_id": "Satu buah jambu biji merah mengandung vitamin C hingga 3–4 kali lebih banyak daripada satu buah jeruk!",
+      "text_en": "One red guava packs up to 3–4 times more vitamin C than an orange!"
+    },
+    {
+      "id": 235,
+      "organ": "care",
+      "cat_id": "Serat",
+      "cat_en": "Fiber",
+      "text_id": "Target serat harian sekitar 25–30 gram dari sayur, buah, dan kacang membantu menjaga usus, jantung, dan gula darah.",
+      "text_en": "Aiming for 25–30 grams of daily fiber from veggies, fruits, and beans supports gut, heart, and blood sugar."
+    },
+    {
+      "id": 236,
+      "organ": "bloom",
+      "cat_id": "Vitamin A",
+      "cat_en": "Vitamin A",
+      "text_id": "Wortel, labu kuning, dan mangga kaya beta-karoten yang diubah tubuh menjadi vitamin A untuk menjaga penglihatan di tempat redup.",
+      "text_en": "Carrots, pumpkin, and mangoes provide beta-carotene, which becomes vitamin A to support low-light vision."
+    },
+    {
+      "id": 237,
+      "organ": "care",
+      "cat_id": "Hidrasi",
+      "cat_en": "Hydration",
+      "text_id": "Sekitar 60% tubuh manusia dewasa terdiri dari air; minum 6–8 gelas air putih sehari menjaga seluruh organ bekerja halus.",
+      "text_en": "About 60% of an adult body is water; drinking 6–8 glasses daily keeps every organ running smoothly."
+    },
+    {
+      "id": 238,
+      "organ": "bloom",
+      "cat_id": "Tomat & Likopen",
+      "cat_en": "Tomato & Lycopene",
+      "text_id": "Tomat yang dimasak sebentar dengan sedikit minyak sehat justru melepaskan antioksidan likopen lebih banyak daripada tomat mentah.",
+      "text_en": "Lightly cooking tomatoes with a touch of healthy oil unlocks even more heart-friendly lycopene."
+    },
+    {
+      "id": 239,
+      "organ": "care",
+      "cat_id": "Protein Nabati",
+      "cat_en": "Plant Protein",
+      "text_id": "Tempe asli Indonesia adalah superfood fermentasi kaya protein lengkap, serat, dan vitamin B ramah usus.",
+      "text_en": "Indonesian tempeh is a fermented superfood rich in complete plant protein, fiber, and gut-friendly nutrients."
+    },
+    {
+      "id": 240,
+      "organ": "bloom",
+      "cat_id": "Alpukat",
+      "cat_en": "Avocado",
+      "text_id": "Alpukat kaya lemak tak jenuh tunggal sehat yang membantu penyerapan vitamin larut lemak (A, D, E, K) dari sayuran lain.",
+      "text_en": "Avocados provide healthy monounsaturated fats that help your body absorb fat-soluble vitamins A, D, E, and K."
+    },
+    {
+      "id": 241,
+      "organ": "care",
+      "cat_id": "Bawang Putih",
+      "cat_en": "Garlic",
+      "text_id": "Menggeprek bawang putih dan mendiamkannya 5–10 menit sebelum dimasak mengaktifkan senyawa allicin yang baik untuk imun dan jantung.",
+      "text_en": "Crushing garlic and resting it 5–10 minutes before cooking activates allicin, supporting immunity and heart health."
+    },
+    {
+      "id": 242,
+      "organ": "bloom",
+      "cat_id": "Pisang",
+      "cat_en": "Banana",
+      "text_id": "Pisang matang adalah sumber kalium dan energi cepat alami yang sempurna sebelum atau sesudah berolahraga.",
+      "text_en": "Ripe bananas offer natural potassium and clean energy, ideal before or after a workout."
+    },
+    {
+      "id": 243,
+      "organ": "care",
+      "cat_id": "Kacang-Kacangan",
+      "cat_en": "Nuts & Seeds",
+      "text_id": "Segenggam kecil kacang almond, kenari, atau biji labu tanpa garam berlebih memberi vitamin E dan mineral seng pelindung sel.",
+      "text_en": "A small unsalted handful of almonds, walnuts, or pumpkin seeds supplies cell-protecting vitamin E and zinc."
+    },
+    {
+      "id": 244,
+      "organ": "bloom",
+      "cat_id": "Semangka",
+      "cat_en": "Watermelon",
+      "text_id": "Semangka mengandung sekitar 92% air plus asam amino citrulline yang membantu mengurangi pegal otot.",
+      "text_en": "Watermelon is about 92% water plus citrulline, an amino acid that helps ease post-exercise muscle soreness."
+    },
+    {
+      "id": 245,
+      "organ": "care",
+      "cat_id": "Kunyit",
+      "cat_en": "Turmeric",
+      "text_id": "Menambahkan sejumput lada hitam saat memasak kunyit meningkatkan penyerapan kurkumin antiradang hingga berkali-kali lipat.",
+      "text_en": "Adding a pinch of black pepper to turmeric boosts absorption of anti-inflammatory curcumin many times over."
+    },
+    {
+      "id": 246,
+      "organ": "bloom",
+      "cat_id": "Jeruk & Sitrus",
+      "cat_en": "Citrus",
+      "text_id": "Vitamin C pada jeruk membantu tubuh menyerap zat besi nabati dari bayam dan kacang-kacangan jauh lebih optimal.",
+      "text_en": "Vitamin C in citrus fruits helps your body absorb plant-based iron from spinach and beans much better."
+    },
+    {
+      "id": 247,
+      "organ": "care",
+      "cat_id": "Ikan Lokal",
+      "cat_en": "Local Fish",
+      "text_id": "Ikan kembung Indonesia memiliki kandungan omega-3 yang tak kalah tinggi dari ikan salmon dengan harga jauh lebih ramah!",
+      "text_en": "Local Indonesian mackerel rivals salmon in heart- and brain-loving omega-3s at a fraction of the cost!"
+    },
+    {
+      "id": 248,
+      "organ": "bloom",
+      "cat_id": "Apel",
+      "cat_en": "Apple",
+      "text_id": "Sebagian besar serat pektin dan antioksidan apel tersimpan di kulitnya — cukup cuci bersih sebelum dinikmati.",
+      "text_en": "Most of an apple's pectin fiber and antioxidants live in its peel — just wash thoroughly and enjoy!"
+    },
+    {
+      "id": 249,
+      "organ": "care",
+      "cat_id": "Brokoli",
+      "cat_en": "Broccoli",
+      "text_id": "Mengukus brokoli selama 3–5 menit menjaga warna hijau cerah sekaligus mempertahankan senyawa sulforaphane pelindung sel.",
+      "text_en": "Steaming broccoli for 3–5 minutes keeps its bright green crunch and preserves cell-protective sulforaphane."
+    },
+    {
+      "id": 250,
+      "organ": "bloom",
+      "cat_id": "Air Kelapa",
+      "cat_en": "Coconut Water",
+      "text_id": "Air kelapa muda murni tanpa gula tambahan adalah minuman elektrolit alami yang menyegarkan setelah berkeringat.",
+      "text_en": "Pure young coconut water without added sugar is a refreshing natural electrolyte drink after sweating."
+    },
+    {
+      "id": 251,
+      "organ": "care",
+      "cat_id": "Telur",
+      "cat_en": "Eggs",
+      "text_id": "Kuning telur kaya kolin, nutrisi kunci yang membantu otak membentuk neurotransmiter daya ingat asetilkolin.",
+      "text_en": "Egg yolks are rich in choline, a key nutrient the brain uses to make the memory messenger acetylcholine."
+    },
+    {
+      "id": 252,
+      "organ": "bloom",
+      "cat_id": "Buah Naga",
+      "cat_en": "Dragon Fruit",
+      "text_id": "Buah naga merah kaya betasianin, vitamin C, dan serat biji halus yang mendukung kelancaran pencernaan.",
+      "text_en": "Red dragon fruit packs betacyanins, vitamin C, and gentle seed fiber that support smooth digestion."
+    },
+    {
+      "id": 253,
+      "organ": "care",
+      "cat_id": "Teh Hijau",
+      "cat_en": "Green Tea",
+      "text_id": "Teh hijau tanpa gula mengandung L-theanine dan katekin yang memberi fokus tenang tanpa bikin jantung berdebar berlebihan.",
+      "text_en": "Unsweetened green tea combines L-theanine and catechins for calm focus without jittery heartbeats."
+    },
+    {
+      "id": 254,
+      "organ": "bloom",
+      "cat_id": "Nanas",
+      "cat_en": "Pineapple",
+      "text_id": "Nanas segar mengandung enzim bromelain alami yang membantu pencernaan protein dan meredakan peradangan ringan.",
+      "text_en": "Fresh pineapple contains natural bromelain enzymes that assist protein digestion and soothe mild inflammation."
+    },
+    {
+      "id": 255,
+      "organ": "care",
+      "cat_id": "Ubi Jalar",
+      "cat_en": "Sweet Potato",
+      "text_id": "Ubi jalar ungu kaya antosianin — antioksidan kuat yang membantu menjaga kelenturan pembuluh darah dan kesehatan mata.",
+      "text_en": "Purple sweet potatoes are loaded with anthocyanins, potent antioxidants supporting eye and vessel health."
+    },
+    {
+      "id": 256,
+      "organ": "bloom",
+      "cat_id": "Madu Asli",
+      "cat_en": "Natural Honey",
+      "text_id": "Satu sendok kecil madu asli pada minuman hangat membantu melegakan tenggorokan gatal secara alami (untuk usia di atas 1 tahun).",
+      "text_en": "A small spoonful of pure honey in warm water naturally soothes a tickly throat (for ages over 1 year)."
+    },
+    {
+      "id": 257,
+      "organ": "care",
+      "cat_id": "Jamur",
+      "cat_en": "Mushrooms",
+      "text_id": "Jamur yang terpapar sinar matahari sebentar mampu memproduksi vitamin D alami yang baik bagi imun dan tulang.",
+      "text_en": "Mushrooms exposed briefly to sunlight naturally generate vitamin D that supports immunity and bones."
+    },
+    {
+      "id": 258,
+      "organ": "bloom",
+      "cat_id": "Mangga",
+      "cat_en": "Mango",
+      "text_id": "Buah mangga menyediakan vitamin A, vitamin C, dan folat yang menjaga kecerahan kulit serta daya tahan tubuh.",
+      "text_en": "Mangoes deliver vitamins A, C, and folate that nourish glowing skin and immune defenses."
+    },
+    {
+      "id": 259,
+      "organ": "care",
+      "cat_id": "Biji Chia & Wijen",
+      "cat_en": "Chia & Sesame Seeds",
+      "text_id": "Biji wijen dan biji chia kaya kalsium nabati, serat, serta omega-3 untuk kesehatan tulang dan sendi.",
+      "text_en": "Sesame and chia seeds pack plant calcium, fiber, and omega-3s for strong bones and joints."
+    },
+    {
+      "id": 260,
+      "organ": "bloom",
+      "cat_id": "Alpukat & Pisang",
+      "cat_en": "Potassium Duo",
+      "text_id": "Menggabungkan asupan sayur dan buah minimal 5 porsi kecil sehari dikaitkan dengan umur panjang yang lebih bugar.",
+      "text_en": "Eating at least 5 small servings of vegetables and fruits daily is linked to longer, healthier vitality."
+    },
+    {
+      "id": 261,
+      "organ": "care",
+      "cat_id": "Sinar Matahari Pagi",
+      "cat_en": "Morning Sunlight",
+      "text_id": "Berjemur sinar matahari pagi 10–15 menit membantu kulit membentuk vitamin D alami sekaligus menyetel jam tidur malam.",
+      "text_en": "Getting 10–15 minutes of morning sunlight helps your skin make natural vitamin D and sets your nighttime sleep clock."
+    },
+    {
+      "id": 262,
+      "organ": "bloom",
+      "cat_id": "Kacang Hijau",
+      "cat_en": "Mung Beans",
+      "text_id": "Kacang hijau kaya folat, protein nabati, dan serat — nikmat disajikan hangat dengan sedikit gula aren.",
+      "text_en": "Mung beans are rich in folate, plant protein, and fiber — delicious served warm with light palm sugar."
+    },
+    {
+      "id": 263,
+      "organ": "care",
+      "cat_id": "Minyak Sehat",
+      "cat_en": "Healthy Oils",
+      "text_id": "Mengurangi gorengan minyak jelantah yang dipakai berkali-kali melindungi arteri jantung dan sel hati dari radikal bebas.",
+      "text_en": "Avoiding repeatedly reheated frying oils protects heart arteries and liver cells from free radicals."
+    },
+    {
+      "id": 264,
+      "organ": "bloom",
+      "cat_id": "Delima",
+      "cat_en": "Pomegranate",
+      "text_id": "Biji delima merah mengandung polifenol punicalagin yang mendukung aliran darah sehat dan ketahanan sel.",
+      "text_en": "Ruby pomegranate arils contain punicalagin polyphenols that support healthy blood flow and cell resilience."
+    },
+    {
+      "id": 265,
+      "organ": "care",
+      "cat_id": "Susu & Kalsium",
+      "cat_en": "Calcium",
+      "text_id": "Tulang manusia terus diperbarui sepanjang hidup; asupan kalsium, vitamin D, dan gerak tubuh menjaganya tetap padat.",
+      "text_en": "Human bones constantly remodel throughout life; calcium, vitamin D, and movement keep them dense and strong."
+    },
+    {
+      "id": 266,
+      "organ": "bloom",
+      "cat_id": "Timun & Seledri",
+      "cat_en": "Crisp Hydrators",
+      "text_id": "Mentimun dan seledri mengandung lebih dari 95% air serta senyawa alami yang menyegarkan tubuh di cuaca panas.",
+      "text_en": "Cucumbers and celery are over 95% water with refreshing natural compounds ideal for hot weather."
+    },
+    {
+      "id": 267,
+      "organ": "care",
+      "cat_id": "Porsi Seimbang",
+      "cat_en": "Balanced Plate",
+      "text_id": "Panduan 'Isi Piringku': separuh piring berisi sayur & buah, seperempat karbohidrat kompleks, dan seperempat lauk berprotein.",
+      "text_en": "A balanced plate fills half with vegetables & fruits, one quarter with whole carbs, and one quarter with protein."
+    },
+    {
+      "id": 268,
+      "organ": "bloom",
+      "cat_id": "Stroberi",
+      "cat_en": "Strawberries",
+      "text_id": "Satu mangkuk kecil stroberi sudah memenuhi lebih dari 100% kebutuhan vitamin C harian tubuh dewasa.",
+      "text_en": "A small cup of strawberries delivers over 100% of an adult's daily vitamin C needs."
+    },
+    {
+      "id": 269,
+      "organ": "care",
+      "cat_id": "Oat & Gandum Utuh",
+      "cat_en": "Whole Oats",
+      "text_id": "Beta-glukan dalam oat membantu menjaga rasa kenyang lebih lama dan mendukung kadar kolesterol yang sehat.",
+      "text_en": "Beta-glucan fiber in oats keeps you fuller longer and supports healthy cholesterol levels."
+    },
+    {
+      "id": 270,
+      "organ": "bloom",
+      "cat_id": "Kiwi",
+      "cat_en": "Kiwi",
+      "text_id": "Buah kiwi mengandung vitamin C tinggi dan enzim aktinidin yang membantu pencernaan terasa lebih ringan.",
+      "text_en": "Kiwis pack high vitamin C plus actinidin enzymes that help meals digest lightly."
+    },
+    {
+      "id": 271,
+      "organ": "care",
+      "cat_id": "Edamame",
+      "cat_en": "Edamame",
+      "text_id": "Edamame rebus adalah camilan gurih rendah gula yang kaya protein lengkap, serat, dan zat besi.",
+      "text_en": "Steamed edamame is a tasty low-sugar snack packed with complete protein, fiber, and iron."
+    },
+    {
+      "id": 272,
+      "organ": "bloom",
+      "cat_id": "Kurma",
+      "cat_en": "Dates",
+      "text_id": "2–3 butir kurma memberi energi alami, serat, dan mineral kalium tanpa perlu pemanis buatan.",
+      "text_en": "2–3 dates offer natural energy, fiber, and potassium with no artificial sweeteners."
+    },
+    {
+      "id": 273,
+      "organ": "care",
+      "cat_id": "Sup Hangat",
+      "cat_en": "Warm Broth",
+      "text_id": "Sup sayuran hangat dengan bawang, wortel, dan seledri menghidrasi tubuh sekaligus menghangatkan pencernaan.",
+      "text_en": "Warm vegetable soup with onions, carrots, and celery hydrates your body while comforting digestion."
+    },
+    {
+      "id": 274,
+      "organ": "bloom",
+      "cat_id": "Anggur Ungu",
+      "cat_en": "Purple Grapes",
+      "text_id": "Kulit anggur ungu mengandung resveratrol, polifenol alami yang dikenal mendukung kesehatan pembuluh darah.",
+      "text_en": "Purple grape skins contain resveratrol, a natural polyphenol known to support blood vessel health."
+    },
+    {
+      "id": 275,
+      "organ": "care",
+      "cat_id": "Kurangi Garam",
+      "cat_en": "Watch Sodium",
+      "text_id": "Batas garam harian yang disarankan sekitar 1 sendok teh (5 gram); membumbui dengan rempah alami bikin masakan tetap lezat!",
+      "text_en": "Recommended daily salt is about 1 teaspoon (5 g); cooking with herbs and spices keeps food delicious!"
+    },
+    {
+      "id": 276,
+      "organ": "bloom",
+      "cat_id": "Salak & Buah Lokal",
+      "cat_en": "Local Fruits",
+      "text_id": "Buah lokal segar yang baru dipanen sering lebih tinggi vitaminnya karena tidak terlalu lama disimpan di perjalanan.",
+      "text_en": "Freshly harvested local fruits often retain higher vitamins thanks to shorter travel and storage times."
+    },
+    {
+      "id": 277,
+      "organ": "care",
+      "cat_id": "Sarapan Tidak Terlewat",
+      "cat_en": "Smart Breakfast",
+      "text_id": "Memulai hari dengan air putih dan sarapan seimbang membantu metabolisme dan konsentrasi kerja lebih stabil.",
+      "text_en": "Starting your day with water and a balanced breakfast steadies metabolism and morning focus."
+    },
+    {
+      "id": 278,
+      "organ": "bloom",
+      "cat_id": "Pir",
+      "cat_en": "Pears",
+      "text_id": "Satu buah pir berukuran sedang mengandung hampir 6 gram serat lembut yang sangat disukai bakteri baik usus.",
+      "text_en": "One medium pear provides nearly 6 grams of gentle fiber loved by friendly gut bacteria."
+    },
+    {
+      "id": 279,
+      "organ": "care",
+      "cat_id": "Label Gizi",
+      "cat_en": "Read Labels",
+      "text_id": "Membiasakan baca tabel gula dan natrium di kemasan makanan hanya butuh 5 detik namun berdampak besar bagi kesehatan organ.",
+      "text_en": "Checking sugar and sodium on food labels takes 5 seconds yet makes a huge difference for organ health."
+    },
+    {
+      "id": 280,
+      "organ": "bloom",
+      "cat_id": "Makan Penuh Kesadaran",
+      "cat_en": "Mindful Eating",
+      "text_id": "Makan tanpa menatap layar gawai membantu Anda lebih menikmati rasa makanan dan mencegah makan berlebihan.",
+      "text_en": "Eating without staring at a screen helps you savor flavors and naturally prevents overeating."
+    },
+    {
+      "id": 281,
+      "organ": "brain",
+      "cat_id": "Tidur Sehat",
+      "cat_en": "Healthy Sleep",
+      "text_id": "Orang dewasa membutuhkan 7–9 jam tidur berkualitas tiap malam agar otak, jantung, imun, dan hormon pulih maksimal.",
+      "text_en": "Adults need 7–9 hours of quality sleep each night so the brain, heart, immunity, and hormones fully recharge."
+    },
+    {
+      "id": 282,
+      "organ": "heart",
+      "cat_id": "Bahaya Begadang",
+      "cat_en": "All-Nighter Risk",
+      "text_id": "Begadang terus-menerus meningkatkan hormon stres kortisol dan membuat tekanan darah malam hari gagal turun alami.",
+      "text_en": "Frequent all-nighters keep cortisol elevated and prevent healthy nighttime blood pressure dipping."
+    },
+    {
+      "id": 283,
+      "organ": "lungs",
+      "cat_id": "Bahaya Asap Rokok",
+      "cat_en": "Smoking Risk",
+      "text_id": "Dalam 20 menit saja setelah berhenti merokok, detak jantung dan tekanan darah mulai turun menuju level lebih normal.",
+      "text_en": "Just 20 minutes after your last cigarette, heart rate and blood pressure begin dropping toward normal."
+    },
+    {
+      "id": 284,
+      "organ": "liver",
+      "cat_id": "Bahaya Miras",
+      "cat_en": "Binge Drinking Risk",
+      "text_id": "Hati hanya mampu memproses sekitar 1 takaran standar alkohol per jam; minum berlebih membuat racun asetaldehida menumpuk.",
+      "text_en": "The liver can process only about 1 standard drink per hour; binge drinking causes toxic acetaldehyde to build up."
+    },
+    {
+      "id": 285,
+      "organ": "muscle",
+      "cat_id": "Bahaya Layar Marathon",
+      "cat_en": "Screen Marathon Risk",
+      "text_id": "Menatap layar lebih dari 2 jam nonstop mengurangi frekuensi kedipan mata hingga 50% sehingga mata cepat kering dan lelah.",
+      "text_en": "Staring at screens over 2 hours cuts your blink rate in half, leading to dry, strained eyes."
+    },
+    {
+      "id": 286,
+      "organ": "lungs",
+      "cat_id": "Kabut Asap Hutan",
+      "cat_en": "Wildfire Smoke",
+      "text_id": "Saat indeks polusi udara (AQI) di atas 150, pindahkan olahraga ke dalam ruangan dan tutup ventilasi agar paru-paru aman.",
+      "text_en": "When air quality index (AQI) climbs above 150, move workouts indoors and close windows to shield your lungs."
+    },
+    {
+      "id": 287,
+      "organ": "heart",
+      "cat_id": "Gaya Hidup Aktif",
+      "cat_en": "Active Living",
+      "text_id": "Organisasi Kesehatan Dunia (WHO) menganjurkan minimal 150 menit aktivitas fisik sedang per minggu (cukup 22 menit per hari!).",
+      "text_en": "WHO recommends at least 150 minutes of moderate physical activity weekly — just 22 minutes a day!"
+    },
+    {
+      "id": 288,
+      "organ": "brain",
+      "cat_id": "Ritual Sebelum Tidur",
+      "cat_en": "Sleep Routine",
+      "text_id": "Matikan layar terang 30–60 menit sebelum tidur agar otak memproduksi melatonin alami tepat waktu.",
+      "text_en": "Dim bright screens 30–60 minutes before bed so your brain releases natural melatonin on schedule."
+    },
+    {
+      "id": 289,
+      "organ": "stomach",
+      "cat_id": "Bahaya Fast Food",
+      "cat_en": "Fast Food Risk",
+      "text_id": "Kombinasi fast food tinggi lemak jenuh + minuman tinggi gula memicu lonjakan trigliserida dan peradangan pembuluh darah.",
+      "text_en": "Pairing high-saturated-fat fast food with sugary drinks triggers triglyceride surges and vessel inflammation."
+    },
+    {
+      "id": 290,
+      "organ": "kidneys",
+      "cat_id": "Bahaya Kurang Minum",
+      "cat_en": "Dehydration Risk",
+      "text_id": "Rasa haus sebenarnya tanda tubuh sudah mulai sedikit dehidrasi; biasakan minum air sebelum tenggorokan terasa kering.",
+      "text_en": "Feeling thirsty means mild dehydration has already started; sip water regularly before your mouth feels dry."
+    },
+    {
+      "id": 291,
+      "organ": "brain",
+      "cat_id": "Manajemen Stres",
+      "cat_en": "Stress Care",
+      "text_id": "Menuliskan daftar kekhawatiran di buku sebelum tidur membantu otak 'melepas beban' dan tidur lebih cepat.",
+      "text_en": "Jotting down worries in a notebook before bed helps your brain let go and fall asleep faster."
+    },
+    {
+      "id": 292,
+      "organ": "heart",
+      "cat_id": "Detak & Emosi",
+      "cat_en": "Heart & Mood",
+      "text_id": "Emosi marah yang meledak dapat memicu lonjakan tekanan darah mendadak; tarik napas dalam 3 kali sebelum bereaksi.",
+      "text_en": "Sudden bursts of anger spike blood pressure; taking 3 slow deep breaths before reacting protects your heart."
+    },
+    {
+      "id": 293,
+      "organ": "lungs",
+      "cat_id": "Udara Bersih",
+      "cat_en": "Clean Air",
+      "text_id": "Menanam pohon di sekitar lingkungan membantu menyerap polutan udara dan menurunkan suhu sekitar 2–4°C.",
+      "text_en": "Planting trees around neighborhoods absorbs airborne pollutants and cools local temperatures by 2–4°C."
+    },
+    {
+      "id": 294,
+      "organ": "liver",
+      "cat_id": "Tidur & Berat Badan",
+      "cat_en": "Sleep & Metabolism",
+      "text_id": "Kurang tidur menaikkan hormon lapar (ghrelin) dan menurunkan hormon kenyang (leptin) sehingga keinginan ngemil melonjak.",
+      "text_en": "Short sleep raises hunger hormone ghrelin and lowers fullness hormone leptin, intensifying snack cravings."
+    },
+    {
+      "id": 295,
+      "organ": "muscle",
+      "cat_id": "Istirahat Mikro",
+      "cat_en": "Micro-Breaks",
+      "text_id": "Berdiri dan menggerakkan bahu selama 60 detik setiap jam kerja meningkatkan energi siang hari lebih baik dari kopi tambahan.",
+      "text_en": "Standing and rolling your shoulders for 60 seconds every hour boosts afternoon energy better than extra coffee."
+    },
+    {
+      "id": 296,
+      "organ": "care",
+      "cat_id": "Cuci Tangan",
+      "cat_en": "Hand Hygiene",
+      "text_id": "Mencuci tangan dengan sabun selama 20 detik (sepanjang 2x lagu Selamat Ulang Tahun) menyingkirkan sebagian besar kuman menular.",
+      "text_en": "Washing hands with soap for 20 seconds removes the vast majority of everyday infectious germs."
+    },
+    {
+      "id": 297,
+      "organ": "brain",
+      "cat_id": "Cahaya Pagi",
+      "cat_en": "Morning Light",
+      "text_id": "Melihat cahaya alami pagi dalam 30 menit setelah bangun membantu mengunci ritme sirkadian sehingga malamnya lebih mudah tidur.",
+      "text_en": "Getting natural morning light within 30 minutes of waking anchors your circadian rhythm for better sleep at night."
+    },
+    {
+      "id": 298,
+      "organ": "heart",
+      "cat_id": "Cek Kesehatan Rutin",
+      "cat_en": "Health Checkups",
+      "text_id": "Memeriksa tekanan darah, gula darah, dan kolesterol secara berkala membantu mencegah masalah sebelum muncul gejala.",
+      "text_en": "Routine blood pressure, glucose, and cholesterol checks catch silent risks long before symptoms appear."
+    },
+    {
+      "id": 299,
+      "organ": "lungs",
+      "cat_id": "Bernapas 4-7-8",
+      "cat_en": "4-7-8 Breathing",
+      "text_id": "Teknik napas 4-7-8 (tarik 4 detik, tahan 7 detik, embus 8 detik) efektif menurunkan ketegangan sistem saraf dalam 1 menit.",
+      "text_en": "4-7-8 breathing (inhale 4s, hold 7s, exhale 8s) calms an overactive nervous system within a minute."
+    },
+    {
+      "id": 300,
+      "organ": "kidneys",
+      "cat_id": "Kopi & Hidrasi",
+      "cat_en": "Coffee & Water",
+      "text_id": "Menikmati 1–2 cangkir kopi tanpa gula berlebih cukup aman bagi kebanyakan orang dewasa — imbangi dengan segelas air putih!",
+      "text_en": "1–2 cups of lightly sweetened or black coffee is safe for most adults — pair each cup with a glass of water!"
+    },
+    {
+      "id": 301,
+      "organ": "stomach",
+      "cat_id": "Jam Makan Malam",
+      "cat_en": "Dinner Timing",
+      "text_id": "Menyelesaikan makan malam 2–3 jam sebelum tidur memberi waktu istirahat bagi lambung sekaligus meningkatkan kualitas tidur dalam.",
+      "text_en": "Finishing dinner 2–3 hours before bed rests your stomach and improves deep nighttime sleep."
+    },
+    {
+      "id": 302,
+      "organ": "muscle",
+      "cat_id": "Postur Ergonomis",
+      "cat_en": "Ergonomic Posture",
+      "text_id": "Menjajarkan telinga, bahu, dan pinggul saat duduk mencegah nyeri punggung kronis di usia produktif.",
+      "text_en": "Aligning your ears, shoulders, and hips while sitting prevents chronic back pain during busy workdays."
+    },
+    {
+      "id": 303,
+      "organ": "brain",
+      "cat_id": "Detoks Digital",
+      "cat_en": "Digital Detox",
+      "text_id": "Beristirahat dari notifikasi ponsel 1 jam di akhir pekan memberi ruang bagi otak untuk memulihkan kreativitas.",
+      "text_en": "Taking a 1-hour phone-notification break on weekends gives your brain room to recharge creativity."
+    },
+    {
+      "id": 304,
+      "organ": "heart",
+      "cat_id": "Tangga vs Lift",
+      "cat_en": "Stairs vs Elevator",
+      "text_id": "Memilih naik tangga 2–3 lantai setiap hari adalah olahraga mini gratis yang langsung menguatkan jantung dan paru.",
+      "text_en": "Taking 2–3 flights of stairs each day is a free mini-workout that strengthens heart and lungs."
+    },
+    {
+      "id": 305,
+      "organ": "bloom",
+      "cat_id": "Anti-Inflamasi Alami",
+      "cat_en": "Anti-Inflammatory",
+      "text_id": "Pola makan kaya sayur, buah, ikan, dan rempah alami menurunkan peradangan kronis tingkat rendah di seluruh organ.",
+      "text_en": "A diet rich in vegetables, fruits, fish, and natural spices lowers chronic low-grade inflammation across all organs."
+    },
+    {
+      "id": 306,
+      "organ": "liver",
+      "cat_id": "Hati & Regenerasi",
+      "cat_en": "Liver Regeneration",
+      "text_id": "Hati adalah satu-satunya organ dalam manusia yang dapat meregenerasi selnya sendiri dengan luar biasa — asal tidak terus dirusak alkohol!",
+      "text_en": "The liver is the only human internal organ that can remarkably regenerate itself — when spared from heavy alcohol!"
+    },
+    {
+      "id": 307,
+      "organ": "lungs",
+      "cat_id": "Olahraga Pagi",
+      "cat_en": "Morning Exercise",
+      "text_id": "Berolahraga di pagi hari saat lalu lintas masih sepi membuat paru-paru menghirup udara jauh lebih bersih.",
+      "text_en": "Exercising early in the morning when traffic is light lets your lungs breathe much cleaner air."
+    },
+    {
+      "id": 308,
+      "organ": "brain",
+      "cat_id": "Membaca Buku",
+      "cat_en": "Reading Habit",
+      "text_id": "Membaca buku santai selama 6 menit saja terbukti menurunkan tingkat stres hingga 68%!",
+      "text_en": "Reading a relaxing book for just 6 minutes has been shown to lower stress levels by up to 68%!"
+    },
+    {
+      "id": 309,
+      "organ": "muscle",
+      "cat_id": "Alas Kaki Nyaman",
+      "cat_en": "Good Footwear",
+      "text_id": "Sepatu yang menopang lengkung kaki dengan baik melindungi sendi lutut, pinggul, dan otot punggung bawah.",
+      "text_en": "Supportive footwear cushions your arches and protects knees, hips, and lower-back muscles."
+    },
+    {
+      "id": 310,
+      "organ": "care",
+      "cat_id": "Vaksinasi & Pencegahan",
+      "cat_en": "Prevention",
+      "text_id": "Mencegah penyakit lewat pola hidup sehat dan imunisasi jauh lebih ringan dan hemat daripada mengobati saat sudah sakit.",
+      "text_en": "Preventing illness through healthy habits and immunizations is far easier than treating disease later."
+    },
+    {
+      "id": 311,
+      "organ": "heart",
+      "cat_id": "Tertawa Bersama",
+      "cat_en": "Shared Laughter",
+      "text_id": "Tertawa 10–15 menit sehari membantu membakar sedikit kalori sekaligus menurunkan hormon stres dan melemaskan pembuluh darah.",
+      "text_en": "Laughing for 10–15 minutes a day lowers stress hormones and helps blood vessels relax."
+    },
+    {
+      "id": 312,
+      "organ": "brain",
+      "cat_id": "Tidur Konsisten",
+      "cat_en": "Consistent Sleep",
+      "text_id": "Bangun di jam yang hampir sama setiap hari (termasuk akhir pekan) membuat tubuh bangun lebih segar tanpa alarm keras.",
+      "text_en": "Waking up around the same time daily — even on weekends — helps you wake refreshed naturally."
+    },
+    {
+      "id": 313,
+      "organ": "kidneys",
+      "cat_id": "Hindari Suplemen Sembarangan",
+      "cat_en": "Safe Supplements",
+      "text_id": "Konsumsi suplemen dosis mega tanpa indikasi medis justru dapat membebani ginjal dan hati; utamakan gizi dari makanan asli.",
+      "text_en": "Unnecessary mega-dose supplements can burden kidneys and liver; prioritize nutrients from whole foods."
+    },
+    {
+      "id": 314,
+      "organ": "stomach",
+      "cat_id": "Kebersihan Makanan",
+      "cat_en": "Food Safety",
+      "text_id": "Mencuci buah dan sayur di bawah air mengalir bersih menyingkirkan residu kotoran dan kuman sebelum masuk lambung.",
+      "text_en": "Rinsing fruits and veggies under clean running water removes dirt and germs before they reach your stomach."
+    },
+    {
+      "id": 315,
+      "organ": "lungs",
+      "cat_id": "Bernapas Saat Cemas",
+      "cat_en": "Calm Breathing",
+      "text_id": "Saat panik, napas cenderung pendek di dada; memperlambat embusan napas mengirim sinyal 'aman' langsung ke batang otak.",
+      "text_en": "When anxious, breaths turn shallow; lengthening your exhale sends an instant 'all clear' signal to the brainstem."
+    },
+    {
+      "id": 316,
+      "organ": "muscle",
+      "cat_id": "Hobi Berkebun",
+      "cat_en": "Active Hobbies",
+      "text_id": "Berkebun, menari, atau bermain dengan hewan peliharaan adalah cara menyenangkan melatih otot dan menyegarkan pikiran.",
+      "text_en": "Gardening, dancing, or playing with pets are joyful ways to exercise muscles and refresh your mind."
+    },
+    {
+      "id": 317,
+      "organ": "liver",
+      "cat_id": "Air Putih vs Soda",
+      "cat_en": "Water Over Soda",
+      "text_id": "Mengganti minuman manis harian dengan air putih dapat mengurangi asupan hingga 50.000 kalori berlebih dalam setahun!",
+      "text_en": "Swapping daily sugary drinks for water can cut up to 50,000 excess calories over a single year!"
+    },
+    {
+      "id": 318,
+      "organ": "brain",
+      "cat_id": "Belajar Seumur Hidup",
+      "cat_en": "Lifelong Learning",
+      "text_id": "Menjaga rasa ingin tahu dan belajar hal baru setiap minggu membantu menjaga ketajaman memori hingga usia lanjut.",
+      "text_en": "Staying curious and learning something new each week helps keep memory sharp well into older age."
+    },
+    {
+      "id": 319,
+      "organ": "heart",
+      "cat_id": "Kamar Tidur Sejuk",
+      "cat_en": "Cool Bedroom",
+      "text_id": "Suhu kamar yang sejuk dan gelap membantu detak jantung turun lebih stabil saat tidur malam.",
+      "text_en": "A cool, dark bedroom helps your heart rate settle smoothly during nighttime sleep."
+    },
+    {
+      "id": 320,
+      "organ": "bloom",
+      "cat_id": "Kulit & Hidrasi",
+      "cat_en": "Skin & Glow",
+      "text_id": "Kulit adalah organ terluas tubuh manusia (~2 m²); air putih, vitamin C, dan tidur cukup menjaga elastisitas alaminya.",
+      "text_en": "Skin is your largest organ (~2 sq meters); water, vitamin C, and good sleep preserve its natural glow."
+    },
+    {
+      "id": 321,
+      "organ": "care",
+      "cat_id": "Keseimbangan Kerja-Istirahat",
+      "cat_en": "Work-Life Balance",
+      "text_id": "Beristirahat bukan tanda malas — justru saat istirahatlah seluruh 7 organ utama Anda melakukan perbaikan sel.",
+      "text_en": "Resting isn't laziness — rest is when all 7 of your vital organs carry out essential cellular repairs."
+    },
+    {
+      "id": 322,
+      "organ": "lungs",
+      "cat_id": "Jangan Bakar Sampah",
+      "cat_en": "Zero Smoke",
+      "text_id": "Satu tumpukan sampah plastik yang dibakar menghasilkan asap beracun yang dapat bertahan lama di udara sekitar rumah.",
+      "text_en": "Burning even a small pile of plastic releases toxic fumes that linger in neighborhood air."
+    },
+    {
+      "id": 323,
+      "organ": "muscle",
+      "cat_id": "Peregangan Mata & Leher",
+      "cat_en": "Eye & Neck Care",
+      "text_id": "Memutar leher pelan ke kiri-kanan dan mengedipkan mata 10 kali setelah bekerja depan layar langsung menyegarkan kepala.",
+      "text_en": "Gentle side-to-side neck stretches and 10 slow blinks after screen work quickly refresh your head."
+    },
+    {
+      "id": 324,
+      "organ": "stomach",
+      "cat_id": "Probiotik Alami",
+      "cat_en": "Natural Probiotics",
+      "text_id": "Keseimbangan bakteri baik di usus membantu menjaga mood tetap cerah, pencernaan teratur, dan daya tahan tubuh prima.",
+      "text_en": "A balanced gut microbiome supports bright moods, regular digestion, and strong immune defenses."
+    },
+    {
+      "id": 325,
+      "organ": "heart",
+      "cat_id": "Cintai Tubuhmu",
+      "cat_en": "Love Your Body",
+      "text_id": "Setiap pilihan sehat kecil hari ini — segelas air, jalan 10 menit, tidur tepat waktu — adalah hadiah terindah bagi jantung Anda.",
+      "text_en": "Every small healthy choice today — a glass of water, a 10-minute walk, timely sleep — is a gift to your heart."
+    },
+    {
+      "id": 326,
+      "organ": "brain",
+      "cat_id": "Musik & Memori",
+      "cat_en": "Music & Memory",
+      "text_id": "Musik mengaktifkan lebih banyak area otak secara bersamaan dibandingkan hampir semua aktivitas manusia lainnya.",
+      "text_en": "Music lights up more regions of the human brain simultaneously than almost any other activity."
+    },
+    {
+      "id": 327,
+      "organ": "kidneys",
+      "cat_id": "Urine & Tanda Tubuh",
+      "cat_en": "Hydration Check",
+      "text_id": "Jika urine berwarna kuning gelap pekat, itu sinyal ramah dari ginjal bahwa Anda perlu segera minum 1–2 gelas air putih.",
+      "text_en": "Dark amber urine is a friendly nudge from your kidneys to drink 1–2 glasses of water right away."
+    },
+    {
+      "id": 328,
+      "organ": "liver",
+      "cat_id": "Malam Tanpa Alkohol",
+      "cat_en": "Alcohol-Free Nights",
+      "text_id": "Memberi hari-hari bebas alkohol membantu sel hati dan pankreas beristirahat serta menjaga kualitas tidur REM.",
+      "text_en": "Alcohol-free nights let your liver and pancreas rest while protecting restorative REM sleep."
+    },
+    {
+      "id": 329,
+      "organ": "muscle",
+      "cat_id": "Langkah Kecil Konsisten",
+      "cat_en": "Small Daily Steps",
+      "text_id": "Olahraga 15 menit setiap hari jauh lebih bermanfaat bagi tubuh daripada olahraga berat 2 jam namun hanya sebulan sekali.",
+      "text_en": "Moving 15 minutes every day benefits your body far more than an intense 2-hour workout once a month."
+    },
+    {
+      "id": 330,
+      "organ": "care",
+      "cat_id": "Harmoni 7 Organ",
+      "cat_en": "7-Organ Harmony",
+      "text_id": "Jantung, Otak, Paru-paru, Ginjal, Lambung, Pankreas, dan Otot bekerja sebagai satu tim superhero — rawat semuanya dengan seimbang!",
+      "text_en": "Heart, Brain, Lungs, Kidneys, Stomach, Pancreas, and Muscles work as one superhero team — care for them all in harmony!"
+    }
+  ]
+}

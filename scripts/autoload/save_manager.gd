@@ -48,6 +48,20 @@ func create_default_data() -> Dictionary:
 		"daily_streak": 0,
 		"last_daily_date": "",
 		"sanctuary_charms": 2,
+		"wellness_coins": 150,
+		"organ_upgrades": {
+			"heart": 1,
+			"brain": 1,
+			"lungs": 1,
+			"kidneys": 1,
+			"stomach": 1,
+			"liver": 1,
+			"muscle": 1
+		},
+		"fact_deck": {
+			"order": [],
+			"cursor": 0
+		},
 		"star_chests_claimed": 0,
 		"daily_quests": {
 			"date": "",
@@ -315,6 +329,8 @@ func record_level_win(level_id: int, stars: int, score: int) -> void:
 	data["level_stars"][key] = maxi(prev_stars, clampi(stars, 1, 3))
 	var prev_score := int(data["level_best_scores"].get(key, 0))
 	data["level_best_scores"][key] = maxi(prev_score, maxi(0, score))
+	var coin_gain := clampi(stars, 1, 3) * 60 + maxi(0, score) / 120
+	data["wellness_coins"] = get_wellness_coins() + coin_gain
 	if level_id >= int(data.get("unlocked_level", 1)) and level_id < MAX_LEVELS:
 		data["unlocked_level"] = level_id + 1
 	save_to_disk()
@@ -566,3 +582,54 @@ func is_board_theme_unlocked(theme_id: String) -> bool:
 			return rank >= 6
 	return false
 
+
+func get_wellness_coins() -> int:
+	return maxi(0, int(data.get("wellness_coins", 150)))
+
+
+func add_wellness_coins(delta: int, persist: bool = true) -> int:
+	data["wellness_coins"] = maxi(0, get_wellness_coins() + delta)
+	if persist:
+		save_to_disk()
+		progress_changed.emit()
+	return int(data["wellness_coins"])
+
+
+func get_organ_level(organ_key: String) -> int:
+	if not data.has("organ_upgrades") or typeof(data["organ_upgrades"]) != TYPE_DICTIONARY:
+		return 1
+	return clampi(int(data["organ_upgrades"].get(organ_key, 1)), 1, 5)
+
+
+func get_organ_upgrade_cost(organ_key: String) -> int:
+	var lv := get_organ_level(organ_key)
+	if lv >= 5:
+		return 0
+	return lv * 120
+
+
+func upgrade_organ(organ_key: String) -> bool:
+	var lv := get_organ_level(organ_key)
+	if lv >= 5:
+		return false
+	var cost := get_organ_upgrade_cost(organ_key)
+	if get_wellness_coins() < cost:
+		return false
+	if not data.has("organ_upgrades") or typeof(data["organ_upgrades"]) != TYPE_DICTIONARY:
+		data["organ_upgrades"] = create_default_data()["organ_upgrades"]
+	data["wellness_coins"] = get_wellness_coins() - cost
+	data["organ_upgrades"][organ_key] = lv + 1
+	save_to_disk()
+	progress_changed.emit()
+	return true
+
+
+func get_fact_deck_state() -> Dictionary:
+	if not data.has("fact_deck") or typeof(data["fact_deck"]) != TYPE_DICTIONARY:
+		return {"order": [], "cursor": 0}
+	return data["fact_deck"]
+
+
+func set_fact_deck_state(order: Array, cursor: int) -> void:
+	data["fact_deck"] = {"order": order, "cursor": cursor}
+	save_to_disk()

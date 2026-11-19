@@ -94,8 +94,11 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	var raw_chain_score := ScoreManager.calculate_chain_score(cleared_organ_count, base_tile_score)
 	if is_loop_chain:
 		raw_chain_score = int(round(float(raw_chain_score) * 1.5))
+	var upgrades: Dictionary = progress.get("organ_upgrades", {})
+	var org_lv := clampi(int(upgrades.get(organ_type, 1)), 1, 5)
+	var upgrade_mult := 1.0 + float(org_lv - 1) * 0.08
 	var fever_mult := 2.0 if fever_active else 1.0
-	var chain_score := int(round(float(raw_chain_score) * streak_mult * fever_mult))
+	var chain_score := int(round(float(raw_chain_score) * streak_mult * fever_mult * upgrade_mult))
 
 	progress["collected"][organ_type] = int(progress["collected"].get(organ_type, 0)) + cleared_organ_count
 	progress["best_chain_len"] = maxi(int(progress.get("best_chain_len", 0)), cleared_organ_count)

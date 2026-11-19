@@ -31,6 +31,7 @@ func _process(_delta: float) -> bool:
 	_test_detox_bomb_and_mega_combos()
 	_test_catastrophic_toxic_combo()
 	_test_dynamic_health_events()
+	_test_medical_fact_deck_and_organ_upgrades()
 	_test_board_renderer_tutorial_stage_init()
 	_test_harmony_fever_mode()
 	_test_second_wind_revival()
@@ -1007,3 +1008,40 @@ func _test_dynamic_health_events() -> void:
 		_assert_true(int(ev.get("score_lost", 0)) > 0, "Event slashes score: " + eid)
 		_assert_true(int(prog.get("pulse_meter", 0)) >= 5, "Event never unfairly instant-kills pulse: " + eid)
 		_assert_true((ev.get("locked_cells", []) as Array).size() >= 1, "Event stresses/locks at least 1 organ tile: " + eid)
+
+
+func _test_medical_fact_deck_and_organ_upgrades() -> void:
+	_assert_true(FileAccess.file_exists("res://assets/ui/logo_nadiloopa_3d.png"), "3D NADILOOPA title logo asset exists")
+	_assert_true(FileAccess.file_exists("res://data/medical_facts_300.json"), "300+ medical facts JSON exists")
+	var total := MedicalFactDeck.get_fact_count()
+	_assert_true(total >= 300, "MedicalFactDeck loads >= 300 unique facts (got %d)" % total)
+
+	# Draw 25 consecutive facts and confirm zero duplicates (Fisher-Yates non-repeating deck!)
+	var seen_ids := {}
+	for _k in range(25):
+		var f := MedicalFactDeck.draw_next_fact()
+		_assert_true(not f.is_empty(), "Drawn medical fact is non-empty")
+		var fid := int(f.get("id", -1))
+		_assert_true(fid > 0 and not seen_ids.has(fid), "Shuffled medical fact ID %d does not repeat" % fid)
+		seen_ids[fid] = true
+		_assert_true(str(f.get("text_id", "")).length() > 15, "Medical fact has Indonesian text")
+		_assert_true(str(f.get("text_en", "")).length() > 15, "Medical fact has English text")
+
+	# Test Organ Lab permanent upgrades on isolated save
+	var tmp_path := "user://test_nadiloopa_lab_v29.json"
+	_save_mgr.set_test_save_path(tmp_path)
+	_save_mgr.load_save()
+	var start_coins: int = _save_mgr.get_wellness_coins()
+	_assert_true(start_coins >= 120, "Player starts with Wellness Coins for Organ Lab")
+	_assert_eq(_save_mgr.get_organ_level("heart"), 1, "Heart starts at Lv.1")
+	var ok_up: bool = _save_mgr.upgrade_organ("heart")
+	_assert_true(ok_up, "Organ Lab upgrades Heart from Lv.1 to Lv.2")
+	_assert_eq(_save_mgr.get_organ_level("heart"), 2, "Heart is now Lv.2")
+	_assert_eq(_save_mgr.get_wellness_coins(), start_coins - 120, "Organ Lab deducts 120 Wellness Coins")
+	_save_mgr.clear_test_save_path()
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_path + ".bak"):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path + ".bak"))
+	_save_mgr.load_save()
+

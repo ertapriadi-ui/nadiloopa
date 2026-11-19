@@ -45,6 +45,7 @@ var _font_bold: Font
 var _tex_bg_splash: Texture2D
 var _tex_bg_menu: Texture2D
 var _tex_bg_hero_avengers: Texture2D
+var _tex_logo_3d: Texture2D
 var _tex_bg_game: Texture2D
 var _tex_icon: Texture2D
 var _tile_icons: Dictionary = {}
@@ -106,6 +107,20 @@ var _modal_credits: PanelContainer
 var _modal_almanac: PanelContainer
 var _modal_quests: PanelContainer
 var _modal_reset_confirm: PanelContainer
+var _modal_fact: PanelContainer
+var _fact_art: TextureRect
+var _fact_cat: Label
+var _fact_counter: Label
+var _fact_body: Label
+var _btn_fact_shuffle: Button
+var _btn_fact_start: Button
+var _modal_lab: PanelContainer
+var _lbl_lab_title: Label
+var _lbl_lab_coins: Label
+var _lab_rows_vb: VBoxContainer
+var _btn_lab_close: Button
+var _btn_lab: Button
+var _lbl_cycle_badge: Label
 
 # Menu widgets
 var _lbl_menu_rank: Label
@@ -291,6 +306,7 @@ func _load_resources() -> void:
 	_tex_bg_splash = _safe_tex(BG_SPLASH_PATH)
 	_tex_bg_menu = _safe_tex(BG_MENU_PATH)
 	_tex_bg_hero_avengers = _safe_tex(BG_HERO_AVENGERS_PATH)
+	_tex_logo_3d = _safe_tex("res://assets/ui/logo_nadiloopa_3d.png")
 	_tex_bg_game = _safe_tex(BG_GAME_PATH)
 	_tex_icon = _safe_tex("res://assets/icons/icon_1024.png")
 	_tex_spark = _safe_tex("res://assets/sprites/tiles/icon_ability_spark.png")
@@ -572,20 +588,29 @@ func _build_welcome_screen(parent: Control) -> void:
 	vb.add_theme_constant_override("separation", 18)
 	card.add_child(vb)
 
+	if _tex_logo_3d != null:
+		var w_logo := TextureRect.new()
+		w_logo.custom_minimum_size = Vector2(0, 155)
+		w_logo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		w_logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		w_logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		w_logo.texture = _tex_logo_3d
+		vb.add_child(w_logo)
+
 	# Avengers-Style Full Superhero Organ & Villains Poster Banner (v2.8.0)
 	var poster_frame := PanelContainer.new()
 	poster_frame.add_theme_stylebox_override("panel", _make_box(Color(0.06, 0.14, 0.18, 0.96), 24, Color(0.98, 0.82, 0.34, 0.96), 4, 6, 6, 12))
 	vb.add_child(poster_frame)
 
 	var poster_rect := TextureRect.new()
-	poster_rect.custom_minimum_size = Vector2(0, 410)
+	poster_rect.custom_minimum_size = Vector2(0, 340 if _tex_logo_3d != null else 410)
 	poster_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	poster_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	poster_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	poster_rect.texture = _tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu
 	poster_frame.add_child(poster_rect)
 
-	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 48, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 44, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_welcome_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vb.add_child(_make_ribbon_header(_lbl_welcome_title, Color(0.08, 0.56, 0.46), Color(0.05, 0.36, 0.30)))
 
@@ -717,9 +742,19 @@ func _build_menu_screen(parent: Control) -> void:
 	_menu_flank_right.texture = _tile_icons.get("lungs_happy", _tile_icons.get("lungs", null))
 	flank_r_wrap.add_child(_menu_flank_right)
 
+	if _tex_logo_3d != null:
+		var logo_rect := TextureRect.new()
+		logo_rect.custom_minimum_size = Vector2(940, 240)
+		logo_rect.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		logo_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		logo_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		logo_rect.texture = _tex_logo_3d
+		hero_vb.add_child(logo_rect)
+
 	_lbl_menu_title = _make_label("NADILOOPA", 84, Color(0.04, 0.26, 0.24), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_menu_title.add_theme_color_override("font_outline_color", Color(1.0, 0.96, 0.80, 0.98))
 	_lbl_menu_title.add_theme_constant_override("outline_size", 12)
+	_lbl_menu_title.visible = (_tex_logo_3d == null)
 	hero_vb.add_child(_lbl_menu_title)
 
 	var sub_center := CenterContainer.new()
@@ -809,17 +844,28 @@ func _build_menu_screen(parent: Control) -> void:
 	_btn_levels = Button.new()
 	_btn_levels.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_btn_levels.custom_minimum_size = Vector2(0, 100)
-	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 36, 22, 14, 12)
+	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 32, 22, 10, 12)
 	_btn_levels.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		show_screen("levels")
 	)
 	row_mid.add_child(_btn_levels)
 
+	_btn_lab = Button.new()
+	_btn_lab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_lab.custom_minimum_size = Vector2(0, 100)
+	_style_button(_btn_lab, Color(0.56, 0.24, 0.78), Color(0.66, 0.34, 0.88), Color.WHITE, 32, 22, 10, 12)
+	_btn_lab.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_refresh_organ_lab_ui()
+		_open_modal(_modal_lab)
+	)
+	row_mid.add_child(_btn_lab)
+
 	_btn_quests = Button.new()
 	_btn_quests.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_btn_quests.custom_minimum_size = Vector2(0, 100)
-	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 36, 22, 14, 12)
+	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 32, 22, 10, 12)
 	_btn_quests.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_refresh_quests_ui()
@@ -1022,10 +1068,16 @@ func _build_game_screen(parent: Control) -> void:
 	mid_top.add_theme_constant_override("separation", 10)
 	mid_vb.add_child(mid_top)
 
-	_lbl_stage = _make_label("Stage 1", 38, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_lbl_stage = _make_label("Stage 1", 36, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
 	_lbl_stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_stage.clip_text = true
 	mid_top.add_child(_lbl_stage)
+
+	var cycle_pill := PanelContainer.new()
+	cycle_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.96, 0.84), 14, Color(0.90, 0.62, 0.14, 0.55), 2, 10, 3))
+	mid_top.add_child(cycle_pill)
+	_lbl_cycle_badge = _make_label("🌅 Pagi", 28, Color(0.58, 0.30, 0.04), true)
+	cycle_pill.add_child(_lbl_cycle_badge)
 
 	var score_pill := PanelContainer.new()
 	score_pill.add_theme_stylebox_override("panel", _make_box(Color(0.90, 0.96, 0.93), 14, Color(0.15, 0.55, 0.45, 0.40), 2, 12, 3))
@@ -1933,6 +1985,113 @@ func _build_modals() -> void:
 	)
 	r_hb.add_child(_btn_reset_confirm)
 
+	# Medical Fact Flashcard Modal (330+ Shuffled Bilingual Organ Health Facts)
+	_modal_fact = _create_modal_card(center, 940)
+	var f_vb := VBoxContainer.new()
+	f_vb.add_theme_constant_override("separation", 18)
+	_modal_fact.add_child(f_vb)
+
+	var f_hdr_lbl := _make_label("💡 Tahukah Kamu?", 40, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	f_vb.add_child(_make_ribbon_header(f_hdr_lbl, Color(0.10, 0.56, 0.74), Color(0.06, 0.36, 0.52)))
+
+	var f_card := PanelContainer.new()
+	f_card.add_theme_stylebox_override("panel", _make_box(Color(0.93, 0.98, 0.97), 24, Color(0.14, 0.62, 0.54, 0.55), 3, 22, 22))
+	f_vb.add_child(f_card)
+
+	var f_hb := HBoxContainer.new()
+	f_hb.add_theme_constant_override("separation", 22)
+	f_card.add_child(f_hb)
+
+	var f_art_wrap := PanelContainer.new()
+	f_art_wrap.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	f_art_wrap.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.98, 0.92), 22, Color(0.92, 0.72, 0.24, 0.75), 3, 12, 12))
+	f_hb.add_child(f_art_wrap)
+
+	_fact_art = TextureRect.new()
+	_fact_art.custom_minimum_size = Vector2(200, 200)
+	_fact_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_fact_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_fact_art.texture = _tile_icons.get("heart_happy", _tex_icon)
+	f_art_wrap.add_child(_fact_art)
+
+	var f_txt_vb := VBoxContainer.new()
+	f_txt_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	f_txt_vb.add_theme_constant_override("separation", 10)
+	f_hb.add_child(f_txt_vb)
+
+	var f_meta_hb := HBoxContainer.new()
+	f_meta_hb.add_theme_constant_override("separation", 12)
+	f_txt_vb.add_child(f_meta_hb)
+
+	_fact_cat = _make_label("Jantung", 30, Color(0.08, 0.44, 0.56), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_fact_cat.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	f_meta_hb.add_child(_fact_cat)
+
+	_fact_counter = _make_label("#1 / 330", 26, Color(0.32, 0.48, 0.46), true, HORIZONTAL_ALIGNMENT_RIGHT)
+	f_meta_hb.add_child(_fact_counter)
+
+	_fact_body = _make_label("", 34, Color(0.06, 0.22, 0.22), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_fact_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	f_txt_vb.add_child(_fact_body)
+
+	var f_btn_hb := HBoxContainer.new()
+	f_btn_hb.add_theme_constant_override("separation", 16)
+	f_vb.add_child(f_btn_hb)
+
+	_btn_fact_shuffle = Button.new()
+	_btn_fact_shuffle.custom_minimum_size = Vector2(310, 96)
+	_style_button(_btn_fact_shuffle, Color(0.16, 0.52, 0.72), Color(0.22, 0.62, 0.82), Color.WHITE, 30, 22, 14, 10)
+	_btn_fact_shuffle.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_draw_and_display_fact()
+	)
+	f_btn_hb.add_child(_btn_fact_shuffle)
+
+	_btn_fact_start = Button.new()
+	_btn_fact_start.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_fact_start.custom_minimum_size = Vector2(0, 96)
+	_style_button(_btn_fact_start, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 34, 22, 16, 10)
+	_btn_fact_start.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_close_modals()
+	)
+	f_btn_hb.add_child(_btn_fact_start)
+
+	# Organ Lab Permanent Upgrades Modal
+	_modal_lab = _create_modal_card(center, 940)
+	var lab_vb := VBoxContainer.new()
+	lab_vb.add_theme_constant_override("separation", 14)
+	_modal_lab.add_child(lab_vb)
+
+	_lbl_lab_title = _make_label("Organ Lab", 40, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	lab_vb.add_child(_make_ribbon_header(_lbl_lab_title, Color(0.54, 0.24, 0.76), Color(0.36, 0.14, 0.54)))
+
+	var coins_pill := PanelContainer.new()
+	coins_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.96, 0.84), 18, Color(0.92, 0.66, 0.12, 0.75), 3, 18, 10))
+	lab_vb.add_child(coins_pill)
+	_lbl_lab_coins = _make_label("🪙 150", 32, Color(0.56, 0.32, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
+	coins_pill.add_child(_lbl_lab_coins)
+
+	var lab_scroll := ScrollContainer.new()
+	lab_scroll.custom_minimum_size = Vector2(0, 820)
+	lab_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	lab_vb.add_child(lab_scroll)
+
+	_lab_rows_vb = VBoxContainer.new()
+	_lab_rows_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_lab_rows_vb.add_theme_constant_override("separation", 12)
+	lab_scroll.add_child(_lab_rows_vb)
+
+	_btn_lab_close = Button.new()
+	_btn_lab_close.custom_minimum_size = Vector2(0, 78)
+	_style_button(_btn_lab_close, Color(0.12, 0.56, 0.44), Color(0.16, 0.66, 0.52), Color.WHITE, 30, 20)
+	_btn_lab_close.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		_close_modals()
+		_refresh_texts()
+	)
+	lab_vb.add_child(_btn_lab_close)
+
 
 func _create_modal_card(parent: Control, width_px: int) -> PanelContainer:
 	var card := PanelContainer.new()
@@ -1947,8 +2106,9 @@ func _open_modal(modal: PanelContainer) -> void:
 	if is_instance_valid(_board_renderer):
 		var empty_chain: Array[Vector2i] = []
 		_board_renderer.set_chain_preview(empty_chain, {})
-	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm]:
-		m.visible = (m == modal)
+	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab]:
+		if m != null:
+			m.visible = (m == modal)
 	_modal_dim.visible = true
 	if _current_screen == "game":
 		_touch_ctrl.set_input_enabled(false)
@@ -1961,8 +2121,9 @@ func _open_modal(modal: PanelContainer) -> void:
 
 func _close_modals() -> void:
 	_modal_dim.visible = false
-	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm]:
-		m.visible = false
+	for m in [_modal_pause, _modal_win, _modal_lose, _modal_settings, _modal_howto, _modal_credits, _modal_almanac, _modal_quests, _modal_reset_confirm, _modal_fact, _modal_lab]:
+		if m != null:
+			m.visible = false
 	if _current_screen == "game" and GameManager.play_state == GameManager.PlayState.READY:
 		_touch_ctrl.set_input_enabled(true)
 
@@ -2097,6 +2258,7 @@ func _begin_loaded_level(raw_lv: Dictionary) -> void:
 	rng.seed = int(lv.get("seed", 1001))
 	board_state = LevelManager.build_board_for_level(lv, rng)
 	progress = LevelManager.create_initial_progress(lv)
+	progress["organ_upgrades"] = SaveManager.data.get("organ_upgrades", {}).duplicate(true)
 
 	show_screen("game")
 	var is_tut := str(lv.get("tutorial_key", "")) != ""
@@ -2112,6 +2274,107 @@ func _begin_loaded_level(raw_lv: Dictionary) -> void:
 	_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_IDLE")
 	_lbl_preview.add_theme_color_override("font_color", Color(0.08, 0.30, 0.28))
 	AudioManager.play_sfx("level_transition")
+	if DisplayServer.get_name() != "headless":
+		_show_medical_fact_modal()
+
+
+func _show_medical_fact_modal() -> void:
+	if not is_instance_valid(_modal_fact):
+		return
+	_draw_and_display_fact()
+	_open_modal(_modal_fact)
+
+
+func _draw_and_display_fact() -> void:
+	var fact := MedicalFactDeck.draw_next_fact()
+	if fact.is_empty():
+		return
+	var org := str(fact.get("organ", "heart"))
+	var is_id := (LocalizationManager.current_locale == "id")
+	var tex: Texture2D = _tile_icons.get(org + "_happy", _tile_icons.get(org, _tex_icon))
+	if is_instance_valid(_fact_art):
+		_fact_art.texture = tex
+	if is_instance_valid(_fact_cat):
+		_fact_cat.text = str(fact.get("cat_id" if is_id else "cat_en", "Kesehatan"))
+	if is_instance_valid(_fact_counter):
+		var total := MedicalFactDeck.get_fact_count()
+		var fid := int(fact.get("id", 1))
+		_fact_counter.text = "#%d / %d" % [fid, total]
+	if is_instance_valid(_fact_body):
+		_fact_body.text = str(fact.get("text_id" if is_id else "text_en", ""))
+	if is_instance_valid(_btn_fact_shuffle):
+		_btn_fact_shuffle.text = LocalizationManager.tr_key("FACT_SHUFFLE")
+	if is_instance_valid(_btn_fact_start):
+		_btn_fact_start.text = LocalizationManager.tr_key("FACT_START")
+
+
+func _refresh_organ_lab_ui() -> void:
+	if not is_instance_valid(_lab_rows_vb):
+		return
+	_lbl_lab_title.text = LocalizationManager.tr_key("LAB_TITLE")
+	var coins := SaveManager.get_wellness_coins()
+	_lbl_lab_coins.text = LocalizationManager.tr_key("LAB_COINS", {"coins": coins})
+	_btn_lab_close.text = LocalizationManager.tr_key("BTN_CLOSE")
+
+	for ch in _lab_rows_vb.get_children():
+		ch.queue_free()
+
+	for org in BoardState.ORGANS:
+		var lv := SaveManager.get_organ_level(org)
+		var cost := SaveManager.get_organ_upgrade_cost(org)
+		var bonus_pct := (lv - 1) * 8
+		var is_max := (cost <= 0)
+		var can_buy := (not is_max) and (coins >= cost)
+
+		var row_card := PanelContainer.new()
+		row_card.add_theme_stylebox_override("panel", _make_box(
+			Color(0.92, 0.98, 0.95) if lv >= 5 else Color(0.95, 0.98, 0.97),
+			18,
+			Color(0.12, 0.66, 0.48, 0.60) if lv >= 5 else Color(0.16, 0.50, 0.48, 0.35),
+			2, 16, 12
+		))
+		var hb := HBoxContainer.new()
+		hb.add_theme_constant_override("separation", 16)
+		row_card.add_child(hb)
+
+		var ic := TextureRect.new()
+		ic.custom_minimum_size = Vector2(92, 92)
+		ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		ic.texture = _tile_icons.get(org + "_happy", _tile_icons.get(org, _tex_icon))
+		hb.add_child(ic)
+
+		var info_vb := VBoxContainer.new()
+		info_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		info_vb.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		info_vb.add_theme_constant_override("separation", 4)
+		hb.add_child(info_vb)
+
+		var o_name := LocalizationManager.tr_key("ORGAN_" + org.to_upper())
+		info_vb.add_child(_make_label("%s  •  Lv.%d/5" % [o_name, lv], 30, Color(0.06, 0.28, 0.26), true))
+		info_vb.add_child(_make_label(LocalizationManager.tr_key("LAB_BONUS", {"pct": bonus_pct}), 24, Color(0.14, 0.48, 0.38), true))
+
+		var up_btn := Button.new()
+		up_btn.custom_minimum_size = Vector2(240, 78)
+		up_btn.disabled = not can_buy
+		if is_max:
+			up_btn.text = LocalizationManager.tr_key("LAB_MAX")
+			_style_button(up_btn, Color(0.12, 0.64, 0.42), Color(0.12, 0.64, 0.42), Color.WHITE, 26, 16)
+		elif can_buy:
+			up_btn.text = LocalizationManager.tr_key("LAB_UPGRADE", {"cost": cost})
+			_style_button(up_btn, Color(0.56, 0.24, 0.78), Color(0.66, 0.34, 0.88), Color.WHITE, 26, 16)
+		else:
+			up_btn.text = LocalizationManager.tr_key("LAB_UPGRADE", {"cost": cost})
+			_style_button(up_btn, Color(0.76, 0.80, 0.80), Color(0.76, 0.80, 0.80), Color(0.32, 0.38, 0.38), 24, 16)
+		var org_id := org
+		up_btn.pressed.connect(func():
+			if SaveManager.upgrade_organ(org_id):
+				AudioManager.play_sfx("star_pop", 1.12)
+				GameManager.trigger_haptic(20)
+				_refresh_organ_lab_ui()
+		)
+		hb.add_child(up_btn)
+		_lab_rows_vb.add_child(row_card)
 
 
 func _play_sfx_delayed(sfx_name: String, delay_sec: float, pitch_scale: float = 1.0, vol_db: float = 0.0) -> void:
@@ -2760,6 +3023,15 @@ func _refresh_hud() -> void:
 		var tgt_p := int(objs["keep_pulse"])
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_KEEP_PULSE", {"target": tgt_p}), pulse_val >= tgt_p, "")
 
+	if is_instance_valid(_lbl_cycle_badge):
+		var avg_prog := obj_done_sum / float(maxi(1, obj_count))
+		if avg_prog < 0.45:
+			_lbl_cycle_badge.text = LocalizationManager.tr_key("CYCLE_MORNING")
+		elif avg_prog < 0.80:
+			_lbl_cycle_badge.text = LocalizationManager.tr_key("CYCLE_NOON")
+		else:
+			_lbl_cycle_badge.text = LocalizationManager.tr_key("CYCLE_NIGHT")
+
 	if is_instance_valid(_boss_bar_panel):
 		var is_boss := bool(level_def.get("is_boss", false))
 		_boss_bar_panel.visible = is_boss
@@ -3150,14 +3422,20 @@ func _refresh_texts() -> void:
 	_refresh_difficulty_buttons()
 	_btn_play.text = LocalizationManager.tr_key("BTN_CONTINUE", {"level": unlocked}) if unlocked > 1 else LocalizationManager.tr_key("BTN_PLAY")
 	_btn_levels.text = LocalizationManager.tr_key("BTN_LEVELS")
+	if is_instance_valid(_btn_lab):
+		_btn_lab.text = LocalizationManager.tr_key("BTN_LAB")
+	if is_instance_valid(_btn_fact_shuffle):
+		_btn_fact_shuffle.text = LocalizationManager.tr_key("FACT_SHUFFLE")
+	if is_instance_valid(_btn_fact_start):
+		_btn_fact_start.text = LocalizationManager.tr_key("FACT_START")
 	var unclaimed := SaveManager.get_unclaimed_rewards_count()
 	if is_instance_valid(_btn_quests):
 		if unclaimed > 0:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS_READY", {"count": unclaimed})
-			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 36, 22, 14, 12)
+			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 32, 22, 10, 12)
 		else:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS")
-			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 36, 22, 14, 12)
+			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 32, 22, 10, 12)
 	_btn_endless.text = LocalizationManager.tr_key("BTN_ENDLESS")
 	_btn_daily.text = LocalizationManager.tr_key("BTN_DAILY")
 	_btn_almanac.text = LocalizationManager.tr_key("BTN_ALMANAC")

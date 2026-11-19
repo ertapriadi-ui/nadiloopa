@@ -2,7 +2,7 @@
   "en": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Pulse Puzzle Sanctuary",
-    "APP_WORKING_TAG": "v2.8.0 • 100 Stages",
+    "APP_WORKING_TAG": "v2.9.0 • 100 Stages",
     "DIFF_TITLE": "Difficulty & Grid Size",
     "DIFF_EASY": "EASY\n5×7",
     "DIFF_MEDIUM": "MEDIUM\n6×9",
@@ -227,12 +227,24 @@
     "EVENT_SCREEN_DESC": "Hours glued to the couch! Muscles stiffen and soda cravings strike!",
     "EVENT_SMOKE_TITLE": "SECOND-HAND SMOKE!",
     "EVENT_SMOKE_DESC": "A toxic cigarette cloud drifted in! Lungs need fresh Nadi chains!",
-    "EVENT_TAP_DISMISS": "Tap card to dismiss"
+    "EVENT_TAP_DISMISS": "Tap card to dismiss",
+    "BTN_LAB": "Organ Lab",
+    "LAB_TITLE": "Organ Upgrade Lab",
+    "LAB_COINS": "🪙 Wellness Coins: {coins}",
+    "LAB_UPGRADE": "Upgrade ({cost} 🪙)",
+    "LAB_MAX": "MAX LV ★",
+    "LAB_BONUS": "Permanent Score Bonus: +{pct}%",
+    "FACT_TITLE": "💡 Did You Know?",
+    "FACT_SHUFFLE": "🔀 Next Fact",
+    "FACT_START": "▶ START STAGE!",
+    "CYCLE_MORNING": "🌅 Morning",
+    "CYCLE_NOON": "☀️ Noon",
+    "CYCLE_NIGHT": "🌙 Night"
   },
   "id": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Suaka Teka-Teki Denyut",
-    "APP_WORKING_TAG": "v2.8.0 • 100 Tahap",
+    "APP_WORKING_TAG": "v2.9.0 • 100 Tahap",
     "DIFF_TITLE": "Tingkat & Luas Kotak",
     "DIFF_EASY": "MUDAH\n5×7",
     "DIFF_MEDIUM": "SEDANG\n6×9",
@@ -457,6 +469,18 @@
     "EVENT_SCREEN_DESC": "Berjam-jam rebahan menatap layar! Otot kaku & muncul godaan minuman manis!",
     "EVENT_SMOKE_TITLE": "PAPARAN ASAP ROKOK!",
     "EVENT_SMOKE_DESC": "Kepulan asap rokok mengepung! Paru-paru butuh rantai Nadi segar!",
-    "EVENT_TAP_DISMISS": "Ketuk kartu untuk tutup"
+    "EVENT_TAP_DISMISS": "Ketuk kartu untuk tutup",
+    "BTN_LAB": "Lab Organ",
+    "LAB_TITLE": "Lab Peningkatan Organ",
+    "LAB_COINS": "🪙 Koin Sehat: {coins}",
+    "LAB_UPGRADE": "Naik Lv ({cost} 🪙)",
+    "LAB_MAX": "MAKS LV ★",
+    "LAB_BONUS": "Bonus Skor Permanen: +{pct}%",
+    "FACT_TITLE": "💡 Tahukah Kamu?",
+    "FACT_SHUFFLE": "🔀 Kocok Fakta",
+    "FACT_START": "▶ MULAI TAHAP!",
+    "CYCLE_MORNING": "🌅 Pagi",
+    "CYCLE_NOON": "☀️ Siang",
+    "CYCLE_NIGHT": "🌙 Malam"
   }
 }
