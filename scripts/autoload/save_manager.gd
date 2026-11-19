@@ -47,6 +47,15 @@ func create_default_data() -> Dictionary:
 		"best_endless_score": 0,
 		"daily_streak": 0,
 		"last_daily_date": "",
+		"sanctuary_charms": 2,
+		"star_chests_claimed": 0,
+		"daily_quests": {
+			"date": "",
+			"chains": 0,
+			"loops": 0,
+			"healthy": 0,
+			"claimed": [false, false, false]
+		},
 		"achievements": {},
 		"stats": {
 			"total_chains": 0,
@@ -93,6 +102,25 @@ func _compute_checksum(payload: Dictionary) -> String:
 	])
 	if s.has("difficulty"):
 		parts.append("diff=%s" % str(s.get("difficulty", "hard")))
+	if payload.has("sanctuary_charms"):
+		parts.append("sc=%d" % clampi(int(payload.get("sanctuary_charms", 2)), 0, 99))
+	if payload.has("star_chests_claimed"):
+		parts.append("scc=%d" % maxi(0, int(payload.get("star_chests_claimed", 0))))
+	if payload.has("daily_quests") and typeof(payload["daily_quests"]) == TYPE_DICTIONARY:
+		var dq: Dictionary = payload["daily_quests"]
+		var cl: Array = dq.get("claimed", [false, false, false])
+		var cl_str := "%d%d%d" % [
+			1 if (cl.size() > 0 and bool(cl[0])) else 0,
+			1 if (cl.size() > 1 and bool(cl[1])) else 0,
+			1 if (cl.size() > 2 and bool(cl[2])) else 0
+		]
+		parts.append("dq=%s:%d:%d:%d:%s" % [
+			str(dq.get("date", "")),
+			maxi(0, int(dq.get("chains", 0))),
+			maxi(0, int(dq.get("loops", 0))),
+			maxi(0, int(dq.get("healthy", 0))),
+			cl_str
+		])
 	var stars_in: Variant = payload.get("level_stars", {})
 	var scores_in: Variant = payload.get("level_best_scores", {})
 	for lid in range(1, MAX_LEVELS + 1):
@@ -148,6 +176,23 @@ func _validate_and_normalize(raw_dict: Variant) -> Dictionary:
 	clean["best_endless_score"] = maxi(0, int(d.get("best_endless_score", 0)))
 	clean["daily_streak"] = maxi(0, int(d.get("daily_streak", 0)))
 	clean["last_daily_date"] = str(d.get("last_daily_date", ""))
+	clean["sanctuary_charms"] = clampi(int(d.get("sanctuary_charms", 2)), 0, 99)
+	clean["star_chests_claimed"] = maxi(0, int(d.get("star_chests_claimed", 0)))
+
+	var dq_in: Variant = d.get("daily_quests", {})
+	if typeof(dq_in) == TYPE_DICTIONARY:
+		var cl_in: Variant = dq_in.get("claimed", [false, false, false])
+		var cl_clean: Array = [false, false, false]
+		if typeof(cl_in) == TYPE_ARRAY:
+			for ci in range(mini(3, cl_in.size())):
+				cl_clean[ci] = bool(cl_in[ci])
+		clean["daily_quests"] = {
+			"date": str(dq_in.get("date", "")),
+			"chains": maxi(0, int(dq_in.get("chains", 0))),
+			"loops": maxi(0, int(dq_in.get("loops", 0))),
+			"healthy": maxi(0, int(dq_in.get("healthy", 0))),
+			"claimed": cl_clean
+		}
 
 	var ach_in: Variant = d.get("achievements", {})
 	if typeof(ach_in) == TYPE_DICTIONARY:
@@ -355,3 +400,141 @@ func set_setting(key: String, val: Variant) -> void:
 	data["settings"][key] = val
 	save_to_disk()
 	settings_changed.emit()
+
+
+static func get_today_date_str() -> String:
+	var dt := Time.get_date_dict_from_system()
+	return "%04d-%02d-%02d" % [int(dt.get("year", 2026)), int(dt.get("month", 11)), int(dt.get("day", 18))]
+
+
+func get_sanctuary_charms() -> int:
+	return clampi(int(data.get("sanctuary_charms", 2)), 0, 99)
+
+
+func add_sanctuary_charms(amount: int) -> void:
+	if amount <= 0:
+		return
+	data["sanctuary_charms"] = clampi(get_sanctuary_charms() + amount, 0, 99)
+	save_to_disk()
+	progress_changed.emit()
+
+
+func spend_sanctuary_charm() -> bool:
+	var cur := get_sanctuary_charms()
+	if cur <= 0:
+		return false
+	data["sanctuary_charms"] = cur - 1
+	save_to_disk()
+	progress_changed.emit()
+	return true
+
+
+func ensure_daily_quests_for_date(date_str: String = "") -> Dictionary:
+	var dstr := date_str if date_str != "" else get_today_date_str()
+	if not data.has("daily_quests") or typeof(data["daily_quests"]) != TYPE_DICTIONARY:
+		data["daily_quests"] = {"date": dstr, "chains": 0, "loops": 0, "healthy": 0, "claimed": [false, false, false]}
+	var dq: Dictionary = data["daily_quests"]
+	if str(dq.get("date", "")) != dstr:
+		data["daily_quests"] = {"date": dstr, "chains": 0, "loops": 0, "healthy": 0, "claimed": [false, false, false]}
+		dq = data["daily_quests"]
+	return dq
+
+
+func record_daily_quest_progress(date_str: String, chains_delta: int, loops_delta: int, healthy_delta: int) -> void:
+	var dq := ensure_daily_quests_for_date(date_str)
+	if chains_delta > 0:
+		dq["chains"] = int(dq.get("chains", 0)) + chains_delta
+	if loops_delta > 0:
+		dq["loops"] = int(dq.get("loops", 0)) + loops_delta
+	if healthy_delta > 0:
+		dq["healthy"] = int(dq.get("healthy", 0)) + healthy_delta
+
+
+func get_daily_quest_states(date_str: String = "") -> Array[Dictionary]:
+	var dq := ensure_daily_quests_for_date(date_str)
+	var claimed: Array = dq.get("claimed", [false, false, false])
+	var specs := [
+		{"idx": 0, "key": "QUEST_CHAINS", "current": int(dq.get("chains", 0)), "target": 35, "reward": 1},
+		{"idx": 1, "key": "QUEST_LOOPS", "current": int(dq.get("loops", 0)), "target": 2, "reward": 1},
+		{"idx": 2, "key": "QUEST_HEALTHY", "current": int(dq.get("healthy", 0)), "target": 6, "reward": 1}
+	]
+	var out: Array[Dictionary] = []
+	for sp in specs:
+		var idx: int = sp["idx"]
+		var is_claimed := idx < claimed.size() and bool(claimed[idx])
+		var cur: int = sp["current"]
+		var tgt: int = sp["target"]
+		sp["claimed"] = is_claimed
+		sp["claimable"] = (not is_claimed) and (cur >= tgt)
+		out.append(sp)
+	return out
+
+
+func claim_daily_quest(date_str: String, idx: int) -> bool:
+	if idx < 0 or idx > 2:
+		return false
+	var states := get_daily_quest_states(date_str)
+	if idx >= states.size() or not bool(states[idx].get("claimable", false)):
+		return false
+	var dq := ensure_daily_quests_for_date(date_str)
+	var claimed: Array = dq.get("claimed", [false, false, false])
+	while claimed.size() < 3:
+		claimed.append(false)
+	claimed[idx] = true
+	dq["claimed"] = claimed
+	data["sanctuary_charms"] = clampi(get_sanctuary_charms() + int(states[idx].get("reward", 1)), 0, 99)
+	save_to_disk()
+	progress_changed.emit()
+	return true
+
+
+func get_star_chest_info() -> Dictionary:
+	var claimed_count := maxi(0, int(data.get("star_chests_claimed", 0)))
+	var next_milestone := (claimed_count + 1) * 15
+	var cur_stars := get_total_stars()
+	var can_claim := cur_stars >= next_milestone and next_milestone <= 300
+	return {
+		"claimed_count": claimed_count,
+		"next_milestone": mini(300, next_milestone),
+		"current_stars": cur_stars,
+		"claimable": can_claim,
+		"reward": 2
+	}
+
+
+func claim_star_chest() -> bool:
+	var info := get_star_chest_info()
+	if not bool(info.get("claimable", false)):
+		return false
+	data["star_chests_claimed"] = int(info["claimed_count"]) + 1
+	data["sanctuary_charms"] = clampi(get_sanctuary_charms() + int(info["reward"]), 0, 99)
+	save_to_disk()
+	progress_changed.emit()
+	return true
+
+
+func get_unclaimed_rewards_count(date_str: String = "") -> int:
+	var n := 0
+	for q in get_daily_quest_states(date_str):
+		if bool(q.get("claimable", false)):
+			n += 1
+	if bool(get_star_chest_info().get("claimable", false)):
+		n += 1
+	return n
+
+
+func get_sanctuary_rank() -> Dictionary:
+	var stars := get_total_stars()
+	var chains := int(data.get("stats", {}).get("total_chains", 0))
+	var xp := stars * 10 + chains
+	var rank := clampi(1 + xp / 60, 1, 20)
+	var tier_key := "RANK_SEEDLING"
+	if rank >= 16:
+		tier_key = "RANK_GRANDMASTER"
+	elif rank >= 11:
+		tier_key = "RANK_GUARDIAN"
+	elif rank >= 6:
+		tier_key = "RANK_HARMONIST"
+	elif rank >= 3:
+		tier_key = "RANK_BLOOMER"
+	return {"rank": rank, "tier_key": tier_key, "xp": xp}

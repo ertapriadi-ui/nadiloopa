@@ -128,16 +128,23 @@ func spawn_floating_text(local_pos: Vector2, text_str: String, color: Color, fon
 	lbl.add_theme_font_override("font", _font_bold)
 	lbl.add_theme_font_size_override("font_size", font_px)
 	lbl.add_theme_color_override("font_color", color)
-	lbl.add_theme_color_override("font_outline_color", Color(0.08, 0.12, 0.14, 0.94))
-	lbl.add_theme_constant_override("outline_size", 6)
-	lbl.size = Vector2(360, 48)
-	lbl.position = local_pos - Vector2(180, 24)
+	lbl.add_theme_color_override("font_outline_color", Color(0.06, 0.12, 0.14, 0.96))
+	lbl.add_theme_constant_override("outline_size", 7)
+	lbl.size = Vector2(380, 52)
+	lbl.pivot_offset = Vector2(190, 26)
+	lbl.position = local_pos - Vector2(190, 26)
 	add_child(lbl)
 
-	var rise := 18.0 if GameManager.is_reduce_motion() else 66.0
-	var dur := 0.35 if GameManager.is_reduce_motion() else 0.82
+	var reduce := GameManager.is_reduce_motion()
+	var rise := 18.0 if reduce else 72.0
+	var dur := 0.35 if reduce else 0.86
+	if not reduce:
+		lbl.scale = Vector2.ONE * 0.65
 	var tw := lbl.create_tween()
 	tw.set_parallel(true)
+	if not reduce:
+		tw.tween_property(lbl, "scale", Vector2.ONE * 1.14, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(lbl, "scale", Vector2.ONE, 0.12).set_delay(0.14)
 	tw.tween_property(lbl, "position:y", lbl.position.y - rise, dur).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(lbl, "modulate:a", 0.0, dur * 0.45).set_delay(dur * 0.55)
 	tw.chain().tween_callback(lbl.queue_free)
@@ -146,28 +153,81 @@ func spawn_floating_text(local_pos: Vector2, text_str: String, color: Color, fon
 func spawn_combo_banner(center_pos: Vector2, text_str: String, color: Color) -> void:
 	if DisplayServer.get_name() == "headless":
 		return
+	var pill := PanelContainer.new()
+	pill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.05, 0.19, 0.18, 0.90)
+	sb.border_color = color
+	sb.set_border_width_all(4)
+	sb.border_width_bottom = 7
+	sb.set_corner_radius_all(28)
+	sb.shadow_size = 14
+	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.35)
+	sb.shadow_offset = Vector2(0, 6)
+	sb.content_margin_left = 28
+	sb.content_margin_right = 28
+	sb.content_margin_top = 10
+	sb.content_margin_bottom = 10
+	pill.add_theme_stylebox_override("panel", sb)
+
 	var lbl := Label.new()
 	lbl.text = text_str
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl.add_theme_font_override("font", _font_bold)
-	lbl.add_theme_font_size_override("font_size", 46)
+	lbl.add_theme_font_size_override("font_size", 42)
 	lbl.add_theme_color_override("font_color", color)
-	lbl.add_theme_color_override("font_outline_color", Color(0.06, 0.14, 0.14, 0.96))
-	lbl.add_theme_constant_override("outline_size", 10)
-	lbl.size = Vector2(640, 68)
-	lbl.pivot_offset = Vector2(320, 34)
-	lbl.position = center_pos - Vector2(320, 34)
-	lbl.scale = Vector2.ONE * (1.0 if GameManager.is_reduce_motion() else 0.55)
-	add_child(lbl)
+	lbl.add_theme_color_override("font_outline_color", Color(0.04, 0.10, 0.12, 0.96))
+	lbl.add_theme_constant_override("outline_size", 8)
+	pill.add_child(lbl)
 
-	var dur := 0.45 if GameManager.is_reduce_motion() else 0.95
-	var tw := lbl.create_tween()
+	pill.custom_minimum_size = Vector2(560, 76)
+	pill.size = Vector2(560, 76)
+	pill.pivot_offset = Vector2(280, 38)
+	pill.position = center_pos - Vector2(280, 38)
+	pill.scale = Vector2.ONE * (1.0 if GameManager.is_reduce_motion() else 0.52)
+	add_child(pill)
+
+	var dur := 0.45 if GameManager.is_reduce_motion() else 1.05
+	var tw := pill.create_tween()
 	if not GameManager.is_reduce_motion():
-		tw.tween_property(lbl, "scale", Vector2.ONE * 1.12, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tw.tween_property(lbl, "scale", Vector2.ONE, 0.12)
-	tw.tween_property(lbl, "position:y", lbl.position.y - (16.0 if GameManager.is_reduce_motion() else 44.0), dur * 0.6)
-	tw.parallel().tween_property(lbl, "modulate:a", 0.0, dur * 0.4).set_delay(dur * 0.55)
-	tw.chain().tween_callback(lbl.queue_free)
+		tw.tween_property(pill, "scale", Vector2.ONE * 1.12, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(pill, "scale", Vector2.ONE, 0.12)
+	tw.tween_property(pill, "position:y", pill.position.y - (16.0 if GameManager.is_reduce_motion() else 48.0), dur * 0.65)
+	tw.parallel().tween_property(pill, "modulate:a", 0.0, dur * 0.4).set_delay(dur * 0.6)
+	tw.chain().tween_callback(pill.queue_free)
+
+
+func spawn_confetti_burst(area: Rect2) -> void:
+	if DisplayServer.get_name() == "headless" or GameManager.is_reduce_motion():
+		return
+	var palette := [
+		Color(1.0, 0.84, 0.22),
+		Color(0.20, 0.90, 0.58),
+		Color(1.0, 0.42, 0.54),
+		Color(0.32, 0.82, 1.0),
+		Color(0.82, 0.50, 1.0)
+	]
+	var tex := _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	for i in range(22):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = palette[i % palette.size()]
+		var start_x := area.position.x + _rng.randf_range(0.05, 0.95) * area.size.x
+		var start_y := area.position.y - _rng.randf_range(10.0, 80.0)
+		sp.position = Vector2(start_x, start_y)
+		sp.scale = Vector2.ONE * _rng.randf_range(0.14, 0.28)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var end_pos := Vector2(start_x + _rng.randf_range(-90.0, 90.0), area.position.y + area.size.y * _rng.randf_range(0.55, 0.95))
+		var dur := _rng.randf_range(0.95, 1.55)
+		var tw := sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", end_pos, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-4.0, 4.0), dur)
+		tw.tween_property(sp, "modulate:a", 0.0, 0.45).set_delay(dur - 0.45)
+		tw.chain().tween_callback(sp.queue_free)
 
 
 func trigger_shake(target: Control, strength: float = 8.0) -> void:

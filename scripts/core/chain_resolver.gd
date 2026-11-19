@@ -45,6 +45,25 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 			if loop_bonus_clears.size() >= 3:
 				break
 
+	# Harmony Fever active bonus: clears +1 extra matching organ anywhere on board and doubles chain score!
+	var fever_active := int(progress.get("fever_turns", 0)) > 0
+	var fever_bonus_clears: Array[Vector2i] = []
+	if fever_active:
+		for r in range(BoardState.ROWS):
+			for c in range(BoardState.COLS):
+				var fp := Vector2i(c, r)
+				if cleared_set.has(fp):
+					continue
+				var fcell := board.get_cell(fp)
+				if fcell.get("kind", "") == "organ" and str(fcell.get("organ", "")) == organ_type:
+					board.clear_cell(fp)
+					cleared_set[fp] = true
+					fever_bonus_clears.append(fp)
+					cleared_organ_count += 1
+					break
+			if not fever_bonus_clears.is_empty():
+				break
+
 	# Combo streak multiplier (1.0x up to 2.0x on consecutive 4+ or loop chains)
 	var streak := int(progress.get("combo_streak", 0))
 	if unique_chain.size() >= 4 or is_loop_chain:
@@ -54,14 +73,32 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	progress["combo_streak"] = streak
 	var streak_mult := 1.0 + float(maxi(0, streak - 1)) * 0.2
 
+	# Harmony Fever meter charge & activation (reaches 3/3 -> 2 turns of Harmony Fever!)
+	var fever_triggered := false
+	if fever_active:
+		progress["fever_turns"] = maxi(0, int(progress.get("fever_turns", 0)) - 1)
+	else:
+		var charge_add := 2 if is_loop_chain else (1 if unique_chain.size() >= 4 else 0)
+		if charge_add > 0:
+			var next_charge := int(progress.get("fever_charge", 0)) + charge_add
+			if next_charge >= 3:
+				progress["fever_charge"] = 0
+				progress["fever_turns"] = 2
+				progress["fever_activations"] = int(progress.get("fever_activations", 0)) + 1
+				fever_triggered = true
+			else:
+				progress["fever_charge"] = next_charge
+
 	var base_tile_score := int(balance.get("base_tile_score", 25))
 	var long_thresh := int(balance.get("long_chain_threshold", 5))
 	var raw_chain_score := ScoreManager.calculate_chain_score(cleared_organ_count, base_tile_score)
 	if is_loop_chain:
 		raw_chain_score = int(round(float(raw_chain_score) * 1.5))
-	var chain_score := int(round(float(raw_chain_score) * streak_mult))
+	var fever_mult := 2.0 if fever_active else 1.0
+	var chain_score := int(round(float(raw_chain_score) * streak_mult * fever_mult))
 
 	progress["collected"][organ_type] = int(progress["collected"].get(organ_type, 0)) + cleared_organ_count
+	progress["best_chain_len"] = maxi(int(progress.get("best_chain_len", 0)), cleared_organ_count)
 	if unique_chain.size() >= long_thresh or is_loop_chain:
 		progress["long_chains"] = int(progress.get("long_chains", 0)) + 1
 
@@ -94,6 +131,8 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 				if nkind == "care":
 					progress["care_activated"] = int(progress.get("care_activated", 0)) + 1
 				healthy_popped.append({"pos": nb, "kind": nkind, "score": pts})
+	if not healthy_popped.is_empty():
+		progress["healthy_pops"] = int(progress.get("healthy_pops", 0)) + healthy_popped.size()
 
 	# Charge Care Energy (0..100) & apply healthy pop pulse bonus before Endpoint Pulse
 	var energy_add := cleared_organ_count * 6 + healthy_energy + (15 if (unique_chain.size() >= long_thresh or is_loop_chain) else 0)
@@ -160,6 +199,11 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 		"chain_len": cleared_organ_count,
 		"unique_len": unique_chain.size(),
 		"loop_bonus_clears": loop_bonus_clears,
+		"fever_active": fever_active,
+		"fever_triggered": fever_triggered,
+		"fever_turns": int(progress.get("fever_turns", 0)),
+		"fever_charge": int(progress.get("fever_charge", 0)),
+		"fever_bonus_clears": fever_bonus_clears,
 		"healthy_popped": healthy_popped,
 		"healthy_bonus_score": healthy_bonus_score,
 		"streak": streak,

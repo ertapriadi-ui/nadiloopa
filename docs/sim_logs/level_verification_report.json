@@ -1,6 +1,6 @@
 {
-	"avg_move_usage_pct": 57.2,
-	"bot_3star_levels": 82,
+	"avg_move_usage_pct": 53.6,
+	"bot_3star_levels": 91,
 	"generated_by": "tests/test_suite.gd",
 	"levels": [
 		{
@@ -22,7 +22,7 @@
 		},
 		{
 			"avg_moves_used": 5.0,
-			"avg_score": 3972,
+			"avg_score": 5673,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 2,
@@ -56,7 +56,7 @@
 		},
 		{
 			"avg_moves_used": 6.3,
-			"avg_score": 5435,
+			"avg_score": 7193,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 4,
@@ -73,7 +73,7 @@
 		},
 		{
 			"avg_moves_used": 7.3,
-			"avg_score": 3666,
+			"avg_score": 5528,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 5,
@@ -89,13 +89,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 4.0,
-			"avg_score": 4064,
+			"avg_moves_used": 3.7,
+			"avg_score": 4382,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 6,
 			"move_budget": 16,
-			"move_usage_pct": 25.0,
+			"move_usage_pct": 22.9,
 			"star_thresholds": [
 				2100.0,
 				2562.0,
@@ -123,13 +123,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5371,
+			"avg_moves_used": 7.7,
+			"avg_score": 6863,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 8,
 			"move_budget": 17,
-			"move_usage_pct": 47.1,
+			"move_usage_pct": 45.1,
 			"star_thresholds": [
 				1674.0,
 				2042.0,
@@ -141,7 +141,7 @@
 		},
 		{
 			"avg_moves_used": 3.7,
-			"avg_score": 4200,
+			"avg_score": 4942,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 9,
@@ -157,13 +157,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 4323,
+			"avg_moves_used": 7.0,
+			"avg_score": 4882,
 			"canonical_seed_won": true,
 			"chapter": 1,
 			"level_id": 10,
 			"move_budget": 18,
-			"move_usage_pct": 44.4,
+			"move_usage_pct": 38.9,
 			"star_thresholds": [
 				2800.0,
 				3416.0,
@@ -174,13 +174,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.7,
-			"avg_score": 7362,
+			"avg_moves_used": 8.3,
+			"avg_score": 11092,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 11,
 			"move_budget": 15,
-			"move_usage_pct": 57.8,
+			"move_usage_pct": 55.6,
 			"star_thresholds": [
 				1758.0,
 				2144.0,
@@ -191,13 +191,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.7,
-			"avg_score": 5291,
+			"avg_moves_used": 6.3,
+			"avg_score": 7495,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 12,
 			"move_budget": 15,
-			"move_usage_pct": 44.4,
+			"move_usage_pct": 42.2,
 			"star_thresholds": [
 				1786.0,
 				2178.0,
@@ -208,13 +208,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.3,
-			"avg_score": 4763,
+			"avg_moves_used": 6.0,
+			"avg_score": 6793,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 13,
 			"move_budget": 16,
-			"move_usage_pct": 39.6,
+			"move_usage_pct": 37.5,
 			"star_thresholds": [
 				1814.0,
 				2213.0,
@@ -226,7 +226,7 @@
 		},
 		{
 			"avg_moves_used": 5.3,
-			"avg_score": 4807,
+			"avg_score": 6013,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 14,
@@ -243,7 +243,7 @@
 		},
 		{
 			"avg_moves_used": 7.7,
-			"avg_score": 4704,
+			"avg_score": 7224,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 15,
@@ -260,7 +260,7 @@
 		},
 		{
 			"avg_moves_used": 8.0,
-			"avg_score": 7288,
+			"avg_score": 8061,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 16,
@@ -276,13 +276,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 7.0,
-			"avg_score": 4725,
+			"avg_moves_used": 7.3,
+			"avg_score": 6263,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 17,
 			"move_budget": 15,
-			"move_usage_pct": 46.7,
+			"move_usage_pct": 48.9,
 			"star_thresholds": [
 				1926.0,
 				2349.0,
@@ -293,13 +293,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 7.7,
-			"avg_score": 4246,
+			"avg_moves_used": 7.3,
+			"avg_score": 5103,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 18,
 			"move_budget": 16,
-			"move_usage_pct": 47.9,
+			"move_usage_pct": 45.8,
 			"star_thresholds": [
 				1954.0,
 				2383.0,
@@ -310,13 +310,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.0,
-			"avg_score": 4750,
+			"avg_moves_used": 5.7,
+			"avg_score": 5272,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 19,
 			"move_budget": 15,
-			"move_usage_pct": 40.0,
+			"move_usage_pct": 37.8,
 			"star_thresholds": [
 				3046.0,
 				3716.0,
@@ -327,13 +327,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 14.3,
-			"avg_score": 8706,
+			"avg_moves_used": 14.7,
+			"avg_score": 10717,
 			"canonical_seed_won": true,
 			"chapter": 2,
 			"level_id": 20,
 			"move_budget": 20,
-			"move_usage_pct": 71.7,
+			"move_usage_pct": 73.3,
 			"star_thresholds": [
 				2460.0,
 				3001.0,
@@ -345,7 +345,7 @@
 		},
 		{
 			"avg_moves_used": 9.0,
-			"avg_score": 6501,
+			"avg_score": 8187,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 21,
@@ -362,7 +362,7 @@
 		},
 		{
 			"avg_moves_used": 6.7,
-			"avg_score": 4282,
+			"avg_score": 5431,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 22,
@@ -378,13 +378,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.3,
-			"avg_score": 5151,
+			"avg_moves_used": 8.0,
+			"avg_score": 6045,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 23,
 			"move_budget": 16,
-			"move_usage_pct": 52.1,
+			"move_usage_pct": 50.0,
 			"star_thresholds": [
 				2094.0,
 				2554.0,
@@ -395,13 +395,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.7,
-			"avg_score": 4752,
+			"avg_moves_used": 5.7,
+			"avg_score": 5963,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 24,
 			"move_budget": 15,
-			"move_usage_pct": 44.4,
+			"move_usage_pct": 37.8,
 			"star_thresholds": [
 				3216.0,
 				3923.0,
@@ -413,7 +413,7 @@
 		},
 		{
 			"avg_moves_used": 10.0,
-			"avg_score": 5402,
+			"avg_score": 8237,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 25,
@@ -429,13 +429,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.7,
-			"avg_score": 6464,
+			"avg_moves_used": 10.3,
+			"avg_score": 10476,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 26,
 			"move_budget": 15,
-			"move_usage_pct": 71.1,
+			"move_usage_pct": 68.9,
 			"star_thresholds": [
 				2178.0,
 				2657.0,
@@ -446,13 +446,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.3,
-			"avg_score": 4406,
+			"avg_moves_used": 5.3,
+			"avg_score": 6712,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 27,
 			"move_budget": 15,
-			"move_usage_pct": 42.2,
+			"move_usage_pct": 35.6,
 			"star_thresholds": [
 				2206.0,
 				2691.0,
@@ -464,7 +464,7 @@
 		},
 		{
 			"avg_moves_used": 7.7,
-			"avg_score": 4676,
+			"avg_score": 6921,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 28,
@@ -480,13 +480,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.7,
-			"avg_score": 4642,
+			"avg_moves_used": 6.3,
+			"avg_score": 5251,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 29,
 			"move_budget": 15,
-			"move_usage_pct": 44.4,
+			"move_usage_pct": 42.2,
 			"star_thresholds": [
 				3386.0,
 				4130.0,
@@ -497,13 +497,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 14.3,
-			"avg_score": 7069,
+			"avg_moves_used": 10.7,
+			"avg_score": 10128,
 			"canonical_seed_won": true,
 			"chapter": 3,
 			"level_id": 30,
 			"move_budget": 20,
-			"move_usage_pct": 71.7,
+			"move_usage_pct": 53.3,
 			"star_thresholds": [
 				2740.0,
 				3342.0,
@@ -514,13 +514,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.3,
-			"avg_score": 7171,
+			"avg_moves_used": 10.7,
+			"avg_score": 9965,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 31,
 			"move_budget": 16,
-			"move_usage_pct": 64.6,
+			"move_usage_pct": 66.7,
 			"star_thresholds": [
 				2318.0,
 				2827.0,
@@ -531,13 +531,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5771,
+			"avg_moves_used": 7.7,
+			"avg_score": 8047,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 32,
 			"move_budget": 16,
-			"move_usage_pct": 50.0,
+			"move_usage_pct": 47.9,
 			"star_thresholds": [
 				2346.0,
 				2862.0,
@@ -548,13 +548,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 4389,
+			"avg_moves_used": 8.3,
+			"avg_score": 5995,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 33,
 			"move_budget": 17,
-			"move_usage_pct": 47.1,
+			"move_usage_pct": 49.0,
 			"star_thresholds": [
 				2374.0,
 				2896.0,
@@ -565,13 +565,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5174,
+			"avg_moves_used": 7.0,
+			"avg_score": 5490,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 34,
 			"move_budget": 16,
-			"move_usage_pct": 50.0,
+			"move_usage_pct": 43.8,
 			"star_thresholds": [
 				3556.0,
 				4338.0,
@@ -582,13 +582,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.7,
-			"avg_score": 6124,
+			"avg_moves_used": 7.7,
+			"avg_score": 8699,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 35,
 			"move_budget": 17,
-			"move_usage_pct": 51.0,
+			"move_usage_pct": 45.1,
 			"star_thresholds": [
 				2430.0,
 				2964.0,
@@ -599,13 +599,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 8266,
+			"avg_moves_used": 9.3,
+			"avg_score": 9617,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 36,
 			"move_budget": 16,
-			"move_usage_pct": 62.5,
+			"move_usage_pct": 58.3,
 			"star_thresholds": [
 				2458.0,
 				2998.0,
@@ -616,13 +616,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 7.7,
-			"avg_score": 5475,
+			"avg_moves_used": 7.3,
+			"avg_score": 7453,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 37,
 			"move_budget": 16,
-			"move_usage_pct": 47.9,
+			"move_usage_pct": 45.8,
 			"star_thresholds": [
 				2486.0,
 				3032.0,
@@ -633,13 +633,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.0,
-			"avg_score": 4268,
+			"avg_moves_used": 8.7,
+			"avg_score": 5767,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 38,
 			"move_budget": 17,
-			"move_usage_pct": 52.9,
+			"move_usage_pct": 51.0,
 			"star_thresholds": [
 				2514.0,
 				3067.0,
@@ -650,13 +650,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5098,
+			"avg_moves_used": 5.7,
+			"avg_score": 6403,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 39,
 			"move_budget": 16,
-			"move_usage_pct": 50.0,
+			"move_usage_pct": 35.4,
 			"star_thresholds": [
 				3726.0,
 				4545.0,
@@ -667,13 +667,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 17.0,
-			"avg_score": 6439,
+			"avg_moves_used": 17.3,
+			"avg_score": 9125,
 			"canonical_seed_won": true,
 			"chapter": 4,
 			"level_id": 40,
 			"move_budget": 21,
-			"move_usage_pct": 81.0,
+			"move_usage_pct": 82.5,
 			"star_thresholds": [
 				3020.0,
 				3684.0,
@@ -684,13 +684,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 12.7,
-			"avg_score": 6360,
+			"avg_moves_used": 11.7,
+			"avg_score": 9804,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 41,
 			"move_budget": 16,
-			"move_usage_pct": 79.2,
+			"move_usage_pct": 72.9,
 			"star_thresholds": [
 				2598.0,
 				3169.0,
@@ -701,13 +701,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5655,
+			"avg_moves_used": 7.3,
+			"avg_score": 7254,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 42,
 			"move_budget": 16,
-			"move_usage_pct": 50.0,
+			"move_usage_pct": 45.8,
 			"star_thresholds": [
 				2626.0,
 				3203.0,
@@ -718,13 +718,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.7,
-			"avg_score": 6391,
+			"avg_moves_used": 8.0,
+			"avg_score": 7348,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 43,
 			"move_budget": 17,
-			"move_usage_pct": 51.0,
+			"move_usage_pct": 47.1,
 			"star_thresholds": [
 				2654.0,
 				3237.0,
@@ -735,13 +735,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 6.7,
-			"avg_score": 5389,
+			"avg_moves_used": 6.0,
+			"avg_score": 7005,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 44,
 			"move_budget": 16,
-			"move_usage_pct": 41.7,
+			"move_usage_pct": 37.5,
 			"star_thresholds": [
 				3896.0,
 				4753.0,
@@ -752,13 +752,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.0,
-			"avg_score": 4997,
+			"avg_moves_used": 8.3,
+			"avg_score": 5890,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 45,
 			"move_budget": 17,
-			"move_usage_pct": 52.9,
+			"move_usage_pct": 49.0,
 			"star_thresholds": [
 				2710.0,
 				3306.0,
@@ -769,13 +769,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 13.3,
-			"avg_score": 5233,
+			"avg_moves_used": 11.7,
+			"avg_score": 7666,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 46,
 			"move_budget": 16,
-			"move_usage_pct": 83.3,
+			"move_usage_pct": 72.9,
 			"star_thresholds": [
 				2738.0,
 				3340.0,
@@ -786,13 +786,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.3,
-			"avg_score": 5398,
+			"avg_moves_used": 8.0,
+			"avg_score": 8106,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 47,
 			"move_budget": 16,
-			"move_usage_pct": 52.1,
+			"move_usage_pct": 50.0,
 			"star_thresholds": [
 				2766.0,
 				3374.0,
@@ -803,13 +803,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.7,
-			"avg_score": 4813,
+			"avg_moves_used": 9.0,
+			"avg_score": 5530,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 48,
 			"move_budget": 17,
-			"move_usage_pct": 56.9,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				2794.0,
 				3408.0,
@@ -820,13 +820,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 5313,
+			"avg_moves_used": 8.3,
+			"avg_score": 6339,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 49,
 			"move_budget": 16,
-			"move_usage_pct": 62.5,
+			"move_usage_pct": 52.1,
 			"star_thresholds": [
 				4066.0,
 				4960.0,
@@ -837,13 +837,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 14.7,
-			"avg_score": 8881,
+			"avg_moves_used": 15.7,
+			"avg_score": 10313,
 			"canonical_seed_won": true,
 			"chapter": 5,
 			"level_id": 50,
 			"move_budget": 21,
-			"move_usage_pct": 69.8,
+			"move_usage_pct": 74.6,
 			"star_thresholds": [
 				3300.0,
 				4026.0,
@@ -854,13 +854,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 11.7,
-			"avg_score": 6898,
+			"avg_moves_used": 12.3,
+			"avg_score": 10799,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 51,
 			"move_budget": 16,
-			"move_usage_pct": 72.9,
+			"move_usage_pct": 77.1,
 			"star_thresholds": [
 				2878.0,
 				3511.0,
@@ -871,13 +871,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.0,
-			"avg_score": 5710,
+			"avg_moves_used": 7.7,
+			"avg_score": 8025,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 52,
 			"move_budget": 16,
-			"move_usage_pct": 50.0,
+			"move_usage_pct": 47.9,
 			"star_thresholds": [
 				2906.0,
 				3545.0,
@@ -888,13 +888,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.7,
-			"avg_score": 5214,
+			"avg_moves_used": 9.0,
+			"avg_score": 6913,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 53,
 			"move_budget": 17,
-			"move_usage_pct": 62.7,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				2934.0,
 				3579.0,
@@ -905,13 +905,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.0,
-			"avg_score": 5600,
+			"avg_moves_used": 8.3,
+			"avg_score": 5734,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 54,
 			"move_budget": 16,
-			"move_usage_pct": 56.3,
+			"move_usage_pct": 52.1,
 			"star_thresholds": [
 				4236.0,
 				5167.0,
@@ -923,7 +923,7 @@
 		},
 		{
 			"avg_moves_used": 12.0,
-			"avg_score": 4334,
+			"avg_score": 7678,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 55,
@@ -939,13 +939,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 14.0,
-			"avg_score": 7353,
+			"avg_moves_used": 12.3,
+			"avg_score": 11765,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 56,
 			"move_budget": 16,
-			"move_usage_pct": 87.5,
+			"move_usage_pct": 77.1,
 			"star_thresholds": [
 				3018.0,
 				3681.0,
@@ -956,13 +956,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 7.7,
-			"avg_score": 6488,
+			"avg_moves_used": 7.3,
+			"avg_score": 7429,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 57,
 			"move_budget": 16,
-			"move_usage_pct": 47.9,
+			"move_usage_pct": 45.8,
 			"star_thresholds": [
 				3046.0,
 				3716.0,
@@ -973,13 +973,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.0,
-			"avg_score": 6012,
+			"avg_moves_used": 8.7,
+			"avg_score": 7910,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 58,
 			"move_budget": 17,
-			"move_usage_pct": 52.9,
+			"move_usage_pct": 51.0,
 			"star_thresholds": [
 				3074.0,
 				3750.0,
@@ -990,13 +990,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 11.7,
-			"avg_score": 5287,
+			"avg_moves_used": 9.3,
+			"avg_score": 5891,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 59,
 			"move_budget": 16,
-			"move_usage_pct": 72.9,
+			"move_usage_pct": 58.3,
 			"star_thresholds": [
 				4406.0,
 				5375.0,
@@ -1007,13 +1007,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 15.7,
-			"avg_score": 8721,
+			"avg_moves_used": 16.3,
+			"avg_score": 12128,
 			"canonical_seed_won": true,
 			"chapter": 6,
 			"level_id": 60,
 			"move_budget": 21,
-			"move_usage_pct": 74.6,
+			"move_usage_pct": 77.8,
 			"star_thresholds": [
 				3580.0,
 				4367.0,
@@ -1024,13 +1024,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 12.3,
-			"avg_score": 8374,
+			"avg_moves_used": 11.3,
+			"avg_score": 12342,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 61,
 			"move_budget": 17,
-			"move_usage_pct": 72.5,
+			"move_usage_pct": 66.7,
 			"star_thresholds": [
 				3158.0,
 				3852.0,
@@ -1041,13 +1041,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.0,
-			"avg_score": 6038,
+			"avg_moves_used": 8.0,
+			"avg_score": 8173,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 62,
 			"move_budget": 17,
-			"move_usage_pct": 52.9,
+			"move_usage_pct": 47.1,
 			"star_thresholds": [
 				3186.0,
 				3886.0,
@@ -1058,13 +1058,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.7,
-			"avg_score": 4442,
+			"avg_moves_used": 9.3,
+			"avg_score": 6070,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 63,
 			"move_budget": 18,
-			"move_usage_pct": 53.7,
+			"move_usage_pct": 51.9,
 			"star_thresholds": [
 				3214.0,
 				3921.0,
@@ -1075,13 +1075,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.3,
-			"avg_score": 6228,
+			"avg_moves_used": 7.3,
+			"avg_score": 6629,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 64,
 			"move_budget": 17,
-			"move_usage_pct": 54.9,
+			"move_usage_pct": 43.1,
 			"star_thresholds": [
 				4576.0,
 				5582.0,
@@ -1092,13 +1092,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.3,
-			"avg_score": 6411,
+			"avg_moves_used": 9.7,
+			"avg_score": 8077,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 65,
 			"move_budget": 18,
-			"move_usage_pct": 51.9,
+			"move_usage_pct": 53.7,
 			"star_thresholds": [
 				3270.0,
 				3989.0,
@@ -1109,13 +1109,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 13.0,
-			"avg_score": 6203,
+			"avg_moves_used": 11.3,
+			"avg_score": 10023,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 66,
 			"move_budget": 17,
-			"move_usage_pct": 76.5,
+			"move_usage_pct": 66.7,
 			"star_thresholds": [
 				3298.0,
 				4023.0,
@@ -1127,7 +1127,7 @@
 		},
 		{
 			"avg_moves_used": 9.3,
-			"avg_score": 5914,
+			"avg_score": 7556,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 67,
@@ -1143,13 +1143,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.7,
-			"avg_score": 6275,
+			"avg_moves_used": 9.3,
+			"avg_score": 7290,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 68,
 			"move_budget": 18,
-			"move_usage_pct": 53.7,
+			"move_usage_pct": 51.9,
 			"star_thresholds": [
 				3354.0,
 				4091.0,
@@ -1160,13 +1160,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 12.0,
-			"avg_score": 5611,
+			"avg_moves_used": 9.7,
+			"avg_score": 6201,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 69,
 			"move_budget": 17,
-			"move_usage_pct": 70.6,
+			"move_usage_pct": 56.9,
 			"star_thresholds": [
 				4746.0,
 				5790.0,
@@ -1177,13 +1177,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 17.0,
-			"avg_score": 9856,
+			"avg_moves_used": 16.0,
+			"avg_score": 10830,
 			"canonical_seed_won": true,
 			"chapter": 7,
 			"level_id": 70,
 			"move_budget": 22,
-			"move_usage_pct": 77.3,
+			"move_usage_pct": 72.7,
 			"star_thresholds": [
 				3860.0,
 				4709.0,
@@ -1194,13 +1194,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 14.0,
-			"avg_score": 8293,
+			"avg_moves_used": 13.7,
+			"avg_score": 12880,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 71,
 			"move_budget": 17,
-			"move_usage_pct": 82.4,
+			"move_usage_pct": 80.4,
 			"star_thresholds": [
 				3438.0,
 				4194.0,
@@ -1211,13 +1211,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.3,
-			"avg_score": 6013,
+			"avg_moves_used": 9.0,
+			"avg_score": 9059,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 72,
 			"move_budget": 17,
-			"move_usage_pct": 49.0,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				3466.0,
 				4228.0,
@@ -1229,7 +1229,7 @@
 		},
 		{
 			"avg_moves_used": 9.0,
-			"avg_score": 6767,
+			"avg_score": 9279,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 73,
@@ -1245,13 +1245,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.3,
-			"avg_score": 6898,
+			"avg_moves_used": 6.3,
+			"avg_score": 6880,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 74,
 			"move_budget": 17,
-			"move_usage_pct": 54.9,
+			"move_usage_pct": 37.3,
 			"star_thresholds": [
 				4916.0,
 				5997.0,
@@ -1263,7 +1263,7 @@
 		},
 		{
 			"avg_moves_used": 9.7,
-			"avg_score": 5867,
+			"avg_score": 6558,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 75,
@@ -1279,13 +1279,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 13.3,
-			"avg_score": 7424,
+			"avg_moves_used": 13.0,
+			"avg_score": 10958,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 76,
 			"move_budget": 17,
-			"move_usage_pct": 78.4,
+			"move_usage_pct": 76.5,
 			"star_thresholds": [
 				3578.0,
 				4365.0,
@@ -1296,13 +1296,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.7,
-			"avg_score": 5965,
+			"avg_moves_used": 9.0,
+			"avg_score": 8405,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 77,
 			"move_budget": 17,
-			"move_usage_pct": 51.0,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				3606.0,
 				4399.0,
@@ -1313,13 +1313,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 6190,
+			"avg_moves_used": 9.7,
+			"avg_score": 6666,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 78,
 			"move_budget": 18,
-			"move_usage_pct": 55.6,
+			"move_usage_pct": 53.7,
 			"star_thresholds": [
 				3634.0,
 				4433.0,
@@ -1330,13 +1330,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 6873,
+			"avg_moves_used": 6.3,
+			"avg_score": 6606,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 79,
 			"move_budget": 17,
-			"move_usage_pct": 58.8,
+			"move_usage_pct": 37.3,
 			"star_thresholds": [
 				5086.0,
 				6204.0,
@@ -1347,13 +1347,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 19.0,
-			"avg_score": 9445,
+			"avg_moves_used": 18.0,
+			"avg_score": 13535,
 			"canonical_seed_won": true,
 			"chapter": 8,
 			"level_id": 80,
 			"move_budget": 22,
-			"move_usage_pct": 86.4,
+			"move_usage_pct": 81.8,
 			"star_thresholds": [
 				4140.0,
 				5050.0,
@@ -1364,13 +1364,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 15.7,
-			"avg_score": 6432,
+			"avg_moves_used": 14.0,
+			"avg_score": 11910,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 81,
 			"move_budget": 17,
-			"move_usage_pct": 92.2,
+			"move_usage_pct": 82.4,
 			"star_thresholds": [
 				3718.0,
 				4535.0,
@@ -1381,13 +1381,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 6737,
+			"avg_moves_used": 9.0,
+			"avg_score": 9885,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 82,
 			"move_budget": 17,
-			"move_usage_pct": 58.8,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				3746.0,
 				4570.0,
@@ -1398,13 +1398,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 11.0,
-			"avg_score": 6503,
+			"avg_moves_used": 10.7,
+			"avg_score": 7647,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 83,
 			"move_budget": 18,
-			"move_usage_pct": 61.1,
+			"move_usage_pct": 59.3,
 			"star_thresholds": [
 				3774.0,
 				4604.0,
@@ -1415,13 +1415,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 11.7,
-			"avg_score": 6180,
+			"avg_moves_used": 9.0,
+			"avg_score": 6943,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 84,
 			"move_budget": 17,
-			"move_usage_pct": 68.6,
+			"move_usage_pct": 52.9,
 			"star_thresholds": [
 				5256.0,
 				6412.0,
@@ -1433,7 +1433,7 @@
 		},
 		{
 			"avg_moves_used": 10.3,
-			"avg_score": 6279,
+			"avg_score": 9571,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 85,
@@ -1449,13 +1449,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 15.7,
-			"avg_score": 7775,
+			"avg_moves_used": 15.3,
+			"avg_score": 10942,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 86,
 			"move_budget": 17,
-			"move_usage_pct": 92.2,
+			"move_usage_pct": 90.2,
 			"star_thresholds": [
 				3858.0,
 				4706.0,
@@ -1466,13 +1466,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.7,
-			"avg_score": 6510,
+			"avg_moves_used": 10.0,
+			"avg_score": 7910,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 87,
 			"move_budget": 17,
-			"move_usage_pct": 56.9,
+			"move_usage_pct": 58.8,
 			"star_thresholds": [
 				3886.0,
 				4740.0,
@@ -1483,13 +1483,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.3,
-			"avg_score": 5871,
+			"avg_moves_used": 10.7,
+			"avg_score": 6624,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 88,
 			"move_budget": 18,
-			"move_usage_pct": 57.4,
+			"move_usage_pct": 59.3,
 			"star_thresholds": [
 				3914.0,
 				4775.0,
@@ -1500,13 +1500,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 11.3,
-			"avg_score": 6362,
+			"avg_moves_used": 9.7,
+			"avg_score": 7942,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 89,
 			"move_budget": 17,
-			"move_usage_pct": 66.7,
+			"move_usage_pct": 56.9,
 			"star_thresholds": [
 				5426.0,
 				6619.0,
@@ -1517,13 +1517,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 17.3,
-			"avg_score": 10341,
+			"avg_moves_used": 16.7,
+			"avg_score": 14390,
 			"canonical_seed_won": true,
 			"chapter": 9,
 			"level_id": 90,
 			"move_budget": 22,
-			"move_usage_pct": 78.8,
+			"move_usage_pct": 75.8,
 			"star_thresholds": [
 				4420.0,
 				5392.0,
@@ -1534,13 +1534,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 15.0,
-			"avg_score": 8884,
+			"avg_moves_used": 14.0,
+			"avg_score": 13880,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 91,
 			"move_budget": 18,
-			"move_usage_pct": 83.3,
+			"move_usage_pct": 77.8,
 			"star_thresholds": [
 				3998.0,
 				4877.0,
@@ -1551,13 +1551,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 10.0,
-			"avg_score": 6868,
+			"avg_moves_used": 9.7,
+			"avg_score": 9091,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 92,
 			"move_budget": 18,
-			"move_usage_pct": 55.6,
+			"move_usage_pct": 53.7,
 			"star_thresholds": [
 				4026.0,
 				4911.0,
@@ -1568,13 +1568,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 9.7,
-			"avg_score": 7024,
+			"avg_moves_used": 9.0,
+			"avg_score": 7818,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 93,
 			"move_budget": 19,
-			"move_usage_pct": 50.9,
+			"move_usage_pct": 47.4,
 			"star_thresholds": [
 				4054.0,
 				4945.0,
@@ -1585,13 +1585,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 12.7,
-			"avg_score": 6813,
+			"avg_moves_used": 11.0,
+			"avg_score": 7035,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 94,
 			"move_budget": 18,
-			"move_usage_pct": 70.4,
+			"move_usage_pct": 61.1,
 			"star_thresholds": [
 				5596.0,
 				6827.0,
@@ -1603,7 +1603,7 @@
 		},
 		{
 			"avg_moves_used": 13.3,
-			"avg_score": 6843,
+			"avg_score": 7191,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 95,
@@ -1619,13 +1619,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 15.7,
-			"avg_score": 7423,
+			"avg_moves_used": 14.7,
+			"avg_score": 10544,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 96,
 			"move_budget": 18,
-			"move_usage_pct": 87.0,
+			"move_usage_pct": 81.5,
 			"star_thresholds": [
 				4138.0,
 				5048.0,
@@ -1637,7 +1637,7 @@
 		},
 		{
 			"avg_moves_used": 9.0,
-			"avg_score": 6713,
+			"avg_score": 8751,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 97,
@@ -1654,7 +1654,7 @@
 		},
 		{
 			"avg_moves_used": 10.0,
-			"avg_score": 7724,
+			"avg_score": 9056,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 98,
@@ -1670,13 +1670,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 8.7,
-			"avg_score": 7911,
+			"avg_moves_used": 6.0,
+			"avg_score": 8762,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 99,
 			"move_budget": 18,
-			"move_usage_pct": 48.1,
+			"move_usage_pct": 33.3,
 			"star_thresholds": [
 				5766.0,
 				7034.0,
@@ -1687,13 +1687,13 @@
 			"wins_of_3": 3
 		},
 		{
-			"avg_moves_used": 17.7,
-			"avg_score": 8632,
+			"avg_moves_used": 16.0,
+			"avg_score": 13038,
 			"canonical_seed_won": true,
 			"chapter": 10,
 			"level_id": 100,
 			"move_budget": 24,
-			"move_usage_pct": 73.6,
+			"move_usage_pct": 66.7,
 			"star_thresholds": [
 				4700.0,
 				5734.0,

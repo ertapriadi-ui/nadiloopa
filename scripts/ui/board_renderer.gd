@@ -58,11 +58,19 @@ var _hint_chain: Array[Vector2i] = []
 var _is_animating: bool = false
 var _victory_dance: bool = false
 var _victory_dance_time: float = 0.0
+var _fever_active: bool = false
+
+var _sb_tray_outer: StyleBoxFlat
+var _sb_tray_inner: StyleBoxFlat
+var _sb_tray_fever: StyleBoxFlat
+var _sb_cell_even: StyleBoxFlat
+var _sb_cell_odd: StyleBoxFlat
 
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_load_assets()
+	_init_board_styles()
 
 	_tile_layer = Control.new()
 	_tile_layer.name = "TileLayer"
@@ -84,6 +92,48 @@ func _ready() -> void:
 
 	resized.connect(_on_resized)
 	_recompute_geometry()
+
+
+func _init_board_styles() -> void:
+	_sb_tray_outer = StyleBoxFlat.new()
+	_sb_tray_outer.bg_color = Color(0.08, 0.36, 0.33, 0.94)
+	_sb_tray_outer.border_color = Color(0.96, 0.84, 0.52, 0.85)
+	_sb_tray_outer.set_border_width_all(3)
+	_sb_tray_outer.border_width_bottom = 8
+	_sb_tray_outer.set_corner_radius_all(26)
+	_sb_tray_outer.shadow_size = 18
+	_sb_tray_outer.shadow_color = Color(0.02, 0.10, 0.10, 0.42)
+	_sb_tray_outer.shadow_offset = Vector2(0, 8)
+
+	_sb_tray_inner = StyleBoxFlat.new()
+	_sb_tray_inner.bg_color = Color(0.96, 0.985, 0.955, 0.94)
+	_sb_tray_inner.border_color = Color(0.14, 0.54, 0.46, 0.55)
+	_sb_tray_inner.set_border_width_all(3)
+	_sb_tray_inner.set_corner_radius_all(20)
+
+	_sb_tray_fever = StyleBoxFlat.new()
+	_sb_tray_fever.bg_color = Color(0.96, 0.72, 0.12, 0.96)
+	_sb_tray_fever.border_color = Color(1.0, 0.95, 0.62, 0.98)
+	_sb_tray_fever.set_border_width_all(5)
+	_sb_tray_fever.border_width_bottom = 9
+	_sb_tray_fever.set_corner_radius_all(26)
+	_sb_tray_fever.shadow_size = 24
+	_sb_tray_fever.shadow_color = Color(1.0, 0.78, 0.16, 0.55)
+	_sb_tray_fever.shadow_offset = Vector2(0, 6)
+
+	_sb_cell_even = StyleBoxFlat.new()
+	_sb_cell_even.bg_color = Color(0.87, 0.945, 0.915, 0.86)
+	_sb_cell_even.set_corner_radius_all(12)
+
+	_sb_cell_odd = StyleBoxFlat.new()
+	_sb_cell_odd.bg_color = Color(0.945, 0.985, 0.965, 0.86)
+	_sb_cell_odd.set_corner_radius_all(12)
+
+
+func set_fever_active(active: bool) -> void:
+	if _fever_active != active:
+		_fever_active = active
+		queue_redraw()
 
 
 func _load_assets() -> void:
@@ -420,9 +470,17 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 		_vfx.spawn_pulse_ring(hc, Color(0.28, 0.96, 0.56) if hkind == "care" else Color(1.0, 0.88, 0.26), cell_px, 1.35)
 		_vfx.spawn_floating_text(hc - Vector2(0, float(cell_px) * 0.22), "+%d ★" % hpts, Color(0.45, 1.0, 0.68) if hkind == "care" else Color(1.0, 0.92, 0.35), maxi(20, int(cell_px * 0.22)))
 
-	# Combo & Loop Celebratory Banners
+	# Harmony Fever bonus clear rings
+	for fp in result.get("fever_bonus_clears", []):
+		var fc := cell_center(fp)
+		_vfx.spawn_pulse_ring(fc, Color(1.0, 0.86, 0.20, 0.98), cell_px, 1.45)
+
+	# Combo, Fever & Loop Celebratory Banners
 	var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.24)
-	if is_loop:
+	if bool(result.get("fever_triggered", false)):
+		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_FEVER_TRIGGER"), Color(1.0, 0.88, 0.22))
+		AudioManager.play_sfx("combo_banner", 1.12)
+	elif is_loop:
 		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_LOOP"), Color(1.0, 0.90, 0.28))
 		AudioManager.play_sfx("combo_banner")
 	elif streak >= 3:
@@ -450,14 +508,14 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 			existing.set_meta("row", int(cell["row"]))
 			_refresh_existing_tile_visual(existing, cell)
 			if existing.position.distance_to(target_pos) > 1.0:
-				drop_tween.tween_property(existing, "position", target_pos, drop_dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
+				drop_tween.tween_property(existing, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
 		else:
 			var created := _create_tile_node(cell)
 			var start_row := int(spawns.get(tid, -1))
 			created.position = board_origin + Vector2((float(cell["col"]) + 0.5) * float(cell_px), (float(start_row) + 0.5) * float(cell_px))
 			_tile_layer.add_child(created)
 			_tile_nodes[tid] = created
-			drop_tween.tween_property(created, "position", target_pos, drop_dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
+			drop_tween.tween_property(created, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
 
 	drop_tween.chain().tween_callback(func():
 		_is_animating = false
@@ -498,6 +556,8 @@ func start_victory_dance() -> void:
 	_victory_dance = true
 	_victory_dance_time = 0.0
 	_hint_chain.clear()
+	if DisplayServer.get_name() != "headless" and is_instance_valid(_vfx):
+		_vfx.spawn_confetti_burst(get_board_rect())
 	for tid in _tile_nodes.keys():
 		var node: Control = _tile_nodes[tid]
 		if not is_instance_valid(node):
@@ -592,18 +652,22 @@ func _draw() -> void:
 	if board_pixel_size.x <= 0.0:
 		return
 
-	var tray_rect := Rect2(board_origin - Vector2(12, 12), board_pixel_size + Vector2(24, 24))
-	draw_rect(tray_rect, Color(0.08, 0.25, 0.24, 0.24), true)
 	var board_rect := get_board_rect()
-	draw_rect(board_rect.grow(6.0), Color(0.96, 0.99, 0.96, 0.90), true)
-	draw_rect(board_rect.grow(6.0), Color(0.12, 0.48, 0.42, 0.62), false, 3.0)
+	var outer_rect := board_rect.grow(14.0)
+	if _fever_active and _sb_tray_fever != null:
+		draw_style_box(_sb_tray_fever, outer_rect)
+	elif _sb_tray_outer != null:
+		draw_style_box(_sb_tray_outer, outer_rect)
+	if _sb_tray_inner != null:
+		draw_style_box(_sb_tray_inner, board_rect.grow(6.0))
 
 	for r in range(BoardState.ROWS):
 		for c in range(BoardState.COLS):
-			var cr := Rect2(cell_top_left(Vector2i(c, r)), Vector2(float(cell_px), float(cell_px)))
+			var cr := Rect2(cell_top_left(Vector2i(c, r)), Vector2(float(cell_px), float(cell_px))).grow(-2.5)
 			var is_even := ((c + r) % 2) == 0
-			var col := Color(0.88, 0.95, 0.92, 0.78) if is_even else Color(0.95, 0.99, 0.97, 0.78)
-			draw_rect(cr.grow(-2.0), col, true)
+			var sb_cell := _sb_cell_even if is_even else _sb_cell_odd
+			if sb_cell != null:
+				draw_style_box(sb_cell, cr)
 
 	if not _active_chain.is_empty() and _board_state != null:
 		var head_cell := _board_state.get_cell(_active_chain[0])
@@ -614,16 +678,19 @@ func _draw() -> void:
 		for p in _active_chain:
 			var cr := Rect2(cell_top_left(p), Vector2(float(cell_px), float(cell_px))).grow(-3.0)
 			var fill_c := line_col
-			fill_c.a = 0.26
+			fill_c.a = 0.28
 			draw_rect(cr, fill_c, true)
-			draw_rect(cr, line_col, false, 3.5)
+			draw_rect(cr, line_col, false, 4.0)
 
 		if _active_chain.size() >= 2:
 			var pts := PackedVector2Array()
 			for p in _active_chain:
 				pts.append(cell_center(p))
-			draw_polyline(pts, Color(1, 1, 1, 0.82), maxf(9.0, float(cell_px) * 0.17), true)
-			draw_polyline(pts, line_col, maxf(6.0, float(cell_px) * 0.11), true)
+			var glow_c := line_col
+			glow_c.a = 0.32
+			draw_polyline(pts, glow_c, maxf(16.0, float(cell_px) * 0.28), true)
+			draw_polyline(pts, Color(1, 1, 1, 0.88), maxf(10.0, float(cell_px) * 0.18), true)
+			draw_polyline(pts, line_col, maxf(6.5, float(cell_px) * 0.115), true)
 
 	# Draw Endpoint Pulse rays & cell outlines underneath tile sprites so faces stay uncrossed
 	if _board_state != null and _active_chain.size() >= 3 and bool(_endpoint_preview.get("valid", false)):
@@ -636,7 +703,7 @@ func _draw() -> void:
 			var st := _preview_tag_style(tag, is_ep_loop)
 			var border_col: Color = st[0]
 			var nr := Rect2(cell_top_left(np), Vector2(float(cell_px), float(cell_px))).grow(-3.0)
-			draw_line(ep_center, cell_center(np), Color(border_col.r, border_col.g, border_col.b, 0.72), 4.0)
+			draw_line(ep_center, cell_center(np), Color(border_col.r, border_col.g, border_col.b, 0.76), 4.5)
 			draw_rect(nr, border_col, false, 5.0 if tag != "neutral" else 2.5)
 
 
@@ -659,14 +726,26 @@ func _draw_pulse_overlay() -> void:
 		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.16, Color(1.0, 1.0, 1.0, 0.92))
 		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.11, Color(0.10, 0.72, 0.48, 0.95))
 
-	# 2. Endpoint Pulse Halo & Crisp Pill Badges above tiles
+	# 2. Endpoint Pulse Halo, Live Chain Length Counter & Crisp Pill Badges above tiles
 	if _board_state == null or _active_chain.size() < 3 or not bool(_endpoint_preview.get("valid", false)):
 		return
 	var is_loop := bool(_endpoint_preview.get("is_loop", false))
 	var ep: Vector2i = _endpoint_preview.get("endpoint", _active_chain[_active_chain.size() - 1])
 	var ep_center := cell_center(ep)
-	var ep_col := Color(1.0, 0.86, 0.22, 0.96) if is_loop else Color(1.0, 1.0, 1.0, 0.88)
-	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.46, 0.0, TAU, 36, ep_col, 4.5, true)
+	var ep_col := Color(1.0, 0.86, 0.22, 0.98) if is_loop else Color(1.0, 1.0, 1.0, 0.92)
+	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.47, 0.0, TAU, 36, ep_col, 5.0, true)
+
+	# Live Chain Length Pill above endpoint
+	if _font_bold != null:
+		var cnt_txt := "LOOP!" if is_loop else "×%d" % _active_chain.size()
+		var cfsize := clampi(int(float(cell_px) * 0.22), 14, 24)
+		var pw := maxf(float(cell_px) * 0.68, 62.0)
+		var ph := float(cfsize) + 12.0
+		var cpill := Rect2(ep_center.x - pw * 0.5, ep_center.y - float(cell_px) * 0.55 - ph * 0.5, pw, ph)
+		var pill_bg := Color(0.92, 0.64, 0.08, 0.98) if is_loop else Color(0.08, 0.52, 0.44, 0.96)
+		_pulse_overlay.draw_rect(cpill.grow(2.5), Color(1, 1, 1, 0.96), true)
+		_pulse_overlay.draw_rect(cpill, pill_bg, true)
+		_pulse_overlay.draw_string(_font_bold, Vector2(cpill.position.x + 2.0, cpill.position.y + float(cfsize) + 3.0), cnt_txt, HORIZONTAL_ALIGNMENT_CENTER, cpill.size.x - 4.0, cfsize, Color.WHITE)
 
 	for nb_info in _endpoint_preview.get("neighbors", []):
 		var np: Vector2i = nb_info["pos"]

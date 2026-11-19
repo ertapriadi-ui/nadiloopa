@@ -112,3 +112,18 @@ static func cast_rest_shield(board: BoardState, progress: Dictionary, rng: Rando
 		placed = candidates[rng.randi_range(0, candidates.size() - 1)]
 		board.set_special(placed, "care", 1)
 	return {"used": true, "ability": "rest", "care_pos": placed}
+
+
+static func apply_second_wind(progress: Dictionary, max_pulse: int = 100, shield_max: int = 2) -> Dictionary:
+	if bool(progress.get("second_wind_used", false)):
+		return {"used": false, "reason": "already_used"}
+	progress["second_wind_used"] = true
+	progress["moves_left"] = int(progress.get("moves_left", 0)) + 3
+	progress["pulse_meter"] = mini(max_pulse, maxi(25, int(progress.get("pulse_meter", 0)) + 25))
+	progress["shield_charges"] = mini(shield_max, int(progress.get("shield_charges", 0)) + 1)
+	return {
+		"used": true,
+		"moves_added": 3,
+		"pulse_meter": int(progress["pulse_meter"]),
+		"shield_charges": int(progress["shield_charges"])
+	}

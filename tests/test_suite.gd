@@ -21,16 +21,19 @@ func _process(_delta: float) -> bool:
 	_audio_mgr = root.get_node("AudioManager")
 	_game_mgr = root.get_node("GameManager")
 
-	print("=== NADILOOPA v2.0 AUTOMATED QA SUITE START ===")
+	print("=== NADILOOPA v2.3 AUTOMATED QA SUITE START ===")
 	_test_grid_bounds_and_84_slots()
 	_test_chain_rules_backtrack_and_touch_signal()
 	_test_nadi_loop_8way_and_bonus()
 	_test_endpoint_orientation_and_pre_refill_pulse()
 	_test_booster_hazard_armor_bloom_and_lock_expiry()
 	_test_tactical_care_abilities()
+	_test_harmony_fever_mode()
+	_test_second_wind_revival()
 	_test_gravity_refill_and_reshuffle()
 	_test_scoring_moves_win_lose()
 	_test_persistence_and_corrupt_recovery()
+	_test_daily_quests_star_chests_and_rank()
 	_test_bilingual_sprites_and_audio_assets()
 	_test_endless_and_daily_modes()
 	_test_all_100_levels_and_simulations()
@@ -647,3 +650,127 @@ func _dfs_collect(board: BoardState, organ: String, path: Array[Vector2i], used:
 			tries += 1
 			if tries >= 2 and path.size() >= 4:
 				break
+
+
+func _test_harmony_fever_mode() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2301
+	var lv := {
+		"id": 9901,
+		"moves": 12,
+		"objectives": {"score": 999999},
+		"star_thresholds": [500, 1000, 1500],
+		"weights": {"heart": 50, "brain": 50}
+	}
+	var prog := LevelManager.create_initial_progress(lv)
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "brain")
+	# 4-tile heart chain -> +1 Fever charge
+	for x in range(4):
+		b.set_organ(Vector2i(x, 0), "heart")
+	var ch4: Array[Vector2i] = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+	var r1 := ChainResolver.resolve_turn(b, ch4, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r1.get("committed", false)), "4-tile chain commits cleanly")
+	_assert_eq(int(prog.get("fever_charge", 0)), 1, "4-tile chain adds +1 Harmony Fever charge")
+	_assert_true(not bool(r1.get("fever_triggered", false)), "Fever not triggered at 1/3 charge")
+	_assert_eq(int(prog.get("best_chain_len", 0)), 4, "best_chain_len records 4")
+
+	# Closed 5-step Nadi Loop -> +2 Fever charge -> hits 3/3 and triggers 2 turns of Harmony Fever
+	b.set_organ(Vector2i(1, 3), "heart")
+	b.set_organ(Vector2i(2, 3), "heart")
+	b.set_organ(Vector2i(2, 4), "heart")
+	b.set_organ(Vector2i(1, 4), "heart")
+	var loop_ch: Array[Vector2i] = [Vector2i(1, 3), Vector2i(2, 3), Vector2i(2, 4), Vector2i(1, 4), Vector2i(1, 3)]
+	var r2 := ChainResolver.resolve_turn(b, loop_ch, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r2.get("fever_triggered", false)), "Loop reaching 3/3 charge triggers Harmony Fever")
+	_assert_eq(int(prog.get("fever_turns", 0)), 2, "Harmony Fever grants 2 active turns")
+	_assert_eq(int(prog.get("fever_activations", 0)), 1, "fever_activations incremented to 1")
+	_assert_eq(int(prog.get("fever_charge", 0)), 0, "fever_charge resets to 0 on activation")
+
+	# Next turn during Fever: 2.0x score + 1 bonus matching organ tile cleared + turns decrement to 1
+	b.set_organ(Vector2i(0, 6), "heart")
+	b.set_organ(Vector2i(1, 6), "heart")
+	b.set_organ(Vector2i(2, 6), "heart")
+	b.set_organ(Vector2i(5, 8), "heart")
+	var ch3: Array[Vector2i] = [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6)]
+	var r3 := ChainResolver.resolve_turn(b, ch3, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r3.get("fever_active", false)), "Turn executed during active Harmony Fever")
+	_assert_true(r3.get("fever_bonus_clears", []).size() >= 1, "Harmony Fever pops +1 bonus matching organ tile")
+	_assert_eq(int(prog.get("fever_turns", 0)), 1, "Harmony Fever turns decrement from 2 to 1")
+
+
+func _test_second_wind_revival() -> void:
+	var lv := {"id": 9902, "moves": 10, "objectives": {"score": 1000}, "star_thresholds": [500, 1000, 1500]}
+	var prog := LevelManager.create_initial_progress(lv)
+	prog["moves_left"] = 0
+	prog["pulse_meter"] = 20
+	prog["shield_charges"] = 0
+
+	var res1 := BoosterSystem.apply_second_wind(prog, 100, 2)
+	_assert_true(bool(res1.get("used", false)), "First Second Wind revival succeeds")
+	_assert_eq(int(prog.get("moves_left", 0)), 3, "Second Wind adds +3 moves")
+	_assert_eq(int(prog.get("pulse_meter", 0)), 45, "Second Wind restores +25 pulse")
+	_assert_eq(int(prog.get("shield_charges", 0)), 1, "Second Wind grants +1 shield")
+	_assert_true(bool(prog.get("second_wind_used", false)), "second_wind_used flag set to true")
+
+	var res2 := BoosterSystem.apply_second_wind(prog, 100, 2)
+	_assert_true(not bool(res2.get("used", false)), "Second Wind cannot be used twice on the same stage")
+	_assert_eq(str(res2.get("reason", "")), "already_used", "Second Wind returns already_used reason")
+	_assert_eq(int(prog.get("moves_left", 0)), 3, "Moves unchanged on rejected second revival")
+
+
+func _test_daily_quests_star_chests_and_rank() -> void:
+	var tmp_path := "user://test_nadiloopa_v23_quests.json"
+	var tmp_bak := tmp_path + ".bak"
+	_save_mgr.set_test_save_path(tmp_path)
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_bak):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_bak))
+
+	_save_mgr.data = _save_mgr.create_default_data()
+	_save_mgr.save_to_disk()
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 2, "New profile starts with 2 Sanctuary Charms")
+	var r0: Dictionary = _save_mgr.get_sanctuary_rank()
+	_assert_eq(int(r0.get("rank", 0)), 1, "New profile starts at Sanctuary Rank 1")
+	_assert_eq(str(r0.get("tier_key", "")), "RANK_SEEDLING", "Rank 1 tier is RANK_SEEDLING")
+
+	var test_date := "2026-11-18"
+	_save_mgr.record_daily_quest_progress(test_date, 35, 2, 6)
+	_assert_eq(_save_mgr.get_unclaimed_rewards_count(test_date), 3, "All 3 Daily Quests become claimable")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 0), "Claim Daily Quest 0 succeeds")
+	_assert_true(not _save_mgr.claim_daily_quest(test_date, 0), "Duplicate Daily Quest 0 claim rejected")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 1), "Claim Daily Quest 1 succeeds")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 2), "Claim Daily Quest 2 succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 5, "Claiming 3 daily quests grants +3 Charms (total 5)")
+
+	# Earn 15 campaign stars (5 levels x 3 stars) to unlock Star Milestone Chest
+	for lid in range(1, 6):
+		_save_mgr.record_level_win(lid, 3, 2500)
+	var chest: Dictionary = _save_mgr.get_star_chest_info()
+	_assert_true(bool(chest.get("claimable", false)), "Star Milestone Chest unlocks at 15 stars")
+	_assert_true(_save_mgr.claim_star_chest(), "Claim Star Milestone Chest succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 7, "Star Chest grants +2 Charms (total 7)")
+	_assert_eq(int(_save_mgr.get_star_chest_info().get("next_milestone", 0)), 30, "Next Star Chest milestone advances to 30")
+
+	_assert_true(_save_mgr.spend_sanctuary_charm(), "Spend 1 Sanctuary Charm succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms decrements to 6")
+
+	# Verify checksum persistence round-trip
+	_save_mgr.load_save()
+	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.3 save data passes SHA-256 checksum cleanly")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms persists across reload")
+	var r1: Dictionary = _save_mgr.get_sanctuary_rank()
+	_assert_true(int(r1.get("rank", 1)) >= 3, "Sanctuary Rank advances with campaign stars")
+
+	# Cleanup isolated test save files
+	_save_mgr.clear_test_save_path()
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_bak):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_bak))
+	_save_mgr.load_save()
+
