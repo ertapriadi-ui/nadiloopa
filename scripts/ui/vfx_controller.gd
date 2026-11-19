@@ -230,6 +230,92 @@ func spawn_confetti_burst(area: Rect2) -> void:
 		tw.chain().tween_callback(sp.queue_free)
 
 
+func spawn_explosion_splash(local_pos: Vector2, color: Color, cell_px: int, intensity: float = 1.0) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	# Double concentric shockwave rings
+	spawn_pulse_ring(local_pos, color, cell_px, 1.85 * intensity)
+	if not reduce:
+		spawn_pulse_ring(local_pos, Color(1.0, 0.96, 0.72, 0.95), cell_px, 2.75 * intensity)
+	var tex := _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	var count := 6 if reduce else clampi(int(round(16.0 * intensity)), 12, 28)
+	var base_scale := clampf(float(cell_px) / 290.0, 0.18, 0.48)
+	var palette := [color, Color(1.0, 0.92, 0.36), Color(1.0, 0.48, 0.22), Color(1.0, 1.0, 1.0)]
+	for i in range(count):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = palette[i % palette.size()]
+		sp.position = local_pos
+		sp.scale = Vector2.ONE * base_scale * _rng.randf_range(0.85, 1.45)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var ang := (TAU / float(count)) * float(i) + _rng.randf_range(-0.22, 0.22)
+		var dist := float(cell_px) * _rng.randf_range(0.85, 2.15 * intensity)
+		var target := local_pos + Vector2(cos(ang), sin(ang)) * dist
+		var dur := 0.22 if reduce else _rng.randf_range(0.38, 0.62)
+		var tw := sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", target, dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-5.0, 5.0), dur)
+		tw.tween_property(sp, "scale", Vector2.ZERO, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		tw.tween_property(sp, "modulate:a", 0.0, dur)
+		tw.chain().tween_callback(sp.queue_free)
+
+
+func spawn_cross_beam(center_pos: Vector2, board_rect: Rect2, color: Color) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	var dur := 0.20 if reduce else 0.44
+	var beam_thickness := clampf(board_rect.size.x * 0.085, 42.0, 74.0)
+
+	# Horizontal beam across board
+	var h_beam := ColorRect.new()
+	h_beam.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	h_beam.color = Color(color.r, color.g, color.b, 0.88)
+	h_beam.position = Vector2(board_rect.position.x, center_pos.y - beam_thickness * 0.5)
+	h_beam.size = Vector2(board_rect.size.x, beam_thickness)
+	h_beam.pivot_offset = Vector2(board_rect.size.x * 0.5, beam_thickness * 0.5)
+	add_child(h_beam)
+
+	# Vertical beam across board
+	var v_beam := ColorRect.new()
+	v_beam.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	v_beam.color = Color(color.r, color.g, color.b, 0.88)
+	v_beam.position = Vector2(center_pos.x - beam_thickness * 0.5, board_rect.position.y)
+	v_beam.size = Vector2(beam_thickness, board_rect.size.y)
+	v_beam.pivot_offset = Vector2(beam_thickness * 0.5, board_rect.size.y * 0.5)
+	add_child(v_beam)
+
+	for beam in [h_beam, v_beam]:
+		var tw := beam.create_tween()
+		tw.set_parallel(true)
+		if beam == h_beam:
+			tw.tween_property(beam, "scale", Vector2(1.0, 0.08), dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		else:
+			tw.tween_property(beam, "scale", Vector2(0.08, 1.0), dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		tw.tween_property(beam, "modulate:a", 0.0, dur)
+		tw.chain().tween_callback(beam.queue_free)
+
+
+func spawn_screen_flash(area: Rect2, color: Color, duration: float = 0.42) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var flash := ColorRect.new()
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	flash.color = Color(color.r, color.g, color.b, 0.34 if GameManager.is_reduce_motion() else 0.52)
+	flash.position = area.position
+	flash.size = area.size
+	add_child(flash)
+	var dur := minf(duration, 0.22) if GameManager.is_reduce_motion() else duration
+	var tw := flash.create_tween()
+	tw.tween_property(flash, "modulate:a", 0.0, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.chain().tween_callback(flash.queue_free)
+
+
 func trigger_shake(target: Control, strength: float = 8.0) -> void:
 	if DisplayServer.get_name() == "headless" or target == null:
 		return

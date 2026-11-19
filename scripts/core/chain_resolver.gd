@@ -158,32 +158,115 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	energy_add += int(pulse_res.get("energy_gained", 0))
 	progress["care_energy"] = mini(100, int(progress.get("care_energy", 0)) + energy_add)
 
-	# Vitality Burst: 6+ unique organ chain unleashes a 3x3 shockwave around endpoint,
-	# clearing up to 4 surrounding organ tiles for extra objective progress & +60 pts each!
-	var vitality_burst_triggered := unique_chain.size() >= 6
+	# Tiered Mega-Explosions & Board-Reset Combos (v2.6.0):
+	# - Tier 1 (6-7 unique): Vitality Burst — 3x3 shockwave around endpoint, clears up to 4 organs (+60 each) & destroys Overloads in 3x3 (+120 each)!
+	# - Tier 2 (8-9 unique): Super Nova Splash — blasts entire row + column cross, destroys ALL Overloads in cross (+150 each), +400 bonus, +15 Energy, +1 Bonus Move!
+	# - Tier 3 (10+ unique): Grand Harmony Mega Blast & Board Reset — destroys ALL Overloads on the ENTIRE board (+180 each), clears remaining tiles for a fresh Board Reset, +1200 bonus, refills Pulse to 100%, +25 Energy, +2 Bonus Moves!
+	var ulen := unique_chain.size()
+	var mega_tier := 3 if ulen >= 10 else (2 if ulen >= 8 else (1 if ulen >= 6 else 0))
+	var vitality_burst_triggered := mega_tier >= 1
 	var vitality_burst_cells: Array[Vector2i] = []
-	var vitality_burst_score := 0
-	if vitality_burst_triggered:
+	var mega_cells: Array[Vector2i] = []
+	var mega_overloads_destroyed: Array[Vector2i] = []
+	var mega_bonus_score := 0
+	var bonus_moves_gained := 0
+	var board_reset_triggered := false
+
+	if mega_tier == 1:
 		for nb in BoardState.get_8way_neighbors(endpoint):
-			if vitality_burst_cells.size() >= 4:
-				break
 			if cleared_set.has(nb):
 				continue
 			var bcell := board.get_cell(nb)
-			if str(bcell.get("kind", "")) == "organ":
+			var bkind := str(bcell.get("kind", ""))
+			if bkind == "overload":
+				cleared_set[nb] = true
+				board.clear_cell(nb)
+				mega_overloads_destroyed.append(nb)
+				mega_cells.append(nb)
+				progress["overloads_neutralized"] = int(progress.get("overloads_neutralized", 0)) + 1
+				mega_bonus_score += 120
+			elif bkind == "organ" and vitality_burst_cells.size() < 4:
 				var nb_org := str(bcell.get("organ", ""))
 				cleared_set[nb] = true
 				board.clear_cell(nb)
 				vitality_burst_cells.append(nb)
+				mega_cells.append(nb)
 				if nb_org != "":
 					progress["collected"][nb_org] = int(progress["collected"].get(nb_org, 0)) + 1
-				vitality_burst_score += 60
+				mega_bonus_score += 60
+	elif mega_tier == 2:
+		# Super Nova: entire row & column cross-blast through endpoint
+		var cross_targets: Array[Vector2i] = []
+		for c in range(BoardState.COLS):
+			cross_targets.append(Vector2i(c, endpoint.y))
+		for r in range(BoardState.ROWS):
+			if r != endpoint.y:
+				cross_targets.append(Vector2i(endpoint.x, r))
+		for tp in cross_targets:
+			if cleared_set.has(tp):
+				continue
+			var tcell := board.get_cell(tp)
+			var tkind := str(tcell.get("kind", ""))
+			if tkind == "empty":
+				continue
+			cleared_set[tp] = true
+			board.clear_cell(tp)
+			mega_cells.append(tp)
+			if tkind == "overload":
+				mega_overloads_destroyed.append(tp)
+				progress["overloads_neutralized"] = int(progress.get("overloads_neutralized", 0)) + 1
+				mega_bonus_score += 150
+			elif tkind == "organ":
+				var torg := str(tcell.get("organ", ""))
+				vitality_burst_cells.append(tp)
+				if torg != "":
+					progress["collected"][torg] = int(progress["collected"].get(torg, 0)) + 1
+				mega_bonus_score += 75
+			elif tkind == "care" or tkind == "bloom":
+				if tkind == "care":
+					progress["care_activated"] = int(progress.get("care_activated", 0)) + 1
+				mega_bonus_score += 120
+		mega_bonus_score += 400
+		bonus_moves_gained = 1
+		progress["care_energy"] = mini(100, int(progress.get("care_energy", 0)) + 15)
+	elif mega_tier == 3:
+		# Grand Harmony Mega Blast & Board Reset: obliterates all Overloads & refreshes entire board!
+		board_reset_triggered = true
+		for r in range(BoardState.ROWS):
+			for c in range(BoardState.COLS):
+				var gp := Vector2i(c, r)
+				if cleared_set.has(gp):
+					continue
+				var gcell := board.get_cell(gp)
+				var gkind := str(gcell.get("kind", ""))
+				if gkind == "empty":
+					continue
+				cleared_set[gp] = true
+				board.clear_cell(gp)
+				mega_cells.append(gp)
+				if gkind == "overload":
+					mega_overloads_destroyed.append(gp)
+					progress["overloads_neutralized"] = int(progress.get("overloads_neutralized", 0)) + 1
+					mega_bonus_score += 180
+				elif gkind == "organ":
+					var gorg := str(gcell.get("organ", ""))
+					if gorg != "":
+						progress["collected"][gorg] = int(progress["collected"].get(gorg, 0)) + 1
+					mega_bonus_score += 35
+				elif gkind == "care" or gkind == "bloom":
+					if gkind == "care":
+						progress["care_activated"] = int(progress.get("care_activated", 0)) + 1
+					mega_bonus_score += 100
+		mega_bonus_score += 1200
+		bonus_moves_gained = 2
+		progress["pulse_meter"] = max_pulse
+		progress["care_energy"] = mini(100, int(progress.get("care_energy", 0)) + 25)
 
-	var turn_score: int = chain_score + healthy_bonus_score + vitality_burst_score + int(pulse_res["bonus_score"])
+	var turn_score: int = chain_score + healthy_bonus_score + mega_bonus_score + int(pulse_res["bonus_score"])
 	progress["score"] = int(progress.get("score", 0)) + turn_score
 
 	HazardSystem.tick_restrictions(board)
-	progress["moves_left"] = maxi(0, int(progress.get("moves_left", 0)) - 1)
+	progress["moves_left"] = maxi(0, int(progress.get("moves_left", 0)) - 1) + bonus_moves_gained
 
 	var weights: Dictionary = level_def.get("weights", {"heart": 25, "brain": 25, "lungs": 25, "kidneys": 25})
 	var min_care := int(level_def.get("min_care_on_board", 0))
@@ -227,6 +310,11 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 		"fever_bonus_clears": fever_bonus_clears,
 		"vitality_burst_triggered": vitality_burst_triggered,
 		"vitality_burst_cells": vitality_burst_cells,
+		"mega_tier": mega_tier,
+		"mega_cells": mega_cells,
+		"mega_overloads_destroyed": mega_overloads_destroyed,
+		"bonus_moves_gained": bonus_moves_gained,
+		"board_reset_triggered": board_reset_triggered,
 		"healthy_popped": healthy_popped,
 		"healthy_bonus_score": healthy_bonus_score,
 		"streak": streak,

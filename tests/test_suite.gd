@@ -28,6 +28,7 @@ func _process(_delta: float) -> bool:
 	_test_endpoint_orientation_and_pre_refill_pulse()
 	_test_booster_hazard_armor_bloom_and_lock_expiry()
 	_test_tactical_care_abilities()
+	_test_detox_bomb_and_mega_combos()
 	_test_harmony_fever_mode()
 	_test_second_wind_revival()
 	_test_gravity_refill_and_reshuffle()
@@ -797,4 +798,86 @@ func _test_daily_quests_star_chests_and_rank() -> void:
 	if FileAccess.file_exists(tmp_bak):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_bak))
 	_save_mgr.load_save()
+
+
+func _test_detox_bomb_and_mega_combos() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 26001
+	var lv := {
+		"id": 9926,
+		"moves": 12,
+		"weights": {"heart": 25, "brain": 25, "lungs": 25, "kidneys": 25},
+		"objectives": {"neutralize_overload": 5, "score": 50000},
+		"star_thresholds": [10000, 25000, 50000]
+	}
+
+	# 1. Detox Bomb destroys Overloads + 3x3 splash & costs 35 Care Energy
+	var b_bomb := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_bomb.set_organ(Vector2i(c, r), "brain")
+	b_bomb.set_overload(Vector2i(2, 5), 2)
+	b_bomb.set_overload(Vector2i(4, 7), 1)
+	var prog_b := LevelManager.create_initial_progress(lv)
+	prog_b["care_energy"] = 20
+	var r_bomb_low := BoosterSystem.cast_detox_bomb(b_bomb, lv, prog_b, rng)
+	_assert_true(not bool(r_bomb_low.get("used", false)), "Detox Bomb requires at least 35 Care Energy")
+
+	prog_b["care_energy"] = 50
+	var r_bomb := BoosterSystem.cast_detox_bomb(b_bomb, lv, prog_b, rng)
+	_assert_true(bool(r_bomb.get("used", false)), "Detox Bomb fires when Care Energy >= 35")
+	_assert_eq(int(prog_b.get("care_energy", 0)), 15, "Detox Bomb deducts 35 Care Energy")
+	_assert_eq(r_bomb.get("overloads_destroyed", []).size(), 2, "Detox Bomb destroys both Overloads including 2-HP armored")
+	_assert_eq(int(prog_b.get("overloads_neutralized", 0)), 2, "Detox Bomb credits overloads_neutralized objective")
+	_assert_true(r_bomb.get("splash_cells", []).size() >= 4, "Detox Bomb deals 3x3 splash damage around blasted Overloads")
+	_assert_true(int(r_bomb.get("score_gained", 0)) >= 400, "Detox Bomb awards bonus score")
+
+	# 2. Chain 8-9 triggers Tier 2 Super Nova Cross-Blast (+1 Bonus Move, destroys cross Overloads)
+	var b_nova := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_nova.set_organ(Vector2i(c, r), "brain")
+	var ch8: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1),
+		Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5)
+	]
+	for p in ch8:
+		b_nova.set_organ(p, "heart")
+	# Place Overload on endpoint row (0, 5) and column (4, 10)
+	b_nova.set_overload(Vector2i(0, 5), 1)
+	b_nova.set_overload(Vector2i(4, 10), 2)
+	var prog_n := LevelManager.create_initial_progress(lv)
+	prog_n["moves_left"] = 10
+	var r8 := ChainResolver.resolve_turn(b_nova, ch8, lv, prog_n, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(r8.get("mega_tier", 0)), 2, "8-tile chain triggers Mega Tier 2 (Super Nova)")
+	_assert_eq(int(r8.get("bonus_moves_gained", 0)), 1, "Super Nova grants +1 Bonus Move")
+	_assert_eq(int(prog_n.get("moves_left", 0)), 10, "Net moves stay 10 after -1 turn cost and +1 Super Nova Bonus Move")
+	_assert_eq(r8.get("mega_overloads_destroyed", []).size(), 2, "Super Nova cross-blast destroys Overloads in row & column")
+
+	# 3. Chain 10+ triggers Tier 3 Grand Harmony Mega Blast & Board Reset (+2 Bonus Moves, destroys ALL Overloads, Pulse 100)
+	var b_mega := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_mega.set_organ(Vector2i(c, r), "lungs")
+	var ch10: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1),
+		Vector2i(5, 2), Vector2i(5, 3), Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6)
+	]
+	for p in ch10:
+		b_mega.set_organ(p, "heart")
+	b_mega.set_overload(Vector2i(0, 0), 2)
+	b_mega.set_overload(Vector2i(6, 11), 1)
+	b_mega.set_overload(Vector2i(2, 9), 1)
+	var prog_m := LevelManager.create_initial_progress(lv)
+	prog_m["moves_left"] = 8
+	prog_m["pulse_meter"] = 55
+	var r10 := ChainResolver.resolve_turn(b_mega, ch10, lv, prog_m, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(r10.get("mega_tier", 0)), 3, "10+ tile chain triggers Mega Tier 3 (Grand Harmony Mega Blast)")
+	_assert_true(bool(r10.get("board_reset_triggered", false)), "10+ tile chain triggers full Board Reset")
+	_assert_eq(int(r10.get("bonus_moves_gained", 0)), 2, "10+ Mega Blast grants +2 Bonus Moves")
+	_assert_eq(int(prog_m.get("moves_left", 0)), 9, "Net moves rise from 8 to 9 (-1 turn, +2 bonus)")
+	_assert_eq(int(prog_m.get("pulse_meter", 0)), 100, "10+ Mega Blast restores Pulse Meter to 100")
+	_assert_eq(r10.get("mega_overloads_destroyed", []).size(), 3, "10+ Mega Blast destroys ALL Overloads across the entire board")
+
 

@@ -2,7 +2,7 @@
   "en": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Pulse Puzzle Sanctuary",
-    "APP_WORKING_TAG": "v2.5.0 • 100 Stages",
+    "APP_WORKING_TAG": "v2.6.0 • 100 Stages",
     "DIFF_TITLE": "Difficulty & Grid Size",
     "DIFF_EASY": "EASY\n5×7",
     "DIFF_MEDIUM": "MEDIUM\n6×9",
@@ -204,12 +204,19 @@
     "WELCOME_CARD3_TITLE": "Winning Secrets",
     "WELCOME_CARD3_BODY": "Close a ring (Nadi Loop) or chain 6+ (Vitality Burst) to clear angry Saturated-Fat Overloads & charge Harmony Fever 2×!",
     "WELCOME_BTN_START": "START JOURNEY!",
-    "BTN_WELCOME_INFO": "Intro"
+    "BTN_WELCOME_INFO": "Intro",
+    "ABL_BOMB_NAME": "Detox Bomb",
+    "ABL_USED_BOMB": "BOOM! Detox Bomb blasted {overloads} hazard(s) & {total} tiles!",
+    "BANNER_DETOX_BOMB": "DETOX BOMB! BLAST!",
+    "BANNER_SUPER_NOVA": "SUPER NOVA! CROSS BLAST +1 MOVE!",
+    "BANNER_MEGA_RESET": "MEGA BLAST! FULL BOARD RESET +2 MOVES!",
+    "PREVIEW_SUPER_NOVA": "8+ SUPER NOVA! Row & Column Blast +1 Bonus Move!",
+    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Clears ALL Hazards + FULL BOARD RESET +2 Moves!"
   },
   "id": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Suaka Teka-Teki Denyut",
-    "APP_WORKING_TAG": "v2.5.0 • 100 Tahap",
+    "APP_WORKING_TAG": "v2.6.0 • 100 Tahap",
     "DIFF_TITLE": "Tingkat & Luas Kotak",
     "DIFF_EASY": "MUDAH\n5×7",
     "DIFF_MEDIUM": "SEDANG\n6×9",
@@ -411,6 +418,13 @@
     "WELCOME_CARD3_TITLE": "Trik Menang & Kombo",
     "WELCOME_CARD3_BODY": "Tutup lingkaran (Nadi Loop) atau rantai 6+ (Vitality Burst) untuk membersihkan makanan lemak jenuh (Overload) & aktifkan Demam 2×!",
     "WELCOME_BTN_START": "MULAI PETUALANGAN!",
-    "BTN_WELCOME_INFO": "Info"
+    "BTN_WELCOME_INFO": "Info",
+    "ABL_BOMB_NAME": "Bom Detoks",
+    "ABL_USED_BOMB": "DUAR! Bom Detoks meledakkan {overloads} ranjau & {total} ubin!",
+    "BANNER_DETOX_BOMB": "BOM DETOKS! MELEDAK!",
+    "BANNER_SUPER_NOVA": "SUPER NOVA! LEDAKAN SILANG +1 LANGKAH!",
+    "BANNER_MEGA_RESET": "MEGA BLAST! RESET PAPAN +2 LANGKAH!",
+    "PREVIEW_SUPER_NOVA": "8+ SUPER NOVA! Ledak 1 Baris & Kolom +1 Langkah!",
+    "PREVIEW_MEGA_RESET": "10+ MEGA BLAST! Hancurkan SEMUA Ranjau + RESET PAPAN +2 Langkah!"
   }
 }

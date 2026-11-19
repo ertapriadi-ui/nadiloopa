@@ -171,6 +171,7 @@ var _btn_game_retry: Button
 var _btn_game_help: Button
 var _lbl_energy_val: Label
 var _energy_bar: ProgressBar
+var _btn_abl_bomb: Button
 var _btn_abl_spark: Button
 var _btn_abl_flow: Button
 var _btn_abl_rest: Button
@@ -496,11 +497,11 @@ func _make_welcome_story_card(icon_key: String, border_col: Color, bg_col: Color
 	tvb.add_theme_constant_override("separation", 6)
 	hb.add_child(tvb)
 
-	var t_lbl := _make_label("", 32, Color(0.05, 0.28, 0.26), true)
+	var t_lbl := _make_label("", 36, Color(0.05, 0.28, 0.26), true)
 	t_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	tvb.add_child(t_lbl)
 
-	var b_lbl := _make_label("", 28, Color(0.16, 0.30, 0.30), false)
+	var b_lbl := _make_label("", 31, Color(0.14, 0.28, 0.28), false)
 	b_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	tvb.add_child(b_lbl)
 
@@ -526,7 +527,7 @@ func _build_welcome_screen(parent: Control) -> void:
 	outer_vb.add_child(lang_hb)
 
 	_btn_welcome_en = Button.new()
-	_btn_welcome_en.custom_minimum_size = Vector2(160, 68)
+	_btn_welcome_en.custom_minimum_size = Vector2(180, 74)
 	_btn_welcome_en.text = "English"
 	_btn_welcome_en.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
@@ -535,7 +536,7 @@ func _build_welcome_screen(parent: Control) -> void:
 	lang_hb.add_child(_btn_welcome_en)
 
 	_btn_welcome_id = Button.new()
-	_btn_welcome_id.custom_minimum_size = Vector2(180, 68)
+	_btn_welcome_id.custom_minimum_size = Vector2(200, 74)
 	_btn_welcome_id.text = "Indonesia"
 	_btn_welcome_id.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
@@ -548,12 +549,12 @@ func _build_welcome_screen(parent: Control) -> void:
 	outer_vb.add_child(center)
 
 	var card := PanelContainer.new()
-	card.custom_minimum_size = Vector2(980, 0)
-	card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 36, Color(0.94, 0.78, 0.42, 0.88), 5, 34, 30, 22))
+	card.custom_minimum_size = Vector2(990, 0)
+	card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 36, Color(0.94, 0.78, 0.42, 0.88), 5, 32, 28, 22))
 	center.add_child(card)
 
 	var vb := VBoxContainer.new()
-	vb.add_theme_constant_override("separation", 20)
+	vb.add_theme_constant_override("separation", 18)
 	card.add_child(vb)
 
 	# Hero Mascot Banner
@@ -571,11 +572,11 @@ func _build_welcome_screen(parent: Control) -> void:
 		tr.texture = _tile_icons.get(mk, _tex_icon)
 		hero_hb.add_child(tr)
 
-	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 46, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 48, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_welcome_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vb.add_child(_make_ribbon_header(_lbl_welcome_title, Color(0.08, 0.56, 0.46), Color(0.05, 0.36, 0.30)))
 
-	_lbl_welcome_sub = _make_label("", 30, Color(0.10, 0.42, 0.38), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_welcome_sub = _make_label("", 33, Color(0.08, 0.38, 0.34), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_welcome_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vb.add_child(_lbl_welcome_sub)
 
@@ -596,8 +597,8 @@ func _build_welcome_screen(parent: Control) -> void:
 	_lbl_w_c3_b = c3[2]
 
 	_btn_welcome_start = Button.new()
-	_btn_welcome_start.custom_minimum_size = Vector2(0, 114)
-	_style_button(_btn_welcome_start, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 38, 26)
+	_btn_welcome_start.custom_minimum_size = Vector2(0, 120)
+	_style_button(_btn_welcome_start, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 42, 26)
 	_btn_welcome_start.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		GameManager.trigger_haptic(18)
@@ -615,7 +616,7 @@ func _build_menu_screen(parent: Control) -> void:
 
 	var outer_vb := VBoxContainer.new()
 	outer_vb.set_anchors_preset(Control.PRESET_FULL_RECT)
-	outer_vb.add_theme_constant_override("separation", 18)
+	outer_vb.add_theme_constant_override("separation", 16)
 	_screen_menu.add_child(outer_vb)
 
 	# Play-Store Floating Top Status Bar (Rank • Stars • Charms • Intro ?)
@@ -627,24 +628,24 @@ func _build_menu_screen(parent: Control) -> void:
 	var rank_pill := PanelContainer.new()
 	rank_pill.add_theme_stylebox_override("panel", _make_box(Color(0.08, 0.36, 0.34, 0.95), 22, Color(0.98, 0.84, 0.42, 0.88), 3, 18, 10, 8))
 	top_bar.add_child(rank_pill)
-	_lbl_menu_rank = _make_label("Rank 1 • Seedling", 26, Color(1.0, 0.96, 0.80), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_rank = _make_label("Rank 1 • Seedling", 30, Color(1.0, 0.96, 0.80), true, HORIZONTAL_ALIGNMENT_CENTER)
 	rank_pill.add_child(_lbl_menu_rank)
 
 	var star_pill := PanelContainer.new()
 	star_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.96, 0.86, 0.96), 22, Color(0.92, 0.66, 0.12, 0.88), 3, 18, 10, 8))
 	top_bar.add_child(star_pill)
-	_lbl_menu_stars_chip = _make_label("★ 0/300", 26, Color(0.68, 0.40, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_stars_chip = _make_label("★ 0/300", 30, Color(0.68, 0.40, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
 	star_pill.add_child(_lbl_menu_stars_chip)
 
 	var charm_pill := PanelContainer.new()
 	charm_pill.add_theme_stylebox_override("panel", _make_box(Color(0.94, 0.90, 1.0, 0.96), 22, Color(0.56, 0.34, 0.88, 0.84), 3, 18, 10, 8))
 	top_bar.add_child(charm_pill)
-	_lbl_menu_charms_chip = _make_label("✦ 2", 26, Color(0.36, 0.16, 0.68), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_charms_chip = _make_label("✦ 2", 30, Color(0.36, 0.16, 0.68), true, HORIZONTAL_ALIGNMENT_CENTER)
 	charm_pill.add_child(_lbl_menu_charms_chip)
 
 	_btn_menu_welcome = Button.new()
-	_btn_menu_welcome.custom_minimum_size = Vector2(118, 58)
-	_style_button(_btn_menu_welcome, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 26, 20, 12, 6)
+	_btn_menu_welcome.custom_minimum_size = Vector2(126, 64)
+	_style_button(_btn_menu_welcome, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 30, 20, 12, 6)
 	_btn_menu_welcome.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		show_screen("welcome")
@@ -716,11 +717,11 @@ func _build_menu_screen(parent: Control) -> void:
 	var sub_vb := VBoxContainer.new()
 	sub_vb.add_theme_constant_override("separation", 4)
 	sub_pill.add_child(sub_vb)
-	_lbl_menu_sub = _make_label("Pulse Puzzle Sanctuary", 34, Color(0.08, 0.42, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_sub = _make_label("Pulse Puzzle Sanctuary", 36, Color(0.08, 0.42, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
 	sub_vb.add_child(_lbl_menu_sub)
-	_lbl_menu_tagline = _make_label("", 28, Color(0.18, 0.32, 0.32), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_tagline = _make_label("", 31, Color(0.16, 0.30, 0.30), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_menu_tagline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_lbl_menu_tagline.custom_minimum_size = Vector2(860, 0)
+	_lbl_menu_tagline.custom_minimum_size = Vector2(880, 0)
 	sub_vb.add_child(_lbl_menu_tagline)
 
 	var prog_center := CenterContainer.new()
@@ -728,7 +729,7 @@ func _build_menu_screen(parent: Control) -> void:
 	var prog_pill := PanelContainer.new()
 	prog_pill.add_theme_stylebox_override("panel", _make_box(Color(0.08, 0.36, 0.34, 0.92), 22, Color(0.98, 0.86, 0.50, 0.82), 3, 26, 10, 8))
 	prog_center.add_child(prog_pill)
-	_lbl_menu_progress = _make_label("", 28, Color(1.0, 0.98, 0.88), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_progress = _make_label("", 31, Color(1.0, 0.98, 0.88), true, HORIZONTAL_ALIGNMENT_CENTER)
 	prog_pill.add_child(_lbl_menu_progress)
 
 	var hero_spacer_bot := Control.new()
@@ -738,14 +739,14 @@ func _build_menu_screen(parent: Control) -> void:
 
 	# Sleek Floating Action Panel: Difficulty Pill + Giant Emerald PLAY CTA
 	var action_card := PanelContainer.new()
-	action_card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.95), 34, Color(0.94, 0.78, 0.42, 0.88), 4, 26, 22, 18))
+	action_card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.95), 34, Color(0.94, 0.78, 0.42, 0.88), 4, 26, 20, 18))
 	outer_vb.add_child(action_card)
 
 	var act_vb := VBoxContainer.new()
-	act_vb.add_theme_constant_override("separation", 16)
+	act_vb.add_theme_constant_override("separation", 14)
 	action_card.add_child(act_vb)
 
-	_lbl_diff_title = _make_label("Difficulty & Grid Size", 28, Color(0.08, 0.32, 0.30), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_diff_title = _make_label("Difficulty & Grid Size", 32, Color(0.08, 0.32, 0.30), true, HORIZONTAL_ALIGNMENT_CENTER)
 	act_vb.add_child(_lbl_diff_title)
 
 	var diff_hb := HBoxContainer.new()
@@ -754,25 +755,25 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_diff_easy = Button.new()
 	_btn_diff_easy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_easy.custom_minimum_size = Vector2(0, 96)
+	_btn_diff_easy.custom_minimum_size = Vector2(0, 100)
 	_btn_diff_easy.pressed.connect(func(): _set_difficulty("easy"))
 	diff_hb.add_child(_btn_diff_easy)
 
 	_btn_diff_medium = Button.new()
 	_btn_diff_medium.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_medium.custom_minimum_size = Vector2(0, 96)
+	_btn_diff_medium.custom_minimum_size = Vector2(0, 100)
 	_btn_diff_medium.pressed.connect(func(): _set_difficulty("medium"))
 	diff_hb.add_child(_btn_diff_medium)
 
 	_btn_diff_hard = Button.new()
 	_btn_diff_hard.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_hard.custom_minimum_size = Vector2(0, 96)
+	_btn_diff_hard.custom_minimum_size = Vector2(0, 100)
 	_btn_diff_hard.pressed.connect(func(): _set_difficulty("hard"))
 	diff_hb.add_child(_btn_diff_hard)
 
 	_btn_play = Button.new()
-	_btn_play.custom_minimum_size = Vector2(0, 124)
-	_style_button(_btn_play, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 44, 28)
+	_btn_play.custom_minimum_size = Vector2(0, 128)
+	_style_button(_btn_play, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 48, 28)
 	_btn_play.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		start_level(SaveManager.get_unlocked_level())
@@ -794,8 +795,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_levels = Button.new()
 	_btn_levels.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_levels.custom_minimum_size = Vector2(0, 96)
-	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 32, 22, 14, 12)
+	_btn_levels.custom_minimum_size = Vector2(0, 100)
+	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 36, 22, 14, 12)
 	_btn_levels.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		show_screen("levels")
@@ -804,8 +805,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_quests = Button.new()
 	_btn_quests.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_quests.custom_minimum_size = Vector2(0, 96)
-	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 32, 22, 14, 12)
+	_btn_quests.custom_minimum_size = Vector2(0, 100)
+	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 36, 22, 14, 12)
 	_btn_quests.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_refresh_quests_ui()
@@ -819,8 +820,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_almanac = Button.new()
 	_btn_almanac.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_almanac.custom_minimum_size = Vector2(0, 92)
-	_style_button(_btn_almanac, Color(0.14, 0.56, 0.46), Color(0.20, 0.66, 0.56), Color.WHITE, 30, 22, 14, 12)
+	_btn_almanac.custom_minimum_size = Vector2(0, 96)
+	_style_button(_btn_almanac, Color(0.14, 0.56, 0.46), Color(0.20, 0.66, 0.56), Color.WHITE, 34, 22, 14, 12)
 	_btn_almanac.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_refresh_almanac_ui()
@@ -830,8 +831,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_settings = Button.new()
 	_btn_settings.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_settings.custom_minimum_size = Vector2(0, 92)
-	_style_button(_btn_settings, Color(0.26, 0.38, 0.44), Color(0.34, 0.48, 0.54), Color.WHITE, 30, 22, 14, 12)
+	_btn_settings.custom_minimum_size = Vector2(0, 96)
+	_style_button(_btn_settings, Color(0.26, 0.38, 0.44), Color(0.34, 0.48, 0.54), Color.WHITE, 34, 22, 14, 12)
 	_btn_settings.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_settings_return_to_pause = false
@@ -840,7 +841,7 @@ func _build_menu_screen(parent: Control) -> void:
 	)
 	row_bot.add_child(_btn_settings)
 
-	_lbl_menu_worktag = _make_label("", 24, Color(0.26, 0.38, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_worktag = _make_label("", 28, Color(0.22, 0.36, 0.34), true, HORIZONTAL_ALIGNMENT_CENTER)
 	dock_vb.add_child(_lbl_menu_worktag)
 
 
@@ -862,20 +863,20 @@ func _build_levels_screen(parent: Control) -> void:
 	var hb := HBoxContainer.new()
 	hdr.add_child(hb)
 	_btn_levels_back = Button.new()
-	_btn_levels_back.custom_minimum_size = Vector2(168, 68)
-	_style_button(_btn_levels_back, Color(0.22, 0.36, 0.40), Color(0.30, 0.46, 0.50), Color.WHITE, 28, 16)
+	_btn_levels_back.custom_minimum_size = Vector2(180, 74)
+	_style_button(_btn_levels_back, Color(0.22, 0.36, 0.40), Color(0.30, 0.46, 0.50), Color.WHITE, 32, 16)
 	_btn_levels_back.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		show_screen("menu")
 	)
 	hb.add_child(_btn_levels_back)
 
-	_lbl_levels_title = _make_label("100-Stage Sanctuary", 34, Color(0.06, 0.27, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_levels_title = _make_label("100-Stage Sanctuary", 38, Color(0.06, 0.27, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_levels_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hb.add_child(_lbl_levels_title)
 
-	_lbl_levels_stars = _make_label("★ 0/300", 28, Color(0.84, 0.54, 0.08), true, HORIZONTAL_ALIGNMENT_RIGHT)
-	_lbl_levels_stars.custom_minimum_size = Vector2(170, 0)
+	_lbl_levels_stars = _make_label("★ 0/300", 32, Color(0.84, 0.54, 0.08), true, HORIZONTAL_ALIGNMENT_RIGHT)
+	_lbl_levels_stars.custom_minimum_size = Vector2(185, 0)
 	hb.add_child(_lbl_levels_stars)
 
 	# Bonus Modes Row (Endless & Daily moved cleanly off Main Menu into Level Select)
@@ -885,8 +886,8 @@ func _build_levels_screen(parent: Control) -> void:
 
 	_btn_endless = Button.new()
 	_btn_endless.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_endless.custom_minimum_size = Vector2(0, 74)
-	_style_button(_btn_endless, Color(0.42, 0.32, 0.76), Color(0.52, 0.42, 0.86), Color.WHITE, 28, 18, 12, 10)
+	_btn_endless.custom_minimum_size = Vector2(0, 82)
+	_style_button(_btn_endless, Color(0.42, 0.32, 0.76), Color(0.52, 0.42, 0.86), Color.WHITE, 32, 18, 12, 10)
 	_btn_endless.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		start_endless_mode()
@@ -895,8 +896,8 @@ func _build_levels_screen(parent: Control) -> void:
 
 	_btn_daily = Button.new()
 	_btn_daily.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_daily.custom_minimum_size = Vector2(0, 74)
-	_style_button(_btn_daily, Color(0.88, 0.50, 0.16), Color(0.96, 0.58, 0.24), Color.WHITE, 28, 18, 12, 10)
+	_btn_daily.custom_minimum_size = Vector2(0, 82)
+	_style_button(_btn_daily, Color(0.88, 0.50, 0.16), Color(0.96, 0.58, 0.24), Color.WHITE, 32, 18, 12, 10)
 	_btn_daily.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		start_daily_challenge()
@@ -917,7 +918,7 @@ func _build_levels_screen(parent: Control) -> void:
 	for ch in range(1, 11):
 		var cbtn := Button.new()
 		cbtn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		cbtn.custom_minimum_size = Vector2(0, 62)
+		cbtn.custom_minimum_size = Vector2(0, 68)
 		var ch_id := ch
 		cbtn.pressed.connect(func():
 			AudioManager.play_sfx("menu_button")
@@ -930,7 +931,7 @@ func _build_levels_screen(parent: Control) -> void:
 	var banner_pill := PanelContainer.new()
 	banner_pill.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.52, 0.44, 0.92), 16, Color(1, 1, 1, 0.4), 2, 18, 10))
 	vb.add_child(banner_pill)
-	_lbl_chapter_banner = _make_label("", 26, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_chapter_banner = _make_label("", 32, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	banner_pill.add_child(_lbl_chapter_banner)
 
 	var scroll := ScrollContainer.new()
@@ -994,8 +995,8 @@ func _build_game_screen(parent: Control) -> void:
 	var moves_hb := HBoxContainer.new()
 	moves_hb.add_theme_constant_override("separation", 8)
 	_moves_pill.add_child(moves_hb)
-	_lbl_moves_title = _make_label("Moves", 24, Color(0.55, 0.28, 0.08), true)
-	_lbl_moves_val = _make_label("14", 42, Color(0.75, 0.30, 0.06), true)
+	_lbl_moves_title = _make_label("Moves", 28, Color(0.55, 0.28, 0.08), true)
+	_lbl_moves_val = _make_label("14", 48, Color(0.75, 0.30, 0.06), true)
 	moves_hb.add_child(_lbl_moves_title)
 	moves_hb.add_child(_lbl_moves_val)
 
@@ -1008,7 +1009,7 @@ func _build_game_screen(parent: Control) -> void:
 	mid_top.add_theme_constant_override("separation", 10)
 	mid_vb.add_child(mid_top)
 
-	_lbl_stage = _make_label("Stage 1", 28, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_lbl_stage = _make_label("Stage 1", 32, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
 	_lbl_stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_stage.clip_text = true
 	mid_top.add_child(_lbl_stage)
@@ -1019,8 +1020,8 @@ func _build_game_screen(parent: Control) -> void:
 	var score_hb := HBoxContainer.new()
 	score_hb.add_theme_constant_override("separation", 6)
 	score_pill.add_child(score_hb)
-	_lbl_score_title = _make_label("Score", 24, Color(0.18, 0.40, 0.36), true)
-	_lbl_score_val = _make_label("0", 32, Color(0.05, 0.26, 0.24), true)
+	_lbl_score_title = _make_label("Score", 28, Color(0.18, 0.40, 0.36), true)
+	_lbl_score_val = _make_label("0", 36, Color(0.05, 0.26, 0.24), true)
 	score_hb.add_child(_lbl_score_title)
 	score_hb.add_child(_lbl_score_val)
 
@@ -1028,8 +1029,8 @@ func _build_game_screen(parent: Control) -> void:
 	row_stars.add_theme_constant_override("separation", 8)
 	mid_vb.add_child(row_stars)
 
-	_lbl_star_icons = _make_label("☆☆☆", 28, Color(0.88, 0.58, 0.08), true)
-	_lbl_star_icons.custom_minimum_size = Vector2(96, 0)
+	_lbl_star_icons = _make_label("☆☆☆", 34, Color(0.88, 0.58, 0.08), true)
+	_lbl_star_icons.custom_minimum_size = Vector2(114, 0)
 	row_stars.add_child(_lbl_star_icons)
 
 	_star_progress_bar = ProgressBar.new()
@@ -1037,7 +1038,7 @@ func _build_game_screen(parent: Control) -> void:
 	_star_progress_bar.max_value = 3000
 	_star_progress_bar.value = 0
 	_star_progress_bar.show_percentage = false
-	_star_progress_bar.custom_minimum_size = Vector2(0, 18)
+	_star_progress_bar.custom_minimum_size = Vector2(0, 20)
 	_star_progress_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_star_progress_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_star_progress_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.90, 0.86), 8, Color(0.78, 0.62, 0.20, 0.35), 1, 0, 0))
@@ -1045,8 +1046,8 @@ func _build_game_screen(parent: Control) -> void:
 	row_stars.add_child(_star_progress_bar)
 
 	_btn_pause = Button.new()
-	_btn_pause.custom_minimum_size = Vector2(110, 74)
-	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 28, 18, 10, 6)
+	_btn_pause.custom_minimum_size = Vector2(118, 78)
+	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 30, 18, 10, 6)
 	_btn_pause.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		pause_game()
@@ -1058,7 +1059,7 @@ func _build_game_screen(parent: Control) -> void:
 	row2.add_theme_constant_override("separation", 10)
 	hud_vb.add_child(row2)
 
-	_lbl_pulse_label = _make_label("Pulse", 28, Color(0.10, 0.34, 0.32), true)
+	_lbl_pulse_label = _make_label("Pulse", 32, Color(0.10, 0.34, 0.32), true)
 	row2.add_child(_lbl_pulse_label)
 
 	_pulse_bar = ProgressBar.new()
@@ -1066,33 +1067,33 @@ func _build_game_screen(parent: Control) -> void:
 	_pulse_bar.max_value = 100
 	_pulse_bar.value = 100
 	_pulse_bar.show_percentage = false
-	_pulse_bar.custom_minimum_size = Vector2(0, 26)
+	_pulse_bar.custom_minimum_size = Vector2(0, 28)
 	_pulse_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_pulse_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_pulse_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 12, Color(0.12, 0.38, 0.36, 0.25), 2, 0, 0))
 	_pulse_bar.add_theme_stylebox_override("fill", _make_box(Color(0.12, 0.76, 0.48), 10, Color(0, 0, 0, 0), 0, 0, 0))
 	row2.add_child(_pulse_bar)
 
-	_lbl_pulse_val = _make_label("100/100", 28, Color(0.06, 0.32, 0.24), true)
+	_lbl_pulse_val = _make_label("100/100", 32, Color(0.06, 0.32, 0.24), true)
 	row2.add_child(_lbl_pulse_val)
 
 	_shield_pill = PanelContainer.new()
 	_shield_pill.add_theme_stylebox_override("panel", _make_box(Color(0.88, 0.94, 0.92), 14, Color(0.2, 0.5, 0.4, 0.3), 2, 12, 4))
 	row2.add_child(_shield_pill)
-	_lbl_shield = _make_label("Shield 0", 26, Color(0.24, 0.38, 0.36), true)
+	_lbl_shield = _make_label("Shield 0", 30, Color(0.24, 0.38, 0.36), true)
 	_shield_pill.add_child(_lbl_shield)
 
 	_fever_pill = PanelContainer.new()
 	_fever_pill.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.95, 0.94), 14, Color(0.24, 0.56, 0.50, 0.45), 2, 12, 4))
 	row2.add_child(_fever_pill)
-	_lbl_fever = _make_label("Fever 0/3", 26, Color(0.14, 0.40, 0.36), true)
+	_lbl_fever = _make_label("Fever 0/3", 30, Color(0.14, 0.40, 0.36), true)
 	_fever_pill.add_child(_lbl_fever)
 
 	_streak_pill = PanelContainer.new()
 	_streak_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.88, 0.42), 14, Color(0.84, 0.48, 0.08), 2, 12, 4))
 	_streak_pill.visible = false
 	row2.add_child(_streak_pill)
-	_lbl_streak = _make_label("x1.2", 26, Color(0.48, 0.20, 0.04), true)
+	_lbl_streak = _make_label("x1.2", 30, Color(0.48, 0.20, 0.04), true)
 	_streak_pill.add_child(_lbl_streak)
 
 	_boss_bar_panel = PanelContainer.new()
@@ -1103,7 +1104,7 @@ func _build_game_screen(parent: Control) -> void:
 	boss_hb.add_theme_constant_override("separation", 12)
 	_boss_bar_panel.add_child(boss_hb)
 	var boss_ic := TextureRect.new()
-	boss_ic.custom_minimum_size = Vector2(44, 44)
+	boss_ic.custom_minimum_size = Vector2(48, 48)
 	boss_ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	boss_ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	boss_ic.texture = _tile_icons.get("overload", null)
@@ -1112,14 +1113,14 @@ func _build_game_screen(parent: Control) -> void:
 	boss_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	boss_vb.add_theme_constant_override("separation", 4)
 	boss_hb.add_child(boss_vb)
-	_lbl_boss_name = _make_label("Boss", 26, Color(0.70, 0.14, 0.12), true)
+	_lbl_boss_name = _make_label("Boss", 30, Color(0.70, 0.14, 0.12), true)
 	boss_vb.add_child(_lbl_boss_name)
 	_boss_hp_bar = ProgressBar.new()
 	_boss_hp_bar.min_value = 0
 	_boss_hp_bar.max_value = 100
 	_boss_hp_bar.value = 100
 	_boss_hp_bar.show_percentage = false
-	_boss_hp_bar.custom_minimum_size = Vector2(0, 16)
+	_boss_hp_bar.custom_minimum_size = Vector2(0, 18)
 	_boss_hp_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.78, 0.76), 8, Color(0, 0, 0, 0), 0, 0, 0))
 	_boss_hp_bar.add_theme_stylebox_override("fill", _make_box(Color(0.88, 0.22, 0.18), 8, Color(0, 0, 0, 0), 0, 0, 0))
 	boss_vb.add_child(_boss_hp_bar)
@@ -1133,7 +1134,7 @@ func _build_game_screen(parent: Control) -> void:
 	_tutorial_bar = PanelContainer.new()
 	_tutorial_bar.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.56, 0.46, 0.95), 16, Color(1, 1, 1, 0.50), 2, 16, 8))
 	hud_vb.add_child(_tutorial_bar)
-	_lbl_tutorial = _make_label("", 30, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_tutorial = _make_label("", 34, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_tutorial.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tutorial_bar.add_child(_lbl_tutorial)
 
@@ -1158,7 +1159,7 @@ func _build_game_screen(parent: Control) -> void:
 	_touch_ctrl.chain_committed.connect(_on_chain_committed)
 	_touch_ctrl.chain_cancelled.connect(_on_chain_cancelled)
 
-	# --- Large, Phone-Readable Bottom Preview + Tactical Care Dock ---
+	# --- Extra-Large, Phone-Readable Bottom Preview + 2x2 Tactical Weapon/Care Dock ---
 	_bottom_panel = PanelContainer.new()
 	_bottom_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.97), 26, Color(0.92, 0.78, 0.44, 0.85), 3, 18, 12, 14))
 	root_vb.add_child(_bottom_panel)
@@ -1171,7 +1172,7 @@ func _build_game_screen(parent: Control) -> void:
 	bot_top.add_theme_constant_override("separation", 10)
 	bot_vb.add_child(bot_top)
 
-	_lbl_preview = _make_label("", 32, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_preview = _make_label("", 36, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_preview.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_preview.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	bot_top.add_child(_lbl_preview)
@@ -1198,12 +1199,12 @@ func _build_game_screen(parent: Control) -> void:
 	)
 	bot_top.add_child(_btn_game_help)
 
-	# Full-Width Energy Row (30px bold label + thick golden energy bar)
+	# Full-Width Energy Row (34px bold label + thick golden energy bar)
 	var en_hb := HBoxContainer.new()
 	en_hb.add_theme_constant_override("separation", 14)
 	bot_vb.add_child(en_hb)
 
-	_lbl_energy_val = _make_label("Energy 0/100", 30, Color(0.06, 0.36, 0.26), true)
+	_lbl_energy_val = _make_label("Energy 0/100", 34, Color(0.06, 0.36, 0.26), true)
 	en_hb.add_child(_lbl_energy_val)
 
 	_energy_bar = ProgressBar.new()
@@ -1211,39 +1212,45 @@ func _build_game_screen(parent: Control) -> void:
 	_energy_bar.max_value = 100
 	_energy_bar.value = 0
 	_energy_bar.show_percentage = false
-	_energy_bar.custom_minimum_size = Vector2(0, 26)
+	_energy_bar.custom_minimum_size = Vector2(0, 28)
 	_energy_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_energy_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_energy_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 11, Color(0.12, 0.38, 0.36, 0.30), 2, 0, 0))
 	_energy_bar.add_theme_stylebox_override("fill", _make_box(Color(0.95, 0.72, 0.14), 9, Color(0, 0, 0, 0), 0, 0, 0))
 	en_hb.add_child(_energy_bar)
 
-	# Full-Width Tactical Ability Buttons Row (92px tall, 30px bold text!)
-	var dock_hb := HBoxContainer.new()
-	dock_hb.add_theme_constant_override("separation", 12)
-	bot_vb.add_child(dock_hb)
+	# 2x2 Tactical Weapon & Care Dock (huge 96px tall buttons, 34px bold text so zero clipping on phones!)
+	var dock_grid := GridContainer.new()
+	dock_grid.columns = 2
+	dock_grid.add_theme_constant_override("h_separation", 12)
+	dock_grid.add_theme_constant_override("v_separation", 10)
+	bot_vb.add_child(dock_grid)
+
+	_btn_abl_bomb = _make_ability_btn(_tile_icons.get("overload", _tex_spark), Color(0.88, 0.26, 0.14))
+	_btn_abl_bomb.pressed.connect(func(): _use_tactical_ability("bomb"))
+	dock_grid.add_child(_btn_abl_bomb)
 
 	_btn_abl_spark = _make_ability_btn(_tex_spark, Color(0.90, 0.52, 0.12))
 	_btn_abl_spark.pressed.connect(func(): _use_tactical_ability("spark"))
-	dock_hb.add_child(_btn_abl_spark)
+	dock_grid.add_child(_btn_abl_spark)
 
 	_btn_abl_flow = _make_ability_btn(_tex_flow, Color(0.12, 0.56, 0.68))
 	_btn_abl_flow.pressed.connect(func(): _use_tactical_ability("flow"))
-	dock_hb.add_child(_btn_abl_flow)
+	dock_grid.add_child(_btn_abl_flow)
 
 	_btn_abl_rest = _make_ability_btn(_tex_rest, Color(0.10, 0.58, 0.36))
 	_btn_abl_rest.pressed.connect(func(): _use_tactical_ability("rest"))
-	dock_hb.add_child(_btn_abl_rest)
+	dock_grid.add_child(_btn_abl_rest)
 
 
 func _make_ability_btn(icon_tex: Texture2D, bg: Color) -> Button:
 	var b := Button.new()
 	b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	b.custom_minimum_size = Vector2(0, 92)
+	b.custom_minimum_size = Vector2(0, 96)
 	b.icon = icon_tex
 	b.expand_icon = true
 	b.clip_text = true
-	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 28, 20, 12, 8)
+	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 34, 20, 14, 8)
 	return b
 
 
@@ -1989,6 +1996,8 @@ func _use_tactical_ability(kind: String) -> void:
 		return
 	var res: Dictionary = {}
 	match kind:
+		"bomb":
+			res = BoosterSystem.cast_detox_bomb(board_state, level_def, progress, rng)
 		"spark":
 			res = BoosterSystem.cast_fruit_spark(board_state, level_def, progress, rng)
 		"flow":
@@ -2006,19 +2015,40 @@ func _use_tactical_ability(kind: String) -> void:
 			_lbl_preview.add_theme_color_override("font_color", Color(0.76, 0.44, 0.08))
 		return
 	AudioManager.play_sfx("ability_cast")
+	if kind == "bomb":
+		AudioManager.play_sfx("match_large", 0.92)
+		_play_sfx_delayed("endpoint_pulse", 0.08, 1.15)
+		GameManager.trigger_haptic(50)
+		var ov_n := int(res.get("overloads_destroyed", []).size())
+		if ov_n > 0:
+			SaveManager.increment_stat("total_overloads_cleared", ov_n)
+			if int(SaveManager.data.get("stats", {}).get("total_overloads_cleared", 0)) >= 20:
+				_unlock_and_announce("ACH_OVERLOAD_20")
 	SaveManager.increment_stat("total_abilities_used", 1)
 	_unlock_and_announce("ACH_ABILITY_1")
 	SaveManager.save_to_disk()
 	_board_renderer.animate_ability_effect(res)
 	_refresh_hud()
 	match kind:
+		"bomb":
+			var ov_cnt := int(res.get("overloads_destroyed", []).size())
+			var total_cnt := ov_cnt + int(res.get("splash_cells", []).size())
+			_lbl_preview.text = LocalizationManager.tr_key("ABL_USED_BOMB", {"overloads": ov_cnt, "total": total_cnt})
 		"spark":
 			_lbl_preview.text = LocalizationManager.tr_key("ABL_USED_SPARK", {"count": res.get("cells", []).size()})
 		"flow":
 			_lbl_preview.text = LocalizationManager.tr_key("ABL_USED_FLOW")
 		"rest":
 			_lbl_preview.text = LocalizationManager.tr_key("ABL_USED_REST")
-	_lbl_preview.add_theme_color_override("font_color", Color(0.06, 0.56, 0.34))
+	_lbl_preview.add_theme_color_override("font_color", Color(0.84, 0.24, 0.12) if kind == "bomb" else Color(0.06, 0.56, 0.34))
+	# Check if Detox Bomb or Fruit Spark completed all objectives!
+	if (kind == "bomb" or kind == "spark") and LevelManager.are_objectives_complete(level_def, progress):
+		var balance: Dictionary = GameManager.config.get("balance", {})
+		var move_bonus := ScoreManager.calculate_move_bonus(int(progress.get("moves_left", 0)), int(balance.get("remaining_move_bonus", 120)))
+		progress["score"] = int(progress.get("score", 0)) + move_bonus
+		var stars := ScoreManager.calculate_stars(int(progress["score"]), level_def.get("star_thresholds", [1000, 2000, 3000]))
+		_refresh_hud()
+		_finish_turn_animations({"status": "win", "stars": stars, "move_bonus": move_bonus})
 
 
 func _use_second_wind() -> void:
@@ -2087,6 +2117,18 @@ func _on_chain_updated(chain: Array[Vector2i]) -> void:
 		GameManager.config.get("balance", {})
 	)
 	_board_renderer.set_chain_preview(chain, preview)
+
+	# Mega Combo thresholds (10+ Board Reset / 8-9 Super Nova) take visual priority in preview bar!
+	if chain.size() >= 10:
+		_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_MEGA_RESET")
+		_lbl_preview.add_theme_color_override("font_color", Color(0.80, 0.10, 0.52))
+		_last_warning_active = false
+		return
+	elif chain.size() >= 8:
+		_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_SUPER_NOVA")
+		_lbl_preview.add_theme_color_override("font_color", Color(0.88, 0.34, 0.06))
+		_last_warning_active = false
+		return
 
 	var tag := str(preview.get("summary_tag", "neutral"))
 	var est_score := ScoreManager.calculate_chain_score(chain.size(), GameManager.get_balance("base_tile_score", 25))
@@ -2172,7 +2214,7 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 		if int(SaveManager.data.get("stats", {}).get("total_loops", 0)) >= 10:
 			_unlock_and_announce("ACH_LOOP_10")
 	var pulse: Dictionary = res.get("pulse", {})
-	var neut := int(pulse.get("overloads_neutralized", 0))
+	var neut := int(pulse.get("overloads_neutralized", 0)) + int(res.get("mega_overloads_destroyed", []).size())
 	if neut > 0:
 		SaveManager.increment_stat("total_overloads_cleared", neut)
 		if int(SaveManager.data.get("stats", {}).get("total_overloads_cleared", 0)) >= 20:
@@ -2187,8 +2229,9 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 	SaveManager.save_to_disk()
 
 	# Staggered SFX cadence across clear (0.00s) -> pulse/events (0.08s) -> refill (0.17s) -> score (0.25s)
-	if bool(res.get("is_large_match", false)) or bool(res.get("is_loop", false)):
-		AudioManager.play_sfx("match_large")
+	var mega_tier := int(res.get("mega_tier", 0))
+	if mega_tier >= 2 or bool(res.get("is_large_match", false)) or bool(res.get("is_loop", false)):
+		AudioManager.play_sfx("match_large", 1.08 if mega_tier >= 3 else 1.0)
 	else:
 		AudioManager.play_sfx("match_small")
 	_play_sfx_delayed("endpoint_pulse", 0.08)
@@ -2200,7 +2243,11 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 	if int(pulse.get("overloads_triggered", 0)) > 0:
 		_play_sfx_delayed("hazard_trigger", 0.11)
 		GameManager.trigger_haptic(40)
-	if bool(res.get("fever_triggered", false)) or bool(res.get("vitality_burst_triggered", false)):
+	if mega_tier >= 2:
+		_play_sfx_delayed("ability_cast", 0.12, 1.15 if mega_tier >= 3 else 1.05)
+		_play_sfx_delayed("star_pop", 0.20, 1.25, 1.0)
+		GameManager.trigger_haptic(75 if mega_tier >= 3 else 55)
+	elif bool(res.get("fever_triggered", false)) or bool(res.get("vitality_burst_triggered", false)):
 		_play_sfx_delayed("star_pop", 0.16, 1.18, 1.0)
 		GameManager.trigger_haptic(45)
 	_play_sfx_delayed("tile_refill", 0.17)
@@ -2336,7 +2383,7 @@ func _process(delta: float) -> void:
 
 	if _screen_game != null and _screen_game.visible and DisplayServer.get_name() != "headless":
 		var t_g := float(Time.get_ticks_msec()) * 0.001
-		var abl_btns := [_btn_abl_spark, _btn_abl_flow, _btn_abl_rest]
+		var abl_btns := [_btn_abl_bomb, _btn_abl_spark, _btn_abl_flow, _btn_abl_rest]
 		for idx in range(abl_btns.size()):
 			var ab: Button = abl_btns[idx]
 			if not is_instance_valid(ab):
@@ -2500,13 +2547,15 @@ func _refresh_hud() -> void:
 		_lbl_shield.add_theme_color_override("font_color", Color(0.32, 0.42, 0.40))
 		_shield_pill.add_theme_stylebox_override("panel", _make_box(Color(0.90, 0.94, 0.92), 12, Color(0.2, 0.5, 0.4, 0.25), 2, 12, 3))
 
-	# Tactical Care Dock state
+	# Tactical Weapon & Care Dock state
 	var energy := clampi(int(progress.get("care_energy", 0)), 0, 100)
 	_energy_bar.value = energy
 	_lbl_energy_val.text = "%s %d/100" % [LocalizationManager.tr_key("HUD_CARE_ENERGY"), energy]
+	_btn_abl_bomb.text = "%s (%d)" % [LocalizationManager.tr_key("ABL_BOMB_NAME"), BoosterSystem.COST_DETOX_BOMB]
 	_btn_abl_spark.text = "%s (%d)" % [LocalizationManager.tr_key("ABL_SPARK_NAME"), BoosterSystem.COST_FRUIT_SPARK]
 	_btn_abl_flow.text = "%s (%d)" % [LocalizationManager.tr_key("ABL_FLOW_NAME"), BoosterSystem.COST_CLEAR_FLOW]
 	_btn_abl_rest.text = "%s (%d)" % [LocalizationManager.tr_key("ABL_REST_NAME"), BoosterSystem.COST_REST_SHIELD]
+	_btn_abl_bomb.disabled = (energy < BoosterSystem.COST_DETOX_BOMB)
 	_btn_abl_spark.disabled = (energy < BoosterSystem.COST_FRUIT_SPARK)
 	_btn_abl_flow.disabled = (energy < BoosterSystem.COST_CLEAR_FLOW)
 	_btn_abl_rest.disabled = (energy < BoosterSystem.COST_REST_SHIELD)
@@ -2582,12 +2631,12 @@ func _add_objective_chip(text_str: String, done: bool, icon_key: String) -> void
 	pill.add_child(hb)
 	if icon_key != "" and _tile_icons.has(icon_key) and _tile_icons[icon_key] != null:
 		var ic := TextureRect.new()
-		ic.custom_minimum_size = Vector2(44, 44)
+		ic.custom_minimum_size = Vector2(50, 50)
 		ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		ic.texture = _tile_icons[icon_key]
 		hb.add_child(ic)
-	hb.add_child(_make_label(("✓ " if done else "") + text_str, 30, Color(0.05, 0.42, 0.24) if done else Color(0.08, 0.26, 0.26), true))
+	hb.add_child(_make_label(("✓ " if done else "") + text_str, 34, Color(0.05, 0.42, 0.24) if done else Color(0.08, 0.26, 0.26), true))
 	_objectives_box.add_child(pill)
 
 
@@ -2603,7 +2652,7 @@ func _refresh_level_cards() -> void:
 		cbtn.text = "%d" % ch_num
 		var bg := Color(0.09, 0.62, 0.47) if ch_num == _selected_chapter else (Color(0.20, 0.44, 0.52) if ch_open else Color(0.72, 0.79, 0.77))
 		var tcol := Color.WHITE if (ch_num == _selected_chapter or ch_open) else Color(0.20, 0.30, 0.30)
-		_style_button(cbtn, bg, bg.lightened(0.1), tcol, 28, 14, 6, 6)
+		_style_button(cbtn, bg, bg.lightened(0.1), tcol, 32, 14, 6, 6)
 
 	var ch_info: Array = CHAPTER_NAMES[_selected_chapter - 1]
 	var ch_name := str(ch_info[2] if LocalizationManager.current_locale == "id" else ch_info[1])
@@ -2643,9 +2692,9 @@ func _refresh_level_cards() -> void:
 		]
 		if is_open:
 			var bg := Color(0.78, 0.44, 0.12) if is_boss else (Color(0.11, 0.58, 0.46) if stars > 0 else Color(0.16, 0.50, 0.62))
-			_style_button(btn, bg, bg.lightened(0.10), Color.WHITE, 28, 22)
+			_style_button(btn, bg, bg.lightened(0.10), Color.WHITE, 32, 22)
 		else:
-			_style_button(btn, Color(0.68, 0.75, 0.74), Color(0.68, 0.75, 0.74), Color(0.24, 0.34, 0.34), 26, 22)
+			_style_button(btn, Color(0.68, 0.75, 0.74), Color(0.68, 0.75, 0.74), Color(0.24, 0.34, 0.34), 30, 22)
 
 
 func _refresh_almanac_ui() -> void:
@@ -2908,8 +2957,8 @@ func _refresh_texts() -> void:
 		_btn_welcome_start.text = LocalizationManager.tr_key("WELCOME_BTN_START")
 		var w_en_col := Color(0.09, 0.62, 0.47) if LocalizationManager.current_locale == "en" else Color(0.30, 0.44, 0.46)
 		var w_id_col := Color(0.09, 0.62, 0.47) if LocalizationManager.current_locale == "id" else Color(0.30, 0.44, 0.46)
-		_style_button(_btn_welcome_en, w_en_col, w_en_col.lightened(0.10), Color.WHITE, 28, 18, 12, 8)
-		_style_button(_btn_welcome_id, w_id_col, w_id_col.lightened(0.10), Color.WHITE, 28, 18, 12, 8)
+		_style_button(_btn_welcome_en, w_en_col, w_en_col.lightened(0.10), Color.WHITE, 32, 18, 12, 8)
+		_style_button(_btn_welcome_id, w_id_col, w_id_col.lightened(0.10), Color.WHITE, 32, 18, 12, 8)
 
 	_lbl_menu_title.text = LocalizationManager.tr_key("APP_TITLE")
 	_lbl_menu_sub.text = LocalizationManager.tr_key("APP_SUBTITLE")
@@ -2947,10 +2996,10 @@ func _refresh_texts() -> void:
 	if is_instance_valid(_btn_quests):
 		if unclaimed > 0:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS_READY", {"count": unclaimed})
-			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 32, 22, 14, 12)
+			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 36, 22, 14, 12)
 		else:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS")
-			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 32, 22, 14, 12)
+			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 36, 22, 14, 12)
 	_btn_endless.text = LocalizationManager.tr_key("BTN_ENDLESS")
 	_btn_daily.text = LocalizationManager.tr_key("BTN_DAILY")
 	_btn_almanac.text = LocalizationManager.tr_key("BTN_ALMANAC")

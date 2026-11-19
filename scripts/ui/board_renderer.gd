@@ -406,6 +406,20 @@ func animate_ability_effect(res: Dictionary) -> void:
 			var center := cell_center(cp)
 			_vfx.spawn_tile_burst(center, "care", cell_px, true)
 			_vfx.spawn_pulse_ring(center, Color(0.28, 0.98, 0.56, 0.95), cell_px, 1.4)
+	elif ability == "bomb":
+		var b_rect := get_board_rect()
+		_vfx.spawn_screen_flash(b_rect, Color(1.0, 0.46, 0.16), 0.36)
+		_vfx.trigger_shake(self, 11.0)
+		for bc in res.get("blast_centers", []):
+			var center := cell_center(bc)
+			_vfx.spawn_explosion_splash(center, Color(1.0, 0.36, 0.16), cell_px, 1.35)
+		for sc in res.get("splash_cells", []):
+			_vfx.spawn_tile_burst(cell_center(sc), "overload", cell_px, true)
+		var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.22)
+		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_DETOX_BOMB"), Color(1.0, 0.46, 0.20))
+		var sc_gain := int(res.get("score_gained", 0))
+		if sc_gain > 0:
+			_vfx.spawn_floating_text(board_origin + board_pixel_size * 0.5, "+%d" % sc_gain, Color(1.0, 0.94, 0.42), 38)
 
 
 func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
@@ -510,16 +524,50 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 		var fc := cell_center(fp)
 		_vfx.spawn_pulse_ring(fc, Color(1.0, 0.86, 0.20, 0.98), cell_px, 1.45)
 
-	# Vitality Burst (6+ chain) 3x3 shockwave rings
+	# Tiered Mega-Explosions & Board-Reset Spectacle VFX (v2.6.0)
+	var mega_tier := int(result.get("mega_tier", 0))
 	var vb_triggered := bool(result.get("vitality_burst_triggered", false))
-	for vp in result.get("vitality_burst_cells", []):
-		var vc := cell_center(vp)
-		_vfx.spawn_pulse_ring(vc, Color(0.18, 0.96, 0.62, 0.98), cell_px, 1.55)
-		_vfx.spawn_floating_text(vc - Vector2(0, float(cell_px) * 0.2), "+60", Color(0.42, 1.0, 0.72), maxi(20, int(cell_px * 0.22)))
+	var board_rect := get_board_rect()
+	var ep_center_fx := cell_center(ep_pos) if BoardState.is_in_bounds(ep_pos) else (board_origin + board_pixel_size * 0.5)
+	if mega_tier == 1:
+		_vfx.spawn_explosion_splash(ep_center_fx, Color(0.18, 0.96, 0.62), cell_px, 1.15)
+		_vfx.trigger_shake(self, 8.0)
+		for vp in result.get("vitality_burst_cells", []):
+			var vc := cell_center(vp)
+			_vfx.spawn_pulse_ring(vc, Color(0.18, 0.96, 0.62, 0.98), cell_px, 1.55)
+			_vfx.spawn_floating_text(vc - Vector2(0, float(cell_px) * 0.2), "+60", Color(0.42, 1.0, 0.72), maxi(22, int(cell_px * 0.24)))
+		for ovp in result.get("mega_overloads_destroyed", []):
+			_vfx.spawn_explosion_splash(cell_center(ovp), Color(1.0, 0.42, 0.20), cell_px, 1.0)
+	elif mega_tier == 2:
+		# Super Nova Cross-Blast (8-9 chain)
+		_vfx.spawn_screen_flash(board_rect, Color(1.0, 0.60, 0.16), 0.40)
+		_vfx.spawn_cross_beam(ep_center_fx, board_rect, Color(1.0, 0.56, 0.18))
+		_vfx.spawn_explosion_splash(ep_center_fx, Color(1.0, 0.52, 0.14), cell_px, 1.55)
+		_vfx.trigger_shake(self, 12.0)
+		for ovp in result.get("mega_overloads_destroyed", []):
+			_vfx.spawn_explosion_splash(cell_center(ovp), Color(1.0, 0.34, 0.16), cell_px, 1.2)
+		_vfx.spawn_floating_text(ep_center_fx - Vector2(0, float(cell_px) * 0.95), "+1 MOVE!", Color(1.0, 0.92, 0.30), 38)
+	elif mega_tier >= 3:
+		# Grand Harmony Mega Blast & Board Reset (10+ chain)
+		_vfx.spawn_screen_flash(board_rect, Color(1.0, 0.88, 0.32), 0.55)
+		_vfx.spawn_cross_beam(ep_center_fx, board_rect, Color(1.0, 0.32, 0.76))
+		_vfx.spawn_explosion_splash(ep_center_fx, Color(1.0, 0.28, 0.72), cell_px, 1.95)
+		_vfx.spawn_explosion_splash(board_origin + board_pixel_size * 0.5, Color(1.0, 0.86, 0.24), cell_px, 2.2)
+		_vfx.spawn_confetti_burst(board_rect)
+		_vfx.trigger_shake(self, 16.0)
+		for ovp in result.get("mega_overloads_destroyed", []):
+			_vfx.spawn_explosion_splash(cell_center(ovp), Color(1.0, 0.36, 0.16), cell_px, 1.3)
+		_vfx.spawn_floating_text(board_origin + board_pixel_size * 0.5, "+2 MOVES • FULL RESET!", Color(1.0, 0.95, 0.35), 40)
 
-	# Combo, Fever, Vitality Burst & Loop Celebratory Banners
+	# Combo, Mega, Fever, Vitality Burst & Loop Celebratory Banners
 	var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.24)
-	if bool(result.get("fever_triggered", false)):
+	if mega_tier >= 3:
+		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_MEGA_RESET"), Color(1.0, 0.38, 0.82))
+		AudioManager.play_sfx("combo_banner", 1.22)
+	elif mega_tier == 2:
+		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_SUPER_NOVA"), Color(1.0, 0.56, 0.18))
+		AudioManager.play_sfx("combo_banner", 1.16)
+	elif bool(result.get("fever_triggered", false)):
 		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_FEVER_TRIGGER"), Color(1.0, 0.88, 0.22))
 		AudioManager.play_sfx("combo_banner", 1.12)
 	elif vb_triggered:
@@ -786,21 +834,24 @@ func _draw_pulse_overlay() -> void:
 	if _board_state == null or _active_chain.size() < 3 or not bool(_endpoint_preview.get("valid", false)):
 		return
 	var is_loop := bool(_endpoint_preview.get("is_loop", false))
-	var is_burst := _active_chain.size() >= 6 and not is_loop
+	var chain_len := _active_chain.size()
+	var is_mega := chain_len >= 10
+	var is_nova := chain_len >= 8 and chain_len < 10
+	var is_burst := chain_len >= 6 and chain_len < 8 and not is_loop
 	var ep: Vector2i = _endpoint_preview.get("endpoint", _active_chain[_active_chain.size() - 1])
 	var ep_center := cell_center(ep)
-	var ep_col := Color(1.0, 0.86, 0.22, 0.98) if is_loop else (Color(0.24, 0.98, 0.64, 0.98) if is_burst else Color(1.0, 1.0, 1.0, 0.92))
-	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.47, 0.0, TAU, 36, ep_col, 5.0, true)
+	var ep_col := Color(1.0, 0.32, 0.78, 0.98) if is_mega else (Color(1.0, 0.56, 0.16, 0.98) if is_nova else (Color(1.0, 0.86, 0.22, 0.98) if is_loop else (Color(0.24, 0.98, 0.64, 0.98) if is_burst else Color(1.0, 1.0, 1.0, 0.92))))
+	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.47, 0.0, TAU, 36, ep_col, 5.5, true)
 
 	# Live Chain Length Pill floated higher above endpoint so thumb does not obscure it
 	if _font_bold != null:
-		var cnt_txt := "LOOP!" if is_loop else ("BURST!" if is_burst else "×%d" % _active_chain.size())
-		var cfsize := clampi(int(float(cell_px) * 0.30), 22, 34)
-		var pw := maxf(float(cell_px) * 0.96, 112.0)
-		var ph := float(cfsize) + 18.0
+		var cnt_txt := "MEGA 10+!" if is_mega else ("NOVA 8+!" if is_nova else ("LOOP!" if is_loop else ("BURST!" if is_burst else "×%d" % chain_len)))
+		var cfsize := clampi(int(float(cell_px) * 0.31), 24, 36)
+		var pw := maxf(float(cell_px) * 1.12, 140.0) if (is_mega or is_nova) else maxf(float(cell_px) * 0.96, 118.0)
+		var ph := float(cfsize) + 20.0
 		var pill_y := maxf(board_origin.y + 4.0, ep_center.y - float(cell_px) * 0.78 - ph * 0.5)
 		var cpill := Rect2(ep_center.x - pw * 0.5, pill_y, pw, ph)
-		var pill_bg := Color(0.92, 0.64, 0.08, 0.98) if is_loop else (Color(0.08, 0.72, 0.42, 0.98) if is_burst else Color(0.08, 0.52, 0.44, 0.96))
+		var pill_bg := Color(0.84, 0.14, 0.56, 0.98) if is_mega else (Color(0.92, 0.36, 0.08, 0.98) if is_nova else (Color(0.92, 0.64, 0.08, 0.98) if is_loop else (Color(0.08, 0.72, 0.42, 0.98) if is_burst else Color(0.08, 0.52, 0.44, 0.96))))
 		_pulse_overlay.draw_rect(cpill.grow(3.0), Color(1, 1, 1, 0.96), true)
 		_pulse_overlay.draw_rect(cpill, pill_bg, true)
 		_pulse_overlay.draw_string(_font_bold, Vector2(cpill.position.x + 2.0, cpill.position.y + float(cfsize) + 4.0), cnt_txt, HORIZONTAL_ALIGNMENT_CENTER, cpill.size.x - 4.0, cfsize, Color.WHITE)
