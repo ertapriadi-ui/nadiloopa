@@ -5,6 +5,8 @@ extends RefCounted
 const FACTS_PATH := "res://data/medical_facts_300.json"
 
 static var _cached_facts: Array = []
+static var _mem_order: Array = []
+static var _mem_cursor: int = 0
 
 
 static func get_all_facts() -> Array:
@@ -58,6 +60,9 @@ static func draw_next_fact(save_node: Node = null, rng: RandomNumberGenerator = 
 		if typeof(st.get("order", null)) == TYPE_ARRAY:
 			order = st["order"]
 		cursor = int(st.get("cursor", 0))
+	else:
+		order = _mem_order
+		cursor = _mem_cursor
 
 	if order.size() != total or cursor < 0 or cursor >= total:
 		order = _make_shuffled_order(total, use_rng)
@@ -75,5 +80,8 @@ static func draw_next_fact(save_node: Node = null, rng: RandomNumberGenerator = 
 
 	if save_node != null and save_node.has_method("set_fact_deck_state"):
 		save_node.set_fact_deck_state(order, cursor)
+	else:
+		_mem_order = order
+		_mem_cursor = cursor
 
 	return fact

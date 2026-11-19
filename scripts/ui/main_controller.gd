@@ -2290,7 +2290,7 @@ func _show_medical_fact_modal() -> void:
 
 
 func _draw_and_display_fact() -> void:
-	var fact := MedicalFactDeck.draw_next_fact()
+	var fact := MedicalFactDeck.draw_next_fact(SaveManager)
 	if fact.is_empty():
 		return
 	_current_fact = fact
