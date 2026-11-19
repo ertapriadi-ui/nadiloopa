@@ -792,17 +792,18 @@ func _draw_pulse_overlay() -> void:
 	var ep_col := Color(1.0, 0.86, 0.22, 0.98) if is_loop else (Color(0.24, 0.98, 0.64, 0.98) if is_burst else Color(1.0, 1.0, 1.0, 0.92))
 	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.47, 0.0, TAU, 36, ep_col, 5.0, true)
 
-	# Live Chain Length Pill above endpoint
+	# Live Chain Length Pill floated higher above endpoint so thumb does not obscure it
 	if _font_bold != null:
 		var cnt_txt := "LOOP!" if is_loop else ("BURST!" if is_burst else "×%d" % _active_chain.size())
-		var cfsize := clampi(int(float(cell_px) * 0.22), 14, 24)
-		var pw := maxf(float(cell_px) * 0.72, 68.0)
-		var ph := float(cfsize) + 12.0
-		var cpill := Rect2(ep_center.x - pw * 0.5, ep_center.y - float(cell_px) * 0.55 - ph * 0.5, pw, ph)
+		var cfsize := clampi(int(float(cell_px) * 0.30), 22, 34)
+		var pw := maxf(float(cell_px) * 0.96, 112.0)
+		var ph := float(cfsize) + 18.0
+		var pill_y := maxf(board_origin.y + 4.0, ep_center.y - float(cell_px) * 0.78 - ph * 0.5)
+		var cpill := Rect2(ep_center.x - pw * 0.5, pill_y, pw, ph)
 		var pill_bg := Color(0.92, 0.64, 0.08, 0.98) if is_loop else (Color(0.08, 0.72, 0.42, 0.98) if is_burst else Color(0.08, 0.52, 0.44, 0.96))
-		_pulse_overlay.draw_rect(cpill.grow(2.5), Color(1, 1, 1, 0.96), true)
+		_pulse_overlay.draw_rect(cpill.grow(3.0), Color(1, 1, 1, 0.96), true)
 		_pulse_overlay.draw_rect(cpill, pill_bg, true)
-		_pulse_overlay.draw_string(_font_bold, Vector2(cpill.position.x + 2.0, cpill.position.y + float(cfsize) + 3.0), cnt_txt, HORIZONTAL_ALIGNMENT_CENTER, cpill.size.x - 4.0, cfsize, Color.WHITE)
+		_pulse_overlay.draw_string(_font_bold, Vector2(cpill.position.x + 2.0, cpill.position.y + float(cfsize) + 4.0), cnt_txt, HORIZONTAL_ALIGNMENT_CENTER, cpill.size.x - 4.0, cfsize, Color.WHITE)
 
 	for nb_info in _endpoint_preview.get("neighbors", []):
 		var np: Vector2i = nb_info["pos"]
@@ -813,9 +814,10 @@ func _draw_pulse_overlay() -> void:
 		var nr := Rect2(cell_top_left(np), Vector2(float(cell_px), float(cell_px))).grow(-3.0)
 
 		if badge_text != "" and _font_bold != null:
-			var fsize := clampi(int(float(cell_px) * 0.19), 11, 21)
-			var pill_h := float(fsize) + 10.0
-			var pill := Rect2(nr.position.x + 5.0, nr.position.y - pill_h * 0.35, nr.size.x - 10.0, pill_h)
-			_pulse_overlay.draw_rect(pill.grow(2.0), Color(1, 1, 1, 0.92), true)
+			var fsize := clampi(int(float(cell_px) * 0.25), 18, 26)
+			var pill_h := float(fsize) + 14.0
+			var pill_w := maxf(nr.size.x - 4.0, 92.0)
+			var pill := Rect2(nr.position.x + (nr.size.x - pill_w) * 0.5, nr.position.y - pill_h * 0.38, pill_w, pill_h)
+			_pulse_overlay.draw_rect(pill.grow(2.5), Color(1, 1, 1, 0.94), true)
 			_pulse_overlay.draw_rect(pill, border_col, true)
-			_pulse_overlay.draw_string(_font_bold, Vector2(pill.position.x + 3.0, pill.position.y + float(fsize) + 2.0), badge_text, HORIZONTAL_ALIGNMENT_CENTER, pill.size.x - 6.0, fsize, Color.WHITE)
+			_pulse_overlay.draw_string(_font_bold, Vector2(pill.position.x + 3.0, pill.position.y + float(fsize) + 3.0), badge_text, HORIZONTAL_ALIGNMENT_CENTER, pill.size.x - 6.0, fsize, Color.WHITE)

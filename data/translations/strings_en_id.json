@@ -2,7 +2,7 @@
   "en": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Pulse Puzzle Sanctuary",
-    "APP_WORKING_TAG": "v2.4.0 • 100 Stages",
+    "APP_WORKING_TAG": "v2.5.0 • 100 Stages",
     "DIFF_TITLE": "Difficulty & Grid Size",
     "DIFF_EASY": "EASY\n5×7",
     "DIFF_MEDIUM": "MEDIUM\n6×9",
@@ -194,12 +194,22 @@
     "THEME_LOCKED_RANK": "Rank {rank}",
     "PREVIEW_VITALITY_BURST": "6+ VITALITY BURST! 3×3 Shockwave Clear!",
     "BANNER_VITALITY_BURST": "VITALITY BURST! 3×3 CLEAR!",
-    "BOSS_RESISTANCE": "Boss {name} • {pct}% Left"
+    "BOSS_RESISTANCE": "Boss {name} • {pct}% Left",
+    "WELCOME_TITLE": "WELCOME TO NADILOOPA!",
+    "WELCOME_SUBTITLE": "A Cheerful Rhythm Puzzle for Your Body's Harmony",
+    "WELCOME_CARD1_TITLE": "What Is This Game?",
+    "WELCOME_CARD1_BODY": "Connect 3+ matching smiling organs (Heart, Brain, Lungs, Kidneys, Stomach, Pancreas & Muscle) to keep your body's Pulse strong!",
+    "WELCOME_CARD2_TITLE": "Your Goal",
+    "WELCOME_CARD2_BODY": "Complete stage targets before moves run out, harvest healthy Veggies & Fruits, and conquer all 100 Sanctuary stages!",
+    "WELCOME_CARD3_TITLE": "Winning Secrets",
+    "WELCOME_CARD3_BODY": "Close a ring (Nadi Loop) or chain 6+ (Vitality Burst) to clear angry Saturated-Fat Overloads & charge Harmony Fever 2×!",
+    "WELCOME_BTN_START": "START JOURNEY!",
+    "BTN_WELCOME_INFO": "Intro"
   },
   "id": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Suaka Teka-Teki Denyut",
-    "APP_WORKING_TAG": "v2.4.0 • 100 Tahap",
+    "APP_WORKING_TAG": "v2.5.0 • 100 Tahap",
     "DIFF_TITLE": "Tingkat & Luas Kotak",
     "DIFF_EASY": "MUDAH\n5×7",
     "DIFF_MEDIUM": "SEDANG\n6×9",
@@ -391,6 +401,16 @@
     "THEME_LOCKED_RANK": "Peringkat {rank}",
     "PREVIEW_VITALITY_BURST": "6+ LEDAKAN VITALITAS! Bersih 3×3!",
     "BANNER_VITALITY_BURST": "LEDAKAN VITALITAS! BERSIH 3×3!",
-    "BOSS_RESISTANCE": "Bos {name} • Sisa {pct}%"
+    "BOSS_RESISTANCE": "Bos {name} • Sisa {pct}%",
+    "WELCOME_TITLE": "SELAMAT DATANG DI NADILOOPA!",
+    "WELCOME_SUBTITLE": "Game Puzzle Ceria untuk Menjaga Harmoni Tubuhmu",
+    "WELCOME_CARD1_TITLE": "Tentang Game Ini",
+    "WELCOME_CARD1_BODY": "Hubungkan 3+ organ tubuh ceria yang sama (Jantung, Otak, Paru, Ginjal, Lambung, Pankreas & Otot) untuk menjaga irama Nadi tetap kuat!",
+    "WELCOME_CARD2_TITLE": "Tujuan Permainan",
+    "WELCOME_CARD2_BODY": "Selesaikan target tiap tahap sebelum langkah habis, panen Sayur & Buah sehat, dan taklukkan 100 tahap Suaka Harmoni!",
+    "WELCOME_CARD3_TITLE": "Trik Menang & Kombo",
+    "WELCOME_CARD3_BODY": "Tutup lingkaran (Nadi Loop) atau rantai 6+ (Vitality Burst) untuk membersihkan makanan lemak jenuh (Overload) & aktifkan Demam 2×!",
+    "WELCOME_BTN_START": "MULAI PETUALANGAN!",
+    "BTN_WELCOME_INFO": "Info"
   }
 }

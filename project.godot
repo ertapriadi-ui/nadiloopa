@@ -12,7 +12,7 @@ config_version=5
 
 config/name="NADILOOPA"
 config/description="Warm tropical portrait chain-puzzle game with smiling glossy organs, Nadi Loop, and Endpoint Pulse mechanics."
-config/version="2.4.0"
+config/version="2.5.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/quit_on_go_back=false

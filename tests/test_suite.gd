@@ -775,14 +775,17 @@ func _test_daily_quests_star_chests_and_rank() -> void:
 	_assert_true(_save_mgr.spend_sanctuary_charm(), "Spend 1 Sanctuary Charm succeeds")
 	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms decrements to 6")
 
-	# Verify Sunset theme unlocks at Rank 3+, and haptics/board_theme persist with checksum
+	# Verify Sunset theme unlocks at Rank 3+, and haptics/board_theme/welcome_seen persist with checksum
+	_assert_eq(bool(_save_mgr.get_setting("welcome_seen", false)), false, "Welcome screen defaults to unseen on fresh profile")
 	_save_mgr.set_setting("haptics", false)
 	_save_mgr.set_setting("board_theme", "sunset")
+	_save_mgr.set_setting("welcome_seen", true)
 	_save_mgr.load_save()
-	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.4 save data passes SHA-256 checksum cleanly")
+	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.5 save data passes SHA-256 checksum cleanly")
 	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms persists across reload")
 	_assert_eq(bool(_save_mgr.get_setting("haptics", true)), false, "Haptics setting persists across reload")
 	_assert_eq(str(_save_mgr.get_setting("board_theme", "garden")), "sunset", "Board theme setting persists across reload")
+	_assert_eq(bool(_save_mgr.get_setting("welcome_seen", false)), true, "welcome_seen persists across reload")
 	var r1: Dictionary = _save_mgr.get_sanctuary_rank()
 	_assert_true(int(r1.get("rank", 1)) >= 3, "Sanctuary Rank advances with campaign stars")
 	_assert_true(_save_mgr.is_board_theme_unlocked("sunset"), "Sunset theme unlocks at Rank 3+")

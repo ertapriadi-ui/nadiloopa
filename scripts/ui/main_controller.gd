@@ -67,9 +67,23 @@ var _skip_splash: bool = false
 var _bg_rect: TextureRect
 var _safe_margin: MarginContainer
 var _screen_splash: Control
+var _screen_welcome: Control
 var _screen_menu: Control
 var _screen_levels: Control
 var _screen_game: Control
+
+# Welcome onboarding widgets
+var _btn_welcome_en: Button
+var _btn_welcome_id: Button
+var _lbl_welcome_title: Label
+var _lbl_welcome_sub: Label
+var _lbl_w_c1_t: Label
+var _lbl_w_c1_b: Label
+var _lbl_w_c2_t: Label
+var _lbl_w_c2_b: Label
+var _lbl_w_c3_t: Label
+var _lbl_w_c3_b: Label
+var _btn_welcome_start: Button
 
 # Modal layer
 var _modal_dim: ColorRect
@@ -87,6 +101,7 @@ var _modal_reset_confirm: PanelContainer
 var _lbl_menu_rank: Label
 var _lbl_menu_stars_chip: Label
 var _lbl_menu_charms_chip: Label
+var _btn_menu_welcome: Button
 var _menu_hero_icon: TextureRect
 var _menu_flank_left: TextureRect
 var _menu_flank_right: TextureRect
@@ -249,10 +264,13 @@ func _ready() -> void:
 	else:
 		show_screen("splash")
 		var tw := create_tween()
-		tw.tween_interval(1.0)
+		tw.tween_interval(0.9)
 		tw.tween_callback(func():
 			if _current_screen == "splash":
-				show_screen("menu")
+				if not bool(SaveManager.get_setting("welcome_seen", false)):
+					show_screen("welcome")
+				else:
+					show_screen("menu")
 		)
 
 
@@ -414,6 +432,7 @@ func _build_ui() -> void:
 	_safe_margin.add_child(screen_holder)
 
 	_build_splash_screen(screen_holder)
+	_build_welcome_screen(screen_holder)
 	_build_menu_screen(screen_holder)
 	_build_levels_screen(screen_holder)
 	_build_game_screen(screen_holder)
@@ -426,7 +445,10 @@ func _build_splash_screen(parent: Control) -> void:
 	_screen_splash.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_screen_splash.gui_input.connect(func(ev):
 		if ev is InputEventMouseButton and ev.pressed:
-			show_screen("menu")
+			if not bool(SaveManager.get_setting("welcome_seen", false)):
+				show_screen("welcome")
+			else:
+				show_screen("menu")
 	)
 	parent.add_child(_screen_splash)
 
@@ -435,7 +457,7 @@ func _build_splash_screen(parent: Control) -> void:
 	_screen_splash.add_child(center)
 
 	var card := PanelContainer.new()
-	card.add_theme_stylebox_override("panel", _make_box(Color(0.98, 0.99, 0.96, 0.92), 32, Color(0.11, 0.56, 0.49, 0.65), 4, 48, 40))
+	card.add_theme_stylebox_override("panel", _make_box(Color(0.98, 0.99, 0.96, 0.94), 36, Color(0.11, 0.56, 0.49, 0.72), 4, 52, 44, 18))
 	center.add_child(card)
 
 	var vb := VBoxContainer.new()
@@ -444,14 +466,145 @@ func _build_splash_screen(parent: Control) -> void:
 	card.add_child(vb)
 
 	var icon := TextureRect.new()
-	icon.custom_minimum_size = Vector2(240, 240)
+	icon.custom_minimum_size = Vector2(256, 256)
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	icon.texture = _tex_icon
 	vb.add_child(icon)
 
-	vb.add_child(_make_label("NADILOOPA", 64, Color(0.06, 0.28, 0.27), true, HORIZONTAL_ALIGNMENT_CENTER))
-	vb.add_child(_make_label("Pulse Puzzle Sanctuary", 28, Color(0.15, 0.44, 0.40), false, HORIZONTAL_ALIGNMENT_CENTER))
+	vb.add_child(_make_label("NADILOOPA", 72, Color(0.06, 0.28, 0.27), true, HORIZONTAL_ALIGNMENT_CENTER))
+	vb.add_child(_make_label("Pulse Puzzle Sanctuary", 34, Color(0.15, 0.44, 0.40), true, HORIZONTAL_ALIGNMENT_CENTER))
+
+
+func _make_welcome_story_card(icon_key: String, border_col: Color, bg_col: Color) -> Array:
+	var card := PanelContainer.new()
+	card.add_theme_stylebox_override("panel", _make_box(bg_col, 26, border_col, 3, 22, 18, 10))
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 20)
+	card.add_child(hb)
+
+	var ic := TextureRect.new()
+	ic.custom_minimum_size = Vector2(104, 104)
+	ic.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	ic.texture = _tile_icons.get(icon_key, _tex_icon)
+	hb.add_child(ic)
+
+	var tvb := VBoxContainer.new()
+	tvb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tvb.add_theme_constant_override("separation", 6)
+	hb.add_child(tvb)
+
+	var t_lbl := _make_label("", 32, Color(0.05, 0.28, 0.26), true)
+	t_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tvb.add_child(t_lbl)
+
+	var b_lbl := _make_label("", 28, Color(0.16, 0.30, 0.30), false)
+	b_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tvb.add_child(b_lbl)
+
+	return [card, t_lbl, b_lbl]
+
+
+func _build_welcome_screen(parent: Control) -> void:
+	_screen_welcome = Control.new()
+	_screen_welcome.name = "WelcomeScreen"
+	_screen_welcome.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_screen_welcome.visible = false
+	parent.add_child(_screen_welcome)
+
+	var outer_vb := VBoxContainer.new()
+	outer_vb.set_anchors_preset(Control.PRESET_FULL_RECT)
+	outer_vb.add_theme_constant_override("separation", 18)
+	_screen_welcome.add_child(outer_vb)
+
+	# Quick EN / ID toggle right at top of Welcome Screen
+	var lang_hb := HBoxContainer.new()
+	lang_hb.alignment = BoxContainer.ALIGNMENT_END
+	lang_hb.add_theme_constant_override("separation", 12)
+	outer_vb.add_child(lang_hb)
+
+	_btn_welcome_en = Button.new()
+	_btn_welcome_en.custom_minimum_size = Vector2(160, 68)
+	_btn_welcome_en.text = "English"
+	_btn_welcome_en.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		LocalizationManager.set_language("en")
+	)
+	lang_hb.add_child(_btn_welcome_en)
+
+	_btn_welcome_id = Button.new()
+	_btn_welcome_id.custom_minimum_size = Vector2(180, 68)
+	_btn_welcome_id.text = "Indonesia"
+	_btn_welcome_id.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		LocalizationManager.set_language("id")
+	)
+	lang_hb.add_child(_btn_welcome_id)
+
+	var center := CenterContainer.new()
+	center.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	outer_vb.add_child(center)
+
+	var card := PanelContainer.new()
+	card.custom_minimum_size = Vector2(980, 0)
+	card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 36, Color(0.94, 0.78, 0.42, 0.88), 5, 34, 30, 22))
+	center.add_child(card)
+
+	var vb := VBoxContainer.new()
+	vb.add_theme_constant_override("separation", 20)
+	card.add_child(vb)
+
+	# Hero Mascot Banner
+	var hero_hb := HBoxContainer.new()
+	hero_hb.alignment = BoxContainer.ALIGNMENT_CENTER
+	hero_hb.add_theme_constant_override("separation", 22)
+	vb.add_child(hero_hb)
+
+	for mk in ["brain_happy", "heart_happy", "lungs_happy"]:
+		var tr := TextureRect.new()
+		tr.custom_minimum_size = Vector2(124 if mk == "heart_happy" else 96, 124 if mk == "heart_happy" else 96)
+		tr.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tr.texture = _tile_icons.get(mk, _tex_icon)
+		hero_hb.add_child(tr)
+
+	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 46, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_welcome_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vb.add_child(_make_ribbon_header(_lbl_welcome_title, Color(0.08, 0.56, 0.46), Color(0.05, 0.36, 0.30)))
+
+	_lbl_welcome_sub = _make_label("", 30, Color(0.10, 0.42, 0.38), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_welcome_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vb.add_child(_lbl_welcome_sub)
+
+	# 3 Visual Story Cards explaining What the Game Is, Goal, and Winning Secrets
+	var c1 := _make_welcome_story_card("heart_happy", Color(0.14, 0.64, 0.48, 0.65), Color(0.91, 0.98, 0.94))
+	vb.add_child(c1[0])
+	_lbl_w_c1_t = c1[1]
+	_lbl_w_c1_b = c1[2]
+
+	var c2 := _make_welcome_story_card("care", Color(0.90, 0.64, 0.16, 0.65), Color(0.99, 0.96, 0.88))
+	vb.add_child(c2[0])
+	_lbl_w_c2_t = c2[1]
+	_lbl_w_c2_b = c2[2]
+
+	var c3 := _make_welcome_story_card("overload", Color(0.84, 0.34, 0.24, 0.65), Color(0.99, 0.92, 0.90))
+	vb.add_child(c3[0])
+	_lbl_w_c3_t = c3[1]
+	_lbl_w_c3_b = c3[2]
+
+	_btn_welcome_start = Button.new()
+	_btn_welcome_start.custom_minimum_size = Vector2(0, 114)
+	_style_button(_btn_welcome_start, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 38, 26)
+	_btn_welcome_start.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		GameManager.trigger_haptic(18)
+		SaveManager.set_setting("welcome_seen", true)
+		show_screen("menu")
+	)
+	vb.add_child(_btn_welcome_start)
 
 
 func _build_menu_screen(parent: Control) -> void:
@@ -462,157 +615,187 @@ func _build_menu_screen(parent: Control) -> void:
 
 	var outer_vb := VBoxContainer.new()
 	outer_vb.set_anchors_preset(Control.PRESET_FULL_RECT)
-	outer_vb.add_theme_constant_override("separation", 16)
+	outer_vb.add_theme_constant_override("separation", 18)
 	_screen_menu.add_child(outer_vb)
 
-	# Play-Store Floating Top Status Bar (Rank • Stars • Charms)
+	# Play-Store Floating Top Status Bar (Rank • Stars • Charms • Intro ?)
 	var top_bar := HBoxContainer.new()
 	top_bar.alignment = BoxContainer.ALIGNMENT_CENTER
-	top_bar.add_theme_constant_override("separation", 12)
+	top_bar.add_theme_constant_override("separation", 10)
 	outer_vb.add_child(top_bar)
 
 	var rank_pill := PanelContainer.new()
-	rank_pill.add_theme_stylebox_override("panel", _make_box(Color(0.08, 0.36, 0.34, 0.94), 22, Color(0.98, 0.84, 0.42, 0.85), 3, 18, 9, 8))
+	rank_pill.add_theme_stylebox_override("panel", _make_box(Color(0.08, 0.36, 0.34, 0.95), 22, Color(0.98, 0.84, 0.42, 0.88), 3, 18, 10, 8))
 	top_bar.add_child(rank_pill)
-	_lbl_menu_rank = _make_label("Rank 1 • Seedling", 24, Color(1.0, 0.96, 0.80), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_rank = _make_label("Rank 1 • Seedling", 26, Color(1.0, 0.96, 0.80), true, HORIZONTAL_ALIGNMENT_CENTER)
 	rank_pill.add_child(_lbl_menu_rank)
 
 	var star_pill := PanelContainer.new()
-	star_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.96, 0.86, 0.96), 22, Color(0.92, 0.66, 0.12, 0.85), 3, 18, 9, 8))
+	star_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.96, 0.86, 0.96), 22, Color(0.92, 0.66, 0.12, 0.88), 3, 18, 10, 8))
 	top_bar.add_child(star_pill)
-	_lbl_menu_stars_chip = _make_label("★ 0/300", 24, Color(0.68, 0.40, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_stars_chip = _make_label("★ 0/300", 26, Color(0.68, 0.40, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
 	star_pill.add_child(_lbl_menu_stars_chip)
 
 	var charm_pill := PanelContainer.new()
-	charm_pill.add_theme_stylebox_override("panel", _make_box(Color(0.94, 0.90, 1.0, 0.96), 22, Color(0.56, 0.34, 0.88, 0.82), 3, 18, 9, 8))
+	charm_pill.add_theme_stylebox_override("panel", _make_box(Color(0.94, 0.90, 1.0, 0.96), 22, Color(0.56, 0.34, 0.88, 0.84), 3, 18, 10, 8))
 	top_bar.add_child(charm_pill)
-	_lbl_menu_charms_chip = _make_label("✦ 2", 24, Color(0.36, 0.16, 0.68), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_charms_chip = _make_label("✦ 2", 26, Color(0.36, 0.16, 0.68), true, HORIZONTAL_ALIGNMENT_CENTER)
 	charm_pill.add_child(_lbl_menu_charms_chip)
 
-	var center := CenterContainer.new()
-	center.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	outer_vb.add_child(center)
+	_btn_menu_welcome = Button.new()
+	_btn_menu_welcome.custom_minimum_size = Vector2(118, 58)
+	_style_button(_btn_menu_welcome, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 26, 20, 12, 6)
+	_btn_menu_welcome.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		show_screen("welcome")
+	)
+	top_bar.add_child(_btn_menu_welcome)
 
-	var card := PanelContainer.new()
-	card.custom_minimum_size = Vector2(960, 0)
-	card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 38, Color(0.94, 0.78, 0.42, 0.85), 5, 40, 32, 20))
-	center.add_child(card)
+	# Frameless Hero Zone floating directly over tropical bg_menu.png
+	var hero_spacer_top := Control.new()
+	hero_spacer_top.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	hero_spacer_top.size_flags_stretch_ratio = 0.35
+	outer_vb.add_child(hero_spacer_top)
 
-	var vb := VBoxContainer.new()
-	vb.add_theme_constant_override("separation", 16)
-	card.add_child(vb)
+	var hero_vb := VBoxContainer.new()
+	hero_vb.alignment = BoxContainer.ALIGNMENT_CENTER
+	hero_vb.add_theme_constant_override("separation", 14)
+	outer_vb.add_child(hero_vb)
 
 	# Hero Mascot Trio (Flanking Smiling Brain & Lungs + Floating Heart Icon)
 	var hero_hb := HBoxContainer.new()
 	hero_hb.alignment = BoxContainer.ALIGNMENT_CENTER
-	hero_hb.add_theme_constant_override("separation", 22)
-	vb.add_child(hero_hb)
+	hero_hb.add_theme_constant_override("separation", 24)
+	hero_vb.add_child(hero_hb)
 
 	var flank_l_wrap := Control.new()
-	flank_l_wrap.custom_minimum_size = Vector2(124, 150)
+	flank_l_wrap.custom_minimum_size = Vector2(142, 170)
 	hero_hb.add_child(flank_l_wrap)
 	_menu_flank_left = TextureRect.new()
-	_menu_flank_left.size = Vector2(120, 120)
+	_menu_flank_left.size = Vector2(138, 138)
 	_menu_flank_left.position = Vector2(2, 24)
-	_menu_flank_left.pivot_offset = Vector2(60, 60)
+	_menu_flank_left.pivot_offset = Vector2(69, 69)
 	_menu_flank_left.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_menu_flank_left.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_menu_flank_left.texture = _tile_icons.get("brain_happy", _tile_icons.get("brain", null))
 	flank_l_wrap.add_child(_menu_flank_left)
 
 	var hero_wrap := Control.new()
-	hero_wrap.custom_minimum_size = Vector2(224, 224)
+	hero_wrap.custom_minimum_size = Vector2(246, 246)
 	hero_hb.add_child(hero_wrap)
 	_menu_hero_icon = TextureRect.new()
-	_menu_hero_icon.size = Vector2(224, 224)
-	_menu_hero_icon.pivot_offset = Vector2(112, 112)
+	_menu_hero_icon.size = Vector2(246, 246)
+	_menu_hero_icon.pivot_offset = Vector2(123, 123)
 	_menu_hero_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_menu_hero_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_menu_hero_icon.texture = _tex_icon
 	hero_wrap.add_child(_menu_hero_icon)
 
 	var flank_r_wrap := Control.new()
-	flank_r_wrap.custom_minimum_size = Vector2(124, 150)
+	flank_r_wrap.custom_minimum_size = Vector2(142, 170)
 	hero_hb.add_child(flank_r_wrap)
 	_menu_flank_right = TextureRect.new()
-	_menu_flank_right.size = Vector2(120, 120)
+	_menu_flank_right.size = Vector2(138, 138)
 	_menu_flank_right.position = Vector2(2, 24)
-	_menu_flank_right.pivot_offset = Vector2(60, 60)
+	_menu_flank_right.pivot_offset = Vector2(69, 69)
 	_menu_flank_right.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_menu_flank_right.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_menu_flank_right.texture = _tile_icons.get("lungs_happy", _tile_icons.get("lungs", null))
 	flank_r_wrap.add_child(_menu_flank_right)
 
-	_lbl_menu_title = _make_label("NADILOOPA", 74, Color(0.05, 0.30, 0.27), true, HORIZONTAL_ALIGNMENT_CENTER)
-	_lbl_menu_title.add_theme_color_override("font_outline_color", Color(0.98, 0.88, 0.56, 0.90))
-	_lbl_menu_title.add_theme_constant_override("outline_size", 6)
-	vb.add_child(_lbl_menu_title)
+	_lbl_menu_title = _make_label("NADILOOPA", 84, Color(0.04, 0.26, 0.24), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_menu_title.add_theme_color_override("font_outline_color", Color(1.0, 0.96, 0.80, 0.98))
+	_lbl_menu_title.add_theme_constant_override("outline_size", 12)
+	hero_vb.add_child(_lbl_menu_title)
 
-	_lbl_menu_sub = _make_label("Pulse Puzzle Sanctuary", 32, Color(0.11, 0.48, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
-	vb.add_child(_lbl_menu_sub)
-
-	_lbl_menu_tagline = _make_label("", 26, Color(0.22, 0.36, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	var sub_center := CenterContainer.new()
+	hero_vb.add_child(sub_center)
+	var sub_pill := PanelContainer.new()
+	sub_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.95, 0.92), 24, Color(0.94, 0.78, 0.42, 0.80), 3, 28, 10, 10))
+	sub_center.add_child(sub_pill)
+	var sub_vb := VBoxContainer.new()
+	sub_vb.add_theme_constant_override("separation", 4)
+	sub_pill.add_child(sub_vb)
+	_lbl_menu_sub = _make_label("Pulse Puzzle Sanctuary", 34, Color(0.08, 0.42, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	sub_vb.add_child(_lbl_menu_sub)
+	_lbl_menu_tagline = _make_label("", 28, Color(0.18, 0.32, 0.32), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_menu_tagline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	vb.add_child(_lbl_menu_tagline)
+	_lbl_menu_tagline.custom_minimum_size = Vector2(860, 0)
+	sub_vb.add_child(_lbl_menu_tagline)
 
+	var prog_center := CenterContainer.new()
+	hero_vb.add_child(prog_center)
 	var prog_pill := PanelContainer.new()
-	prog_pill.add_theme_stylebox_override("panel", _make_box(Color(0.88, 0.96, 0.92, 0.96), 20, Color(0.14, 0.60, 0.46, 0.48), 2, 18, 10))
-	vb.add_child(prog_pill)
-	_lbl_menu_progress = _make_label("", 26, Color(0.07, 0.36, 0.28), true, HORIZONTAL_ALIGNMENT_CENTER)
+	prog_pill.add_theme_stylebox_override("panel", _make_box(Color(0.08, 0.36, 0.34, 0.92), 22, Color(0.98, 0.86, 0.50, 0.82), 3, 26, 10, 8))
+	prog_center.add_child(prog_pill)
+	_lbl_menu_progress = _make_label("", 28, Color(1.0, 0.98, 0.88), true, HORIZONTAL_ALIGNMENT_CENTER)
 	prog_pill.add_child(_lbl_menu_progress)
 
-	# Difficulty & Dynamic Grid Size Selector (Easy 5x7 | Medium 6x9 | Hard 7x12)
-	var diff_card := PanelContainer.new()
-	diff_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.97, 0.94, 0.96), 24, Color(0.12, 0.50, 0.44, 0.35), 2, 16, 14))
-	vb.add_child(diff_card)
-	var diff_vb := VBoxContainer.new()
-	diff_vb.add_theme_constant_override("separation", 10)
-	diff_card.add_child(diff_vb)
+	var hero_spacer_bot := Control.new()
+	hero_spacer_bot.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	hero_spacer_bot.size_flags_stretch_ratio = 0.65
+	outer_vb.add_child(hero_spacer_bot)
 
-	_lbl_diff_title = _make_label("Difficulty & Grid Size", 25, Color(0.08, 0.32, 0.30), true, HORIZONTAL_ALIGNMENT_CENTER)
-	diff_vb.add_child(_lbl_diff_title)
+	# Sleek Floating Action Panel: Difficulty Pill + Giant Emerald PLAY CTA
+	var action_card := PanelContainer.new()
+	action_card.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.95), 34, Color(0.94, 0.78, 0.42, 0.88), 4, 26, 22, 18))
+	outer_vb.add_child(action_card)
+
+	var act_vb := VBoxContainer.new()
+	act_vb.add_theme_constant_override("separation", 16)
+	action_card.add_child(act_vb)
+
+	_lbl_diff_title = _make_label("Difficulty & Grid Size", 28, Color(0.08, 0.32, 0.30), true, HORIZONTAL_ALIGNMENT_CENTER)
+	act_vb.add_child(_lbl_diff_title)
 
 	var diff_hb := HBoxContainer.new()
 	diff_hb.add_theme_constant_override("separation", 12)
-	diff_vb.add_child(diff_hb)
+	act_vb.add_child(diff_hb)
 
 	_btn_diff_easy = Button.new()
 	_btn_diff_easy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_easy.custom_minimum_size = Vector2(0, 100)
+	_btn_diff_easy.custom_minimum_size = Vector2(0, 96)
 	_btn_diff_easy.pressed.connect(func(): _set_difficulty("easy"))
 	diff_hb.add_child(_btn_diff_easy)
 
 	_btn_diff_medium = Button.new()
 	_btn_diff_medium.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_medium.custom_minimum_size = Vector2(0, 100)
+	_btn_diff_medium.custom_minimum_size = Vector2(0, 96)
 	_btn_diff_medium.pressed.connect(func(): _set_difficulty("medium"))
 	diff_hb.add_child(_btn_diff_medium)
 
 	_btn_diff_hard = Button.new()
 	_btn_diff_hard.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_diff_hard.custom_minimum_size = Vector2(0, 100)
+	_btn_diff_hard.custom_minimum_size = Vector2(0, 96)
 	_btn_diff_hard.pressed.connect(func(): _set_difficulty("hard"))
 	diff_hb.add_child(_btn_diff_hard)
 
-	# Primary 3D Emerald Play CTA
 	_btn_play = Button.new()
-	_btn_play.custom_minimum_size = Vector2(0, 114)
-	_style_button(_btn_play, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 40, 26)
+	_btn_play.custom_minimum_size = Vector2(0, 124)
+	_style_button(_btn_play, Color(0.08, 0.68, 0.48), Color(0.12, 0.78, 0.56), Color.WHITE, 44, 28)
 	_btn_play.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		start_level(SaveManager.get_unlocked_level())
 	)
-	vb.add_child(_btn_play)
+	act_vb.add_child(_btn_play)
 
-	# 2-Button Action Row: Stages | Quests & Star Chest
+	# Large Play-Store Bottom Navigation Dock (2x2 readable grid so labels NEVER clip on phones!)
+	var dock_panel := PanelContainer.new()
+	dock_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 30, Color(0.92, 0.78, 0.44, 0.85), 4, 20, 16, 14))
+	outer_vb.add_child(dock_panel)
+
+	var dock_vb := VBoxContainer.new()
+	dock_vb.add_theme_constant_override("separation", 12)
+	dock_panel.add_child(dock_vb)
+
 	var row_mid := HBoxContainer.new()
 	row_mid.add_theme_constant_override("separation", 14)
-	vb.add_child(row_mid)
+	dock_vb.add_child(row_mid)
 
 	_btn_levels = Button.new()
 	_btn_levels.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_levels.custom_minimum_size = Vector2(0, 90)
-	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 30, 22, 12, 12)
+	_btn_levels.custom_minimum_size = Vector2(0, 96)
+	_style_button(_btn_levels, Color(0.12, 0.52, 0.72), Color(0.18, 0.62, 0.82), Color.WHITE, 32, 22, 14, 12)
 	_btn_levels.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		show_screen("levels")
@@ -621,8 +804,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_quests = Button.new()
 	_btn_quests.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_quests.custom_minimum_size = Vector2(0, 90)
-	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 30, 22, 12, 12)
+	_btn_quests.custom_minimum_size = Vector2(0, 96)
+	_style_button(_btn_quests, Color(0.90, 0.56, 0.12), Color(0.98, 0.66, 0.20), Color.WHITE, 32, 22, 14, 12)
 	_btn_quests.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_refresh_quests_ui()
@@ -630,15 +813,14 @@ func _build_menu_screen(parent: Control) -> void:
 	)
 	row_mid.add_child(_btn_quests)
 
-	# Bottom Row: Organs | Settings & Guide
 	var row_bot := HBoxContainer.new()
 	row_bot.add_theme_constant_override("separation", 14)
-	vb.add_child(row_bot)
+	dock_vb.add_child(row_bot)
 
 	_btn_almanac = Button.new()
 	_btn_almanac.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_almanac.custom_minimum_size = Vector2(0, 84)
-	_style_button(_btn_almanac, Color(0.14, 0.56, 0.46), Color(0.20, 0.66, 0.56), Color.WHITE, 28, 20, 12, 10)
+	_btn_almanac.custom_minimum_size = Vector2(0, 92)
+	_style_button(_btn_almanac, Color(0.14, 0.56, 0.46), Color(0.20, 0.66, 0.56), Color.WHITE, 30, 22, 14, 12)
 	_btn_almanac.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_refresh_almanac_ui()
@@ -648,8 +830,8 @@ func _build_menu_screen(parent: Control) -> void:
 
 	_btn_settings = Button.new()
 	_btn_settings.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_btn_settings.custom_minimum_size = Vector2(0, 84)
-	_style_button(_btn_settings, Color(0.26, 0.38, 0.44), Color(0.34, 0.48, 0.54), Color.WHITE, 28, 20, 12, 10)
+	_btn_settings.custom_minimum_size = Vector2(0, 92)
+	_style_button(_btn_settings, Color(0.26, 0.38, 0.44), Color(0.34, 0.48, 0.54), Color.WHITE, 30, 22, 14, 12)
 	_btn_settings.pressed.connect(func():
 		AudioManager.play_sfx("menu_button")
 		_settings_return_to_pause = false
@@ -658,8 +840,8 @@ func _build_menu_screen(parent: Control) -> void:
 	)
 	row_bot.add_child(_btn_settings)
 
-	_lbl_menu_worktag = _make_label("", 22, Color(0.36, 0.46, 0.44), true, HORIZONTAL_ALIGNMENT_CENTER)
-	vb.add_child(_lbl_menu_worktag)
+	_lbl_menu_worktag = _make_label("", 24, Color(0.26, 0.38, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	dock_vb.add_child(_lbl_menu_worktag)
 
 
 func _build_levels_screen(parent: Control) -> void:
@@ -792,75 +974,62 @@ func _build_game_screen(parent: Control) -> void:
 	root_vb.add_theme_constant_override("separation", 8)
 	_screen_game.add_child(root_vb)
 
-	# --- Compact Top HUD (Elevated Play-Store Style) ---
+	# --- Compact Elevated Top HUD (Hero Moves + Stage/Score/Stars + Pause) ---
 	_hud_panel = PanelContainer.new()
-	_hud_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 26, Color(0.92, 0.78, 0.44, 0.75), 3, 18, 10, 12))
+	_hud_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 26, Color(0.92, 0.78, 0.44, 0.80), 3, 16, 10, 12))
 	root_vb.add_child(_hud_panel)
 
 	var hud_vb := VBoxContainer.new()
 	hud_vb.add_theme_constant_override("separation", 6)
 	_hud_panel.add_child(hud_vb)
 
+	# Row 1: Moves Hero Pill | Stage + Score + 3-Star Bar | Compact Pause Button
 	var row1 := HBoxContainer.new()
-	row1.add_theme_constant_override("separation", 8)
+	row1.add_theme_constant_override("separation", 10)
 	hud_vb.add_child(row1)
 
-	_lbl_stage = _make_label("Stage 1", 30, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_moves_pill = PanelContainer.new()
+	_moves_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.93, 0.84), 18, Color(0.88, 0.50, 0.16, 0.65), 3, 16, 6))
+	row1.add_child(_moves_pill)
+	var moves_hb := HBoxContainer.new()
+	moves_hb.add_theme_constant_override("separation", 8)
+	_moves_pill.add_child(moves_hb)
+	_lbl_moves_title = _make_label("Moves", 24, Color(0.55, 0.28, 0.08), true)
+	_lbl_moves_val = _make_label("14", 42, Color(0.75, 0.30, 0.06), true)
+	moves_hb.add_child(_lbl_moves_title)
+	moves_hb.add_child(_lbl_moves_val)
+
+	var mid_vb := VBoxContainer.new()
+	mid_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	mid_vb.add_theme_constant_override("separation", 4)
+	row1.add_child(mid_vb)
+
+	var mid_top := HBoxContainer.new()
+	mid_top.add_theme_constant_override("separation", 10)
+	mid_vb.add_child(mid_top)
+
+	_lbl_stage = _make_label("Stage 1", 28, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_LEFT)
 	_lbl_stage.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_stage.clip_text = true
-	row1.add_child(_lbl_stage)
-
-	_streak_pill = PanelContainer.new()
-	_streak_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.88, 0.42), 14, Color(0.84, 0.48, 0.08), 2, 10, 4))
-	_streak_pill.visible = false
-	row1.add_child(_streak_pill)
-	_lbl_streak = _make_label("x1.2", 22, Color(0.48, 0.20, 0.04), true)
-	_streak_pill.add_child(_lbl_streak)
-
-	_fever_pill = PanelContainer.new()
-	_fever_pill.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.95, 0.94), 14, Color(0.24, 0.56, 0.50, 0.45), 2, 10, 4))
-	row1.add_child(_fever_pill)
-	_lbl_fever = _make_label("Fever 0/3", 22, Color(0.14, 0.40, 0.36), true)
-	_fever_pill.add_child(_lbl_fever)
+	mid_top.add_child(_lbl_stage)
 
 	var score_pill := PanelContainer.new()
-	score_pill.add_theme_stylebox_override("panel", _make_box(Color(0.90, 0.96, 0.93), 16, Color(0.15, 0.55, 0.45, 0.35), 2, 12, 4))
-	row1.add_child(score_pill)
+	score_pill.add_theme_stylebox_override("panel", _make_box(Color(0.90, 0.96, 0.93), 14, Color(0.15, 0.55, 0.45, 0.40), 2, 12, 3))
+	mid_top.add_child(score_pill)
 	var score_hb := HBoxContainer.new()
 	score_hb.add_theme_constant_override("separation", 6)
 	score_pill.add_child(score_hb)
-	_lbl_score_title = _make_label("Score", 22, Color(0.20, 0.42, 0.38), true)
+	_lbl_score_title = _make_label("Score", 24, Color(0.18, 0.40, 0.36), true)
 	_lbl_score_val = _make_label("0", 32, Color(0.05, 0.26, 0.24), true)
 	score_hb.add_child(_lbl_score_title)
 	score_hb.add_child(_lbl_score_val)
 
-	_moves_pill = PanelContainer.new()
-	_moves_pill.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.93, 0.84), 16, Color(0.88, 0.50, 0.16, 0.55), 2, 12, 4))
-	row1.add_child(_moves_pill)
-	var moves_hb := HBoxContainer.new()
-	moves_hb.add_theme_constant_override("separation", 6)
-	_moves_pill.add_child(moves_hb)
-	_lbl_moves_title = _make_label("Moves", 22, Color(0.55, 0.28, 0.08), true)
-	_lbl_moves_val = _make_label("14", 32, Color(0.75, 0.30, 0.06), true)
-	moves_hb.add_child(_lbl_moves_title)
-	moves_hb.add_child(_lbl_moves_val)
-
-	_btn_pause = Button.new()
-	_btn_pause.custom_minimum_size = Vector2(124, 62)
-	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 26, 16, 10, 6)
-	_btn_pause.pressed.connect(func():
-		AudioManager.play_sfx("menu_button")
-		pause_game()
-	)
-	row1.add_child(_btn_pause)
-
-	# Slim Live 3-Star Score Progress Bar + Pulse Bar Row
 	var row_stars := HBoxContainer.new()
-	row_stars.add_theme_constant_override("separation", 10)
-	hud_vb.add_child(row_stars)
+	row_stars.add_theme_constant_override("separation", 8)
+	mid_vb.add_child(row_stars)
 
-	_lbl_star_icons = _make_label("☆☆☆", 24, Color(0.88, 0.58, 0.08), true)
-	_lbl_star_icons.custom_minimum_size = Vector2(90, 0)
+	_lbl_star_icons = _make_label("☆☆☆", 28, Color(0.88, 0.58, 0.08), true)
+	_lbl_star_icons.custom_minimum_size = Vector2(96, 0)
 	row_stars.add_child(_lbl_star_icons)
 
 	_star_progress_bar = ProgressBar.new()
@@ -868,18 +1037,28 @@ func _build_game_screen(parent: Control) -> void:
 	_star_progress_bar.max_value = 3000
 	_star_progress_bar.value = 0
 	_star_progress_bar.show_percentage = false
-	_star_progress_bar.custom_minimum_size = Vector2(0, 16)
+	_star_progress_bar.custom_minimum_size = Vector2(0, 18)
 	_star_progress_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_star_progress_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_star_progress_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.90, 0.86), 8, Color(0.78, 0.62, 0.20, 0.35), 1, 0, 0))
 	_star_progress_bar.add_theme_stylebox_override("fill", _make_box(Color(0.96, 0.72, 0.14), 7, Color(0, 0, 0, 0), 0, 0, 0))
 	row_stars.add_child(_star_progress_bar)
 
+	_btn_pause = Button.new()
+	_btn_pause.custom_minimum_size = Vector2(110, 74)
+	_style_button(_btn_pause, Color(0.18, 0.44, 0.48), Color(0.24, 0.54, 0.58), Color.WHITE, 28, 18, 10, 6)
+	_btn_pause.pressed.connect(func():
+		AudioManager.play_sfx("menu_button")
+		pause_game()
+	)
+	row1.add_child(_btn_pause)
+
+	# Row 2: Pulse Bar + Shield + Fever + Streak
 	var row2 := HBoxContainer.new()
-	row2.add_theme_constant_override("separation", 12)
+	row2.add_theme_constant_override("separation", 10)
 	hud_vb.add_child(row2)
 
-	_lbl_pulse_label = _make_label("Pulse", 26, Color(0.10, 0.34, 0.32), true)
+	_lbl_pulse_label = _make_label("Pulse", 28, Color(0.10, 0.34, 0.32), true)
 	row2.add_child(_lbl_pulse_label)
 
 	_pulse_bar = ProgressBar.new()
@@ -887,21 +1066,34 @@ func _build_game_screen(parent: Control) -> void:
 	_pulse_bar.max_value = 100
 	_pulse_bar.value = 100
 	_pulse_bar.show_percentage = false
-	_pulse_bar.custom_minimum_size = Vector2(0, 28)
+	_pulse_bar.custom_minimum_size = Vector2(0, 26)
 	_pulse_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_pulse_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_pulse_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 12, Color(0.12, 0.38, 0.36, 0.25), 2, 0, 0))
 	_pulse_bar.add_theme_stylebox_override("fill", _make_box(Color(0.12, 0.76, 0.48), 10, Color(0, 0, 0, 0), 0, 0, 0))
 	row2.add_child(_pulse_bar)
 
-	_lbl_pulse_val = _make_label("100/100", 26, Color(0.06, 0.32, 0.24), true)
+	_lbl_pulse_val = _make_label("100/100", 28, Color(0.06, 0.32, 0.24), true)
 	row2.add_child(_lbl_pulse_val)
 
 	_shield_pill = PanelContainer.new()
-	_shield_pill.add_theme_stylebox_override("panel", _make_box(Color(0.88, 0.94, 0.92), 14, Color(0.2, 0.5, 0.4, 0.3), 2, 14, 4))
+	_shield_pill.add_theme_stylebox_override("panel", _make_box(Color(0.88, 0.94, 0.92), 14, Color(0.2, 0.5, 0.4, 0.3), 2, 12, 4))
 	row2.add_child(_shield_pill)
-	_lbl_shield = _make_label("No Shield", 24, Color(0.24, 0.38, 0.36), true)
+	_lbl_shield = _make_label("Shield 0", 26, Color(0.24, 0.38, 0.36), true)
 	_shield_pill.add_child(_lbl_shield)
+
+	_fever_pill = PanelContainer.new()
+	_fever_pill.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.95, 0.94), 14, Color(0.24, 0.56, 0.50, 0.45), 2, 12, 4))
+	row2.add_child(_fever_pill)
+	_lbl_fever = _make_label("Fever 0/3", 26, Color(0.14, 0.40, 0.36), true)
+	_fever_pill.add_child(_lbl_fever)
+
+	_streak_pill = PanelContainer.new()
+	_streak_pill.add_theme_stylebox_override("panel", _make_box(Color(1.0, 0.88, 0.42), 14, Color(0.84, 0.48, 0.08), 2, 12, 4))
+	_streak_pill.visible = false
+	row2.add_child(_streak_pill)
+	_lbl_streak = _make_label("x1.2", 26, Color(0.48, 0.20, 0.04), true)
+	_streak_pill.add_child(_lbl_streak)
 
 	_boss_bar_panel = PanelContainer.new()
 	_boss_bar_panel.visible = false
@@ -911,7 +1103,7 @@ func _build_game_screen(parent: Control) -> void:
 	boss_hb.add_theme_constant_override("separation", 12)
 	_boss_bar_panel.add_child(boss_hb)
 	var boss_ic := TextureRect.new()
-	boss_ic.custom_minimum_size = Vector2(40, 40)
+	boss_ic.custom_minimum_size = Vector2(44, 44)
 	boss_ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	boss_ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	boss_ic.texture = _tile_icons.get("overload", null)
@@ -920,16 +1112,16 @@ func _build_game_screen(parent: Control) -> void:
 	boss_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	boss_vb.add_theme_constant_override("separation", 4)
 	boss_hb.add_child(boss_vb)
-	_lbl_boss_name = _make_label("Boss", 22, Color(0.70, 0.14, 0.12), true)
+	_lbl_boss_name = _make_label("Boss", 26, Color(0.70, 0.14, 0.12), true)
 	boss_vb.add_child(_lbl_boss_name)
 	_boss_hp_bar = ProgressBar.new()
 	_boss_hp_bar.min_value = 0
 	_boss_hp_bar.max_value = 100
 	_boss_hp_bar.value = 100
 	_boss_hp_bar.show_percentage = false
-	_boss_hp_bar.custom_minimum_size = Vector2(0, 14)
-	_boss_hp_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.78, 0.76), 7, Color(0, 0, 0, 0), 0, 0, 0))
-	_boss_hp_bar.add_theme_stylebox_override("fill", _make_box(Color(0.88, 0.22, 0.18), 7, Color(0, 0, 0, 0), 0, 0, 0))
+	_boss_hp_bar.custom_minimum_size = Vector2(0, 16)
+	_boss_hp_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.78, 0.76), 8, Color(0, 0, 0, 0), 0, 0, 0))
+	_boss_hp_bar.add_theme_stylebox_override("fill", _make_box(Color(0.88, 0.22, 0.18), 8, Color(0, 0, 0, 0), 0, 0, 0))
 	boss_vb.add_child(_boss_hp_bar)
 
 	_objectives_box = HFlowContainer.new()
@@ -939,9 +1131,9 @@ func _build_game_screen(parent: Control) -> void:
 	hud_vb.add_child(_objectives_box)
 
 	_tutorial_bar = PanelContainer.new()
-	_tutorial_bar.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.56, 0.46, 0.94), 14, Color(1, 1, 1, 0.45), 2, 14, 7))
+	_tutorial_bar.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.56, 0.46, 0.95), 16, Color(1, 1, 1, 0.50), 2, 16, 8))
 	hud_vb.add_child(_tutorial_bar)
-	_lbl_tutorial = _make_label("", 26, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_tutorial = _make_label("", 30, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_tutorial.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tutorial_bar.add_child(_lbl_tutorial)
 
@@ -966,20 +1158,20 @@ func _build_game_screen(parent: Control) -> void:
 	_touch_ctrl.chain_committed.connect(_on_chain_committed)
 	_touch_ctrl.chain_cancelled.connect(_on_chain_cancelled)
 
-	# --- Bottom Preview + Tactical Care Dock ---
+	# --- Large, Phone-Readable Bottom Preview + Tactical Care Dock ---
 	_bottom_panel = PanelContainer.new()
-	_bottom_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.96), 24, Color(0.92, 0.78, 0.44, 0.75), 3, 14, 8, 12))
+	_bottom_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.985, 0.955, 0.97), 26, Color(0.92, 0.78, 0.44, 0.85), 3, 18, 12, 14))
 	root_vb.add_child(_bottom_panel)
 
 	var bot_vb := VBoxContainer.new()
-	bot_vb.add_theme_constant_override("separation", 6)
+	bot_vb.add_theme_constant_override("separation", 10)
 	_bottom_panel.add_child(bot_vb)
 
 	var bot_top := HBoxContainer.new()
 	bot_top.add_theme_constant_override("separation", 10)
 	bot_vb.add_child(bot_top)
 
-	_lbl_preview = _make_label("", 26, Color(0.08, 0.30, 0.28), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_preview = _make_label("", 32, Color(0.06, 0.28, 0.26), true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_preview.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_lbl_preview.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	bot_top.add_child(_lbl_preview)
@@ -1006,27 +1198,30 @@ func _build_game_screen(parent: Control) -> void:
 	)
 	bot_top.add_child(_btn_game_help)
 
-	# Tactical Care Dock (Larger typography & touch targets)
-	var dock_hb := HBoxContainer.new()
-	dock_hb.add_theme_constant_override("separation", 10)
-	bot_vb.add_child(dock_hb)
+	# Full-Width Energy Row (30px bold label + thick golden energy bar)
+	var en_hb := HBoxContainer.new()
+	en_hb.add_theme_constant_override("separation", 14)
+	bot_vb.add_child(en_hb)
 
-	var en_box := VBoxContainer.new()
-	en_box.custom_minimum_size = Vector2(215, 0)
-	en_box.add_theme_constant_override("separation", 4)
-	dock_hb.add_child(en_box)
+	_lbl_energy_val = _make_label("Energy 0/100", 30, Color(0.06, 0.36, 0.26), true)
+	en_hb.add_child(_lbl_energy_val)
 
-	_lbl_energy_val = _make_label("Energy 0/100", 22, Color(0.08, 0.38, 0.28), true)
-	en_box.add_child(_lbl_energy_val)
 	_energy_bar = ProgressBar.new()
 	_energy_bar.min_value = 0
 	_energy_bar.max_value = 100
 	_energy_bar.value = 0
 	_energy_bar.show_percentage = false
-	_energy_bar.custom_minimum_size = Vector2(0, 22)
-	_energy_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 9, Color(0.12, 0.38, 0.36, 0.25), 1, 0, 0))
-	_energy_bar.add_theme_stylebox_override("fill", _make_box(Color(0.95, 0.72, 0.14), 7, Color(0, 0, 0, 0), 0, 0, 0))
-	en_box.add_child(_energy_bar)
+	_energy_bar.custom_minimum_size = Vector2(0, 26)
+	_energy_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_energy_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	_energy_bar.add_theme_stylebox_override("background", _make_box(Color(0.84, 0.90, 0.88), 11, Color(0.12, 0.38, 0.36, 0.30), 2, 0, 0))
+	_energy_bar.add_theme_stylebox_override("fill", _make_box(Color(0.95, 0.72, 0.14), 9, Color(0, 0, 0, 0), 0, 0, 0))
+	en_hb.add_child(_energy_bar)
+
+	# Full-Width Tactical Ability Buttons Row (92px tall, 30px bold text!)
+	var dock_hb := HBoxContainer.new()
+	dock_hb.add_theme_constant_override("separation", 12)
+	bot_vb.add_child(dock_hb)
 
 	_btn_abl_spark = _make_ability_btn(_tex_spark, Color(0.90, 0.52, 0.12))
 	_btn_abl_spark.pressed.connect(func(): _use_tactical_ability("spark"))
@@ -1044,11 +1239,11 @@ func _build_game_screen(parent: Control) -> void:
 func _make_ability_btn(icon_tex: Texture2D, bg: Color) -> Button:
 	var b := Button.new()
 	b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	b.custom_minimum_size = Vector2(0, 64)
+	b.custom_minimum_size = Vector2(0, 92)
 	b.icon = icon_tex
 	b.expand_icon = true
 	b.clip_text = true
-	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 21, 16, 8, 6)
+	_style_button(b, bg, bg.lightened(0.12), Color.WHITE, 28, 20, 12, 8)
 	return b
 
 
@@ -1631,28 +1826,46 @@ func show_screen(screen_name: String) -> void:
 	_current_screen = screen_name
 	_close_modals()
 	_screen_splash.visible = (screen_name == "splash")
+	if is_instance_valid(_screen_welcome):
+		_screen_welcome.visible = (screen_name == "welcome")
 	_screen_menu.visible = (screen_name == "menu")
 	_screen_levels.visible = (screen_name == "levels")
 	_screen_game.visible = (screen_name == "game")
 
+	var active_node: Control = null
 	match screen_name:
 		"splash":
+			active_node = _screen_splash
 			_bg_rect.texture = _tex_bg_splash
 			GameManager.play_state = GameManager.PlayState.MENU
+		"welcome":
+			active_node = _screen_welcome
+			_bg_rect.texture = _tex_bg_menu
+			GameManager.play_state = GameManager.PlayState.MENU
+			AudioManager.play_music("menu")
+			_refresh_texts()
 		"menu":
+			active_node = _screen_menu
 			_bg_rect.texture = _tex_bg_menu
 			GameManager.play_state = GameManager.PlayState.MENU
 			AudioManager.play_music("menu")
 			_refresh_texts()
 		"levels":
+			active_node = _screen_levels
 			_bg_rect.texture = _tex_bg_menu
 			GameManager.play_state = GameManager.PlayState.MENU
 			AudioManager.play_music("menu")
 			_refresh_level_cards()
 		"game":
+			active_node = _screen_game
 			_bg_rect.texture = _tex_bg_game
 			var is_boss := bool(level_def.get("is_boss", false))
 			AudioManager.play_music("boss" if is_boss else "gameplay")
+
+	if is_instance_valid(active_node) and DisplayServer.get_name() != "headless" and not GameManager.is_reduce_motion():
+		active_node.modulate.a = 0.0
+		var tw := active_node.create_tween()
+		tw.tween_property(active_node, "modulate:a", 1.0, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
 func start_level(level_id: int) -> void:
@@ -2121,6 +2334,19 @@ func _process(delta: float) -> void:
 				var sq := 1.04 + 0.08 * sin(phase * 1.4)
 				sp.scale = Vector2(sq, 2.08 - sq)
 
+	if _screen_game != null and _screen_game.visible and DisplayServer.get_name() != "headless":
+		var t_g := float(Time.get_ticks_msec()) * 0.001
+		var abl_btns := [_btn_abl_spark, _btn_abl_flow, _btn_abl_rest]
+		for idx in range(abl_btns.size()):
+			var ab: Button = abl_btns[idx]
+			if not is_instance_valid(ab):
+				continue
+			if ab.disabled or GameManager.is_reduce_motion():
+				ab.modulate = Color.WHITE
+			else:
+				var glow := 1.0 + 0.12 * (0.5 + 0.5 * sin(t_g * 4.2 + float(idx) * 1.1))
+				ab.modulate = Color(glow, glow, 0.96 + 0.08 * glow, 1.0)
+
 
 func _show_win_modal(stars: int, move_bonus: int) -> void:
 	if is_instance_valid(_board_renderer):
@@ -2349,19 +2575,19 @@ func _refresh_hud() -> void:
 func _add_objective_chip(text_str: String, done: bool, icon_key: String) -> void:
 	var pill := PanelContainer.new()
 	var bg := Color(0.82, 0.98, 0.88) if done else Color(0.92, 0.96, 0.95)
-	var bcol := Color(0.10, 0.72, 0.42) if done else Color(0.18, 0.48, 0.46, 0.35)
-	pill.add_theme_stylebox_override("panel", _make_box(bg, 14, bcol, 2, 14, 5))
+	var bcol := Color(0.10, 0.72, 0.42) if done else Color(0.18, 0.48, 0.46, 0.40)
+	pill.add_theme_stylebox_override("panel", _make_box(bg, 16, bcol, 2, 16, 6))
 	var hb := HBoxContainer.new()
-	hb.add_theme_constant_override("separation", 8)
+	hb.add_theme_constant_override("separation", 10)
 	pill.add_child(hb)
 	if icon_key != "" and _tile_icons.has(icon_key) and _tile_icons[icon_key] != null:
 		var ic := TextureRect.new()
-		ic.custom_minimum_size = Vector2(36, 36)
+		ic.custom_minimum_size = Vector2(44, 44)
 		ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		ic.texture = _tile_icons[icon_key]
 		hb.add_child(ic)
-	hb.add_child(_make_label(("✓ " if done else "") + text_str, 26, Color(0.05, 0.42, 0.24) if done else Color(0.10, 0.28, 0.28), true))
+	hb.add_child(_make_label(("✓ " if done else "") + text_str, 30, Color(0.05, 0.42, 0.24) if done else Color(0.08, 0.26, 0.26), true))
 	_objectives_box.add_child(pill)
 
 
@@ -2377,7 +2603,7 @@ func _refresh_level_cards() -> void:
 		cbtn.text = "%d" % ch_num
 		var bg := Color(0.09, 0.62, 0.47) if ch_num == _selected_chapter else (Color(0.20, 0.44, 0.52) if ch_open else Color(0.72, 0.79, 0.77))
 		var tcol := Color.WHITE if (ch_num == _selected_chapter or ch_open) else Color(0.20, 0.30, 0.30)
-		_style_button(cbtn, bg, bg.lightened(0.1), tcol, 24, 14, 6, 6)
+		_style_button(cbtn, bg, bg.lightened(0.1), tcol, 28, 14, 6, 6)
 
 	var ch_info: Array = CHAPTER_NAMES[_selected_chapter - 1]
 	var ch_name := str(ch_info[2] if LocalizationManager.current_locale == "id" else ch_info[1])
@@ -2417,9 +2643,9 @@ func _refresh_level_cards() -> void:
 		]
 		if is_open:
 			var bg := Color(0.78, 0.44, 0.12) if is_boss else (Color(0.11, 0.58, 0.46) if stars > 0 else Color(0.16, 0.50, 0.62))
-			_style_button(btn, bg, bg.lightened(0.10), Color.WHITE, 22, 20)
+			_style_button(btn, bg, bg.lightened(0.10), Color.WHITE, 28, 22)
 		else:
-			_style_button(btn, Color(0.68, 0.75, 0.74), Color(0.68, 0.75, 0.74), Color(0.24, 0.34, 0.34), 21, 20)
+			_style_button(btn, Color(0.68, 0.75, 0.74), Color(0.68, 0.75, 0.74), Color(0.24, 0.34, 0.34), 26, 22)
 
 
 func _refresh_almanac_ui() -> void:
@@ -2658,10 +2884,10 @@ func _sync_settings_ui() -> void:
 		if open:
 			btn.text = ("✓ " if cur_thm == tid else "") + name_txt
 			var bg := col if cur_thm == tid else Color(0.35, 0.46, 0.46)
-			_style_button(btn, bg, bg.lightened(0.1), Color.WHITE, 21, 14)
+			_style_button(btn, bg, bg.lightened(0.1), Color.WHITE, 26, 14)
 		else:
 			btn.text = "%s\n(%s)" % [name_txt, LocalizationManager.tr_key("THEME_LOCKED_RANK", {"rank": req_rank})]
-			_style_button(btn, Color(0.74, 0.79, 0.78), Color(0.74, 0.79, 0.78), Color(0.32, 0.38, 0.38), 18, 14)
+			_style_button(btn, Color(0.74, 0.79, 0.78), Color(0.74, 0.79, 0.78), Color(0.32, 0.38, 0.38), 22, 14)
 
 
 func _on_language_changed(_locale: String) -> void:
@@ -2669,10 +2895,28 @@ func _on_language_changed(_locale: String) -> void:
 
 
 func _refresh_texts() -> void:
+	# Welcome Onboarding Screen bilingual texts & language toggle styling
+	if is_instance_valid(_lbl_welcome_title):
+		_lbl_welcome_title.text = LocalizationManager.tr_key("WELCOME_TITLE")
+		_lbl_welcome_sub.text = LocalizationManager.tr_key("WELCOME_SUBTITLE")
+		_lbl_w_c1_t.text = LocalizationManager.tr_key("WELCOME_CARD1_TITLE")
+		_lbl_w_c1_b.text = LocalizationManager.tr_key("WELCOME_CARD1_BODY")
+		_lbl_w_c2_t.text = LocalizationManager.tr_key("WELCOME_CARD2_TITLE")
+		_lbl_w_c2_b.text = LocalizationManager.tr_key("WELCOME_CARD2_BODY")
+		_lbl_w_c3_t.text = LocalizationManager.tr_key("WELCOME_CARD3_TITLE")
+		_lbl_w_c3_b.text = LocalizationManager.tr_key("WELCOME_CARD3_BODY")
+		_btn_welcome_start.text = LocalizationManager.tr_key("WELCOME_BTN_START")
+		var w_en_col := Color(0.09, 0.62, 0.47) if LocalizationManager.current_locale == "en" else Color(0.30, 0.44, 0.46)
+		var w_id_col := Color(0.09, 0.62, 0.47) if LocalizationManager.current_locale == "id" else Color(0.30, 0.44, 0.46)
+		_style_button(_btn_welcome_en, w_en_col, w_en_col.lightened(0.10), Color.WHITE, 28, 18, 12, 8)
+		_style_button(_btn_welcome_id, w_id_col, w_id_col.lightened(0.10), Color.WHITE, 28, 18, 12, 8)
+
 	_lbl_menu_title.text = LocalizationManager.tr_key("APP_TITLE")
 	_lbl_menu_sub.text = LocalizationManager.tr_key("APP_SUBTITLE")
 	_lbl_menu_tagline.text = LocalizationManager.tr_key("MENU_TAGLINE")
 	_lbl_menu_worktag.text = LocalizationManager.tr_key("APP_WORKING_TAG")
+	if is_instance_valid(_btn_menu_welcome):
+		_btn_menu_welcome.text = "? " + LocalizationManager.tr_key("BTN_WELCOME_INFO")
 	var unlocked := SaveManager.get_unlocked_level()
 	var total_stars := SaveManager.get_total_stars()
 	var charms := SaveManager.get_sanctuary_charms()
@@ -2703,10 +2947,10 @@ func _refresh_texts() -> void:
 	if is_instance_valid(_btn_quests):
 		if unclaimed > 0:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS_READY", {"count": unclaimed})
-			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 28, 22, 16, 10)
+			_style_button(_btn_quests, Color(0.94, 0.56, 0.08), Color(1.0, 0.66, 0.16), Color.WHITE, 32, 22, 14, 12)
 		else:
 			_btn_quests.text = LocalizationManager.tr_key("BTN_QUESTS")
-			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 28, 22, 16, 10)
+			_style_button(_btn_quests, Color(0.86, 0.54, 0.12), Color(0.94, 0.62, 0.18), Color.WHITE, 32, 22, 14, 12)
 	_btn_endless.text = LocalizationManager.tr_key("BTN_ENDLESS")
 	_btn_daily.text = LocalizationManager.tr_key("BTN_DAILY")
 	_btn_almanac.text = LocalizationManager.tr_key("BTN_ALMANAC")
@@ -2808,7 +3052,8 @@ func _notification(what: int) -> void:
 				_close_modals()
 		elif _current_screen == "game":
 			pause_game()
-		elif _current_screen == "levels":
+		elif _current_screen == "levels" or _current_screen == "welcome":
+			SaveManager.set_setting("welcome_seen", true)
 			show_screen("menu")
 
 

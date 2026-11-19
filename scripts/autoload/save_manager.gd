@@ -73,7 +73,8 @@ func create_default_data() -> Dictionary:
 			"reduce_motion": false,
 			"screen_shake": true,
 			"haptics": true,
-			"board_theme": "garden"
+			"board_theme": "garden",
+			"welcome_seen": false
 		}
 	}
 
@@ -108,6 +109,8 @@ func _compute_checksum(payload: Dictionary) -> String:
 		parts.append("hap=%d" % (1 if bool(s.get("haptics", true)) else 0))
 	if s.has("board_theme"):
 		parts.append("thm=%s" % str(s.get("board_theme", "garden")))
+	if s.has("welcome_seen"):
+		parts.append("ws=%d" % (1 if bool(s.get("welcome_seen", false)) else 0))
 	if payload.has("sanctuary_charms"):
 		parts.append("sc=%d" % clampi(int(payload.get("sanctuary_charms", 2)), 0, 99))
 	if payload.has("star_chests_claimed"):
