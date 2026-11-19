@@ -142,6 +142,9 @@ var _shield_pill: PanelContainer
 var _lbl_shield: Label
 # _objectives_box uses FlowContainer so large-font chips wrap cleanly without clipping
 var _objectives_box: HFlowContainer
+var _boss_bar_panel: PanelContainer
+var _lbl_boss_name: Label
+var _boss_hp_bar: ProgressBar
 var _tutorial_bar: PanelContainer
 var _lbl_tutorial: Label
 var _board_host: Control
@@ -196,6 +199,11 @@ var _slider_sfx: HSlider
 var _chk_sfx_mute: CheckButton
 var _chk_reduce_motion: CheckButton
 var _chk_screen_shake: CheckButton
+var _chk_haptics: CheckButton
+var _lbl_set_theme: Label
+var _btn_theme_garden: Button
+var _btn_theme_sunset: Button
+var _btn_theme_starlight: Button
 var _btn_set_reset: Button
 var _btn_set_close: Button
 
@@ -895,6 +903,35 @@ func _build_game_screen(parent: Control) -> void:
 	_lbl_shield = _make_label("No Shield", 24, Color(0.24, 0.38, 0.36), true)
 	_shield_pill.add_child(_lbl_shield)
 
+	_boss_bar_panel = PanelContainer.new()
+	_boss_bar_panel.visible = false
+	_boss_bar_panel.add_theme_stylebox_override("panel", _make_box(Color(0.99, 0.90, 0.88), 16, Color(0.84, 0.24, 0.18, 0.78), 2, 14, 6))
+	hud_vb.add_child(_boss_bar_panel)
+	var boss_hb := HBoxContainer.new()
+	boss_hb.add_theme_constant_override("separation", 12)
+	_boss_bar_panel.add_child(boss_hb)
+	var boss_ic := TextureRect.new()
+	boss_ic.custom_minimum_size = Vector2(40, 40)
+	boss_ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	boss_ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	boss_ic.texture = _tile_icons.get("overload", null)
+	boss_hb.add_child(boss_ic)
+	var boss_vb := VBoxContainer.new()
+	boss_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	boss_vb.add_theme_constant_override("separation", 4)
+	boss_hb.add_child(boss_vb)
+	_lbl_boss_name = _make_label("Boss", 22, Color(0.70, 0.14, 0.12), true)
+	boss_vb.add_child(_lbl_boss_name)
+	_boss_hp_bar = ProgressBar.new()
+	_boss_hp_bar.min_value = 0
+	_boss_hp_bar.max_value = 100
+	_boss_hp_bar.value = 100
+	_boss_hp_bar.show_percentage = false
+	_boss_hp_bar.custom_minimum_size = Vector2(0, 14)
+	_boss_hp_bar.add_theme_stylebox_override("background", _make_box(Color(0.88, 0.78, 0.76), 7, Color(0, 0, 0, 0), 0, 0, 0))
+	_boss_hp_bar.add_theme_stylebox_override("fill", _make_box(Color(0.88, 0.22, 0.18), 7, Color(0, 0, 0, 0), 0, 0, 0))
+	boss_vb.add_child(_boss_hp_bar)
+
 	_objectives_box = HFlowContainer.new()
 	_objectives_box.alignment = FlowContainer.ALIGNMENT_CENTER
 	_objectives_box.add_theme_constant_override("h_separation", 12)
@@ -1324,6 +1361,39 @@ func _build_modals() -> void:
 	_style_check_button(_chk_screen_shake, 24)
 	_chk_screen_shake.toggled.connect(func(b): SaveManager.set_setting("screen_shake", b))
 	ss_card.add_child(_chk_screen_shake)
+
+	var hap_card := PanelContainer.new()
+	hap_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.97, 0.95), 14, Color(0.14, 0.48, 0.44, 0.22), 1, 14, 8))
+	s_vb.add_child(hap_card)
+	_chk_haptics = CheckButton.new()
+	_style_check_button(_chk_haptics, 24)
+	_chk_haptics.toggled.connect(func(b):
+		SaveManager.set_setting("haptics", b)
+		if b:
+			GameManager.trigger_haptic(18)
+	)
+	hap_card.add_child(_chk_haptics)
+
+	_lbl_set_theme = _make_label("Board Theme", 22, Color(0.12, 0.32, 0.30), true)
+	s_vb.add_child(_lbl_set_theme)
+	var thm_hb := HBoxContainer.new()
+	thm_hb.add_theme_constant_override("separation", 10)
+	s_vb.add_child(thm_hb)
+	_btn_theme_garden = Button.new()
+	_btn_theme_garden.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_theme_garden.custom_minimum_size = Vector2(0, 60)
+	_btn_theme_garden.pressed.connect(func(): _select_board_theme("garden"))
+	thm_hb.add_child(_btn_theme_garden)
+	_btn_theme_sunset = Button.new()
+	_btn_theme_sunset.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_theme_sunset.custom_minimum_size = Vector2(0, 60)
+	_btn_theme_sunset.pressed.connect(func(): _select_board_theme("sunset"))
+	thm_hb.add_child(_btn_theme_sunset)
+	_btn_theme_starlight = Button.new()
+	_btn_theme_starlight.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_btn_theme_starlight.custom_minimum_size = Vector2(0, 60)
+	_btn_theme_starlight.pressed.connect(func(): _select_board_theme("starlight"))
+	thm_hb.add_child(_btn_theme_starlight)
 
 	var help_hb := HBoxContainer.new()
 	help_hb.add_theme_constant_override("separation", 14)
@@ -1845,8 +1915,12 @@ func _on_chain_updated(chain: Array[Vector2i]) -> void:
 				AudioManager.play_sfx("hazard_warning")
 				_last_warning_active = true
 		_:
-			_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_NEUTRAL", {"score": est_score})
-			_lbl_preview.add_theme_color_override("font_color", Color(0.08, 0.40, 0.34))
+			if chain.size() >= 6:
+				_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_VITALITY_BURST")
+				_lbl_preview.add_theme_color_override("font_color", Color(0.05, 0.56, 0.30))
+			else:
+				_lbl_preview.text = LocalizationManager.tr_key("PREVIEW_NEUTRAL", {"score": est_score})
+				_lbl_preview.add_theme_color_override("font_color", Color(0.08, 0.40, 0.34))
 			_last_warning_active = false
 
 
@@ -1912,8 +1986,10 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 		_play_sfx_delayed("shield_block", 0.11)
 	if int(pulse.get("overloads_triggered", 0)) > 0:
 		_play_sfx_delayed("hazard_trigger", 0.11)
-	if bool(res.get("fever_triggered", false)):
+		GameManager.trigger_haptic(40)
+	if bool(res.get("fever_triggered", false)) or bool(res.get("vitality_burst_triggered", false)):
 		_play_sfx_delayed("star_pop", 0.16, 1.18, 1.0)
+		GameManager.trigger_haptic(45)
 	_play_sfx_delayed("tile_refill", 0.17)
 	_play_sfx_delayed("score_popup", 0.25)
 
@@ -1926,6 +2002,7 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 func _finish_turn_animations(res: Dictionary) -> void:
 	var status := str(res.get("status", "continue"))
 	if status == "win":
+		GameManager.trigger_haptic(30)
 		if _current_mode == "endless":
 			_advance_endless_wave()
 			return
@@ -2211,32 +2288,55 @@ func _refresh_hud() -> void:
 	for ch in _objectives_box.get_children():
 		ch.queue_free()
 	var objs: Dictionary = level_def.get("objectives", {})
+	var obj_done_sum := 0.0
+	var obj_count := 0
 	if objs.has("collect"):
 		var col_req: Dictionary = objs["collect"]
 		for organ in col_req.keys():
 			var cur := int(progress.get("collected", {}).get(organ, 0))
-			var tgt := int(col_req[organ])
+			var tgt := maxi(1, int(col_req[organ]))
+			obj_done_sum += clampf(float(cur) / float(tgt), 0.0, 1.0)
+			obj_count += 1
 			var o_name := LocalizationManager.tr_key("ORGAN_" + str(organ).to_upper())
 			_add_objective_chip(LocalizationManager.tr_key("OBJ_COLLECT_ORGAN", {"organ": o_name, "current": mini(cur, tgt), "target": tgt}), cur >= tgt, str(organ))
 	if objs.has("score"):
 		var cur_s := int(progress.get("score", 0))
-		var tgt_s := int(objs["score"])
+		var tgt_s := maxi(1, int(objs["score"]))
+		obj_done_sum += clampf(float(cur_s) / float(tgt_s), 0.0, 1.0)
+		obj_count += 1
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_SCORE", {"current": mini(cur_s, tgt_s), "target": tgt_s}), cur_s >= tgt_s, "")
 	if objs.has("activate_care"):
 		var cur_c := int(progress.get("care_activated", 0))
-		var tgt_c := int(objs["activate_care"])
+		var tgt_c := maxi(1, int(objs["activate_care"]))
+		obj_done_sum += clampf(float(cur_c) / float(tgt_c), 0.0, 1.0)
+		obj_count += 1
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_CARE", {"current": mini(cur_c, tgt_c), "target": tgt_c}), cur_c >= tgt_c, "care")
 	if objs.has("neutralize_overload"):
 		var cur_o := int(progress.get("overloads_neutralized", 0))
-		var tgt_o := int(objs["neutralize_overload"])
+		var tgt_o := maxi(1, int(objs["neutralize_overload"]))
+		obj_done_sum += clampf(float(cur_o) / float(tgt_o), 0.0, 1.0)
+		obj_count += 1
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_OVERLOAD", {"current": mini(cur_o, tgt_o), "target": tgt_o}), cur_o >= tgt_o, "overload")
 	if objs.has("long_chains"):
 		var cur_l := int(progress.get("long_chains", 0))
-		var tgt_l := int(objs["long_chains"])
+		var tgt_l := maxi(1, int(objs["long_chains"]))
+		obj_done_sum += clampf(float(cur_l) / float(tgt_l), 0.0, 1.0)
+		obj_count += 1
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_LONG_CHAIN", {"current": mini(cur_l, tgt_l), "target": tgt_l}), cur_l >= tgt_l, "")
 	if objs.has("keep_pulse"):
 		var tgt_p := int(objs["keep_pulse"])
 		_add_objective_chip(LocalizationManager.tr_key("OBJ_KEEP_PULSE", {"target": tgt_p}), pulse_val >= tgt_p, "")
+
+	if is_instance_valid(_boss_bar_panel):
+		var is_boss := bool(level_def.get("is_boss", false))
+		_boss_bar_panel.visible = is_boss
+		if is_boss:
+			var pct_left := clampi(int(round((1.0 - (obj_done_sum / float(maxi(1, obj_count)))) * 100.0)), 0, 100)
+			_boss_hp_bar.value = pct_left
+			_lbl_boss_name.text = LocalizationManager.tr_key("BOSS_RESISTANCE", {
+				"name": lv_title if lv_title != "" else ("#%d" % lid),
+				"pct": pct_left
+			})
 
 	var tut_key := str(level_def.get("tutorial_key", ""))
 	if tut_key != "":
@@ -2509,6 +2609,18 @@ func _refresh_quests_ui() -> void:
 		_quests_list_box.add_child(q_card)
 
 
+func _select_board_theme(theme_id: String) -> void:
+	if not SaveManager.is_board_theme_unlocked(theme_id):
+		AudioManager.play_sfx("invalid_path", 1.0, -3.0)
+		return
+	AudioManager.play_sfx("menu_button")
+	GameManager.trigger_haptic(14)
+	SaveManager.set_setting("board_theme", theme_id)
+	if is_instance_valid(_board_renderer):
+		_board_renderer.set_board_theme(theme_id)
+	_sync_settings_ui()
+
+
 func _sync_settings_ui() -> void:
 	var lang := LocalizationManager.current_locale
 	_btn_lang_en.text = LocalizationManager.tr_key("SETTINGS_LANG_EN")
@@ -2524,6 +2636,32 @@ func _sync_settings_ui() -> void:
 	_chk_sfx_mute.set_pressed_no_signal(bool(SaveManager.get_setting("sfx_muted", false)))
 	_chk_reduce_motion.set_pressed_no_signal(bool(SaveManager.get_setting("reduce_motion", false)))
 	_chk_screen_shake.set_pressed_no_signal(bool(SaveManager.get_setting("screen_shake", true)))
+	if is_instance_valid(_chk_haptics):
+		_chk_haptics.set_pressed_no_signal(bool(SaveManager.get_setting("haptics", true)))
+
+	var cur_thm := str(SaveManager.get_setting("board_theme", "garden"))
+	var theme_specs := [
+		[_btn_theme_garden, "garden", "THEME_GARDEN", 1, Color(0.09, 0.62, 0.47)],
+		[_btn_theme_sunset, "sunset", "THEME_SUNSET", 3, Color(0.84, 0.42, 0.24)],
+		[_btn_theme_starlight, "starlight", "THEME_STARLIGHT", 6, Color(0.24, 0.30, 0.66)]
+	]
+	for sp in theme_specs:
+		var btn: Button = sp[0]
+		if not is_instance_valid(btn):
+			continue
+		var tid: String = sp[1]
+		var name_txt := LocalizationManager.tr_key(str(sp[2]))
+		var req_rank: int = sp[3]
+		var col: Color = sp[4]
+		var open := SaveManager.is_board_theme_unlocked(tid)
+		btn.disabled = not open
+		if open:
+			btn.text = ("✓ " if cur_thm == tid else "") + name_txt
+			var bg := col if cur_thm == tid else Color(0.35, 0.46, 0.46)
+			_style_button(btn, bg, bg.lightened(0.1), Color.WHITE, 21, 14)
+		else:
+			btn.text = "%s\n(%s)" % [name_txt, LocalizationManager.tr_key("THEME_LOCKED_RANK", {"rank": req_rank})]
+			_style_button(btn, Color(0.74, 0.79, 0.78), Color(0.74, 0.79, 0.78), Color(0.32, 0.38, 0.38), 18, 14)
 
 
 func _on_language_changed(_locale: String) -> void:
@@ -2610,6 +2748,10 @@ func _refresh_texts() -> void:
 	_chk_sfx_mute.text = LocalizationManager.tr_key("SETTINGS_MUTE")
 	_chk_reduce_motion.text = LocalizationManager.tr_key("SETTINGS_REDUCE_MOTION")
 	_chk_screen_shake.text = LocalizationManager.tr_key("SETTINGS_SCREEN_SHAKE")
+	if is_instance_valid(_chk_haptics):
+		_chk_haptics.text = LocalizationManager.tr_key("SETTINGS_HAPTICS")
+	if is_instance_valid(_lbl_set_theme):
+		_lbl_set_theme.text = LocalizationManager.tr_key("SETTINGS_BOARD_THEME")
 	_btn_set_reset.text = LocalizationManager.tr_key("BTN_RESET_PROGRESS")
 	_btn_set_close.text = LocalizationManager.tr_key("BTN_CLOSE")
 	_sync_settings_ui()

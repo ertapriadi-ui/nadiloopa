@@ -158,7 +158,28 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	energy_add += int(pulse_res.get("energy_gained", 0))
 	progress["care_energy"] = mini(100, int(progress.get("care_energy", 0)) + energy_add)
 
-	var turn_score: int = chain_score + healthy_bonus_score + int(pulse_res["bonus_score"])
+	# Vitality Burst: 6+ unique organ chain unleashes a 3x3 shockwave around endpoint,
+	# clearing up to 4 surrounding organ tiles for extra objective progress & +60 pts each!
+	var vitality_burst_triggered := unique_chain.size() >= 6
+	var vitality_burst_cells: Array[Vector2i] = []
+	var vitality_burst_score := 0
+	if vitality_burst_triggered:
+		for nb in BoardState.get_8way_neighbors(endpoint):
+			if vitality_burst_cells.size() >= 4:
+				break
+			if cleared_set.has(nb):
+				continue
+			var bcell := board.get_cell(nb)
+			if str(bcell.get("kind", "")) == "organ":
+				var nb_org := str(bcell.get("organ", ""))
+				cleared_set[nb] = true
+				board.clear_cell(nb)
+				vitality_burst_cells.append(nb)
+				if nb_org != "":
+					progress["collected"][nb_org] = int(progress["collected"].get(nb_org, 0)) + 1
+				vitality_burst_score += 60
+
+	var turn_score: int = chain_score + healthy_bonus_score + vitality_burst_score + int(pulse_res["bonus_score"])
 	progress["score"] = int(progress.get("score", 0)) + turn_score
 
 	HazardSystem.tick_restrictions(board)
@@ -204,6 +225,8 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 		"fever_turns": int(progress.get("fever_turns", 0)),
 		"fever_charge": int(progress.get("fever_charge", 0)),
 		"fever_bonus_clears": fever_bonus_clears,
+		"vitality_burst_triggered": vitality_burst_triggered,
+		"vitality_burst_cells": vitality_burst_cells,
 		"healthy_popped": healthy_popped,
 		"healthy_bonus_score": healthy_bonus_score,
 		"streak": streak,

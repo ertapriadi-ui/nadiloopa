@@ -59,6 +59,7 @@ var _is_animating: bool = false
 var _victory_dance: bool = false
 var _victory_dance_time: float = 0.0
 var _fever_active: bool = false
+var _ftue_spotlight: bool = false
 
 var _sb_tray_outer: StyleBoxFlat
 var _sb_tray_inner: StyleBoxFlat
@@ -128,6 +129,35 @@ func _init_board_styles() -> void:
 	_sb_cell_odd = StyleBoxFlat.new()
 	_sb_cell_odd.bg_color = Color(0.945, 0.985, 0.965, 0.86)
 	_sb_cell_odd.set_corner_radius_all(12)
+	set_board_theme(str(SaveManager.get_setting("board_theme", "garden")))
+
+
+func set_board_theme(theme_id: String) -> void:
+	if _sb_tray_outer == null:
+		return
+	match theme_id:
+		"sunset":
+			_sb_tray_outer.bg_color = Color(0.54, 0.22, 0.24, 0.95)
+			_sb_tray_outer.border_color = Color(1.0, 0.78, 0.42, 0.90)
+			_sb_tray_inner.bg_color = Color(0.99, 0.955, 0.915, 0.95)
+			_sb_tray_inner.border_color = Color(0.86, 0.46, 0.24, 0.55)
+			_sb_cell_even.bg_color = Color(0.97, 0.895, 0.835, 0.86)
+			_sb_cell_odd.bg_color = Color(0.995, 0.95, 0.905, 0.86)
+		"starlight":
+			_sb_tray_outer.bg_color = Color(0.11, 0.14, 0.34, 0.96)
+			_sb_tray_outer.border_color = Color(0.96, 0.82, 0.44, 0.92)
+			_sb_tray_inner.bg_color = Color(0.17, 0.21, 0.42, 0.94)
+			_sb_tray_inner.border_color = Color(0.46, 0.56, 0.92, 0.60)
+			_sb_cell_even.bg_color = Color(0.22, 0.27, 0.50, 0.88)
+			_sb_cell_odd.bg_color = Color(0.27, 0.33, 0.57, 0.88)
+		_:
+			_sb_tray_outer.bg_color = Color(0.08, 0.36, 0.33, 0.94)
+			_sb_tray_outer.border_color = Color(0.96, 0.84, 0.52, 0.85)
+			_sb_tray_inner.bg_color = Color(0.96, 0.985, 0.955, 0.94)
+			_sb_tray_inner.border_color = Color(0.14, 0.54, 0.46, 0.55)
+			_sb_cell_even.bg_color = Color(0.87, 0.945, 0.915, 0.86)
+			_sb_cell_odd.bg_color = Color(0.945, 0.985, 0.965, 0.86)
+	queue_redraw()
 
 
 func set_fever_active(active: bool) -> void:
@@ -200,7 +230,9 @@ func local_to_cell(local_pos: Vector2, allow_edge_margin: bool = false) -> Vecto
 
 func reset_idle_hint() -> void:
 	_idle_hint_timer = 0.0
-	if not _hint_chain.is_empty():
+	var was_spot := _ftue_spotlight
+	_ftue_spotlight = false
+	if not _hint_chain.is_empty() or was_spot:
 		_hint_chain.clear()
 		if is_instance_valid(_pulse_overlay):
 			_pulse_overlay.queue_redraw()
@@ -213,11 +245,14 @@ func set_board_state(state: BoardState, is_tutorial_stage: bool = false) -> void
 	_active_chain.clear()
 	_endpoint_preview.clear()
 	_hint_chain.clear()
+	_ftue_spotlight = is_tutorial_stage
 	_idle_hint_timer = 0.0
 	hint_delay_sec = 1.8 if is_tutorial_stage else 5.2
 	_vfx.clear_all()
 	_recompute_geometry()
 	sync_board_immediate()
+	if _ftue_spotlight and _board_state != null:
+		_hint_chain = _board_state.find_first_valid_chain(3)
 	queue_redraw()
 	if is_instance_valid(_pulse_overlay):
 		_pulse_overlay.queue_redraw()
@@ -475,11 +510,21 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 		var fc := cell_center(fp)
 		_vfx.spawn_pulse_ring(fc, Color(1.0, 0.86, 0.20, 0.98), cell_px, 1.45)
 
-	# Combo, Fever & Loop Celebratory Banners
+	# Vitality Burst (6+ chain) 3x3 shockwave rings
+	var vb_triggered := bool(result.get("vitality_burst_triggered", false))
+	for vp in result.get("vitality_burst_cells", []):
+		var vc := cell_center(vp)
+		_vfx.spawn_pulse_ring(vc, Color(0.18, 0.96, 0.62, 0.98), cell_px, 1.55)
+		_vfx.spawn_floating_text(vc - Vector2(0, float(cell_px) * 0.2), "+60", Color(0.42, 1.0, 0.72), maxi(20, int(cell_px * 0.22)))
+
+	# Combo, Fever, Vitality Burst & Loop Celebratory Banners
 	var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.24)
 	if bool(result.get("fever_triggered", false)):
 		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_FEVER_TRIGGER"), Color(1.0, 0.88, 0.22))
 		AudioManager.play_sfx("combo_banner", 1.12)
+	elif vb_triggered:
+		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_VITALITY_BURST"), Color(0.24, 0.98, 0.64))
+		AudioManager.play_sfx("combo_banner", 1.08)
 	elif is_loop:
 		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_LOOP"), Color(1.0, 0.90, 0.28))
 		AudioManager.play_sfx("combo_banner")
@@ -708,41 +753,53 @@ func _draw() -> void:
 
 
 func _draw_pulse_overlay() -> void:
-	# 1. Idle Hint Shimmer & Guiding Pointer Dot
+	# 1. Interactive Spotlight FTUE & Idle Hint Shimmer with Guiding Pointer Dot
 	if _active_chain.is_empty() and _hint_chain.size() >= 3 and _board_state != null:
+		var hint_set := {}
 		var pts := PackedVector2Array()
 		for i in range(mini(3, _hint_chain.size())):
 			var hp: Vector2i = _hint_chain[i]
+			hint_set[hp] = true
 			pts.append(cell_center(hp))
+		if _ftue_spotlight:
+			for r in range(BoardState.ROWS):
+				for c in range(BoardState.COLS):
+					var p := Vector2i(c, r)
+					if not hint_set.has(p):
+						var dr := Rect2(cell_top_left(p), Vector2(float(cell_px), float(cell_px)))
+						_pulse_overlay.draw_rect(dr, Color(0.02, 0.08, 0.09, 0.44), true)
+		for i in range(mini(3, _hint_chain.size())):
+			var hp: Vector2i = _hint_chain[i]
 			var hr := Rect2(cell_top_left(hp), Vector2(float(cell_px), float(cell_px))).grow(-4.0)
-			var pulse_a := 0.45 + 0.35 * sin(_anim_time * 4.5)
-			_pulse_overlay.draw_rect(hr, Color(0.98, 0.78, 0.16, pulse_a), false, 4.0)
-		_pulse_overlay.draw_polyline(pts, Color(1.0, 0.88, 0.32, 0.72), 6.0, true)
-		var prog_t := fmod(_anim_time * 0.9, 1.0)
+			var pulse_a := 0.65 + 0.35 * sin(_anim_time * 5.2) if _ftue_spotlight else (0.45 + 0.35 * sin(_anim_time * 4.5))
+			_pulse_overlay.draw_rect(hr, Color(1.0, 0.84, 0.20, pulse_a), false, 5.5 if _ftue_spotlight else 4.0)
+		_pulse_overlay.draw_polyline(pts, Color(1.0, 0.90, 0.34, 0.86 if _ftue_spotlight else 0.72), 7.5 if _ftue_spotlight else 6.0, true)
+		var prog_t := fmod(_anim_time * 0.95, 1.0)
 		var seg_f := prog_t * float(pts.size() - 1)
 		var s_idx := clampi(int(floor(seg_f)), 0, pts.size() - 2)
 		var local_t := seg_f - float(s_idx)
 		var guide_pos := pts[s_idx].lerp(pts[s_idx + 1], local_t)
-		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.16, Color(1.0, 1.0, 1.0, 0.92))
-		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.11, Color(0.10, 0.72, 0.48, 0.95))
+		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.18, Color(1.0, 1.0, 1.0, 0.95))
+		_pulse_overlay.draw_circle(guide_pos, float(cell_px) * 0.12, Color(0.10, 0.76, 0.48, 0.98))
 
 	# 2. Endpoint Pulse Halo, Live Chain Length Counter & Crisp Pill Badges above tiles
 	if _board_state == null or _active_chain.size() < 3 or not bool(_endpoint_preview.get("valid", false)):
 		return
 	var is_loop := bool(_endpoint_preview.get("is_loop", false))
+	var is_burst := _active_chain.size() >= 6 and not is_loop
 	var ep: Vector2i = _endpoint_preview.get("endpoint", _active_chain[_active_chain.size() - 1])
 	var ep_center := cell_center(ep)
-	var ep_col := Color(1.0, 0.86, 0.22, 0.98) if is_loop else Color(1.0, 1.0, 1.0, 0.92)
+	var ep_col := Color(1.0, 0.86, 0.22, 0.98) if is_loop else (Color(0.24, 0.98, 0.64, 0.98) if is_burst else Color(1.0, 1.0, 1.0, 0.92))
 	_pulse_overlay.draw_arc(ep_center, float(cell_px) * 0.47, 0.0, TAU, 36, ep_col, 5.0, true)
 
 	# Live Chain Length Pill above endpoint
 	if _font_bold != null:
-		var cnt_txt := "LOOP!" if is_loop else "×%d" % _active_chain.size()
+		var cnt_txt := "LOOP!" if is_loop else ("BURST!" if is_burst else "×%d" % _active_chain.size())
 		var cfsize := clampi(int(float(cell_px) * 0.22), 14, 24)
-		var pw := maxf(float(cell_px) * 0.68, 62.0)
+		var pw := maxf(float(cell_px) * 0.72, 68.0)
 		var ph := float(cfsize) + 12.0
 		var cpill := Rect2(ep_center.x - pw * 0.5, ep_center.y - float(cell_px) * 0.55 - ph * 0.5, pw, ph)
-		var pill_bg := Color(0.92, 0.64, 0.08, 0.98) if is_loop else Color(0.08, 0.52, 0.44, 0.96)
+		var pill_bg := Color(0.92, 0.64, 0.08, 0.98) if is_loop else (Color(0.08, 0.72, 0.42, 0.98) if is_burst else Color(0.08, 0.52, 0.44, 0.96))
 		_pulse_overlay.draw_rect(cpill.grow(2.5), Color(1, 1, 1, 0.96), true)
 		_pulse_overlay.draw_rect(cpill, pill_bg, true)
 		_pulse_overlay.draw_string(_font_bold, Vector2(cpill.position.x + 2.0, cpill.position.y + float(cfsize) + 3.0), cnt_txt, HORIZONTAL_ALIGNMENT_CENTER, cpill.size.x - 4.0, cfsize, Color.WHITE)

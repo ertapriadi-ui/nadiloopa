@@ -2,10 +2,10 @@ extends Node
 ## Audio manager for Master, Music, SFX, and UI buses with seamless music looping and pitch-scaled SFX.
 
 const MUSIC_TRACKS := {
-	"menu": "res://assets/audio/music/bgm_menu_tropika.wav",
-	"gameplay": "res://assets/audio/music/bgm_gameplay_nadi.wav",
-	"victory": "res://assets/audio/music/bgm_victory_cerah.wav",
-	"boss": "res://assets/audio/music/bgm_boss_harmoni.wav"
+	"menu": "res://assets/audio/music/bgm_menu_tropika.ogg",
+	"gameplay": "res://assets/audio/music/bgm_gameplay_nadi.ogg",
+	"victory": "res://assets/audio/music/bgm_victory_cerah.ogg",
+	"boss": "res://assets/audio/music/bgm_boss_harmoni.ogg"
 }
 
 const SFX_PATHS := {
@@ -90,6 +90,8 @@ func _preload_streams() -> void:
 				if stream.data.size() > 0:
 					var frame_bytes := 4 if stream.stereo else 2
 					stream.loop_end = stream.data.size() / frame_bytes
+			elif stream is AudioStreamOggVorbis and k != "victory":
+				stream.loop = true
 			_music_streams[k] = stream
 	for k in SFX_PATHS.keys():
 		var spath: String = SFX_PATHS[k]
@@ -191,7 +193,7 @@ func play_sfx(event_name: String, pitch_scale: float = 1.0, volume_db: float = 0
 	var player := _sfx_pool[_sfx_cursor]
 	_sfx_cursor = (_sfx_cursor + 1) % _sfx_pool.size()
 	player.stream = stream
-	player.pitch_scale = clampf(pitch_scale, 0.72, 1.75)
+	player.pitch_scale = clampf(pitch_scale, 0.72, 2.25)
 	player.volume_db = volume_db
 	player.play()
 

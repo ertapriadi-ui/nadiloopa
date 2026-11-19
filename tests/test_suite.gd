@@ -701,6 +701,20 @@ func _test_harmony_fever_mode() -> void:
 	_assert_true(r3.get("fever_bonus_clears", []).size() >= 1, "Harmony Fever pops +1 bonus matching organ tile")
 	_assert_eq(int(prog.get("fever_turns", 0)), 1, "Harmony Fever turns decrement from 2 to 1")
 
+	# 6-tile chain triggers Vitality Burst 3x3 shockwave around endpoint
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "brain")
+	var ch6: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1),
+		Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4)
+	]
+	for p in ch6:
+		b.set_organ(p, "heart")
+	var r6 := ChainResolver.resolve_turn(b, ch6, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r6.get("vitality_burst_triggered", false)), "6+ chain triggers Vitality Burst 3x3 shockwave")
+	_assert_true(r6.get("vitality_burst_cells", []).size() >= 3, "Vitality Burst clears surrounding 3x3 organ tiles")
+
 
 func _test_second_wind_revival() -> void:
 	var lv := {"id": 9902, "moves": 10, "objectives": {"score": 1000}, "star_thresholds": [500, 1000, 1500]}
@@ -737,6 +751,8 @@ func _test_daily_quests_star_chests_and_rank() -> void:
 	var r0: Dictionary = _save_mgr.get_sanctuary_rank()
 	_assert_eq(int(r0.get("rank", 0)), 1, "New profile starts at Sanctuary Rank 1")
 	_assert_eq(str(r0.get("tier_key", "")), "RANK_SEEDLING", "Rank 1 tier is RANK_SEEDLING")
+	_assert_true(_save_mgr.is_board_theme_unlocked("garden"), "Garden theme unlocked at Rank 1")
+	_assert_true(not _save_mgr.is_board_theme_unlocked("sunset"), "Sunset theme locked at Rank 1")
 
 	var test_date := "2026-11-18"
 	_save_mgr.record_daily_quest_progress(test_date, 35, 2, 6)
@@ -759,12 +775,17 @@ func _test_daily_quests_star_chests_and_rank() -> void:
 	_assert_true(_save_mgr.spend_sanctuary_charm(), "Spend 1 Sanctuary Charm succeeds")
 	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms decrements to 6")
 
-	# Verify checksum persistence round-trip
+	# Verify Sunset theme unlocks at Rank 3+, and haptics/board_theme persist with checksum
+	_save_mgr.set_setting("haptics", false)
+	_save_mgr.set_setting("board_theme", "sunset")
 	_save_mgr.load_save()
-	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.3 save data passes SHA-256 checksum cleanly")
+	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.4 save data passes SHA-256 checksum cleanly")
 	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms persists across reload")
+	_assert_eq(bool(_save_mgr.get_setting("haptics", true)), false, "Haptics setting persists across reload")
+	_assert_eq(str(_save_mgr.get_setting("board_theme", "garden")), "sunset", "Board theme setting persists across reload")
 	var r1: Dictionary = _save_mgr.get_sanctuary_rank()
 	_assert_true(int(r1.get("rank", 1)) >= 3, "Sanctuary Rank advances with campaign stars")
+	_assert_true(_save_mgr.is_board_theme_unlocked("sunset"), "Sunset theme unlocks at Rank 3+")
 
 	# Cleanup isolated test save files
 	_save_mgr.clear_test_save_path()

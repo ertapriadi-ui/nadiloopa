@@ -71,7 +71,9 @@ func create_default_data() -> Dictionary:
 			"music_muted": false,
 			"sfx_muted": false,
 			"reduce_motion": false,
-			"screen_shake": true
+			"screen_shake": true,
+			"haptics": true,
+			"board_theme": "garden"
 		}
 	}
 
@@ -102,6 +104,10 @@ func _compute_checksum(payload: Dictionary) -> String:
 	])
 	if s.has("difficulty"):
 		parts.append("diff=%s" % str(s.get("difficulty", "hard")))
+	if s.has("haptics"):
+		parts.append("hap=%d" % (1 if bool(s.get("haptics", true)) else 0))
+	if s.has("board_theme"):
+		parts.append("thm=%s" % str(s.get("board_theme", "garden")))
 	if payload.has("sanctuary_charms"):
 		parts.append("sc=%d" % clampi(int(payload.get("sanctuary_charms", 2)), 0, 99))
 	if payload.has("star_chests_claimed"):
@@ -220,6 +226,11 @@ func _validate_and_normalize(raw_dict: Variant) -> Dictionary:
 	clean["settings"]["sfx_muted"] = bool(s_in.get("sfx_muted", false))
 	clean["settings"]["reduce_motion"] = bool(s_in.get("reduce_motion", false))
 	clean["settings"]["screen_shake"] = bool(s_in.get("screen_shake", true))
+	clean["settings"]["haptics"] = bool(s_in.get("haptics", true))
+	var thm: String = str(s_in.get("board_theme", "garden"))
+	if thm != "garden" and thm != "sunset" and thm != "starlight":
+		thm = "garden"
+	clean["settings"]["board_theme"] = thm
 	return clean
 
 
@@ -538,3 +549,16 @@ func get_sanctuary_rank() -> Dictionary:
 	elif rank >= 3:
 		tier_key = "RANK_BLOOMER"
 	return {"rank": rank, "tier_key": tier_key, "xp": xp}
+
+
+func is_board_theme_unlocked(theme_id: String) -> bool:
+	var rank := int(get_sanctuary_rank().get("rank", 1))
+	match theme_id:
+		"garden":
+			return true
+		"sunset":
+			return rank >= 3
+		"starlight":
+			return rank >= 6
+	return false
+

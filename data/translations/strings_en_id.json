@@ -2,7 +2,7 @@
   "en": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Pulse Puzzle Sanctuary",
-    "APP_WORKING_TAG": "v2.3.0 • 100 Stages",
+    "APP_WORKING_TAG": "v2.4.0 • 100 Stages",
     "DIFF_TITLE": "Difficulty & Grid Size",
     "DIFF_EASY": "EASY\n5×7",
     "DIFF_MEDIUM": "MEDIUM\n6×9",
@@ -185,12 +185,21 @@
     "RANK_BLOOMER": "Bloomer",
     "RANK_HARMONIST": "Harmonist",
     "RANK_GUARDIAN": "Guardian",
-    "RANK_GRANDMASTER": "Grandmaster"
+    "RANK_GRANDMASTER": "Grandmaster",
+    "SETTINGS_HAPTICS": "Haptic Vibration Feedback",
+    "SETTINGS_BOARD_THEME": "Sanctuary Board Theme (Free Rank Unlock)",
+    "THEME_GARDEN": "Garden",
+    "THEME_SUNSET": "Sunset",
+    "THEME_STARLIGHT": "Starlight",
+    "THEME_LOCKED_RANK": "Rank {rank}",
+    "PREVIEW_VITALITY_BURST": "6+ VITALITY BURST! 3×3 Shockwave Clear!",
+    "BANNER_VITALITY_BURST": "VITALITY BURST! 3×3 CLEAR!",
+    "BOSS_RESISTANCE": "Boss {name} • {pct}% Left"
   },
   "id": {
     "APP_TITLE": "NADILOOPA",
     "APP_SUBTITLE": "Suaka Teka-Teki Denyut",
-    "APP_WORKING_TAG": "v2.3.0 • 100 Tahap",
+    "APP_WORKING_TAG": "v2.4.0 • 100 Tahap",
     "DIFF_TITLE": "Tingkat & Luas Kotak",
     "DIFF_EASY": "MUDAH\n5×7",
     "DIFF_MEDIUM": "SEDANG\n6×9",
@@ -373,6 +382,15 @@
     "RANK_BLOOMER": "Mekar",
     "RANK_HARMONIST": "Harmonis",
     "RANK_GUARDIAN": "Penjaga",
-    "RANK_GRANDMASTER": "Master Agung"
+    "RANK_GRANDMASTER": "Master Agung",
+    "SETTINGS_HAPTICS": "Getaran Haptic Android",
+    "SETTINGS_BOARD_THEME": "Tema Papan Suaka (Gratis via Peringkat)",
+    "THEME_GARDEN": "Taman",
+    "THEME_SUNSET": "Senja",
+    "THEME_STARLIGHT": "Bintang",
+    "THEME_LOCKED_RANK": "Peringkat {rank}",
+    "PREVIEW_VITALITY_BURST": "6+ LEDAKAN VITALITAS! Bersih 3×3!",
+    "BANNER_VITALITY_BURST": "LEDAKAN VITALITAS! BERSIH 3×3!",
+    "BOSS_RESISTANCE": "Bos {name} • Sisa {pct}%"
   }
 }

@@ -72,3 +72,16 @@ func is_screen_shake_enabled() -> bool:
 	if is_reduce_motion():
 		return false
 	return bool(SaveManager.get_setting("screen_shake", true))
+
+
+func is_haptics_enabled() -> bool:
+	return bool(SaveManager.get_setting("haptics", true))
+
+
+func trigger_haptic(duration_ms: int = 12) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	if not is_haptics_enabled():
+		return
+	Input.vibrate_handheld(clampi(duration_ms, 5, 120))
+

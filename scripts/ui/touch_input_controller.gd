@@ -92,6 +92,7 @@ func _begin_drag(local_pos: Vector2) -> void:
 	_is_dragging = true
 	_chain = [cell_pos]
 	AudioManager.play_chain_step_sfx(1)
+	GameManager.trigger_haptic(10)
 	chain_updated.emit(_chain.duplicate())
 
 
@@ -111,12 +112,15 @@ func _update_drag(local_pos: Vector2) -> void:
 	var res := ChainValidator.try_step(board_state, _chain, cell_pos)
 	if res == "added":
 		AudioManager.play_chain_step_sfx(_chain.size())
+		GameManager.trigger_haptic(10 if _chain.size() < 6 else 18)
 		chain_updated.emit(_chain.duplicate())
 	elif res == "loop":
 		AudioManager.play_sfx("loop_form")
+		GameManager.trigger_haptic(35)
 		chain_updated.emit(_chain.duplicate())
 	elif res == "backtrack":
 		AudioManager.play_chain_step_sfx(maxi(1, _chain.size()))
+		GameManager.trigger_haptic(8)
 		chain_updated.emit(_chain.duplicate())
 
 
