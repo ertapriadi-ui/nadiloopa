@@ -637,6 +637,18 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 		_vfx.spawn_combo_banner(board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.36), LocalizationManager.tr_key("BANNER_CATASTROPHIC_BLAST"), Color(0.92, 0.14, 0.28))
 		AudioManager.play_sfx("hazard_trigger", 0.82)
 
+	# Dynamic Dangerous Health Event VFX (v2.8.0: Wildfire, Binge Drinking, All-Nighter, etc.)
+	var h_event: Dictionary = result.get("health_event", {})
+	if bool(h_event.get("triggered", false)):
+		var he_id := str(h_event.get("id", "wildfire_haze"))
+		var he_accent: Color = h_event.get("accent", Color(0.96, 0.36, 0.16))
+		_vfx.spawn_event_atmosphere(board_rect, he_id)
+		_vfx.trigger_shake(self, 14.0)
+		for lp in h_event.get("locked_cells", []):
+			_vfx.spawn_pulse_ring(cell_center(lp), he_accent, cell_px, 1.45)
+		for shp in h_event.get("spawned_hazards", []):
+			_vfx.spawn_explosion_splash(cell_center(shp), he_accent, cell_px, 1.25)
+
 	# Combo, Mega, Fever, Vitality Burst & Loop Celebratory Banners
 	var banner_pos := board_origin + Vector2(board_pixel_size.x * 0.5, board_pixel_size.y * 0.24)
 	if mega_tier >= 3:

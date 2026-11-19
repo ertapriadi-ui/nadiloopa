@@ -5,6 +5,7 @@ extends Control
 
 const BG_SPLASH_PATH := "res://assets/backgrounds/bg_splash.png"
 const BG_MENU_PATH := "res://assets/backgrounds/bg_menu.png"
+const BG_HERO_AVENGERS_PATH := "res://assets/backgrounds/bg_hero_avengers.png"
 const BG_GAME_PATH := "res://assets/backgrounds/bg_gameplay.png"
 
 const CHAPTER_NAMES := [
@@ -43,12 +44,21 @@ var _font_reg: Font
 var _font_bold: Font
 var _tex_bg_splash: Texture2D
 var _tex_bg_menu: Texture2D
+var _tex_bg_hero_avengers: Texture2D
 var _tex_bg_game: Texture2D
 var _tex_icon: Texture2D
 var _tile_icons: Dictionary = {}
+var _event_textures: Dictionary = {}
 var _tex_spark: Texture2D
 var _tex_flow: Texture2D
 var _tex_rest: Texture2D
+var _event_banner: PanelContainer
+var _event_banner_art: TextureRect
+var _event_banner_title: Label
+var _event_banner_desc: Label
+var _event_banner_penalty: Label
+var _event_banner_hint: Label
+var _event_banner_token: int = 0
 
 var level_manager: LevelManager = LevelManager.new()
 var board_state: BoardState
@@ -280,6 +290,7 @@ func _load_resources() -> void:
 	_font_bold = load("res://assets/fonts/Inter-SemiBold.ttf") if ResourceLoader.exists("res://assets/fonts/Inter-SemiBold.ttf") else ThemeDB.fallback_font
 	_tex_bg_splash = _safe_tex(BG_SPLASH_PATH)
 	_tex_bg_menu = _safe_tex(BG_MENU_PATH)
+	_tex_bg_hero_avengers = _safe_tex(BG_HERO_AVENGERS_PATH)
 	_tex_bg_game = _safe_tex(BG_GAME_PATH)
 	_tex_icon = _safe_tex("res://assets/icons/icon_1024.png")
 	_tex_spark = _safe_tex("res://assets/sprites/tiles/icon_ability_spark.png")
@@ -287,6 +298,10 @@ func _load_resources() -> void:
 	_tex_rest = _safe_tex("res://assets/sprites/tiles/icon_ability_rest.png")
 	for k in BoardRenderer.TILE_TEXTURE_PATHS.keys():
 		_tile_icons[k] = _safe_tex(BoardRenderer.TILE_TEXTURE_PATHS[k])
+	for eid in EventSystem.EVENT_CATALOG.keys():
+		var spath := str(EventSystem.EVENT_CATALOG[eid].get("sprite", ""))
+		if spath != "":
+			_event_textures[eid] = _safe_tex(spath)
 
 
 func _safe_tex(path: String) -> Texture2D:
@@ -557,20 +572,18 @@ func _build_welcome_screen(parent: Control) -> void:
 	vb.add_theme_constant_override("separation", 18)
 	card.add_child(vb)
 
-	# Hero Mascot Banner
-	var hero_hb := HBoxContainer.new()
-	hero_hb.alignment = BoxContainer.ALIGNMENT_CENTER
-	hero_hb.add_theme_constant_override("separation", 22)
-	vb.add_child(hero_hb)
+	# Avengers-Style Full Superhero Organ & Villains Poster Banner (v2.8.0)
+	var poster_frame := PanelContainer.new()
+	poster_frame.add_theme_stylebox_override("panel", _make_box(Color(0.06, 0.14, 0.18, 0.96), 24, Color(0.98, 0.82, 0.34, 0.96), 4, 6, 6, 12))
+	vb.add_child(poster_frame)
 
-	for mk in ["brain_happy", "heart_happy", "lungs_happy"]:
-		var tr := TextureRect.new()
-		tr.custom_minimum_size = Vector2(124 if mk == "heart_happy" else 96, 124 if mk == "heart_happy" else 96)
-		tr.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		tr.texture = _tile_icons.get(mk, _tex_icon)
-		hero_hb.add_child(tr)
+	var poster_rect := TextureRect.new()
+	poster_rect.custom_minimum_size = Vector2(0, 410)
+	poster_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	poster_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	poster_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	poster_rect.texture = _tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu
+	poster_frame.add_child(poster_rect)
 
 	_lbl_welcome_title = _make_label("WELCOME TO NADILOOPA!", 48, Color.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	_lbl_welcome_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -1244,6 +1257,129 @@ func _build_game_screen(parent: Control) -> void:
 	_btn_abl_rest.pressed.connect(func(): _use_tactical_ability("rest"))
 	dock_grid.add_child(_btn_abl_rest)
 
+	_build_event_banner(_screen_game)
+
+
+func _build_event_banner(parent: Control) -> void:
+	_event_banner = PanelContainer.new()
+	_event_banner.name = "HealthEventStoryBanner"
+	_event_banner.z_index = 45
+	_event_banner.visible = false
+	_event_banner.mouse_filter = Control.MOUSE_FILTER_STOP
+	_event_banner.add_theme_stylebox_override("panel", _make_box(Color(0.12, 0.06, 0.12, 0.96), 28, Color(0.98, 0.42, 0.18, 0.98), 5, 18, 16, 20))
+	parent.add_child(_event_banner)
+	_event_banner.anchor_left = 0.02
+	_event_banner.anchor_right = 0.98
+	_event_banner.anchor_top = 0.0
+	_event_banner.anchor_bottom = 0.0
+	_event_banner.offset_left = 0.0
+	_event_banner.offset_right = 0.0
+	_event_banner.offset_top = 12.0
+	_event_banner.offset_bottom = 350.0
+	_event_banner.gui_input.connect(func(ev: InputEvent):
+		if (ev is InputEventMouseButton and ev.pressed) or (ev is InputEventScreenTouch and ev.pressed):
+			_hide_health_event_banner()
+	)
+
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 18)
+	_event_banner.add_child(hb)
+
+	var art_frame := PanelContainer.new()
+	art_frame.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	art_frame.add_theme_stylebox_override("panel", _make_box(Color(0.06, 0.04, 0.08, 1.0), 18, Color(1.0, 0.84, 0.32, 0.95), 3, 4, 4))
+	hb.add_child(art_frame)
+
+	_event_banner_art = TextureRect.new()
+	_event_banner_art.custom_minimum_size = Vector2(360, 210)
+	_event_banner_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_event_banner_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	art_frame.add_child(_event_banner_art)
+
+	var txt_vb := VBoxContainer.new()
+	txt_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	txt_vb.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	txt_vb.add_theme_constant_override("separation", 8)
+	hb.add_child(txt_vb)
+
+	_event_banner_title = _make_label("", 36, Color(1.0, 0.88, 0.30), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_event_banner_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	txt_vb.add_child(_event_banner_title)
+
+	_event_banner_desc = _make_label("", 28, Color(0.96, 0.96, 0.98), false, HORIZONTAL_ALIGNMENT_LEFT)
+	_event_banner_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	txt_vb.add_child(_event_banner_desc)
+
+	_event_banner_penalty = _make_label("", 30, Color(1.0, 0.42, 0.44), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_event_banner_penalty.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	txt_vb.add_child(_event_banner_penalty)
+
+	_event_banner_hint = _make_label("", 22, Color(0.76, 0.86, 0.88), false, HORIZONTAL_ALIGNMENT_LEFT)
+	txt_vb.add_child(_event_banner_hint)
+
+
+func _show_health_event_banner(ev: Dictionary) -> void:
+	if not is_instance_valid(_event_banner) or not bool(ev.get("triggered", false)):
+		return
+	var eid := str(ev.get("id", "wildfire_haze"))
+	var accent: Color = ev.get("accent", Color(0.98, 0.42, 0.18))
+	_event_banner.add_theme_stylebox_override("panel", _make_box(Color(0.11, 0.05, 0.12, 0.96), 28, accent, 5, 18, 16, 20))
+	if _event_textures.has(eid) and _event_textures[eid] != null:
+		_event_banner_art.texture = _event_textures[eid]
+	_event_banner_title.text = LocalizationManager.tr_key(str(ev.get("title_key", "")))
+	_event_banner_desc.text = LocalizationManager.tr_key(str(ev.get("desc_key", "")))
+	var parts: Array[String] = []
+	var sc_lost := int(ev.get("score_lost", 0))
+	var pl_lost := int(ev.get("pulse_lost", 0))
+	var en_lost := int(ev.get("energy_lost", 0))
+	var lk_cnt := (ev.get("locked_cells", []) as Array).size()
+	if sc_lost > 0:
+		parts.append("-%d %s" % [sc_lost, LocalizationManager.tr_key("HUD_SCORE").to_upper()])
+	if pl_lost > 0:
+		parts.append("-%d %s" % [pl_lost, LocalizationManager.tr_key("HUD_PULSE").to_upper()])
+	if en_lost > 0:
+		parts.append("-%d EN" % en_lost)
+	if lk_cnt > 0:
+		parts.append("🔒 ×%d" % lk_cnt)
+	_event_banner_penalty.text = "  •  ".join(parts)
+	_event_banner_hint.text = LocalizationManager.tr_key("EVENT_TAP_DISMISS")
+
+	_event_banner_token += 1
+	var token := _event_banner_token
+	_event_banner.visible = true
+	if DisplayServer.get_name() == "headless":
+		return
+	_event_banner.modulate.a = 0.0
+	_event_banner.offset_top = -320.0
+	_event_banner.offset_bottom = 20.0
+	var tw: Tween = _event_banner.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(_event_banner, "offset_top", 12.0, 0.34).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_event_banner, "offset_bottom", 352.0, 0.34).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_event_banner, "modulate:a", 1.0, 0.22)
+	get_tree().create_timer(3.4).timeout.connect(func():
+		if _event_banner_token == token:
+			_hide_health_event_banner()
+	)
+
+
+func _hide_health_event_banner() -> void:
+	if not is_instance_valid(_event_banner) or not _event_banner.visible:
+		return
+	_event_banner_token += 1
+	if DisplayServer.get_name() == "headless":
+		_event_banner.visible = false
+		return
+	var tw: Tween = _event_banner.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(_event_banner, "offset_top", -320.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tw.tween_property(_event_banner, "offset_bottom", 20.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tw.tween_property(_event_banner, "modulate:a", 0.0, 0.22)
+	tw.chain().tween_callback(func():
+		if is_instance_valid(_event_banner):
+			_event_banner.visible = false
+	)
+
 
 func _make_ability_btn(icon_tex: Texture2D, bg: Color) -> Button:
 	var b := Button.new()
@@ -1841,6 +1977,9 @@ func show_screen(screen_name: String) -> void:
 	_screen_levels.visible = (screen_name == "levels")
 	_screen_game.visible = (screen_name == "game")
 
+	if is_instance_valid(_event_banner):
+		_event_banner.visible = false
+
 	var active_node: Control = null
 	match screen_name:
 		"splash":
@@ -1849,13 +1988,13 @@ func show_screen(screen_name: String) -> void:
 			GameManager.play_state = GameManager.PlayState.MENU
 		"welcome":
 			active_node = _screen_welcome
-			_bg_rect.texture = _tex_bg_menu
+			_bg_rect.texture = _tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu
 			GameManager.play_state = GameManager.PlayState.MENU
 			AudioManager.play_music("menu")
 			_refresh_texts()
 		"menu":
 			active_node = _screen_menu
-			_bg_rect.texture = _tex_bg_menu
+			_bg_rect.texture = _tex_bg_hero_avengers if _tex_bg_hero_avengers != null else _tex_bg_menu
 			GameManager.play_state = GameManager.PlayState.MENU
 			AudioManager.play_music("menu")
 			_refresh_texts()
@@ -2249,6 +2388,14 @@ func _on_chain_committed(chain: Array[Vector2i]) -> void:
 	if bool(cat_blast.get("triggered", false)):
 		_play_sfx_delayed("hazard_trigger", 0.18, 0.78, 2.0)
 		GameManager.trigger_haptic(90)
+	var h_event: Dictionary = res.get("health_event", {})
+	if bool(h_event.get("triggered", false)):
+		_play_sfx_delayed("event_alarm", 0.10, 1.0, 2.5)
+		var extra_sfx := str(h_event.get("sfx_extra", "hazard_trigger"))
+		if extra_sfx != "":
+			_play_sfx_delayed(extra_sfx, 0.24, 1.0, 2.0)
+		GameManager.trigger_haptic(85)
+		_show_health_event_banner(h_event)
 	if mega_tier >= 2:
 		_play_sfx_delayed("ability_cast", 0.12, 1.15 if mega_tier >= 3 else 1.05)
 		_play_sfx_delayed("star_pop", 0.20, 1.25, 1.0)

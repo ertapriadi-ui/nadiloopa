@@ -30,6 +30,7 @@ func _process(_delta: float) -> bool:
 	_test_tactical_care_abilities()
 	_test_detox_bomb_and_mega_combos()
 	_test_catastrophic_toxic_combo()
+	_test_dynamic_health_events()
 	_test_board_renderer_tutorial_stage_init()
 	_test_harmony_fever_mode()
 	_test_second_wind_revival()
@@ -983,5 +984,26 @@ func _test_board_renderer_tutorial_stage_init() -> void:
 	BoardState.set_difficulty_grid("hard")
 
 
-
-
+func _test_dynamic_health_events() -> void:
+	BoardState.set_difficulty_grid("hard")
+	_assert_true(ResourceLoader.exists("res://assets/backgrounds/bg_hero_avengers.png"), "Avengers hero poster asset exists")
+	_assert_eq(EventSystem.EVENT_IDS.size(), 6, "EventSystem registers 6 dynamic health events")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2028
+	for eid in EventSystem.EVENT_IDS:
+		var cfg: Dictionary = EventSystem.EVENT_CATALOG.get(eid, {})
+		_assert_true(ResourceLoader.exists(str(cfg.get("sprite", ""))), "Event comic sprite exists for " + eid)
+		var b := BoardState.new()
+		b.populate_initial(rng, {"heart": 18, "brain": 16, "lungs": 16, "kidneys": 14, "stomach": 12, "liver": 12, "muscle": 12}, [], [], [], [])
+		var prog := {
+			"score": 1500,
+			"pulse_meter": 80,
+			"care_energy": 60,
+			"shield_charges": 0,
+			"turns_taken": 6
+		}
+		var ev := EventSystem.trigger_event(b, eid, prog, rng)
+		_assert_true(bool(ev.get("triggered", false)), "Event triggers cleanly: " + eid)
+		_assert_true(int(ev.get("score_lost", 0)) > 0, "Event slashes score: " + eid)
+		_assert_true(int(prog.get("pulse_meter", 0)) >= 5, "Event never unfairly instant-kills pulse: " + eid)
+		_assert_true((ev.get("locked_cells", []) as Array).size() >= 1, "Event stresses/locks at least 1 organ tile: " + eid)

@@ -317,6 +317,58 @@ func spawn_screen_flash(area: Rect2, color: Color, duration: float = 0.42) -> vo
 	tw.chain().tween_callback(flash.queue_free)
 
 
+func spawn_event_atmosphere(board_rect: Rect2, event_id: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	var tint := Color(0.92, 0.34, 0.14)
+	var particle_col := Color(0.98, 0.54, 0.22)
+	var count := 8 if reduce else 20
+	match event_id:
+		"wildfire_haze":
+			tint = Color(0.88, 0.32, 0.10)
+			particle_col = Color(1.0, 0.56, 0.18)
+		"smoke_wave":
+			tint = Color(0.42, 0.44, 0.48)
+			particle_col = Color(0.76, 0.78, 0.82)
+		"binge_drinking":
+			tint = Color(0.68, 0.18, 0.82)
+			particle_col = Color(0.94, 0.52, 1.0)
+		"all_nighter":
+			tint = Color(0.14, 0.16, 0.46)
+			particle_col = Color(0.56, 0.68, 1.0)
+		"screen_marathon":
+			tint = Color(0.10, 0.58, 0.88)
+			particle_col = Color(0.46, 0.92, 1.0)
+		"junk_feast":
+			tint = Color(0.92, 0.22, 0.18)
+			particle_col = Color(1.0, 0.72, 0.20)
+	spawn_screen_flash(board_rect, tint, 0.65)
+	var tex: Texture2D = _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	for i in range(count):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = Color(particle_col.r, particle_col.g, particle_col.b, 0.86)
+		var sx := board_rect.position.x + _rng.randf_range(0.04, 0.96) * board_rect.size.x
+		var sy := board_rect.position.y + _rng.randf_range(0.08, 0.92) * board_rect.size.y
+		sp.position = Vector2(sx, sy)
+		sp.scale = Vector2.ONE * _rng.randf_range(0.18, 0.44)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var drift := Vector2(_rng.randf_range(-110.0, 110.0), _rng.randf_range(-140.0, -40.0))
+		if event_id == "all_nighter" or event_id == "screen_marathon":
+			drift.y = _rng.randf_range(40.0, 130.0)
+		var dur := 0.35 if reduce else _rng.randf_range(0.75, 1.35)
+		var tw: Tween = sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", sp.position + drift, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-3.0, 3.0), dur)
+		tw.tween_property(sp, "modulate:a", 0.0, dur * 0.55).set_delay(dur * 0.45)
+		tw.chain().tween_callback(sp.queue_free)
+
+
 func trigger_shake(target: Control, strength: float = 8.0) -> void:
 	if DisplayServer.get_name() == "headless" or target == null:
 		return

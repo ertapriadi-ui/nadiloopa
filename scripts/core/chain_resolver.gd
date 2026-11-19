@@ -280,6 +280,7 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	if bool(catastrophic_blast.get("triggered", false)):
 		board.apply_gravity_and_refill(rng, weights, 0, 0)
 	var reshuffled := board.ensure_playable_board(rng, min_len, weights)
+	progress["turns_taken"] = int(progress.get("turns_taken", 0)) + 1
 
 	var status := "continue"
 	var move_bonus := 0
@@ -297,6 +298,13 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 	elif int(progress["moves_left"]) <= 0:
 		status = "lose"
 		lose_reason = "moves"
+
+	var health_event := EventSystem.get_empty_event()
+	if status == "continue":
+		health_event = EventSystem.maybe_trigger_event(board, level_def, progress, rng)
+		if bool(health_event.get("triggered", false)):
+			if board.ensure_playable_board(rng, min_len, weights):
+				reshuffled = true
 
 	return {
 		"committed": true,
@@ -319,6 +327,7 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 		"bonus_moves_gained": bonus_moves_gained,
 		"board_reset_triggered": board_reset_triggered,
 		"catastrophic_blast": catastrophic_blast,
+		"health_event": health_event,
 		"healthy_popped": healthy_popped,
 		"healthy_bonus_score": healthy_bonus_score,
 		"streak": streak,
