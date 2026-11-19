@@ -234,6 +234,7 @@ func _validate_and_normalize(raw_dict: Variant) -> Dictionary:
 	if thm != "garden" and thm != "sunset" and thm != "starlight":
 		thm = "garden"
 	clean["settings"]["board_theme"] = thm
+	clean["settings"]["welcome_seen"] = bool(s_in.get("welcome_seen", false))
 	return clean
 
 
