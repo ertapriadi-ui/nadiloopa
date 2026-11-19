@@ -2,10 +2,10 @@ extends Node
 ## Audio manager for Master, Music, SFX, and UI buses with seamless music looping and pitch-scaled SFX.
 
 const MUSIC_TRACKS := {
-	"menu": "res://assets/audio/music/bgm_menu_tropika.wav",
-	"gameplay": "res://assets/audio/music/bgm_gameplay_nadi.wav",
-	"victory": "res://assets/audio/music/bgm_victory_cerah.wav",
-	"boss": "res://assets/audio/music/bgm_boss_harmoni.wav"
+	"menu": "res://assets/audio/music/bgm_menu_tropika.ogg",
+	"gameplay": "res://assets/audio/music/bgm_gameplay_nadi.ogg",
+	"victory": "res://assets/audio/music/bgm_victory_cerah.ogg",
+	"boss": "res://assets/audio/music/bgm_boss_harmoni.ogg"
 }
 
 const SFX_PATHS := {
@@ -90,11 +90,55 @@ func _preload_streams() -> void:
 				if stream.data.size() > 0:
 					var frame_bytes := 4 if stream.stereo else 2
 					stream.loop_end = stream.data.size() / frame_bytes
+			elif stream is AudioStreamOggVorbis and k != "victory":
+				stream.loop = true
 			_music_streams[k] = stream
 	for k in SFX_PATHS.keys():
 		var spath: String = SFX_PATHS[k]
 		if ResourceLoader.exists(spath):
 			_sfx_streams[k] = load(spath)
+	_register_procedural_event_sfx()
+
+
+func _register_procedural_event_sfx() -> void:
+	_sfx_streams["event_alarm"] = _synth_event_wav("alarm", 0.52)
+	_sfx_streams["event_fire"] = _synth_event_wav("fire", 0.62)
+	_sfx_streams["event_dizzy"] = _synth_event_wav("dizzy", 0.58)
+
+
+func _synth_event_wav(kind: String, duration_sec: float) -> AudioStreamWAV:
+	var rate := 22050
+	var count := int(float(rate) * duration_sec)
+	var pcm := PackedByteArray()
+	pcm.resize(count * 2)
+	var noise_state: int = 2463534242
+	for i in range(count):
+		var t := float(i) / float(rate)
+		var env := minf(1.0, t * 24.0) * maxf(0.0, 1.0 - t / duration_sec)
+		var sample := 0.0
+		if kind == "alarm":
+			var freq := 740.0 if int(floor(t * 9.5)) % 2 == 0 else 520.0
+			var bass := sin(TAU * 110.0 * t) * 0.45
+			var siren := sin(TAU * freq * t) * 0.48 + sin(TAU * freq * 2.0 * t) * 0.18
+			sample = (siren + bass) * env * 0.85
+		elif kind == "fire":
+			noise_state = (noise_state * 1664525 + 1013904223) & 0x7FFFFFFF
+			var white := (float(noise_state % 2000) / 1000.0) - 1.0
+			var rumble := sin(TAU * (85.0 + 35.0 * sin(TAU * 6.0 * t)) * t) * 0.50
+			var crackle := white * (0.45 if (noise_state % 19) < 4 else 0.18)
+			sample = (rumble + crackle) * env * 0.88
+		else:
+			var wobble_f := 420.0 - 210.0 * (t / duration_sec) + 55.0 * sin(TAU * 11.0 * t)
+			sample = (sin(TAU * wobble_f * t) * 0.65 + sin(TAU * wobble_f * 0.5 * t) * 0.30) * env * 0.82
+		var s16 := clampi(int(round(sample * 32767.0)), -32767, 32767)
+		pcm[i * 2] = s16 & 0xFF
+		pcm[i * 2 + 1] = (s16 >> 8) & 0xFF
+	var wav := AudioStreamWAV.new()
+	wav.format = AudioStreamWAV.FORMAT_16_BITS
+	wav.mix_rate = rate
+	wav.stereo = false
+	wav.data = pcm
+	return wav
 
 
 func apply_saved_volumes() -> void:
@@ -191,7 +235,7 @@ func play_sfx(event_name: String, pitch_scale: float = 1.0, volume_db: float = 0
 	var player := _sfx_pool[_sfx_cursor]
 	_sfx_cursor = (_sfx_cursor + 1) % _sfx_pool.size()
 	player.stream = stream
-	player.pitch_scale = clampf(pitch_scale, 0.72, 1.75)
+	player.pitch_scale = clampf(pitch_scale, 0.72, 2.25)
 	player.volume_db = volume_db
 	player.play()
 

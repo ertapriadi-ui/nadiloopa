@@ -7,6 +7,8 @@ static var ROWS: int = 12
 static var TOTAL_CELLS: int = 84
 static var current_difficulty: String = "hard"
 const ORGANS: Array[String] = ["heart", "brain", "lungs", "kidneys", "stomach", "liver", "muscle"]
+const HAZARD_TYPES: Array[String] = ["fast_food", "sugary_drink", "cigarette_smoke"]
+const OBSTACLE_TYPES: Array[String] = ["rock", "log", "island"]
 const DIRS: Array[Vector2i] = [
 	Vector2i(0, -1),
 	Vector2i(1, 0),
@@ -87,6 +89,7 @@ func _make_empty_cell(col: int, row: int) -> Dictionary:
 		"row": row,
 		"kind": "empty",
 		"organ": "",
+		"hazard_type": "",
 		"hp": 1,
 		"restricted_turns": 0,
 		"newly_restricted": false
@@ -102,6 +105,7 @@ func make_organ_cell(col: int, row: int, organ_type: String) -> Dictionary:
 		"row": row,
 		"kind": "organ",
 		"organ": organ_type,
+		"hazard_type": "",
 		"hp": 1,
 		"restricted_turns": 0,
 		"newly_restricted": false
@@ -116,33 +120,71 @@ func set_organ(pos: Vector2i, organ_type: String, restricted_turns: int = 0) -> 
 	cells[idx(pos.x, pos.y)] = cell
 
 
-func set_special(pos: Vector2i, special_kind: String, hp: int = 1) -> void:
+func set_special(pos: Vector2i, special_kind: String, hp: int = 1, hazard_type: String = "") -> void:
 	if not is_in_bounds(pos):
 		return
 	var tid := _next_tile_id
 	_next_tile_id += 1
+	var htype := hazard_type
+	if special_kind == "overload" and htype == "":
+		htype = HAZARD_TYPES[tid % HAZARD_TYPES.size()]
 	cells[idx(pos.x, pos.y)] = {
 		"id": tid,
 		"col": pos.x,
 		"row": pos.y,
 		"kind": special_kind,
 		"organ": "",
+		"hazard_type": htype,
 		"hp": hp,
 		"restricted_turns": 0,
 		"newly_restricted": false
 	}
 
 
+func set_overload(pos: Vector2i, hp: int = 1, hazard_type: String = "") -> void:
+	set_special(pos, "overload", hp, hazard_type)
+
+
+func set_obstacle(pos: Vector2i, obstacle_type: String = "rock") -> void:
+	if not is_in_bounds(pos):
+		return
+	var otype := obstacle_type if OBSTACLE_TYPES.has(obstacle_type) else "rock"
+	var tid := _next_tile_id
+	_next_tile_id += 1
+	cells[idx(pos.x, pos.y)] = {
+		"id": tid,
+		"col": pos.x,
+		"row": pos.y,
+		"kind": "obstacle",
+		"organ": "",
+		"hazard_type": "",
+		"obstacle_type": otype,
+		"hp": 0,
+		"restricted_turns": 0,
+		"newly_restricted": false
+	}
+
+
+func find_first_valid_chain(min_len: int = 3) -> Array[Vector2i]:
+	return find_sample_chain(min_len, 4)
+
+
 func clear_cell(pos: Vector2i) -> void:
 	if not is_in_bounds(pos):
 		return
-	cells[idx(pos.x, pos.y)] = _make_empty_cell(pos.x, pos.y)
+	var i := idx(pos.x, pos.y)
+	if i < 0 or i >= cells.size():
+		return
+	cells[i] = _make_empty_cell(pos.x, pos.y)
 
 
 func get_cell(pos: Vector2i) -> Dictionary:
 	if not is_in_bounds(pos):
 		return {}
-	return cells[idx(pos.x, pos.y)]
+	var i := idx(pos.x, pos.y)
+	if i < 0 or i >= cells.size():
+		return {}
+	return cells[i]
 
 
 func clone() -> BoardState:
@@ -201,10 +243,33 @@ func _remap_pos_for_grid(raw_pos: Array) -> Vector2i:
 	return Vector2i(clampi(c, 0, COLS - 1), clampi(r, 0, ROWS - 1))
 
 
-func populate_initial(rng: RandomNumberGenerator, weights: Dictionary, care_positions: Array, overload_positions: Array, armored_positions: Array = [], bloom_positions: Array = []) -> void:
+func populate_initial(rng: RandomNumberGenerator, weights: Dictionary, care_positions: Array, overload_positions: Array, armored_positions: Array = [], bloom_positions: Array = [], obstacles: Array = []) -> void:
 	for r in range(ROWS):
 		for c in range(COLS):
 			set_organ(Vector2i(c, r), pick_weighted_organ(rng, weights))
+
+	# Place fixed terrain obstacles (capped gently on smaller Easy/Medium grids so chains stay abundant)
+	var max_obs := 2 if COLS <= 5 else (3 if COLS <= 6 else 5)
+	var obs_placed := 0
+	for raw_obs in obstacles:
+		if obs_placed >= max_obs:
+			break
+		var o_pos_raw: Array = []
+		var o_type := "rock"
+		if typeof(raw_obs) == TYPE_DICTIONARY:
+			var p_val: Variant = raw_obs.get("pos", [])
+			if typeof(p_val) == TYPE_ARRAY and p_val.size() >= 2:
+				o_pos_raw = p_val
+			o_type = str(raw_obs.get("type", "rock"))
+		elif typeof(raw_obs) == TYPE_ARRAY and raw_obs.size() >= 2:
+			o_pos_raw = [raw_obs[0], raw_obs[1]]
+			if raw_obs.size() >= 3:
+				o_type = str(raw_obs[2])
+		if o_pos_raw.size() >= 2:
+			var mapped := _remap_pos_for_grid(o_pos_raw)
+			if get_cell(mapped).get("kind", "") == "organ":
+				set_obstacle(mapped, o_type)
+				obs_placed += 1
 
 	for raw_pos in overload_positions:
 		if typeof(raw_pos) == TYPE_ARRAY and raw_pos.size() >= 2:
@@ -323,25 +388,43 @@ func apply_gravity_and_refill(rng: RandomNumberGenerator, weights: Dictionary, m
 
 	for c in range(COLS):
 		var write_row := ROWS - 1
+		while write_row >= 0 and get_cell(Vector2i(c, write_row)).get("kind", "") == "obstacle":
+			write_row -= 1
 		for r in range(ROWS - 1, -1, -1):
 			var cur_pos := Vector2i(c, r)
 			var cell := get_cell(cur_pos)
-			if cell.get("kind", "empty") != "empty":
-				if write_row != r:
-					var moved := cell.duplicate(true)
-					moved["col"] = c
-					moved["row"] = write_row
-					cells[idx(c, write_row)] = moved
-					cells[idx(c, r)] = _make_empty_cell(c, r)
-					moves.append({"id": moved["id"], "from": Vector2i(c, r), "to": Vector2i(c, write_row)})
+			var ckind := str(cell.get("kind", "empty"))
+			if ckind == "empty" or ckind == "obstacle":
+				continue
+			if write_row != r:
+				var passed_obs := false
+				for check_r in range(r + 1, write_row):
+					if get_cell(Vector2i(c, check_r)).get("kind", "") == "obstacle":
+						passed_obs = true
+						break
+				var moved := cell.duplicate(true)
+				moved["col"] = c
+				moved["row"] = write_row
+				cells[idx(c, write_row)] = moved
+				cells[idx(c, r)] = _make_empty_cell(c, r)
+				moves.append({"id": moved["id"], "from": Vector2i(c, r), "to": Vector2i(c, write_row), "passed_obstacle": passed_obs})
+			write_row -= 1
+			while write_row >= 0 and get_cell(Vector2i(c, write_row)).get("kind", "") == "obstacle":
 				write_row -= 1
 
 		var spawn_offset := 1
 		for r in range(write_row, -1, -1):
+			if get_cell(Vector2i(c, r)).get("kind", "") == "obstacle":
+				continue
+			var passed_obs := false
+			for check_r in range(0, r):
+				if get_cell(Vector2i(c, check_r)).get("kind", "") == "obstacle":
+					passed_obs = true
+					break
 			var organ_type := pick_weighted_organ(rng, weights)
 			var new_cell := make_organ_cell(c, r, organ_type)
 			cells[idx(c, r)] = new_cell
-			spawns.append({"id": new_cell["id"], "col": c, "row": r, "spawn_row": -spawn_offset})
+			spawns.append({"id": new_cell["id"], "col": c, "row": r, "spawn_row": -spawn_offset, "passed_obstacle": passed_obs})
 			spawn_offset += 1
 
 	var current_care := count_kind("care")

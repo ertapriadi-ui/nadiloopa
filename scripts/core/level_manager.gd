@@ -123,7 +123,8 @@ static func build_board_for_level(level_def: Dictionary, rng: RandomNumberGenera
 		level_def.get("care_positions", []),
 		level_def.get("overload_positions", []),
 		level_def.get("armored_overload_positions", []),
-		level_def.get("bloom_positions", [])
+		level_def.get("bloom_positions", []),
+		level_def.get("obstacles", [])
 	)
 	return board
 
@@ -137,6 +138,12 @@ static func create_initial_progress(level_def: Dictionary) -> Dictionary:
 		"long_chains": 0,
 		"loops_formed": 0,
 		"combo_streak": 0,
+		"fever_charge": 0,
+		"fever_turns": 0,
+		"fever_activations": 0,
+		"best_chain_len": 0,
+		"healthy_pops": 0,
+		"second_wind_used": false,
 		"care_energy": 25 if int(level_def.get("id", 1)) > 2 else 0,
 		"pulse_meter": int(level_def.get("initial_pulse", 100)),
 		"shield_charges": 0,

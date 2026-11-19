@@ -128,16 +128,23 @@ func spawn_floating_text(local_pos: Vector2, text_str: String, color: Color, fon
 	lbl.add_theme_font_override("font", _font_bold)
 	lbl.add_theme_font_size_override("font_size", font_px)
 	lbl.add_theme_color_override("font_color", color)
-	lbl.add_theme_color_override("font_outline_color", Color(0.08, 0.12, 0.14, 0.94))
-	lbl.add_theme_constant_override("outline_size", 6)
-	lbl.size = Vector2(360, 48)
-	lbl.position = local_pos - Vector2(180, 24)
+	lbl.add_theme_color_override("font_outline_color", Color(0.06, 0.12, 0.14, 0.96))
+	lbl.add_theme_constant_override("outline_size", 7)
+	lbl.size = Vector2(380, 52)
+	lbl.pivot_offset = Vector2(190, 26)
+	lbl.position = local_pos - Vector2(190, 26)
 	add_child(lbl)
 
-	var rise := 18.0 if GameManager.is_reduce_motion() else 66.0
-	var dur := 0.35 if GameManager.is_reduce_motion() else 0.82
+	var reduce := GameManager.is_reduce_motion()
+	var rise := 18.0 if reduce else 72.0
+	var dur := 0.35 if reduce else 0.86
+	if not reduce:
+		lbl.scale = Vector2.ONE * 0.65
 	var tw := lbl.create_tween()
 	tw.set_parallel(true)
+	if not reduce:
+		tw.tween_property(lbl, "scale", Vector2.ONE * 1.14, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(lbl, "scale", Vector2.ONE, 0.12).set_delay(0.14)
 	tw.tween_property(lbl, "position:y", lbl.position.y - rise, dur).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(lbl, "modulate:a", 0.0, dur * 0.45).set_delay(dur * 0.55)
 	tw.chain().tween_callback(lbl.queue_free)
@@ -146,28 +153,220 @@ func spawn_floating_text(local_pos: Vector2, text_str: String, color: Color, fon
 func spawn_combo_banner(center_pos: Vector2, text_str: String, color: Color) -> void:
 	if DisplayServer.get_name() == "headless":
 		return
+	var pill := PanelContainer.new()
+	pill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.05, 0.19, 0.18, 0.90)
+	sb.border_color = color
+	sb.set_border_width_all(4)
+	sb.border_width_bottom = 7
+	sb.set_corner_radius_all(28)
+	sb.shadow_size = 14
+	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.35)
+	sb.shadow_offset = Vector2(0, 6)
+	sb.content_margin_left = 28
+	sb.content_margin_right = 28
+	sb.content_margin_top = 10
+	sb.content_margin_bottom = 10
+	pill.add_theme_stylebox_override("panel", sb)
+
 	var lbl := Label.new()
 	lbl.text = text_str
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl.add_theme_font_override("font", _font_bold)
-	lbl.add_theme_font_size_override("font_size", 46)
+	lbl.add_theme_font_size_override("font_size", 42)
 	lbl.add_theme_color_override("font_color", color)
-	lbl.add_theme_color_override("font_outline_color", Color(0.06, 0.14, 0.14, 0.96))
-	lbl.add_theme_constant_override("outline_size", 10)
-	lbl.size = Vector2(640, 68)
-	lbl.pivot_offset = Vector2(320, 34)
-	lbl.position = center_pos - Vector2(320, 34)
-	lbl.scale = Vector2.ONE * (1.0 if GameManager.is_reduce_motion() else 0.55)
-	add_child(lbl)
+	lbl.add_theme_color_override("font_outline_color", Color(0.04, 0.10, 0.12, 0.96))
+	lbl.add_theme_constant_override("outline_size", 8)
+	pill.add_child(lbl)
 
-	var dur := 0.45 if GameManager.is_reduce_motion() else 0.95
-	var tw := lbl.create_tween()
+	pill.custom_minimum_size = Vector2(560, 76)
+	pill.size = Vector2(560, 76)
+	pill.pivot_offset = Vector2(280, 38)
+	pill.position = center_pos - Vector2(280, 38)
+	pill.scale = Vector2.ONE * (1.0 if GameManager.is_reduce_motion() else 0.52)
+	add_child(pill)
+
+	var dur := 0.45 if GameManager.is_reduce_motion() else 1.05
+	var tw := pill.create_tween()
 	if not GameManager.is_reduce_motion():
-		tw.tween_property(lbl, "scale", Vector2.ONE * 1.12, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tw.tween_property(lbl, "scale", Vector2.ONE, 0.12)
-	tw.tween_property(lbl, "position:y", lbl.position.y - (16.0 if GameManager.is_reduce_motion() else 44.0), dur * 0.6)
-	tw.parallel().tween_property(lbl, "modulate:a", 0.0, dur * 0.4).set_delay(dur * 0.55)
-	tw.chain().tween_callback(lbl.queue_free)
+		tw.tween_property(pill, "scale", Vector2.ONE * 1.12, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(pill, "scale", Vector2.ONE, 0.12)
+	tw.tween_property(pill, "position:y", pill.position.y - (16.0 if GameManager.is_reduce_motion() else 48.0), dur * 0.65)
+	tw.parallel().tween_property(pill, "modulate:a", 0.0, dur * 0.4).set_delay(dur * 0.6)
+	tw.chain().tween_callback(pill.queue_free)
+
+
+func spawn_confetti_burst(area: Rect2) -> void:
+	if DisplayServer.get_name() == "headless" or GameManager.is_reduce_motion():
+		return
+	var palette := [
+		Color(1.0, 0.84, 0.22),
+		Color(0.20, 0.90, 0.58),
+		Color(1.0, 0.42, 0.54),
+		Color(0.32, 0.82, 1.0),
+		Color(0.82, 0.50, 1.0)
+	]
+	var tex := _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	for i in range(22):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = palette[i % palette.size()]
+		var start_x := area.position.x + _rng.randf_range(0.05, 0.95) * area.size.x
+		var start_y := area.position.y - _rng.randf_range(10.0, 80.0)
+		sp.position = Vector2(start_x, start_y)
+		sp.scale = Vector2.ONE * _rng.randf_range(0.14, 0.28)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var end_pos := Vector2(start_x + _rng.randf_range(-90.0, 90.0), area.position.y + area.size.y * _rng.randf_range(0.55, 0.95))
+		var dur := _rng.randf_range(0.95, 1.55)
+		var tw := sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", end_pos, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-4.0, 4.0), dur)
+		tw.tween_property(sp, "modulate:a", 0.0, 0.45).set_delay(dur - 0.45)
+		tw.chain().tween_callback(sp.queue_free)
+
+
+func spawn_explosion_splash(local_pos: Vector2, color: Color, cell_px: int, intensity: float = 1.0) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	# Double concentric shockwave rings
+	spawn_pulse_ring(local_pos, color, cell_px, 1.85 * intensity)
+	if not reduce:
+		spawn_pulse_ring(local_pos, Color(1.0, 0.96, 0.72, 0.95), cell_px, 2.75 * intensity)
+	var tex := _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	var count := 6 if reduce else clampi(int(round(16.0 * intensity)), 12, 28)
+	var base_scale := clampf(float(cell_px) / 290.0, 0.18, 0.48)
+	var palette := [color, Color(1.0, 0.92, 0.36), Color(1.0, 0.48, 0.22), Color(1.0, 1.0, 1.0)]
+	for i in range(count):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = palette[i % palette.size()]
+		sp.position = local_pos
+		sp.scale = Vector2.ONE * base_scale * _rng.randf_range(0.85, 1.45)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var ang := (TAU / float(count)) * float(i) + _rng.randf_range(-0.22, 0.22)
+		var dist := float(cell_px) * _rng.randf_range(0.85, 2.15 * intensity)
+		var target := local_pos + Vector2(cos(ang), sin(ang)) * dist
+		var dur := 0.22 if reduce else _rng.randf_range(0.38, 0.62)
+		var tw := sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", target, dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-5.0, 5.0), dur)
+		tw.tween_property(sp, "scale", Vector2.ZERO, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		tw.tween_property(sp, "modulate:a", 0.0, dur)
+		tw.chain().tween_callback(sp.queue_free)
+
+
+func spawn_cross_beam(center_pos: Vector2, board_rect: Rect2, color: Color) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	var dur := 0.20 if reduce else 0.44
+	var beam_thickness := clampf(board_rect.size.x * 0.085, 42.0, 74.0)
+
+	# Horizontal beam across board
+	var h_beam := ColorRect.new()
+	h_beam.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	h_beam.color = Color(color.r, color.g, color.b, 0.88)
+	h_beam.position = Vector2(board_rect.position.x, center_pos.y - beam_thickness * 0.5)
+	h_beam.size = Vector2(board_rect.size.x, beam_thickness)
+	h_beam.pivot_offset = Vector2(board_rect.size.x * 0.5, beam_thickness * 0.5)
+	add_child(h_beam)
+
+	# Vertical beam across board
+	var v_beam := ColorRect.new()
+	v_beam.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	v_beam.color = Color(color.r, color.g, color.b, 0.88)
+	v_beam.position = Vector2(center_pos.x - beam_thickness * 0.5, board_rect.position.y)
+	v_beam.size = Vector2(beam_thickness, board_rect.size.y)
+	v_beam.pivot_offset = Vector2(beam_thickness * 0.5, board_rect.size.y * 0.5)
+	add_child(v_beam)
+
+	var beams: Array[ColorRect] = [h_beam, v_beam]
+	for beam in beams:
+		var tw: Tween = beam.create_tween()
+		tw.set_parallel(true)
+		if beam == h_beam:
+			tw.tween_property(beam, "scale", Vector2(1.0, 0.08), dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		else:
+			tw.tween_property(beam, "scale", Vector2(0.08, 1.0), dur).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		tw.tween_property(beam, "modulate:a", 0.0, dur)
+		tw.chain().tween_callback(beam.queue_free)
+
+
+func spawn_screen_flash(area: Rect2, color: Color, duration: float = 0.42) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var flash := ColorRect.new()
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	flash.color = Color(color.r, color.g, color.b, 0.34 if GameManager.is_reduce_motion() else 0.52)
+	flash.position = area.position
+	flash.size = area.size
+	add_child(flash)
+	var dur := minf(duration, 0.22) if GameManager.is_reduce_motion() else duration
+	var tw := flash.create_tween()
+	tw.tween_property(flash, "modulate:a", 0.0, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.chain().tween_callback(flash.queue_free)
+
+
+func spawn_event_atmosphere(board_rect: Rect2, event_id: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
+	var reduce := GameManager.is_reduce_motion()
+	var tint := Color(0.92, 0.34, 0.14)
+	var particle_col := Color(0.98, 0.54, 0.22)
+	var count := 8 if reduce else 20
+	match event_id:
+		"wildfire_haze":
+			tint = Color(0.88, 0.32, 0.10)
+			particle_col = Color(1.0, 0.56, 0.18)
+		"smoke_wave":
+			tint = Color(0.42, 0.44, 0.48)
+			particle_col = Color(0.76, 0.78, 0.82)
+		"binge_drinking":
+			tint = Color(0.68, 0.18, 0.82)
+			particle_col = Color(0.94, 0.52, 1.0)
+		"all_nighter":
+			tint = Color(0.14, 0.16, 0.46)
+			particle_col = Color(0.56, 0.68, 1.0)
+		"screen_marathon":
+			tint = Color(0.10, 0.58, 0.88)
+			particle_col = Color(0.46, 0.92, 1.0)
+		"junk_feast":
+			tint = Color(0.92, 0.22, 0.18)
+			particle_col = Color(1.0, 0.72, 0.20)
+	spawn_screen_flash(board_rect, tint, 0.65)
+	var tex: Texture2D = _tex_star if _tex_star != null else _tex_leaf
+	if tex == null:
+		return
+	for i in range(count):
+		var sp := Sprite2D.new()
+		sp.texture = tex
+		sp.modulate = Color(particle_col.r, particle_col.g, particle_col.b, 0.86)
+		var sx := board_rect.position.x + _rng.randf_range(0.04, 0.96) * board_rect.size.x
+		var sy := board_rect.position.y + _rng.randf_range(0.08, 0.92) * board_rect.size.y
+		sp.position = Vector2(sx, sy)
+		sp.scale = Vector2.ONE * _rng.randf_range(0.18, 0.44)
+		sp.rotation = _rng.randf_range(0.0, TAU)
+		add_child(sp)
+		var drift := Vector2(_rng.randf_range(-110.0, 110.0), _rng.randf_range(-140.0, -40.0))
+		if event_id == "all_nighter" or event_id == "screen_marathon":
+			drift.y = _rng.randf_range(40.0, 130.0)
+		var dur := 0.35 if reduce else _rng.randf_range(0.75, 1.35)
+		var tw: Tween = sp.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sp, "position", sp.position + drift, dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sp, "rotation", sp.rotation + _rng.randf_range(-3.0, 3.0), dur)
+		tw.tween_property(sp, "modulate:a", 0.0, dur * 0.55).set_delay(dur * 0.45)
+		tw.chain().tween_callback(sp.queue_free)
 
 
 func trigger_shake(target: Control, strength: float = 8.0) -> void:

@@ -13,19 +13,23 @@
       "title_id": "Denyut Pagi",
       "tutorial_key": "TUTORIAL_L1",
       "seed": 1001,
-      "moves": 12,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
-        "heart": 36,
-        "brain": 22,
-        "lungs": 22,
+        "heart": 30,
+        "brain": 24,
+        "lungs": 26,
         "kidneys": 20
       },
       "objectives": {
         "collect": {
-          "heart": 12
-        }
+          "heart": 40,
+          "lungs": 34,
+          "brain": 28
+        },
+        "score": 3200
       },
+      "obstacles": [],
       "care_positions": [],
       "overload_positions": [],
       "armored_overload_positions": [],
@@ -33,9 +37,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 0,
       "star_thresholds": [
-        1478,
-        1803,
-        2187
+        3200,
+        3904,
+        4736
       ]
     },
     {
@@ -49,20 +53,23 @@
       "title_id": "Arus Kembar",
       "tutorial_key": "TUTORIAL_L2",
       "seed": 1002,
-      "moves": 14,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
-        "heart": 20,
-        "brain": 30,
-        "lungs": 30,
-        "kidneys": 20
+        "heart": 22,
+        "brain": 28,
+        "lungs": 28,
+        "kidneys": 22
       },
       "objectives": {
         "collect": {
-          "brain": 14,
-          "lungs": 14
-        }
+          "brain": 42,
+          "lungs": 42,
+          "heart": 32
+        },
+        "score": 3600
       },
+      "obstacles": [],
       "care_positions": [],
       "overload_positions": [],
       "armored_overload_positions": [],
@@ -70,9 +77,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 0,
       "star_thresholds": [
-        1506,
-        1837,
-        2228
+        3600,
+        4392,
+        5328
       ]
     },
     {
@@ -86,20 +93,22 @@
       "title_id": "Percik Peduli",
       "tutorial_key": "TUTORIAL_L3",
       "seed": 1003,
-      "moves": 14,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
-        "heart": 22,
+        "heart": 24,
         "brain": 22,
         "lungs": 22,
-        "kidneys": 34
+        "kidneys": 32
       },
       "objectives": {
         "collect": {
-          "kidneys": 16
+          "kidneys": 46,
+          "heart": 36
         },
-        "score": 1400
+        "score": 4000
       },
+      "obstacles": [],
       "care_positions": [],
       "overload_positions": [],
       "armored_overload_positions": [],
@@ -107,9 +116,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 0,
       "star_thresholds": [
-        1400,
-        1708,
-        2072
+        4000,
+        4880,
+        5920
       ]
     },
     {
@@ -123,20 +132,37 @@
       "title_id": "Jaga Ritme",
       "tutorial_key": "TUTORIAL_L4",
       "seed": 1004,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
-        "heart": 31,
-        "brain": 19,
-        "lungs": 31,
-        "kidneys": 19
+        "heart": 30,
+        "brain": 20,
+        "lungs": 30,
+        "kidneys": 20
       },
       "objectives": {
         "collect": {
-          "heart": 16,
-          "lungs": 16
-        }
+          "heart": 44,
+          "lungs": 44
+        },
+        "score": 4200
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [],
       "overload_positions": [
         [
@@ -149,9 +175,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1562,
-        1905,
-        2311
+        4200,
+        5124,
+        6216
       ]
     },
     {
@@ -165,7 +191,7 @@
       "title_id": "Jalan Memutar",
       "tutorial_key": "",
       "seed": 1005,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "heart": 20,
@@ -175,10 +201,27 @@
       },
       "objectives": {
         "collect": {
-          "brain": 18,
-          "kidneys": 18
-        }
+          "brain": 46,
+          "kidneys": 46
+        },
+        "score": 4400
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [],
       "overload_positions": [
         [
@@ -195,9 +238,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        1590,
-        1939,
-        2353
+        4400,
+        5368,
+        6512
       ]
     },
     {
@@ -211,7 +254,7 @@
       "title_id": "Tempo Tenang",
       "tutorial_key": "",
       "seed": 1006,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "heart": 25,
@@ -220,9 +263,29 @@
         "kidneys": 25
       },
       "objectives": {
-        "score": 2100,
+        "collect": {
+          "heart": 36,
+          "lungs": 36
+        },
+        "score": 4600,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [],
       "overload_positions": [
         [
@@ -239,9 +302,9 @@
       "min_care_on_board": 0,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2100,
-        2562,
-        3108
+        4600,
+        5612,
+        6808
       ]
     },
     {
@@ -255,20 +318,37 @@
       "title_id": "Perisai Hijau",
       "tutorial_key": "TUTORIAL_L7",
       "seed": 1007,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
-        "heart": 32,
+        "heart": 30,
         "brain": 22,
-        "lungs": 24,
+        "lungs": 26,
         "kidneys": 22
       },
       "objectives": {
-        "activate_care": 1,
+        "activate_care": 3,
         "collect": {
-          "heart": 18
+          "heart": 46,
+          "lungs": 36
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            8
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -290,9 +370,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1646,
-        2008,
-        2436
+        3894,
+        4750,
+        5763
       ]
     },
     {
@@ -306,7 +386,7 @@
       "title_id": "Pelabuhan Aman",
       "tutorial_key": "",
       "seed": 1008,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "heart": 20,
@@ -315,12 +395,35 @@
         "kidneys": 20
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "lungs": 20,
-          "brain": 18
+          "lungs": 48,
+          "brain": 44
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -350,9 +453,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        1674,
-        2042,
-        2477
+        3936,
+        4801,
+        5825
       ]
     },
     {
@@ -366,7 +469,7 @@
       "title_id": "Netralkan!",
       "tutorial_key": "TUTORIAL_L9",
       "seed": 1009,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "heart": 22,
@@ -375,11 +478,42 @@
         "kidneys": 34
       },
       "objectives": {
-        "neutralize_overload": 1,
+        "neutralize_overload": 2,
         "collect": {
-          "kidneys": 20
+          "kidneys": 50,
+          "heart": 36
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -409,9 +543,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        1702,
-        2076,
-        2518
+        3978,
+        4853,
+        5887
       ]
     },
     {
@@ -425,7 +559,7 @@
       "title_id": "Bos Fajar Tropis",
       "tutorial_key": "",
       "seed": 1010,
-      "moves": 18,
+      "moves": 40,
       "initial_pulse": 100,
       "weights": {
         "heart": 26,
@@ -434,9 +568,29 @@
         "kidneys": 24
       },
       "objectives": {
-        "score": 2800,
-        "neutralize_overload": 2
+        "collect": {
+          "heart": 46,
+          "lungs": 46
+        },
+        "score": 5200,
+        "neutralize_overload": 3
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -474,9 +628,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2800,
-        3416,
-        4144
+        5200,
+        6344,
+        7696
       ]
     },
     {
@@ -490,7 +644,7 @@
       "title_id": "Lintas Bambu",
       "tutorial_key": "",
       "seed": 1011,
-      "moves": 15,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -500,10 +654,27 @@
       },
       "objectives": {
         "collect": {
-          "heart": 28,
-          "brain": 22
-        }
+          "heart": 51,
+          "brain": 42
+        },
+        "score": 5128
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -537,9 +708,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1758,
-        2144,
-        2601
+        5128,
+        6256,
+        7589
       ]
     },
     {
@@ -553,7 +724,7 @@
       "title_id": "Riak Kerikil",
       "tutorial_key": "",
       "seed": 1012,
-      "moves": 15,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
         "heart": 35,
@@ -562,11 +733,27 @@
         "kidneys": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "heart": 32
+          "heart": 55
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -592,9 +779,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1786,
-        2178,
-        2643
+        4104,
+        5006,
+        6073
       ]
     },
     {
@@ -608,7 +795,7 @@
       "title_id": "Anak Sungai",
       "tutorial_key": "",
       "seed": 1013,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -617,11 +804,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "heart": 32
+          "heart": 54,
+          "brain": 38
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -651,9 +855,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1814,
-        2213,
-        2684
+        4146,
+        5058,
+        6136
       ]
     },
     {
@@ -667,7 +871,7 @@
       "title_id": "Kelok Zamrud",
       "tutorial_key": "",
       "seed": 1014,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -676,9 +880,35 @@
         "kidneys": 21
       },
       "objectives": {
-        "score": 2876,
-        "keep_pulse": 65
+        "score": 5272,
+        "collect": {
+          "heart": 47
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -712,9 +942,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        2876,
-        3508,
-        4256
+        5272,
+        6431,
+        7802
       ]
     },
     {
@@ -728,7 +958,7 @@
       "title_id": "Arungan Teduh",
       "tutorial_key": "",
       "seed": 1015,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -737,11 +967,42 @@
         "kidneys": 21
       },
       "objectives": {
-        "neutralize_overload": 2,
+        "neutralize_overload": 3,
         "collect": {
-          "heart": 30
+          "heart": 51,
+          "brain": 38
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -767,9 +1028,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1870,
-        2281,
-        2767
+        4230,
+        5160,
+        6260
       ]
     },
     {
@@ -783,7 +1044,7 @@
       "title_id": "Alang Mengapung",
       "tutorial_key": "",
       "seed": 1016,
-      "moves": 15,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -793,10 +1054,27 @@
       },
       "objectives": {
         "collect": {
-          "heart": 26,
-          "brain": 20
-        }
+          "heart": 48,
+          "brain": 39
+        },
+        "score": 5368
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -826,9 +1104,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1898,
-        2315,
-        2809
+        5368,
+        6548,
+        7944
       ]
     },
     {
@@ -842,7 +1120,7 @@
       "title_id": "Air Tenang",
       "tutorial_key": "",
       "seed": 1017,
-      "moves": 15,
+      "moves": 34,
       "initial_pulse": 100,
       "weights": {
         "heart": 35,
@@ -851,11 +1129,27 @@
         "kidneys": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "heart": 36
+          "heart": 61
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -889,9 +1183,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1926,
-        2349,
-        2850
+        4314,
+        5263,
+        6384
       ]
     },
     {
@@ -905,7 +1199,7 @@
       "title_id": "Jembatan Daun",
       "tutorial_key": "",
       "seed": 1018,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -914,11 +1208,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "heart": 30
+          "heart": 51,
+          "brain": 35
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -944,9 +1255,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        1954,
-        2383,
-        2891
+        4356,
+        5314,
+        6446
       ]
     },
     {
@@ -960,7 +1271,7 @@
       "title_id": "Riam Deras",
       "tutorial_key": "",
       "seed": 1019,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -969,9 +1280,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "score": 3046,
-        "keep_pulse": 65
+        "score": 5512,
+        "collect": {
+          "heart": 44
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -1001,9 +1331,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        3046,
-        3716,
-        4508
+        5512,
+        6724,
+        8157
       ]
     },
     {
@@ -1017,7 +1347,7 @@
       "title_id": "Bos Arus Bambu",
       "tutorial_key": "",
       "seed": 1020,
-      "moves": 20,
+      "moves": 40,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -1027,12 +1357,35 @@
       },
       "objectives": {
         "collect": {
-          "heart": 33,
-          "brain": 24
+          "heart": 59,
+          "brain": 45
         },
         "neutralize_overload": 3,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -1074,9 +1427,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2460,
-        3001,
-        3640
+        5240,
+        6392,
+        7755
       ]
     },
     {
@@ -1090,7 +1443,7 @@
       "title_id": "Sambutan Hangat",
       "tutorial_key": "TUTORIAL_STOMACH",
       "seed": 1021,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -1100,10 +1453,41 @@
       },
       "objectives": {
         "collect": {
-          "heart": 26,
-          "stomach": 24
-        }
+          "heart": 48,
+          "stomach": 45
+        },
+        "score": 5608
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -1129,9 +1513,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 1,
       "star_thresholds": [
-        2038,
-        2486,
-        3016
+        5608,
+        6841,
+        8299
       ]
     },
     {
@@ -1145,7 +1529,7 @@
       "title_id": "Langkah Jahe",
       "tutorial_key": "",
       "seed": 1022,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "brain": 35,
@@ -1154,11 +1538,27 @@
         "stomach": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "brain": 36
+          "brain": 61
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -1192,9 +1592,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2066,
-        2520,
-        3057
+        4524,
+        5519,
+        6695
       ]
     },
     {
@@ -1208,7 +1608,7 @@
       "title_id": "Semilir Mint",
       "tutorial_key": "",
       "seed": 1023,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -1217,11 +1617,28 @@
         "heart": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "muscle": 36
+          "muscle": 60,
+          "stomach": 41
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1259,9 +1676,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2094,
-        2554,
-        3099
+        4566,
+        5570,
+        6757
       ]
     },
     {
@@ -1275,7 +1692,7 @@
       "title_id": "Embun Teras",
       "tutorial_key": "",
       "seed": 1024,
-      "moves": 15,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -1284,9 +1701,28 @@
         "heart": 21
       },
       "objectives": {
-        "score": 3216,
-        "keep_pulse": 65
+        "score": 5752,
+        "collect": {
+          "brain": 44
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -1316,9 +1752,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        3216,
-        3923,
-        4759
+        5752,
+        7017,
+        8512
       ]
     },
     {
@@ -1332,7 +1768,7 @@
       "title_id": "Punggung Madu",
       "tutorial_key": "",
       "seed": 1025,
-      "moves": 16,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -1341,11 +1777,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "neutralize_overload": 2,
+        "neutralize_overload": 3,
         "collect": {
-          "muscle": 34
+          "muscle": 57,
+          "heart": 41
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1379,9 +1832,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2150,
-        2623,
-        3182
+        4650,
+        5673,
+        6882
       ]
     },
     {
@@ -1395,7 +1848,7 @@
       "title_id": "Surya Kunyit",
       "tutorial_key": "",
       "seed": 1026,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -1405,10 +1858,34 @@
       },
       "objectives": {
         "collect": {
-          "brain": 30,
-          "stomach": 22
-        }
+          "brain": 54,
+          "stomach": 42
+        },
+        "score": 5848
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -1446,9 +1923,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2178,
-        2657,
-        3223
+        5848,
+        7134,
+        8655
       ]
     },
     {
@@ -1462,7 +1939,7 @@
       "title_id": "Baris Serai",
       "tutorial_key": "",
       "seed": 1027,
-      "moves": 15,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "lungs": 35,
@@ -1471,11 +1948,41 @@
         "brain": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "lungs": 34
+          "lungs": 58
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -1505,9 +2012,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2206,
-        2691,
-        3264
+        4734,
+        5775,
+        7006
       ]
     },
     {
@@ -1521,7 +2028,7 @@
       "title_id": "Taman Rimpang",
       "tutorial_key": "",
       "seed": 1028,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -1530,11 +2037,28 @@
         "heart": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "stomach": 34
+          "stomach": 57,
+          "brain": 38
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1568,9 +2092,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2234,
-        2725,
-        3306
+        4776,
+        5826,
+        7068
       ]
     },
     {
@@ -1584,7 +2108,7 @@
       "title_id": "Leran Tinggi",
       "tutorial_key": "",
       "seed": 1029,
-      "moves": 15,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -1593,9 +2117,28 @@
         "brain": 21
       },
       "objectives": {
-        "score": 3386,
-        "keep_pulse": 65
+        "score": 5992,
+        "collect": {
+          "lungs": 50
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1633,9 +2176,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        3386,
-        4130,
-        5011
+        5992,
+        7310,
+        8868
       ]
     },
     {
@@ -1649,7 +2192,7 @@
       "title_id": "Bos Teras Herbal",
       "tutorial_key": "",
       "seed": 1030,
-      "moves": 20,
+      "moves": 41,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -1659,12 +2202,28 @@
       },
       "objectives": {
         "collect": {
-          "heart": 31,
-          "kidneys": 26
+          "heart": 56,
+          "kidneys": 48
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1702,9 +2261,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2740,
-        3342,
-        4055
+        5660,
+        6905,
+        8376
       ]
     },
     {
@@ -1718,7 +2277,7 @@
       "title_id": "Dangkal Berlapis",
       "tutorial_key": "TUTORIAL_ARMOR",
       "seed": 1031,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -1728,10 +2287,27 @@
       },
       "objectives": {
         "collect": {
-          "brain": 30,
-          "lungs": 26
-        }
+          "brain": 54,
+          "lungs": 48
+        },
+        "score": 6088
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -1770,9 +2346,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2318,
-        2827,
-        3430
+        6088,
+        7427,
+        9010
       ]
     },
     {
@@ -1786,7 +2362,7 @@
       "title_id": "Lengkung Pirus",
       "tutorial_key": "",
       "seed": 1032,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "lungs": 35,
@@ -1795,11 +2371,34 @@
         "stomach": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "lungs": 40
+          "lungs": 67
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -1837,9 +2436,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2346,
-        2862,
-        3472
+        4944,
+        6031,
+        7317
       ]
     },
     {
@@ -1853,7 +2452,7 @@
       "title_id": "Teluk Bintang",
       "tutorial_key": "",
       "seed": 1033,
-      "moves": 17,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -1862,11 +2461,42 @@
         "heart": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "brain": 34
+          "brain": 57,
+          "stomach": 44
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -1901,9 +2531,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2374,
-        2896,
-        3513
+        4986,
+        6082,
+        7379
       ]
     },
     {
@@ -1917,7 +2547,7 @@
       "title_id": "Arus Mutiara",
       "tutorial_key": "",
       "seed": 1034,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -1926,9 +2556,28 @@
         "stomach": 21
       },
       "objectives": {
-        "score": 3556,
-        "keep_pulse": 65
+        "score": 6232,
+        "collect": {
+          "muscle": 50
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -1962,9 +2611,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        3556,
-        4338,
-        5262
+        6232,
+        7603,
+        9223
       ]
     },
     {
@@ -1978,7 +2627,7 @@
       "title_id": "Ayu Kipas Laut",
       "tutorial_key": "",
       "seed": 1035,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -1987,11 +2636,28 @@
         "stomach": 21
       },
       "objectives": {
-        "neutralize_overload": 2,
+        "neutralize_overload": 3,
         "collect": {
-          "muscle": 38
+          "muscle": 63,
+          "heart": 44
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -2034,9 +2700,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2430,
-        2964,
-        3596
+        5070,
+        6185,
+        7503
       ]
     },
     {
@@ -2050,7 +2716,7 @@
       "title_id": "Tepi Laguna",
       "tutorial_key": "",
       "seed": 1036,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -2060,10 +2726,27 @@
       },
       "objectives": {
         "collect": {
-          "lungs": 28,
-          "heart": 24
-        }
+          "lungs": 51,
+          "heart": 45
+        },
+        "score": 6328
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2093,9 +2776,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2458,
-        2998,
-        3637
+        6328,
+        7720,
+        9365
       ]
     },
     {
@@ -2109,7 +2792,7 @@
       "title_id": "Kolam Pasang",
       "tutorial_key": "",
       "seed": 1037,
-      "moves": 16,
+      "moves": 35,
       "initial_pulse": 100,
       "weights": {
         "stomach": 35,
@@ -2118,11 +2801,27 @@
         "muscle": 21
       },
       "objectives": {
-        "long_chains": 2,
+        "long_chains": 4,
         "collect": {
-          "stomach": 38
+          "stomach": 64
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -2161,9 +2860,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2486,
-        3032,
-        3679
+        5154,
+        6287,
+        7627
       ]
     },
     {
@@ -2177,7 +2876,7 @@
       "title_id": "Suaka Kerang",
       "tutorial_key": "",
       "seed": 1038,
-      "moves": 17,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -2186,11 +2885,35 @@
         "lungs": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "brain": 38
+          "brain": 63,
+          "muscle": 41
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2228,9 +2951,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2514,
-        3067,
-        3720
+        5196,
+        6339,
+        7690
       ]
     },
     {
@@ -2244,7 +2967,7 @@
       "title_id": "Karang Dalam",
       "tutorial_key": "",
       "seed": 1039,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -2253,9 +2976,42 @@
         "brain": 21
       },
       "objectives": {
-        "score": 3726,
-        "keep_pulse": 65
+        "score": 6472,
+        "collect": {
+          "kidneys": 47
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -2290,9 +3046,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3726,
-        4545,
-        5514
+        6472,
+        7895,
+        9578
       ]
     },
     {
@@ -2306,7 +3062,7 @@
       "title_id": "Bos Terumbu Karang",
       "tutorial_key": "",
       "seed": 1040,
-      "moves": 21,
+      "moves": 41,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -2316,12 +3072,28 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 35,
-          "heart": 28
+          "kidneys": 62,
+          "heart": 51
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2368,9 +3140,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3020,
-        3684,
-        4469
+        6080,
+        7417,
+        8998
       ]
     },
     {
@@ -2384,7 +3156,7 @@
       "title_id": "Saring & Mekar",
       "tutorial_key": "TUTORIAL_LIVER",
       "seed": 1041,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -2394,10 +3166,27 @@
       },
       "objectives": {
         "collect": {
-          "brain": 34,
-          "lungs": 28
-        }
+          "brain": 60,
+          "lungs": 51
+        },
+        "score": 6568
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2440,9 +3229,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2598,
-        3169,
-        3845
+        6568,
+        8012,
+        9720
       ]
     },
     {
@@ -2456,7 +3245,7 @@
       "title_id": "Dahan Mentari",
       "tutorial_key": "",
       "seed": 1042,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 35,
@@ -2465,11 +3254,27 @@
         "stomach": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "kidneys": 38
+          "kidneys": 64
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -2504,9 +3309,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 2,
       "star_thresholds": [
-        2626,
-        3203,
-        3886
+        5364,
+        6544,
+        7938
       ]
     },
     {
@@ -2520,7 +3325,7 @@
       "title_id": "Ranting Berlumut",
       "tutorial_key": "",
       "seed": 1043,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -2529,11 +3334,28 @@
         "stomach": 21
       },
       "objectives": {
-        "activate_care": 2,
+        "activate_care": 3,
         "collect": {
-          "brain": 38
+          "brain": 63,
+          "muscle": 47
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -2572,9 +3394,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2654,
-        3237,
-        3927
+        5406,
+        6595,
+        8000
       ]
     },
     {
@@ -2588,7 +3410,7 @@
       "title_id": "Anggrek Rindang",
       "tutorial_key": "",
       "seed": 1044,
-      "moves": 16,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -2597,9 +3419,35 @@
         "lungs": 21
       },
       "objectives": {
-        "score": 3896,
-        "keep_pulse": 65
+        "score": 6712,
+        "collect": {
+          "heart": 56
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2646,9 +3494,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3896,
-        4753,
-        5766
+        6712,
+        8188,
+        9933
       ]
     },
     {
@@ -2662,7 +3510,7 @@
       "title_id": "Ayunan Kanopi",
       "tutorial_key": "",
       "seed": 1045,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -2671,11 +3519,42 @@
         "brain": 21
       },
       "objectives": {
-        "neutralize_overload": 2,
+        "neutralize_overload": 3,
         "collect": {
-          "heart": 36
+          "heart": 60,
+          "liver": 47
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -2714,9 +3593,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2710,
-        3306,
-        4010
+        5490,
+        6697,
+        8125
       ]
     },
     {
@@ -2730,7 +3609,7 @@
       "title_id": "Langkah Seimbang",
       "tutorial_key": "",
       "seed": 1046,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -2740,10 +3619,27 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 32,
-          "heart": 26
-        }
+          "kidneys": 57,
+          "heart": 48
+        },
+        "score": 6808
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2786,9 +3682,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2738,
-        3340,
-        4052
+        6808,
+        8305,
+        10075
       ]
     },
     {
@@ -2802,7 +3698,7 @@
       "title_id": "Mahkota Pakis",
       "tutorial_key": "",
       "seed": 1047,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 35,
@@ -2811,11 +3707,27 @@
         "heart": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "brain": 42
+          "brain": 70
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -2862,9 +3774,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2766,
-        3374,
-        4093
+        5574,
+        6800,
+        8249
       ]
     },
     {
@@ -2878,7 +3790,7 @@
       "title_id": "Sulur Melingkar",
       "tutorial_key": "",
       "seed": 1048,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -2887,11 +3799,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "lungs": 36
+          "lungs": 60,
+          "heart": 44
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -2930,9 +3859,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2794,
-        3408,
-        4135
+        5616,
+        6851,
+        8311
       ]
     },
     {
@@ -2946,7 +3875,7 @@
       "title_id": "Zenit Hijau",
       "tutorial_key": "",
       "seed": 1049,
-      "moves": 16,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "liver": 30,
@@ -2955,9 +3884,28 @@
         "stomach": 21
       },
       "objectives": {
-        "score": 4066,
-        "keep_pulse": 65
+        "score": 6952,
+        "collect": {
+          "liver": 53
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -3000,9 +3948,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4066,
-        4960,
-        6017
+        6952,
+        8481,
+        10288
       ]
     },
     {
@@ -3016,7 +3964,7 @@
       "title_id": "Bos Kanopi Zamrud",
       "tutorial_key": "",
       "seed": 1050,
-      "moves": 21,
+      "moves": 42,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -3026,12 +3974,35 @@
       },
       "objectives": {
         "collect": {
-          "brain": 39,
-          "stomach": 30
+          "brain": 68,
+          "stomach": 54
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -3095,9 +4066,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3300,
-        4026,
-        4884
+        6500,
+        7930,
+        9620
       ]
     },
     {
@@ -3111,7 +4082,7 @@
       "title_id": "Kelopak Mekar",
       "tutorial_key": "",
       "seed": 1051,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -3121,10 +4092,41 @@
       },
       "objectives": {
         "collect": {
-          "brain": 32,
-          "liver": 30
-        }
+          "brain": 57,
+          "liver": 54
+        },
+        "score": 7048
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -3163,9 +4165,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2878,
-        3511,
-        4259
+        7048,
+        8598,
+        10431
       ]
     },
     {
@@ -3179,7 +4181,7 @@
       "title_id": "Kolam Cermin",
       "tutorial_key": "",
       "seed": 1052,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "muscle": 35,
@@ -3188,11 +4190,27 @@
         "kidneys": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "muscle": 42
+          "muscle": 70
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -3235,9 +4253,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2906,
-        3545,
-        4300
+        5784,
+        7056,
+        8560
       ]
     },
     {
@@ -3251,7 +4269,7 @@
       "title_id": "Benang Sari",
       "tutorial_key": "",
       "seed": 1053,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -3260,11 +4278,28 @@
         "kidneys": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "stomach": 42
+          "stomach": 69,
+          "lungs": 50
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -3311,9 +4346,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2934,
-        3579,
-        4342
+        5826,
+        7107,
+        8622
       ]
     },
     {
@@ -3327,7 +4362,7 @@
       "title_id": "Jalur Koi Tenang",
       "tutorial_key": "",
       "seed": 1054,
-      "moves": 16,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -3336,9 +4371,28 @@
         "heart": 21
       },
       "objectives": {
-        "score": 4236,
-        "keep_pulse": 65
+        "score": 7192,
+        "collect": {
+          "lungs": 53
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -3377,9 +4431,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4236,
-        5167,
-        6269
+        7192,
+        8774,
+        10644
       ]
     },
     {
@@ -3393,7 +4447,7 @@
       "title_id": "Pantulan Fajar",
       "tutorial_key": "",
       "seed": 1055,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -3402,11 +4456,28 @@
         "heart": 21
       },
       "objectives": {
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "collect": {
-          "stomach": 40
+          "stomach": 66,
+          "brain": 50
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -3449,9 +4520,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        2990,
-        3647,
-        4425
+        5910,
+        7210,
+        8746
       ]
     },
     {
@@ -3465,7 +4536,7 @@
       "title_id": "Teratai Giok",
       "tutorial_key": "",
       "seed": 1056,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -3475,10 +4546,34 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 36,
-          "muscle": 28
-        }
+          "kidneys": 63,
+          "muscle": 51
+        },
+        "score": 7288
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -3525,9 +4620,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3018,
-        3681,
-        4466
+        7288,
+        8891,
+        10786
       ]
     },
     {
@@ -3541,7 +4636,7 @@
       "title_id": "Riak Halus",
       "tutorial_key": "",
       "seed": 1057,
-      "moves": 16,
+      "moves": 36,
       "initial_pulse": 100,
       "weights": {
         "heart": 35,
@@ -3550,11 +4645,41 @@
         "brain": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "heart": 40
+          "heart": 67
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -3593,9 +4718,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3046,
-        3716,
-        4508
+        5994,
+        7312,
+        8871
       ]
     },
     {
@@ -3609,7 +4734,7 @@
       "title_id": "Teratai Purnama",
       "tutorial_key": "",
       "seed": 1058,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -3618,11 +4743,28 @@
         "brain": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "kidneys": 40
+          "kidneys": 66,
+          "lungs": 47
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -3665,9 +4807,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3074,
-        3750,
-        4549
+        6036,
+        7363,
+        8933
       ]
     },
     {
@@ -3681,7 +4823,7 @@
       "title_id": "Suaka Hening",
       "tutorial_key": "",
       "seed": 1059,
-      "moves": 16,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -3690,9 +4832,28 @@
         "heart": 21
       },
       "objectives": {
-        "score": 4406,
-        "keep_pulse": 65
+        "score": 7432,
+        "collect": {
+          "lungs": 59
+        },
+        "keep_pulse": 62
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -3739,9 +4900,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4406,
-        5375,
-        6520
+        7432,
+        9067,
+        10999
       ]
     },
     {
@@ -3755,7 +4916,7 @@
       "title_id": "Bos Danau Teratai",
       "tutorial_key": "",
       "seed": 1060,
-      "moves": 21,
+      "moves": 42,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -3765,12 +4926,28 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 37,
-          "stomach": 32
+          "kidneys": 65,
+          "stomach": 57
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -3826,9 +5003,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3580,
-        4367,
-        5298
+        6920,
+        8442,
+        10241
       ]
     },
     {
@@ -3842,7 +5019,7 @@
       "title_id": "Rintik Pertama",
       "tutorial_key": "",
       "seed": 1061,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -3852,10 +5029,27 @@
       },
       "objectives": {
         "collect": {
-          "brain": 36,
-          "stomach": 32
-        }
+          "brain": 63,
+          "stomach": 57
+        },
+        "score": 7528
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -3893,9 +5087,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3158,
-        3852,
-        4673
+        7528,
+        9184,
+        11141
       ]
     },
     {
@@ -3909,7 +5103,7 @@
       "title_id": "Gendang Awan",
       "tutorial_key": "",
       "seed": 1062,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 35,
@@ -3918,11 +5112,34 @@
         "liver": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "kidneys": 46
+          "kidneys": 76
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -3978,9 +5195,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3186,
-        3886,
-        4715
+        6204,
+        7568,
+        9181
       ]
     },
     {
@@ -3994,7 +5211,7 @@
       "title_id": "Kabut Kanopi",
       "tutorial_key": "",
       "seed": 1063,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -4003,11 +5220,42 @@
         "liver": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "kidneys": 40
+          "kidneys": 66,
+          "muscle": 53
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -4041,9 +5289,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3214,
-        3921,
-        4756
+        6246,
+        7620,
+        9244
       ]
     },
     {
@@ -4057,7 +5305,7 @@
       "title_id": "Hembusan Perak",
       "tutorial_key": "",
       "seed": 1064,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -4066,9 +5314,28 @@
         "liver": 21
       },
       "objectives": {
-        "score": 4576,
-        "keep_pulse": 70
+        "score": 7672,
+        "collect": {
+          "brain": 59
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -4120,9 +5387,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4576,
-        5582,
-        6772
+        7672,
+        9359,
+        11354
       ]
     },
     {
@@ -4136,7 +5403,7 @@
       "title_id": "Denyut Guruh",
       "tutorial_key": "",
       "seed": 1065,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -4145,11 +5412,28 @@
         "lungs": 21
       },
       "objectives": {
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "collect": {
-          "kidneys": 44
+          "kidneys": 72,
+          "heart": 53
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -4191,9 +5475,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3270,
-        3989,
-        4839
+        6330,
+        7722,
+        9368
       ]
     },
     {
@@ -4207,7 +5491,7 @@
       "title_id": "Teras Hujan",
       "tutorial_key": "",
       "seed": 1066,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -4217,10 +5501,27 @@
       },
       "objectives": {
         "collect": {
-          "brain": 34,
-          "stomach": 30
-        }
+          "brain": 60,
+          "stomach": 54
+        },
+        "score": 7768
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -4272,9 +5573,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3298,
-        4023,
-        4881
+        7768,
+        9476,
+        11496
       ]
     },
     {
@@ -4288,7 +5589,7 @@
       "title_id": "Celah Badai",
       "tutorial_key": "",
       "seed": 1067,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "brain": 35,
@@ -4297,11 +5598,27 @@
         "muscle": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "brain": 44
+          "brain": 73
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -4343,9 +5660,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3326,
-        4057,
-        4922
+        6414,
+        7825,
+        9492
       ]
     },
     {
@@ -4359,7 +5676,7 @@
       "title_id": "Busur Pelangi",
       "tutorial_key": "",
       "seed": 1068,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -4368,11 +5685,35 @@
         "stomach": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "muscle": 44
+          "muscle": 72,
+          "heart": 50
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -4432,9 +5773,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3354,
-        4091,
-        4963
+        6456,
+        7876,
+        9554
       ]
     },
     {
@@ -4448,7 +5789,7 @@
       "title_id": "Sungai Meluap",
       "tutorial_key": "",
       "seed": 1069,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -4457,9 +5798,42 @@
         "liver": 21
       },
       "objectives": {
-        "score": 4746,
-        "keep_pulse": 70
+        "score": 7912,
+        "collect": {
+          "lungs": 56
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -4497,9 +5871,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4746,
-        5790,
-        7024
+        7912,
+        9652,
+        11709
       ]
     },
     {
@@ -4513,7 +5887,7 @@
       "title_id": "Bos Irama Muson",
       "tutorial_key": "",
       "seed": 1070,
-      "moves": 22,
+      "moves": 43,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -4523,12 +5897,28 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 41,
-          "heart": 34
+          "kidneys": 71,
+          "heart": 60
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -4592,9 +5982,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3860,
-        4709,
-        5712
+        7340,
+        8954,
+        10863
       ]
     },
     {
@@ -4608,7 +5998,7 @@
       "title_id": "Jejak Kaki Bukit",
       "tutorial_key": "",
       "seed": 1071,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -4618,10 +6008,27 @@
       },
       "objectives": {
         "collect": {
-          "stomach": 40,
-          "kidneys": 34
-        }
+          "stomach": 69,
+          "kidneys": 60
+        },
+        "score": 8008
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -4667,9 +6074,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3438,
-        4194,
-        5088
+        8008,
+        9769,
+        11851
       ]
     },
     {
@@ -4683,7 +6090,7 @@
       "title_id": "Tangga Granit",
       "tutorial_key": "",
       "seed": 1072,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "muscle": 35,
@@ -4692,11 +6099,27 @@
         "heart": 21
       },
       "objectives": {
-        "long_chains": 3,
+        "long_chains": 5,
         "collect": {
-          "muscle": 44
+          "muscle": 73
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -4752,9 +6175,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3466,
-        4228,
-        5129
+        6624,
+        8081,
+        9803
       ]
     },
     {
@@ -4768,7 +6191,7 @@
       "title_id": "Cakrawala Pinus",
       "tutorial_key": "",
       "seed": 1073,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "lungs": 30,
@@ -4777,11 +6200,28 @@
         "liver": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "lungs": 44
+          "lungs": 72,
+          "stomach": 56
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -4823,9 +6263,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3494,
-        4262,
-        5171
+        6666,
+        8132,
+        9865
       ]
     },
     {
@@ -4839,7 +6279,7 @@
       "title_id": "Jembatan Awan",
       "tutorial_key": "",
       "seed": 1074,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -4848,9 +6288,35 @@
         "kidneys": 21
       },
       "objectives": {
-        "score": 4916,
-        "keep_pulse": 70
+        "score": 8152,
+        "collect": {
+          "stomach": 65
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -4905,9 +6371,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4916,
-        5997,
-        7275
+        8152,
+        9945,
+        12064
       ]
     },
     {
@@ -4921,7 +6387,7 @@
       "title_id": "Pandang Elang",
       "tutorial_key": "",
       "seed": 1075,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -4930,11 +6396,42 @@
         "liver": 21
       },
       "objectives": {
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "collect": {
-          "stomach": 42
+          "stomach": 69,
+          "heart": 56
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -4981,9 +6478,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3550,
-        4331,
-        5254
+        6750,
+        8235,
+        9990
       ]
     },
     {
@@ -4997,7 +6494,7 @@
       "title_id": "Napas Puncak",
       "tutorial_key": "",
       "seed": 1076,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -5007,10 +6504,27 @@
       },
       "objectives": {
         "collect": {
-          "muscle": 38,
-          "stomach": 32
-        }
+          "muscle": 66,
+          "stomach": 57
+        },
+        "score": 8248
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            5
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -5061,9 +6575,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3578,
-        4365,
-        5295
+        8248,
+        10062,
+        12207
       ]
     },
     {
@@ -5077,7 +6591,7 @@
       "title_id": "Celah Genta",
       "tutorial_key": "",
       "seed": 1077,
-      "moves": 17,
+      "moves": 37,
       "initial_pulse": 100,
       "weights": {
         "liver": 35,
@@ -5086,11 +6600,27 @@
         "stomach": 21
       },
       "objectives": {
-        "long_chains": 4,
+        "long_chains": 6,
         "collect": {
-          "liver": 48
+          "liver": 79
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -5136,9 +6666,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3606,
-        4399,
-        5336
+        6834,
+        8337,
+        10114
       ]
     },
     {
@@ -5152,7 +6682,7 @@
       "title_id": "Punggung Bintang",
       "tutorial_key": "",
       "seed": 1078,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -5161,11 +6691,28 @@
         "liver": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "brain": 42
+          "brain": 69,
+          "kidneys": 53
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -5221,9 +6768,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3634,
-        4433,
-        5378
+        6876,
+        8388,
+        10176
       ]
     },
     {
@@ -5237,7 +6784,7 @@
       "title_id": "Mata Air Puncak",
       "tutorial_key": "",
       "seed": 1079,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "liver": 30,
@@ -5246,9 +6793,28 @@
         "muscle": 21
       },
       "objectives": {
-        "score": 5086,
-        "keep_pulse": 70
+        "score": 8392,
+        "collect": {
+          "liver": 62
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            4
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -5290,9 +6856,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        5086,
-        6204,
-        7527
+        8392,
+        10238,
+        12420
       ]
     },
     {
@@ -5306,7 +6872,7 @@
       "title_id": "Bos Puncak Suaka",
       "tutorial_key": "",
       "seed": 1080,
-      "moves": 22,
+      "moves": 43,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -5316,12 +6882,35 @@
       },
       "objectives": {
         "collect": {
-          "brain": 45,
-          "lungs": 36
+          "brain": 77,
+          "lungs": 63
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            6,
+            7
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -5389,9 +6978,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4140,
-        5050,
-        6127
+        7760,
+        9467,
+        11484
       ]
     },
     {
@@ -5405,7 +6994,7 @@
       "title_id": "Selat Ambar",
       "tutorial_key": "",
       "seed": 1081,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -5415,10 +7004,41 @@
       },
       "objectives": {
         "collect": {
-          "heart": 38,
-          "lungs": 36
-        }
+          "heart": 66,
+          "lungs": 63
+        },
+        "score": 8488
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -5465,9 +7085,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3718,
-        4535,
-        5502
+        8488,
+        10355,
+        12562
       ]
     },
     {
@@ -5481,7 +7101,7 @@
       "title_id": "Bandar Rempah",
       "tutorial_key": "",
       "seed": 1082,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "muscle": 35,
@@ -5490,11 +7110,27 @@
         "brain": 21
       },
       "objectives": {
-        "long_chains": 4,
+        "long_chains": 6,
         "collect": {
-          "muscle": 48
+          "muscle": 79
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -5545,9 +7181,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3746,
-        4570,
-        5544
+        7044,
+        8593,
+        10425
       ]
     },
     {
@@ -5561,7 +7197,7 @@
       "title_id": "Atol Tenggelam",
       "tutorial_key": "",
       "seed": 1083,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -5570,11 +7206,28 @@
         "lungs": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "stomach": 48
+          "stomach": 78,
+          "brain": 59
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -5620,9 +7273,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3774,
-        4604,
-        5585
+        7086,
+        8644,
+        10487
       ]
     },
     {
@@ -5636,7 +7289,7 @@
       "title_id": "Layar Keemasan",
       "tutorial_key": "",
       "seed": 1084,
-      "moves": 17,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -5645,9 +7298,28 @@
         "heart": 21
       },
       "objectives": {
-        "score": 5256,
-        "keep_pulse": 70
+        "score": 8632,
+        "collect": {
+          "kidneys": 62
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -5703,9 +7375,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        5256,
-        6412,
-        7778
+        8632,
+        10531,
+        12775
       ]
     },
     {
@@ -5719,7 +7391,7 @@
       "title_id": "Cincin Atol",
       "tutorial_key": "",
       "seed": 1085,
-      "moves": 18,
+      "moves": 40,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -5728,11 +7400,28 @@
         "muscle": 21
       },
       "objectives": {
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "collect": {
-          "stomach": 46
+          "stomach": 75,
+          "heart": 59
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -5774,9 +7463,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3830,
-        4672,
-        5668
+        7170,
+        8747,
+        10611
       ]
     },
     {
@@ -5790,7 +7479,7 @@
       "title_id": "Subur Vulkanik",
       "tutorial_key": "",
       "seed": 1086,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -5800,10 +7489,34 @@
       },
       "objectives": {
         "collect": {
-          "muscle": 42,
-          "kidneys": 34
-        }
+          "muscle": 72,
+          "kidneys": 60
+        },
+        "score": 8728
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            6
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -5858,9 +7571,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3858,
-        4706,
-        5709
+        8728,
+        10648,
+        12917
       ]
     },
     {
@@ -5874,7 +7587,7 @@
       "title_id": "Dermaga Lentera",
       "tutorial_key": "",
       "seed": 1087,
-      "moves": 17,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "brain": 35,
@@ -5883,11 +7596,41 @@
         "kidneys": 21
       },
       "objectives": {
-        "long_chains": 4,
+        "long_chains": 6,
         "collect": {
-          "brain": 46
+          "brain": 76
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            9
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -5934,9 +7677,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3886,
-        4740,
-        5751
+        7254,
+        8849,
+        10735
       ]
     },
     {
@@ -5950,7 +7693,7 @@
       "title_id": "Teluk Kuma",
       "tutorial_key": "",
       "seed": 1088,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "brain": 30,
@@ -5959,11 +7702,28 @@
         "lungs": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "brain": 46
+          "brain": 75,
+          "muscle": 56
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           3,
@@ -6014,9 +7774,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3914,
-        4775,
-        5792
+        7296,
+        8901,
+        10798
       ]
     },
     {
@@ -6030,7 +7790,7 @@
       "title_id": "Pulau Suar",
       "tutorial_key": "",
       "seed": 1089,
-      "moves": 17,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -6039,9 +7799,28 @@
         "liver": 21
       },
       "objectives": {
-        "score": 5426,
-        "keep_pulse": 70
+        "score": 8872,
+        "collect": {
+          "stomach": 68
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           2,
@@ -6087,9 +7866,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        5426,
-        6619,
-        8030
+        8872,
+        10823,
+        13130
       ]
     },
     {
@@ -6103,7 +7882,7 @@
       "title_id": "Bos Nusantara Emas",
       "tutorial_key": "",
       "seed": 1090,
-      "moves": 22,
+      "moves": 44,
       "initial_pulse": 100,
       "weights": {
         "stomach": 30,
@@ -6113,12 +7892,28 @@
       },
       "objectives": {
         "collect": {
-          "stomach": 43,
-          "muscle": 38
+          "stomach": 74,
+          "muscle": 66
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 60
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -6178,9 +7973,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4420,
-        5392,
-        6541
+        8180,
+        9979,
+        12106
       ]
     },
     {
@@ -6194,7 +7989,7 @@
       "title_id": "Pembuka Sembilan",
       "tutorial_key": "",
       "seed": 1091,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -6204,10 +7999,27 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 42,
-          "muscle": 38
-        }
+          "kidneys": 72,
+          "muscle": 66
+        },
+        "score": 8968
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -6249,9 +8061,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        3998,
-        4877,
-        5917
+        8968,
+        10940,
+        13272
       ]
     },
     {
@@ -6265,7 +8077,7 @@
       "title_id": "Dansa Sirkuit",
       "tutorial_key": "",
       "seed": 1092,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "stomach": 35,
@@ -6274,11 +8086,34 @@
         "liver": 21
       },
       "objectives": {
-        "long_chains": 4,
+        "long_chains": 6,
         "collect": {
-          "stomach": 52
+          "stomach": 85
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -6333,9 +8168,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4026,
-        4911,
-        5958
+        7464,
+        9106,
+        11046
       ]
     },
     {
@@ -6349,7 +8184,7 @@
       "title_id": "Enam Organ Bersatu",
       "tutorial_key": "",
       "seed": 1093,
-      "moves": 19,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -6358,11 +8193,42 @@
         "kidneys": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "heart": 46
+          "heart": 75,
+          "muscle": 62
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            8
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -6409,9 +8275,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4054,
-        4945,
-        5999
+        7506,
+        9157,
+        11108
       ]
     },
     {
@@ -6425,7 +8291,7 @@
       "title_id": "Kisi Berlian",
       "tutorial_key": "",
       "seed": 1094,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "liver": 30,
@@ -6434,9 +8300,28 @@
         "stomach": 21
       },
       "objectives": {
-        "score": 5596,
-        "keep_pulse": 70
+        "score": 9112,
+        "collect": {
+          "liver": 68
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            3,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -6487,9 +8372,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        5596,
-        6827,
-        8282
+        9112,
+        11116,
+        13485
       ]
     },
     {
@@ -6503,7 +8388,7 @@
       "title_id": "Ketangguhan Ambar",
       "tutorial_key": "",
       "seed": 1095,
-      "moves": 19,
+      "moves": 40,
       "initial_pulse": 100,
       "weights": {
         "muscle": 30,
@@ -6512,11 +8397,28 @@
         "liver": 21
       },
       "objectives": {
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "collect": {
-          "muscle": 50
+          "muscle": 81,
+          "kidneys": 62
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            5
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            5
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -6562,9 +8464,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4110,
-        5014,
-        6082
+        7590,
+        9259,
+        11233
       ]
     },
     {
@@ -6578,7 +8480,7 @@
       "title_id": "Paduan Peduli",
       "tutorial_key": "",
       "seed": 1096,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "kidneys": 30,
@@ -6588,10 +8490,27 @@
       },
       "objectives": {
         "collect": {
-          "kidneys": 40,
-          "brain": 36
-        }
+          "kidneys": 69,
+          "brain": 63
+        },
+        "score": 9208
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -6647,9 +8566,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4138,
-        5048,
-        6124
+        9208,
+        11233,
+        13627
       ]
     },
     {
@@ -6663,7 +8582,7 @@
       "title_id": "Cermin Keseimbangan",
       "tutorial_key": "",
       "seed": 1097,
-      "moves": 18,
+      "moves": 38,
       "initial_pulse": 100,
       "weights": {
         "stomach": 35,
@@ -6672,11 +8591,27 @@
         "muscle": 21
       },
       "objectives": {
-        "long_chains": 4,
+        "long_chains": 6,
         "collect": {
-          "stomach": 50
+          "stomach": 82
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            2,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            7
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -6718,9 +8653,9 @@
       "min_care_on_board": 3,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4166,
-        5082,
-        6165
+        7674,
+        9362,
+        11357
       ]
     },
     {
@@ -6734,7 +8669,7 @@
       "title_id": "Kresendo Denyut",
       "tutorial_key": "",
       "seed": 1098,
-      "moves": 19,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "liver": 30,
@@ -6743,11 +8678,35 @@
         "brain": 21
       },
       "objectives": {
-        "activate_care": 3,
+        "activate_care": 4,
         "collect": {
-          "liver": 50
+          "liver": 81,
+          "lungs": 59
         }
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            4
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            7
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            3,
+            9
+          ],
+          "type": "log"
+        }
+      ],
       "care_positions": [
         [
           5,
@@ -6802,9 +8761,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4194,
-        5116,
-        6207
+        7716,
+        9413,
+        11419
       ]
     },
     {
@@ -6818,7 +8777,7 @@
       "title_id": "Ambang Cahaya",
       "tutorial_key": "",
       "seed": 1099,
-      "moves": 18,
+      "moves": 39,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -6827,9 +8786,42 @@
         "lungs": 21
       },
       "objectives": {
-        "score": 5766,
-        "keep_pulse": 70
+        "score": 9352,
+        "collect": {
+          "heart": 65
+        },
+        "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            1,
+            3
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            5,
+            3
+          ],
+          "type": "rock"
+        },
+        {
+          "pos": [
+            1,
+            9
+          ],
+          "type": "log"
+        },
+        {
+          "pos": [
+            5,
+            8
+          ],
+          "type": "island"
+        }
+      ],
       "care_positions": [
         [
           4,
@@ -6876,9 +8868,9 @@
       "min_care_on_board": 2,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        5766,
-        7034,
-        8533
+        9352,
+        11409,
+        13840
       ]
     },
     {
@@ -6892,7 +8884,7 @@
       "title_id": "Puncak Agung Nadiloopa",
       "tutorial_key": "",
       "seed": 1100,
-      "moves": 24,
+      "moves": 46,
       "initial_pulse": 100,
       "weights": {
         "heart": 30,
@@ -6902,12 +8894,28 @@
       },
       "objectives": {
         "collect": {
-          "heart": 42,
-          "lungs": 34
+          "heart": 72,
+          "lungs": 62
         },
-        "neutralize_overload": 3,
+        "neutralize_overload": 4,
         "keep_pulse": 65
       },
+      "obstacles": [
+        {
+          "pos": [
+            3,
+            6
+          ],
+          "type": "island"
+        },
+        {
+          "pos": [
+            4,
+            6
+          ],
+          "type": "rock"
+        }
+      ],
       "care_positions": [
         [
           1,
@@ -6971,9 +8979,9 @@
       "min_care_on_board": 4,
       "min_overload_on_board": 3,
       "star_thresholds": [
-        4700,
-        5734,
-        6956
+        8600,
+        10492,
+        12728
       ]
     }
   ]

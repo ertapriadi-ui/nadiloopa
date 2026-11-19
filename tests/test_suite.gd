@@ -21,17 +21,26 @@ func _process(_delta: float) -> bool:
 	_audio_mgr = root.get_node("AudioManager")
 	_game_mgr = root.get_node("GameManager")
 
-	print("=== NADILOOPA v2.0 AUTOMATED QA SUITE START ===")
+	print("=== NADILOOPA v2.3 AUTOMATED QA SUITE START ===")
 	_test_grid_bounds_and_84_slots()
 	_test_chain_rules_backtrack_and_touch_signal()
 	_test_nadi_loop_8way_and_bonus()
 	_test_endpoint_orientation_and_pre_refill_pulse()
 	_test_booster_hazard_armor_bloom_and_lock_expiry()
 	_test_tactical_care_abilities()
+	_test_detox_bomb_and_mega_combos()
+	_test_catastrophic_toxic_combo()
+	_test_dynamic_health_events()
+	_test_medical_fact_deck_and_organ_upgrades()
+	_test_board_renderer_tutorial_stage_init()
+	_test_harmony_fever_mode()
+	_test_second_wind_revival()
 	_test_gravity_refill_and_reshuffle()
 	_test_scoring_moves_win_lose()
 	_test_persistence_and_corrupt_recovery()
+	_test_daily_quests_star_chests_and_rank()
 	_test_bilingual_sprites_and_audio_assets()
+	_test_obstacles_and_chapter_biomes()
 	_test_endless_and_daily_modes()
 	_test_all_100_levels_and_simulations()
 
@@ -647,3 +656,476 @@ func _dfs_collect(board: BoardState, organ: String, path: Array[Vector2i], used:
 			tries += 1
 			if tries >= 2 and path.size() >= 4:
 				break
+
+
+func _test_harmony_fever_mode() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2301
+	var lv := {
+		"id": 9901,
+		"moves": 12,
+		"objectives": {"score": 999999},
+		"star_thresholds": [500, 1000, 1500],
+		"weights": {"heart": 50, "brain": 50}
+	}
+	var prog := LevelManager.create_initial_progress(lv)
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "brain")
+	# 4-tile heart chain -> +1 Fever charge
+	for x in range(4):
+		b.set_organ(Vector2i(x, 0), "heart")
+	var ch4: Array[Vector2i] = [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+	var r1 := ChainResolver.resolve_turn(b, ch4, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r1.get("committed", false)), "4-tile chain commits cleanly")
+	_assert_eq(int(prog.get("fever_charge", 0)), 1, "4-tile chain adds +1 Harmony Fever charge")
+	_assert_true(not bool(r1.get("fever_triggered", false)), "Fever not triggered at 1/3 charge")
+	_assert_eq(int(prog.get("best_chain_len", 0)), 4, "best_chain_len records 4")
+
+	# Closed 5-step Nadi Loop -> +2 Fever charge -> hits 3/3 and triggers 2 turns of Harmony Fever
+	b.set_organ(Vector2i(1, 3), "heart")
+	b.set_organ(Vector2i(2, 3), "heart")
+	b.set_organ(Vector2i(2, 4), "heart")
+	b.set_organ(Vector2i(1, 4), "heart")
+	var loop_ch: Array[Vector2i] = [Vector2i(1, 3), Vector2i(2, 3), Vector2i(2, 4), Vector2i(1, 4), Vector2i(1, 3)]
+	var r2 := ChainResolver.resolve_turn(b, loop_ch, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r2.get("fever_triggered", false)), "Loop reaching 3/3 charge triggers Harmony Fever")
+	_assert_eq(int(prog.get("fever_turns", 0)), 2, "Harmony Fever grants 2 active turns")
+	_assert_eq(int(prog.get("fever_activations", 0)), 1, "fever_activations incremented to 1")
+	_assert_eq(int(prog.get("fever_charge", 0)), 0, "fever_charge resets to 0 on activation")
+
+	# Next turn during Fever: 2.0x score + 1 bonus matching organ tile cleared + turns decrement to 1
+	b.set_organ(Vector2i(0, 6), "heart")
+	b.set_organ(Vector2i(1, 6), "heart")
+	b.set_organ(Vector2i(2, 6), "heart")
+	b.set_organ(Vector2i(5, 8), "heart")
+	var ch3: Array[Vector2i] = [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6)]
+	var r3 := ChainResolver.resolve_turn(b, ch3, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r3.get("fever_active", false)), "Turn executed during active Harmony Fever")
+	_assert_true(r3.get("fever_bonus_clears", []).size() >= 1, "Harmony Fever pops +1 bonus matching organ tile")
+	_assert_eq(int(prog.get("fever_turns", 0)), 1, "Harmony Fever turns decrement from 2 to 1")
+
+	# 6-tile chain triggers Vitality Burst 3x3 shockwave around endpoint
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "brain")
+	var ch6: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1),
+		Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4)
+	]
+	for p in ch6:
+		b.set_organ(p, "heart")
+	var r6 := ChainResolver.resolve_turn(b, ch6, lv, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_true(bool(r6.get("vitality_burst_triggered", false)), "6+ chain triggers Vitality Burst 3x3 shockwave")
+	_assert_true(r6.get("vitality_burst_cells", []).size() >= 3, "Vitality Burst clears surrounding 3x3 organ tiles")
+
+
+func _test_second_wind_revival() -> void:
+	var lv := {"id": 9902, "moves": 10, "objectives": {"score": 1000}, "star_thresholds": [500, 1000, 1500]}
+	var prog := LevelManager.create_initial_progress(lv)
+	prog["moves_left"] = 0
+	prog["pulse_meter"] = 20
+	prog["shield_charges"] = 0
+
+	var res1 := BoosterSystem.apply_second_wind(prog, 100, 2)
+	_assert_true(bool(res1.get("used", false)), "First Second Wind revival succeeds")
+	_assert_eq(int(prog.get("moves_left", 0)), 3, "Second Wind adds +3 moves")
+	_assert_eq(int(prog.get("pulse_meter", 0)), 45, "Second Wind restores +25 pulse")
+	_assert_eq(int(prog.get("shield_charges", 0)), 1, "Second Wind grants +1 shield")
+	_assert_true(bool(prog.get("second_wind_used", false)), "second_wind_used flag set to true")
+
+	var res2 := BoosterSystem.apply_second_wind(prog, 100, 2)
+	_assert_true(not bool(res2.get("used", false)), "Second Wind cannot be used twice on the same stage")
+	_assert_eq(str(res2.get("reason", "")), "already_used", "Second Wind returns already_used reason")
+	_assert_eq(int(prog.get("moves_left", 0)), 3, "Moves unchanged on rejected second revival")
+
+
+func _test_daily_quests_star_chests_and_rank() -> void:
+	var tmp_path := "user://test_nadiloopa_v23_quests.json"
+	var tmp_bak := tmp_path + ".bak"
+	_save_mgr.set_test_save_path(tmp_path)
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_bak):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_bak))
+
+	_save_mgr.data = _save_mgr.create_default_data()
+	_save_mgr.save_to_disk()
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 2, "New profile starts with 2 Sanctuary Charms")
+	var r0: Dictionary = _save_mgr.get_sanctuary_rank()
+	_assert_eq(int(r0.get("rank", 0)), 1, "New profile starts at Sanctuary Rank 1")
+	_assert_eq(str(r0.get("tier_key", "")), "RANK_SEEDLING", "Rank 1 tier is RANK_SEEDLING")
+	_assert_true(_save_mgr.is_board_theme_unlocked("garden"), "Garden theme unlocked at Rank 1")
+	_assert_true(not _save_mgr.is_board_theme_unlocked("sunset"), "Sunset theme locked at Rank 1")
+
+	var test_date := "2026-11-18"
+	_save_mgr.record_daily_quest_progress(test_date, 35, 2, 6)
+	_assert_eq(_save_mgr.get_unclaimed_rewards_count(test_date), 3, "All 3 Daily Quests become claimable")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 0), "Claim Daily Quest 0 succeeds")
+	_assert_true(not _save_mgr.claim_daily_quest(test_date, 0), "Duplicate Daily Quest 0 claim rejected")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 1), "Claim Daily Quest 1 succeeds")
+	_assert_true(_save_mgr.claim_daily_quest(test_date, 2), "Claim Daily Quest 2 succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 5, "Claiming 3 daily quests grants +3 Charms (total 5)")
+
+	# Earn 15 campaign stars (5 levels x 3 stars) to unlock Star Milestone Chest
+	for lid in range(1, 6):
+		_save_mgr.record_level_win(lid, 3, 2500)
+	var chest: Dictionary = _save_mgr.get_star_chest_info()
+	_assert_true(bool(chest.get("claimable", false)), "Star Milestone Chest unlocks at 15 stars")
+	_assert_true(_save_mgr.claim_star_chest(), "Claim Star Milestone Chest succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 7, "Star Chest grants +2 Charms (total 7)")
+	_assert_eq(int(_save_mgr.get_star_chest_info().get("next_milestone", 0)), 30, "Next Star Chest milestone advances to 30")
+
+	_assert_true(_save_mgr.spend_sanctuary_charm(), "Spend 1 Sanctuary Charm succeeds")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms decrements to 6")
+
+	# Verify Sunset theme unlocks at Rank 3+, and haptics/board_theme/welcome_seen persist with checksum
+	_assert_eq(bool(_save_mgr.get_setting("welcome_seen", false)), false, "Welcome screen defaults to unseen on fresh profile")
+	_save_mgr.set_setting("haptics", false)
+	_save_mgr.set_setting("board_theme", "sunset")
+	_save_mgr.set_setting("welcome_seen", true)
+	_save_mgr.load_save()
+	_assert_true(not _save_mgr.last_load_recovered_from_corruption, "v2.5 save data passes SHA-256 checksum cleanly")
+	_assert_eq(_save_mgr.get_sanctuary_charms(), 6, "Sanctuary Charms persists across reload")
+	_assert_eq(bool(_save_mgr.get_setting("haptics", true)), false, "Haptics setting persists across reload")
+	_assert_eq(str(_save_mgr.get_setting("board_theme", "garden")), "sunset", "Board theme setting persists across reload")
+	_assert_eq(bool(_save_mgr.get_setting("welcome_seen", false)), true, "welcome_seen persists across reload")
+	var r1: Dictionary = _save_mgr.get_sanctuary_rank()
+	_assert_true(int(r1.get("rank", 1)) >= 3, "Sanctuary Rank advances with campaign stars")
+	_assert_true(_save_mgr.is_board_theme_unlocked("sunset"), "Sunset theme unlocks at Rank 3+")
+
+	# Cleanup isolated test save files
+	_save_mgr.clear_test_save_path()
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_bak):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_bak))
+	_save_mgr.load_save()
+
+
+func _test_detox_bomb_and_mega_combos() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 26001
+	var lv := {
+		"id": 9926,
+		"moves": 12,
+		"weights": {"heart": 25, "brain": 25, "lungs": 25, "kidneys": 25},
+		"objectives": {"neutralize_overload": 5, "score": 50000},
+		"star_thresholds": [10000, 25000, 50000]
+	}
+
+	# 1. Detox Bomb destroys Overloads + 3x3 splash & costs 35 Care Energy
+	var b_bomb := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_bomb.set_organ(Vector2i(c, r), "brain")
+	b_bomb.set_overload(Vector2i(2, 5), 2)
+	b_bomb.set_overload(Vector2i(4, 7), 1)
+	var prog_b := LevelManager.create_initial_progress(lv)
+	prog_b["care_energy"] = 20
+	var r_bomb_low := BoosterSystem.cast_detox_bomb(b_bomb, lv, prog_b, rng)
+	_assert_true(not bool(r_bomb_low.get("used", false)), "Detox Bomb requires at least 35 Care Energy")
+
+	prog_b["care_energy"] = 50
+	var r_bomb := BoosterSystem.cast_detox_bomb(b_bomb, lv, prog_b, rng)
+	_assert_true(bool(r_bomb.get("used", false)), "Detox Bomb fires when Care Energy >= 35")
+	_assert_eq(int(prog_b.get("care_energy", 0)), 15, "Detox Bomb deducts 35 Care Energy")
+	_assert_eq(r_bomb.get("overloads_destroyed", []).size(), 2, "Detox Bomb destroys both Overloads including 2-HP armored")
+	_assert_eq(int(prog_b.get("overloads_neutralized", 0)), 2, "Detox Bomb credits overloads_neutralized objective")
+	_assert_true(r_bomb.get("splash_cells", []).size() >= 4, "Detox Bomb deals 3x3 splash damage around blasted Overloads")
+	_assert_true(int(r_bomb.get("score_gained", 0)) >= 400, "Detox Bomb awards bonus score")
+
+	# 2. Chain 8-9 triggers Tier 2 Super Nova Cross-Blast (+1 Bonus Move, destroys cross Overloads)
+	var b_nova := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_nova.set_organ(Vector2i(c, r), "brain")
+	var ch8: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1),
+		Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5)
+	]
+	for p in ch8:
+		b_nova.set_organ(p, "heart")
+	# Place Overload on endpoint row (0, 5) and column (4, 10)
+	b_nova.set_overload(Vector2i(0, 5), 1)
+	b_nova.set_overload(Vector2i(4, 10), 2)
+	var prog_n := LevelManager.create_initial_progress(lv)
+	prog_n["moves_left"] = 10
+	var r8 := ChainResolver.resolve_turn(b_nova, ch8, lv, prog_n, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(r8.get("mega_tier", 0)), 2, "8-tile chain triggers Mega Tier 2 (Super Nova)")
+	_assert_eq(int(r8.get("bonus_moves_gained", 0)), 1, "Super Nova grants +1 Bonus Move")
+	_assert_eq(int(prog_n.get("moves_left", 0)), 10, "Net moves stay 10 after -1 turn cost and +1 Super Nova Bonus Move")
+	_assert_eq(r8.get("mega_overloads_destroyed", []).size(), 2, "Super Nova cross-blast destroys Overloads in row & column")
+
+	# 3. Chain 10+ triggers Tier 3 Grand Harmony Mega Blast & Board Reset (+2 Bonus Moves, destroys ALL Overloads, Pulse 100)
+	var b_mega := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b_mega.set_organ(Vector2i(c, r), "lungs")
+	var ch10: Array[Vector2i] = [
+		Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1),
+		Vector2i(5, 2), Vector2i(5, 3), Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6)
+	]
+	for p in ch10:
+		b_mega.set_organ(p, "heart")
+	b_mega.set_overload(Vector2i(0, 0), 2)
+	b_mega.set_overload(Vector2i(6, 11), 1)
+	b_mega.set_overload(Vector2i(2, 9), 1)
+	var prog_m := LevelManager.create_initial_progress(lv)
+	prog_m["moves_left"] = 8
+	prog_m["pulse_meter"] = 55
+	var r10 := ChainResolver.resolve_turn(b_mega, ch10, lv, prog_m, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(r10.get("mega_tier", 0)), 3, "10+ tile chain triggers Mega Tier 3 (Grand Harmony Mega Blast)")
+	_assert_true(bool(r10.get("board_reset_triggered", false)), "10+ tile chain triggers full Board Reset")
+	_assert_eq(int(r10.get("bonus_moves_gained", 0)), 2, "10+ Mega Blast grants +2 Bonus Moves")
+	_assert_eq(int(prog_m.get("moves_left", 0)), 9, "Net moves rise from 8 to 9 (-1 turn, +2 bonus)")
+	_assert_eq(int(prog_m.get("pulse_meter", 0)), 100, "10+ Mega Blast restores Pulse Meter to 100")
+	_assert_eq(r10.get("mega_overloads_destroyed", []).size(), 3, "10+ Mega Blast destroys ALL Overloads across the entire board")
+
+
+func _test_catastrophic_toxic_combo() -> void:
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "heart")
+
+	# 1. Two adjacent toxic hazards trigger warning pair but do NOT explode yet
+	b.set_overload(Vector2i(3, 5), 1, "fast_food")
+	b.set_overload(Vector2i(4, 5), 1, "sugary_drink")
+	var pairs := HazardSystem.find_toxic_warning_pairs(b)
+	_assert_eq(pairs.size(), 1, "Two adjacent toxic hazards produce 1 live warning pair")
+	var prog := {"score": 3000, "pulse_meter": 100, "shield_charges": 0, "catastrophic_blasts": 0}
+	var no_boom := HazardSystem.check_catastrophic_toxic_combo(b, prog)
+	_assert_true(not bool(no_boom.get("triggered", false)), "2 adjacent hazards do not trigger Catastrophic Explosion yet")
+
+	# 2. Adding the 3rd toxic type (cigarette_smoke) adjacent triggers Catastrophic Fat & Calorie Explosion!
+	b.set_overload(Vector2i(3, 6), 1, "cigarette_smoke")
+	var boom := HazardSystem.check_catastrophic_toxic_combo(b, prog)
+	_assert_true(bool(boom.get("triggered", false)), "Fast Food + Sugary Drink + Cigarette Smoke triggers Catastrophic Explosion")
+	_assert_true(bool(boom.get("is_triple_toxic", false)), "Catastrophic Explosion detects all 3 toxic types")
+	_assert_eq(int(boom.get("score_lost", 0)), 900, "Catastrophic Explosion slashes 30% of 3000 score (-900)")
+	_assert_eq(int(prog.get("score", 0)), 2100, "Score drops drastically from 3000 to 2100")
+	_assert_eq(int(boom.get("pulse_lost", 0)), 18, "Unshielded Catastrophic Explosion deals 18 Pulse damage")
+	_assert_eq(int(prog.get("pulse_meter", 0)), 82, "Pulse drops from 100 to 82")
+	_assert_true(boom.get("injured_organs", []).size() >= 3, "Catastrophic Explosion injures surrounding organs in 5x5 radius")
+	_assert_true(ResourceLoader.exists("res://assets/sprites/tiles/special_overload_smoke.png"), "3D Cigarette Smoke sprite exists")
+
+	# 3. Shield mitigates Pulse damage from -18 to -8
+	var b2 := BoardState.new()
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b2.set_organ(Vector2i(c, r), "lungs")
+	b2.set_overload(Vector2i(2, 4), 1, "fast_food")
+	b2.set_overload(Vector2i(3, 4), 1, "sugary_drink")
+	b2.set_overload(Vector2i(2, 5), 1, "cigarette_smoke")
+	var prog2 := {"score": 500, "pulse_meter": 90, "shield_charges": 1, "catastrophic_blasts": 0}
+	var boom2 := HazardSystem.check_catastrophic_toxic_combo(b2, prog2)
+	_assert_true(bool(boom2.get("shield_mitigated", false)), "Shield mitigates Catastrophic Explosion pulse damage")
+	_assert_eq(int(boom2.get("pulse_lost", 0)), 8, "Shielded Catastrophic Explosion reduces Pulse loss to 8")
+	_assert_eq(int(prog2.get("score", 0)), 100, "Minimum 400 score penalty slashes 500 score down to 100")
+
+
+func _test_board_renderer_tutorial_stage_init() -> void:
+	BoardState.set_difficulty_grid("easy")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 27001
+	var b := BoardState.new()
+	b.populate_initial(rng, {"heart": 30, "brain": 30, "lungs": 20, "kidneys": 20}, [], [], [], [])
+	var br_script: GDScript = load("res://scripts/ui/board_renderer.gd")
+	var br: Control = br_script.new()
+	br.size = Vector2(960, 1280)
+	root.add_child(br)
+	br.call("set_board_state", b, true)
+	_assert_true(int(br.get("cell_px")) >= 24, "BoardRenderer computes valid cell_px on Stage 1 tutorial init")
+	_assert_true((br.get("_hint_chain") as Array).size() >= 3, "BoardRenderer computes FTUE spotlight hint chain without crashing")
+	_assert_eq((br.get("_tile_nodes") as Dictionary).size(), BoardState.TOTAL_CELLS, "BoardRenderer spawns all organ tile nodes on Stage 1")
+	br.queue_free()
+
+	# Full Main scene integrity test at 1080x2400 portrait: ensures board fills center host & never shrinks to 30px!
+	var main_packed: PackedScene = load("res://scenes/main.tscn")
+	_assert_true(main_packed != null, "Main scene loads cleanly")
+	if main_packed != null:
+		var main_inst: Control = main_packed.instantiate()
+		main_inst.size = Vector2(1080, 2400)
+		root.add_child(main_inst)
+		main_inst.set_size(Vector2(1080, 2400))
+		main_inst.show_screen("welcome")
+		main_inst.show_screen("menu")
+		main_inst.show_screen("levels")
+
+		# Test Hard 7x12 layout on Stage 1
+		_save_mgr.set_setting("difficulty", "hard")
+		main_inst.start_level(1)
+		main_inst._board_host.size = Vector2(1040, 1480)
+		main_inst._board_renderer.refresh_layout_after_show()
+		var m_hard: Dictionary = main_inst.get_layout_metrics()
+		var br_rect_h: Rect2 = m_hard.get("board_rect", Rect2())
+		_assert_true(int(m_hard.get("cell_px", 0)) >= 95, "Hard 7x12 cell_px fills phone viewport (>=95px, not 30px)")
+		_assert_true(br_rect_h.position.y >= 0.0, "Hard 7x12 board origin Y is non-negative (never overlaps HUD)")
+		_assert_true(main_inst._board_renderer.size.y >= 1000.0, "BoardRenderer matches BoardHost full height")
+
+		# Test Easy 5x7 layout on Stage 1
+		_save_mgr.set_setting("difficulty", "easy")
+		main_inst.start_level(1)
+		main_inst._board_host.size = Vector2(1040, 1480)
+		main_inst._board_renderer.refresh_layout_after_show()
+		var m_easy: Dictionary = main_inst.get_layout_metrics()
+		_assert_true(int(m_easy.get("cell_px", 0)) >= 150, "Easy 5x7 cell_px fills phone viewport (>=150px)")
+
+		# Test Daily & Endless modes start cleanly without errors
+		main_inst.start_daily_challenge()
+		_assert_true(main_inst.board_state != null and main_inst.board_state.has_any_valid_chain(3), "Daily Sanctuary initializes playable board")
+		main_inst.start_endless_mode()
+		_assert_true(main_inst.board_state != null and main_inst.board_state.has_any_valid_chain(3), "Endless Zen initializes playable board")
+		main_inst.queue_free()
+
+	_save_mgr.set_setting("difficulty", "hard")
+	BoardState.set_difficulty_grid("hard")
+
+
+func _test_dynamic_health_events() -> void:
+	BoardState.set_difficulty_grid("hard")
+	_assert_true(ResourceLoader.exists("res://assets/backgrounds/bg_hero_avengers.png"), "Avengers hero poster asset exists")
+	_assert_eq(EventSystem.EVENT_IDS.size(), 6, "EventSystem registers 6 dynamic health events")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2028
+	for eid in EventSystem.EVENT_IDS:
+		var cfg: Dictionary = EventSystem.EVENT_CATALOG.get(eid, {})
+		_assert_true(ResourceLoader.exists(str(cfg.get("sprite", ""))), "Event comic sprite exists for " + eid)
+		var b := BoardState.new()
+		b.populate_initial(rng, {"heart": 18, "brain": 16, "lungs": 16, "kidneys": 14, "stomach": 12, "liver": 12, "muscle": 12}, [], [], [], [])
+		var prog := {
+			"score": 1500,
+			"pulse_meter": 80,
+			"care_energy": 60,
+			"shield_charges": 0,
+			"turns_taken": 6
+		}
+		var ev := EventSystem.trigger_event(b, eid, prog, rng)
+		_assert_true(bool(ev.get("triggered", false)), "Event triggers cleanly: " + eid)
+		_assert_true(int(ev.get("score_lost", 0)) > 0, "Event slashes score: " + eid)
+		_assert_true(int(prog.get("pulse_meter", 0)) >= 5, "Event never unfairly instant-kills pulse: " + eid)
+		_assert_true((ev.get("locked_cells", []) as Array).size() >= 1, "Event stresses/locks at least 1 organ tile: " + eid)
+
+
+func _test_medical_fact_deck_and_organ_upgrades() -> void:
+	_assert_true(FileAccess.file_exists("res://assets/ui/logo_nadiloopa_3d.png"), "3D NADILOOPA title logo asset exists")
+	_assert_true(FileAccess.file_exists("res://assets/ui/banner_welcome_heroes.png"), "Wide 7-organ superhero lineup banner exists")
+	_assert_true(FileAccess.file_exists("res://docs/PRIVACY_POLICY.md"), "Play Store Privacy Policy exists")
+	_assert_true(FileAccess.file_exists("res://docs/play_store/icon_512.png"), "Play Store 512x512 icon exists")
+	_assert_true(FileAccess.file_exists("res://docs/play_store/feature_graphic_1024x500.png"), "Play Store 1024x500 feature graphic exists")
+	_assert_true(FileAccess.file_exists("res://data/medical_facts_300.json"), "300+ medical facts JSON exists")
+	_loc_mgr.set_language("en")
+	var en_cred: String = _loc_mgr.tr_key("CREDITS_BODY")
+	_assert_true(en_cred.find("Working Title") == -1 and en_cred.find("Codename") == -1, "EN Credits free of Working Title/Codename placeholder")
+	_loc_mgr.set_language("id")
+	var id_cred: String = _loc_mgr.tr_key("CREDITS_BODY")
+	_assert_true(id_cred.find("Judul Kerja") == -1 and id_cred.find("Kode Proyek") == -1, "ID Credits free of Working Title placeholder")
+	_loc_mgr.set_language("en")
+	var total := MedicalFactDeck.get_fact_count()
+	_assert_true(total >= 300, "MedicalFactDeck loads >= 300 unique facts (got %d)" % total)
+
+	# Draw 25 consecutive facts and confirm zero duplicates (Fisher-Yates non-repeating deck!)
+	var seen_ids := {}
+	for _k in range(25):
+		var f := MedicalFactDeck.draw_next_fact()
+		_assert_true(not f.is_empty(), "Drawn medical fact is non-empty")
+		var fid := int(f.get("id", -1))
+		_assert_true(fid > 0 and not seen_ids.has(fid), "Shuffled medical fact ID %d does not repeat" % fid)
+		seen_ids[fid] = true
+		_assert_true(str(f.get("text_id", "")).length() > 15, "Medical fact has Indonesian text")
+		_assert_true(str(f.get("text_en", "")).length() > 15, "Medical fact has English text")
+
+	# Test Organ Lab permanent upgrades on isolated save
+	var tmp_path := "user://test_nadiloopa_lab_v29.json"
+	_save_mgr.set_test_save_path(tmp_path)
+	_save_mgr.load_save()
+	var start_coins: int = _save_mgr.get_wellness_coins()
+	_assert_true(start_coins >= 120, "Player starts with Wellness Coins for Organ Lab")
+	_assert_eq(_save_mgr.get_organ_level("heart"), 1, "Heart starts at Lv.1")
+	var ok_up: bool = _save_mgr.upgrade_organ("heart")
+	_assert_true(ok_up, "Organ Lab upgrades Heart from Lv.1 to Lv.2")
+	_assert_eq(_save_mgr.get_organ_level("heart"), 2, "Heart is now Lv.2")
+	_assert_eq(_save_mgr.get_wellness_coins(), start_coins - 120, "Organ Lab deducts 120 Wellness Coins")
+	_save_mgr.clear_test_save_path()
+	if FileAccess.file_exists(tmp_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path))
+	if FileAccess.file_exists(tmp_path + ".bak"):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path + ".bak"))
+	_save_mgr.load_save()
+
+
+func _test_obstacles_and_chapter_biomes() -> void:
+	# 1. Verify all 3 terrain obstacle sprites and all 10 unique chapter biome backgrounds exist
+	for otype in BoardState.OBSTACLE_TYPES:
+		var opath := "res://assets/sprites/tiles/obstacle_%s.png" % otype
+		_assert_true(FileAccess.file_exists(opath), "Terrain obstacle sprite exists: " + opath)
+	for ch_i in range(1, 11):
+		var cpath := "res://assets/backgrounds/chapters/bg_ch%02d.jpg" % ch_i
+		_assert_true(FileAccess.file_exists(cpath), "Chapter %d unique biome background exists" % ch_i)
+
+	# 2. Verify Stages 1-3 are obstacle-free and Stages 4-100 have terrain obstacles
+	var lm := LevelManager.new()
+	for lid in [1, 2, 3]:
+		var lv := lm.get_level(lid)
+		_assert_eq((lv.get("obstacles", []) as Array).size(), 0, "Stage %d has 0 obstacles for clean FTUE" % lid)
+	for lid in [4, 15, 35, 60, 100]:
+		var lv := lm.get_level(lid)
+		_assert_true((lv.get("obstacles", []) as Array).size() >= 2, "Stage %d has >= 2 terrain obstacles" % lid)
+
+	# 3. Verify skip-obstacle flow-around gravity (zero voids below obstacle, obstacle stays fixed)
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2110
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "heart")
+	var obs_pos := Vector2i(3, 5)
+	b.set_obstacle(obs_pos, "island")
+	_assert_true(not ChainValidator.can_start_at(b, obs_pos), "ChainValidator rejects starting on obstacle cell")
+
+	# Clear 3 cells directly below the obstacle in column 3
+	b.clear_cell(Vector2i(3, 6))
+	b.clear_cell(Vector2i(3, 7))
+	b.clear_cell(Vector2i(3, 8))
+	var refill := b.apply_gravity_and_refill(rng, {"heart": 50, "brain": 50}, 0, 0)
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle stays anchored after gravity")
+	_assert_eq(str(b.get_cell(obs_pos).get("obstacle_type", "")), "island", "Obstacle type preserved after gravity")
+	_assert_eq(b.count_kind("empty"), 0, "Zero empty voids remain below or above obstacle after refill")
+	var saw_flow_around := false
+	for mv in refill.get("moves", []):
+		if bool(mv.get("passed_obstacle", false)):
+			saw_flow_around = true
+			break
+	_assert_true(saw_flow_around, "Falling tiles above obstacle flag passed_obstacle=true for flow-around animation")
+
+	# 4. Verify obstacle survives Detox Bomb and 10+ Grand Harmony Mega Blast
+	var lv_test := {"id": 9911, "moves": 10, "weights": {"heart": 50, "brain": 50}, "objectives": {"score": 99999}, "star_thresholds": [1000, 2000, 3000]}
+	var prog := LevelManager.create_initial_progress(lv_test)
+	prog["care_energy"] = 100
+	var bomb_res := BoosterSystem.cast_detox_bomb(b, lv_test, prog, rng)
+	_assert_true(bool(bomb_res.get("used", false)), "Detox bomb casts cleanly on board with obstacle")
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle is immune to Detox Bomb")
+
+	# Build a 10-tile chain to trigger Mega Tier 3 Board Reset and verify obstacle survives
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			if Vector2i(c, r) != obs_pos:
+				b.set_organ(Vector2i(c, r), "brain")
+	var ch10: Array[Vector2i] = [
+		Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0),
+		Vector2i(4, 1), Vector2i(3, 1), Vector2i(2, 1), Vector2i(1, 1), Vector2i(0, 1)
+	]
+	for p in ch10:
+		b.set_organ(p, "heart")
+	var mega_res := ChainResolver.resolve_turn(b, ch10, lv_test, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(mega_res.get("mega_tier", 0)), 3, "10-tile chain triggers Grand Harmony Mega Blast")
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle is immune to Grand Harmony Mega Blast")
+	_assert_eq(b.count_kind("empty"), 0, "Zero empty cells after Mega Blast around obstacle")
+
+

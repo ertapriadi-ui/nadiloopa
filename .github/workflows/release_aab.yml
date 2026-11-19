@@ -1,0 +1,114 @@
+name: NADILOOPA Release AAB (Google Play)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-signed-aab:
+    runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: "4.7.2-stable"
+      GODOT_DIR_VERSION: "4.7.2.stable"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify Release Keystore Secrets
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ] || [ -z "$KEYSTORE_PASS" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASS" ]; then
+            echo "ERROR: Please configure ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, and ANDROID_KEY_PASSWORD in GitHub Repository Secrets first."
+            exit 1
+          fi
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Configure Preinstalled Android SDK & Build Tools
+        run: |
+          SDK_DIR="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=${SDK_DIR}" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=${SDK_DIR}" >> "$GITHUB_ENV"
+          SDKMGR="$(find "${SDK_DIR}/cmdline-tools" -name sdkmanager -type f 2>/dev/null | head -n 1)"
+          if [ -z "$SDKMGR" ]; then SDKMGR="$(command -v sdkmanager)"; fi
+          yes | "$SDKMGR" --licenses >/dev/null || true
+          "$SDKMGR" "platform-tools" "build-tools;35.0.0" "platforms;android-35" "ndk;28.1.13356709" >/dev/null || true
+
+      - name: Cache Godot 4.7.2 Editor & Export Templates
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/godot-bin
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64-v1
+
+      - name: Download Godot 4.7.2 & Export Templates
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /tmp/godot-bin ~/.local/share/godot/export_templates/${{ env.GODOT_DIR_VERSION }}
+          BASE_URL="https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}"
+          curl -fsSL -o /tmp/godot.zip "$BASE_URL/Godot_v${{ env.GODOT_VERSION }}_linux.x86_64.zip"
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          mv /tmp/godot-bin/Godot_v${{ env.GODOT_VERSION }}_linux.x86_64 /tmp/godot-bin/godot
+          chmod +x /tmp/godot-bin/godot
+          rm -f /tmp/godot.zip
+
+          curl -fsSL -o /tmp/templates.tpz "$BASE_URL/Godot_v${{ env.GODOT_VERSION }}_export_templates.tpz"
+          unzip -q -j /tmp/templates.tpz 'templates/*' -d ~/.local/share/godot/export_templates/${{ env.GODOT_DIR_VERSION }}
+          rm -f /tmp/templates.tpz
+
+      - name: Install Android Gradle Build Template
+        run: |
+          mkdir -p android/build
+          unzip -q -o ~/.local/share/godot/export_templates/${{ env.GODOT_DIR_VERSION }}/android_source.zip -d android/build
+          touch android/build/.gdignore
+
+      - name: Import Assets & Run QA Gate
+        run: |
+          /tmp/godot-bin/godot --headless --path . --import --quit
+          /tmp/godot-bin/godot --headless --path . -s res://tests/test_suite.gd
+
+      - name: Configure Release Keystore & Export Signed AAB
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          mkdir -p ~/.config/godot ~/.local/share/godot/keystores build/android
+          echo "$KEYSTORE_B64" | base64 -d > ~/.local/share/godot/keystores/release.keystore
+          cat <<EOF > ~/.config/godot/editor_settings-4.7.tres
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/java_sdk_path = "${JAVA_HOME}"
+          export/android/android_sdk_path = "${ANDROID_HOME}"
+          EOF
+          python3 - <<'PY'
+          import os
+          p = "export_presets.cfg"
+          t = open(p).read()
+          ks_path = os.path.join(os.environ["HOME"], ".local/share/godot/keystores/release.keystore")
+          t = t.replace('keystore/release=""', f'keystore/release="{ks_path}"')
+          t = t.replace('keystore/release_user=""', f'keystore/release_user="{os.environ["KEY_ALIAS"]}"')
+          t = t.replace('keystore/release_password=""', f'keystore/release_password="{os.environ["KEY_PASS"]}"')
+          open(p, "w").write(t)
+          PY
+          /tmp/godot-bin/godot --headless --path . --export-release "Android Release AAB" build/android/nadiloopa_release.aab
+          ls -lh build/android/nadiloopa_release.aab
+          jarsigner -verify build/android/nadiloopa_release.aab
+
+      - name: Upload Signed Google Play AAB Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nadiloopa-playstore-release-aab
+          path: build/android/nadiloopa_release.aab
+          retention-days: 30
