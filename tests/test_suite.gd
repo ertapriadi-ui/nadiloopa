@@ -935,13 +935,14 @@ func _test_board_renderer_tutorial_stage_init() -> void:
 	rng.seed = 27001
 	var b := BoardState.new()
 	b.populate_initial(rng, {"heart": 30, "brain": 30, "lungs": 20, "kidneys": 20}, [], [], [], [])
-	var br := BoardRenderer.new()
+	var br_script: GDScript = load("res://scripts/ui/board_renderer.gd")
+	var br: Control = br_script.new()
 	br.size = Vector2(960, 1280)
 	root.add_child(br)
-	br.set_board_state(b, true)
-	_assert_true(br.cell_px >= 24, "BoardRenderer computes valid cell_px on Stage 1 tutorial init")
-	_assert_true(br._hint_chain.size() >= 3, "BoardRenderer computes FTUE spotlight hint chain without crashing")
-	_assert_eq(br._tile_nodes.size(), BoardState.TOTAL_CELLS, "BoardRenderer spawns all organ tile nodes on Stage 1")
+	br.call("set_board_state", b, true)
+	_assert_true(int(br.get("cell_px")) >= 24, "BoardRenderer computes valid cell_px on Stage 1 tutorial init")
+	_assert_true((br.get("_hint_chain") as Array).size() >= 3, "BoardRenderer computes FTUE spotlight hint chain without crashing")
+	_assert_eq((br.get("_tile_nodes") as Dictionary).size(), BoardState.TOTAL_CELLS, "BoardRenderer spawns all organ tile nodes on Stage 1")
 	br.queue_free()
 
 	# Full Main scene integrity test at 1080x2400 portrait: ensures board fills center host & never shrinks to 30px!
