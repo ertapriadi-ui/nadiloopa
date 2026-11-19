@@ -24,7 +24,10 @@ const TILE_TEXTURE_PATHS := {
 	"overload_soda": "res://assets/sprites/tiles/special_overload_soda.png",
 	"overload_snack": "res://assets/sprites/tiles/special_overload_snack.png",
 	"overload_smoke": "res://assets/sprites/tiles/special_overload_smoke.png",
-	"overload_armor": "res://assets/sprites/tiles/special_overload_armor.png"
+	"overload_armor": "res://assets/sprites/tiles/special_overload_armor.png",
+	"obstacle_rock": "res://assets/sprites/tiles/obstacle_rock.png",
+	"obstacle_log": "res://assets/sprites/tiles/obstacle_log.png",
+	"obstacle_island": "res://assets/sprites/tiles/obstacle_island.png"
 }
 
 const ORGAN_COLORS := {
@@ -101,59 +104,59 @@ func _ready() -> void:
 
 func _init_board_styles() -> void:
 	_sb_tray_outer = StyleBoxFlat.new()
-	_sb_tray_outer.bg_color = Color(0.06, 0.30, 0.28, 0.98)
-	_sb_tray_outer.border_color = Color(0.98, 0.86, 0.48, 0.96)
+	_sb_tray_outer.bg_color = Color(0.05, 0.24, 0.24, 0.56)
+	_sb_tray_outer.border_color = Color(0.98, 0.88, 0.52, 0.92)
 	_sb_tray_outer.border_width_left = 4
 	_sb_tray_outer.border_width_top = 4
 	_sb_tray_outer.border_width_right = 5
-	_sb_tray_outer.border_width_bottom = 12
+	_sb_tray_outer.border_width_bottom = 10
 	_sb_tray_outer.set_corner_radius_all(28)
-	_sb_tray_outer.shadow_size = 24
-	_sb_tray_outer.shadow_color = Color(0.01, 0.06, 0.08, 0.56)
-	_sb_tray_outer.shadow_offset = Vector2(0, 10)
+	_sb_tray_outer.shadow_size = 22
+	_sb_tray_outer.shadow_color = Color(0.01, 0.05, 0.08, 0.42)
+	_sb_tray_outer.shadow_offset = Vector2(0, 8)
 
 	_sb_tray_inner = StyleBoxFlat.new()
-	_sb_tray_inner.bg_color = Color(0.11, 0.22, 0.24, 0.96)
-	_sb_tray_inner.border_color = Color(0.18, 0.64, 0.56, 0.72)
-	_sb_tray_inner.border_width_left = 4
-	_sb_tray_inner.border_width_top = 5
+	_sb_tray_inner.bg_color = Color(0.08, 0.18, 0.22, 0.36)
+	_sb_tray_inner.border_color = Color(0.82, 0.98, 0.94, 0.48)
+	_sb_tray_inner.border_width_left = 3
+	_sb_tray_inner.border_width_top = 3
 	_sb_tray_inner.border_width_right = 3
 	_sb_tray_inner.border_width_bottom = 3
 	_sb_tray_inner.set_corner_radius_all(20)
 
 	_sb_tray_fever = StyleBoxFlat.new()
-	_sb_tray_fever.bg_color = Color(0.96, 0.72, 0.12, 0.98)
+	_sb_tray_fever.bg_color = Color(0.96, 0.72, 0.12, 0.68)
 	_sb_tray_fever.border_color = Color(1.0, 0.96, 0.66, 0.99)
 	_sb_tray_fever.set_border_width_all(5)
-	_sb_tray_fever.border_width_bottom = 12
+	_sb_tray_fever.border_width_bottom = 10
 	_sb_tray_fever.set_corner_radius_all(28)
-	_sb_tray_fever.shadow_size = 26
-	_sb_tray_fever.shadow_color = Color(1.0, 0.78, 0.16, 0.60)
+	_sb_tray_fever.shadow_size = 24
+	_sb_tray_fever.shadow_color = Color(1.0, 0.78, 0.16, 0.55)
 	_sb_tray_fever.shadow_offset = Vector2(0, 8)
 
 	_sb_cell_even = StyleBoxFlat.new()
-	_sb_cell_even.bg_color = Color(0.76, 0.90, 0.87, 0.94)
-	_sb_cell_even.border_color = Color(0.42, 0.64, 0.60, 0.62)
+	_sb_cell_even.bg_color = Color(0.10, 0.24, 0.26, 0.42)
+	_sb_cell_even.border_color = Color(0.86, 0.98, 0.96, 0.36)
 	_sb_cell_even.border_width_left = 2
 	_sb_cell_even.border_width_top = 2
-	_sb_cell_even.border_width_right = 3
-	_sb_cell_even.border_width_bottom = 5
+	_sb_cell_even.border_width_right = 2
+	_sb_cell_even.border_width_bottom = 4
 	_sb_cell_even.set_corner_radius_all(13)
-	_sb_cell_even.shadow_size = 4
-	_sb_cell_even.shadow_color = Color(0.02, 0.10, 0.12, 0.28)
-	_sb_cell_even.shadow_offset = Vector2(0, 3)
+	_sb_cell_even.shadow_size = 3
+	_sb_cell_even.shadow_color = Color(0.01, 0.06, 0.10, 0.24)
+	_sb_cell_even.shadow_offset = Vector2(0, 2)
 
 	_sb_cell_odd = StyleBoxFlat.new()
-	_sb_cell_odd.bg_color = Color(0.92, 0.98, 0.96, 0.96)
-	_sb_cell_odd.border_color = Color(0.62, 0.80, 0.76, 0.65)
+	_sb_cell_odd.bg_color = Color(0.92, 0.99, 0.97, 0.36)
+	_sb_cell_odd.border_color = Color(1.0, 1.0, 1.0, 0.44)
 	_sb_cell_odd.border_width_left = 2
 	_sb_cell_odd.border_width_top = 2
-	_sb_cell_odd.border_width_right = 3
-	_sb_cell_odd.border_width_bottom = 5
+	_sb_cell_odd.border_width_right = 2
+	_sb_cell_odd.border_width_bottom = 4
 	_sb_cell_odd.set_corner_radius_all(13)
-	_sb_cell_odd.shadow_size = 4
-	_sb_cell_odd.shadow_color = Color(0.02, 0.10, 0.12, 0.22)
-	_sb_cell_odd.shadow_offset = Vector2(0, 3)
+	_sb_cell_odd.shadow_size = 3
+	_sb_cell_odd.shadow_color = Color(0.01, 0.06, 0.10, 0.18)
+	_sb_cell_odd.shadow_offset = Vector2(0, 2)
 	var save_node := get_node_or_null("/root/SaveManager")
 	var saved_theme := str(save_node.get_setting("board_theme", "garden")) if save_node != null else "garden"
 	set_board_theme(saved_theme)
@@ -164,26 +167,26 @@ func set_board_theme(theme_id: String) -> void:
 		return
 	match theme_id:
 		"sunset":
-			_sb_tray_outer.bg_color = Color(0.50, 0.18, 0.22, 0.98)
-			_sb_tray_outer.border_color = Color(1.0, 0.80, 0.42, 0.96)
-			_sb_tray_inner.bg_color = Color(0.32, 0.14, 0.18, 0.96)
-			_sb_tray_inner.border_color = Color(0.88, 0.48, 0.24, 0.72)
-			_sb_cell_even.bg_color = Color(0.95, 0.86, 0.78, 0.94)
-			_sb_cell_odd.bg_color = Color(0.99, 0.94, 0.88, 0.96)
+			_sb_tray_outer.bg_color = Color(0.46, 0.16, 0.20, 0.56)
+			_sb_tray_outer.border_color = Color(1.0, 0.82, 0.44, 0.92)
+			_sb_tray_inner.bg_color = Color(0.28, 0.12, 0.16, 0.36)
+			_sb_tray_inner.border_color = Color(0.96, 0.68, 0.46, 0.52)
+			_sb_cell_even.bg_color = Color(0.32, 0.14, 0.18, 0.42)
+			_sb_cell_odd.bg_color = Color(0.99, 0.92, 0.86, 0.36)
 		"starlight":
-			_sb_tray_outer.bg_color = Color(0.10, 0.13, 0.34, 0.98)
-			_sb_tray_outer.border_color = Color(0.98, 0.84, 0.44, 0.96)
-			_sb_tray_inner.bg_color = Color(0.08, 0.11, 0.26, 0.96)
-			_sb_tray_inner.border_color = Color(0.46, 0.58, 0.96, 0.72)
-			_sb_cell_even.bg_color = Color(0.20, 0.26, 0.50, 0.94)
-			_sb_cell_odd.bg_color = Color(0.28, 0.35, 0.62, 0.96)
+			_sb_tray_outer.bg_color = Color(0.08, 0.11, 0.30, 0.58)
+			_sb_tray_outer.border_color = Color(0.98, 0.86, 0.48, 0.92)
+			_sb_tray_inner.bg_color = Color(0.06, 0.09, 0.24, 0.38)
+			_sb_tray_inner.border_color = Color(0.56, 0.68, 0.98, 0.52)
+			_sb_cell_even.bg_color = Color(0.10, 0.15, 0.36, 0.44)
+			_sb_cell_odd.bg_color = Color(0.76, 0.84, 1.0, 0.34)
 		_:
-			_sb_tray_outer.bg_color = Color(0.06, 0.30, 0.28, 0.98)
-			_sb_tray_outer.border_color = Color(0.98, 0.86, 0.48, 0.96)
-			_sb_tray_inner.bg_color = Color(0.11, 0.22, 0.24, 0.96)
-			_sb_tray_inner.border_color = Color(0.18, 0.64, 0.56, 0.72)
-			_sb_cell_even.bg_color = Color(0.76, 0.90, 0.87, 0.94)
-			_sb_cell_odd.bg_color = Color(0.92, 0.98, 0.96, 0.96)
+			_sb_tray_outer.bg_color = Color(0.05, 0.24, 0.24, 0.56)
+			_sb_tray_outer.border_color = Color(0.98, 0.88, 0.52, 0.92)
+			_sb_tray_inner.bg_color = Color(0.08, 0.18, 0.22, 0.36)
+			_sb_tray_inner.border_color = Color(0.82, 0.98, 0.94, 0.48)
+			_sb_cell_even.bg_color = Color(0.10, 0.24, 0.26, 0.42)
+			_sb_cell_odd.bg_color = Color(0.92, 0.99, 0.97, 0.36)
 	queue_redraw()
 
 
@@ -320,6 +323,8 @@ func _resolve_tex_key(cell: Dictionary, happy: bool = false) -> String:
 	if kind == "organ":
 		var org := str(cell.get("organ", "heart"))
 		return (org + "_happy") if happy else org
+	if kind == "obstacle":
+		return "obstacle_" + str(cell.get("obstacle_type", "rock"))
 	if kind == "overload":
 		if int(cell.get("hp", 1)) > 1:
 			return "overload_armor"
@@ -676,29 +681,54 @@ func animate_turn_resolution(result: Dictionary, on_finished: Callable) -> void:
 		_vfx.spawn_combo_banner(banner_pos, LocalizationManager.tr_key("BANNER_SWEET"), Color(1.0, 0.80, 0.45))
 
 	var spawns: Dictionary = {}
-	for sp in result.get("refill", {}).get("spawns", []):
-		spawns[int(sp["id"])] = int(sp["spawn_row"])
+	var passed_obs_ids := {}
+	var refill_dict: Dictionary = result.get("refill", {})
+	for mv in refill_dict.get("moves", []):
+		if bool(mv.get("passed_obstacle", false)):
+			passed_obs_ids[int(mv.get("id", 0))] = true
+	for sp in refill_dict.get("spawns", []):
+		var sid := int(sp["id"])
+		spawns[sid] = int(sp["spawn_row"])
+		if bool(sp.get("passed_obstacle", false)):
+			passed_obs_ids[sid] = true
 
 	var drop_tween := create_tween()
 	drop_tween.set_parallel(true)
+	drop_tween.tween_interval(clear_dur * 0.5 + drop_dur * 1.08)
 
 	for tid in new_ids.keys():
 		var cell: Dictionary = new_ids[tid]
 		var target_pos := cell_center(Vector2i(int(cell["col"]), int(cell["row"])))
+		var flowed_around := passed_obs_ids.has(tid) and not reduce
+		var side_sign := -1.0 if (int(cell["col"]) >= BoardState.COLS / 2) else 1.0
 		if _tile_nodes.has(tid) and is_instance_valid(_tile_nodes[tid]):
 			var existing: Control = _tile_nodes[tid]
 			existing.set_meta("col", int(cell["col"]))
 			existing.set_meta("row", int(cell["row"]))
 			_refresh_existing_tile_visual(existing, cell)
 			if existing.position.distance_to(target_pos) > 1.0:
-				drop_tween.tween_property(existing, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
+				if flowed_around:
+					var mid_p := existing.position.lerp(target_pos, 0.5) + Vector2(side_sign * float(cell_px) * 0.24, 0.0)
+					var arc_tw := existing.create_tween()
+					arc_tw.tween_interval(clear_dur * 0.5)
+					arc_tw.tween_property(existing, "position", mid_p, drop_dur * 0.48).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+					arc_tw.tween_property(existing, "position", target_pos, drop_dur * 0.56).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				else:
+					drop_tween.tween_property(existing, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
 		else:
 			var created := _create_tile_node(cell)
 			var start_row := int(spawns.get(tid, -1))
 			created.position = board_origin + Vector2((float(cell["col"]) + 0.5) * float(cell_px), (float(start_row) + 0.5) * float(cell_px))
 			_tile_layer.add_child(created)
 			_tile_nodes[tid] = created
-			drop_tween.tween_property(created, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
+			if flowed_around:
+				var mid_sp := created.position.lerp(target_pos, 0.52) + Vector2(side_sign * float(cell_px) * 0.24, 0.0)
+				var arc_sp := created.create_tween()
+				arc_sp.tween_interval(clear_dur * 0.5)
+				arc_sp.tween_property(created, "position", mid_sp, drop_dur * 0.48).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				arc_sp.tween_property(created, "position", target_pos, drop_dur * 0.56).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			else:
+				drop_tween.tween_property(created, "position", target_pos, drop_dur).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).set_delay(clear_dur * 0.5)
 
 	drop_tween.chain().tween_callback(func():
 		_is_animating = false
@@ -777,7 +807,7 @@ func _process(delta: float) -> void:
 		var base_y_v := -float(cell_px) * 0.475
 		for tid in _tile_nodes.keys():
 			var node: Control = _tile_nodes[tid]
-			if not is_instance_valid(node):
+			if not is_instance_valid(node) or str(node.get_meta("kind", "")) == "obstacle":
 				continue
 			var sp := node.get_node_or_null("Sprite") as Control
 			if sp == null:
@@ -813,7 +843,7 @@ func _process(delta: float) -> void:
 	var base_y := -float(cell_px) * 0.475
 	for tid in _tile_nodes.keys():
 		var node: Control = _tile_nodes[tid]
-		if not is_instance_valid(node):
+		if not is_instance_valid(node) or str(node.get_meta("kind", "")) == "obstacle":
 			continue
 		var sp := node.get_node_or_null("Sprite") as Control
 		if sp == null:
@@ -859,18 +889,22 @@ func _draw() -> void:
 
 	for r in range(BoardState.ROWS):
 		for c in range(BoardState.COLS):
-			var cr := Rect2(cell_top_left(Vector2i(c, r)), Vector2(float(cell_px), float(cell_px))).grow(-2.5)
+			var cell_pos := Vector2i(c, r)
+			var cr := Rect2(cell_top_left(cell_pos), Vector2(float(cell_px), float(cell_px))).grow(-2.5)
+			if _board_state != null and str(_board_state.get_cell(cell_pos).get("kind", "")) == "obstacle":
+				# Soft natural terrain shadow pad so 3D rock/log/island sits organically on the frosted board
+				var c_mid := cr.get_center() + Vector2(0, float(cell_px) * 0.08)
+				draw_circle(c_mid, float(cell_px) * 0.40, Color(0.02, 0.08, 0.06, 0.34))
+				continue
 			var is_even := ((c + r) % 2) == 0
 			var sb_cell := _sb_cell_even if is_even else _sb_cell_odd
 			if sb_cell != null:
 				draw_style_box(sb_cell, cr)
-			# 3D Bejeweled crystal bevel specular top-left highlight & curved glass sheen
-			var sheen_rect := Rect2(cr.position + Vector2(3.0, 3.0), Vector2(cr.size.x - 6.0, cr.size.y * 0.42))
-			draw_rect(sheen_rect, Color(1.0, 1.0, 1.0, 0.24 if is_even else 0.34), true)
-			draw_line(cr.position + Vector2(6.0, 2.5), cr.position + Vector2(cr.size.x - 6.0, 2.5), Color(1.0, 1.0, 1.0, 0.62), 2.0)
-			draw_line(cr.position + Vector2(2.5, 6.0), cr.position + Vector2(2.5, cr.size.y - 6.0), Color(1.0, 1.0, 1.0, 0.42), 2.0)
-			draw_line(cr.position + Vector2(6.0, cr.size.y - 2.5), cr.position + Vector2(cr.size.x - 6.0, cr.size.y - 2.5), Color(0.03, 0.14, 0.16, 0.34), 2.5)
-			draw_line(cr.position + Vector2(cr.size.x - 2.5, 6.0), cr.position + Vector2(cr.size.x - 2.5, cr.size.y - 6.0), Color(0.03, 0.14, 0.16, 0.26), 2.5)
+			# Subtle frosted glass specular top-left sheen
+			var sheen_rect := Rect2(cr.position + Vector2(3.0, 3.0), Vector2(cr.size.x - 6.0, cr.size.y * 0.36))
+			draw_rect(sheen_rect, Color(1.0, 1.0, 1.0, 0.12 if is_even else 0.18), true)
+			draw_line(cr.position + Vector2(6.0, 2.5), cr.position + Vector2(cr.size.x - 6.0, 2.5), Color(1.0, 1.0, 1.0, 0.42), 2.0)
+			draw_line(cr.position + Vector2(2.5, 6.0), cr.position + Vector2(2.5, cr.size.y - 6.0), Color(1.0, 1.0, 1.0, 0.28), 2.0)
 
 	if not _active_chain.is_empty() and _board_state != null:
 		var head_cell := _board_state.get_cell(_active_chain[0])

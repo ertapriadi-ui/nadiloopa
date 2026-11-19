@@ -210,7 +210,7 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 				continue
 			var tcell := board.get_cell(tp)
 			var tkind := str(tcell.get("kind", ""))
-			if tkind == "empty":
+			if tkind == "empty" or tkind == "obstacle":
 				continue
 			cleared_set[tp] = true
 			board.clear_cell(tp)
@@ -242,7 +242,7 @@ static func resolve_turn(board: BoardState, chain: Array[Vector2i], level_def: D
 					continue
 				var gcell := board.get_cell(gp)
 				var gkind := str(gcell.get("kind", ""))
-				if gkind == "empty":
+				if gkind == "empty" or gkind == "obstacle":
 					continue
 				cleared_set[gp] = true
 				board.clear_cell(gp)

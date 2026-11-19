@@ -40,6 +40,7 @@ func _process(_delta: float) -> bool:
 	_test_persistence_and_corrupt_recovery()
 	_test_daily_quests_star_chests_and_rank()
 	_test_bilingual_sprites_and_audio_assets()
+	_test_obstacles_and_chapter_biomes()
 	_test_endless_and_daily_modes()
 	_test_all_100_levels_and_simulations()
 
@@ -1055,4 +1056,75 @@ func _test_medical_fact_deck_and_organ_upgrades() -> void:
 	if FileAccess.file_exists(tmp_path + ".bak"):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_path + ".bak"))
 	_save_mgr.load_save()
+
+
+func _test_obstacles_and_chapter_biomes() -> void:
+	# 1. Verify all 3 terrain obstacle sprites and all 10 unique chapter biome backgrounds exist
+	for otype in BoardState.OBSTACLE_TYPES:
+		var opath := "res://assets/sprites/tiles/obstacle_%s.png" % otype
+		_assert_true(FileAccess.file_exists(opath), "Terrain obstacle sprite exists: " + opath)
+	for ch_i in range(1, 11):
+		var cpath := "res://assets/backgrounds/chapters/bg_ch%02d.jpg" % ch_i
+		_assert_true(FileAccess.file_exists(cpath), "Chapter %d unique biome background exists" % ch_i)
+
+	# 2. Verify Stages 1-3 are obstacle-free and Stages 4-100 have terrain obstacles
+	var lm := LevelManager.new()
+	for lid in [1, 2, 3]:
+		var lv := lm.get_level(lid)
+		_assert_eq((lv.get("obstacles", []) as Array).size(), 0, "Stage %d has 0 obstacles for clean FTUE" % lid)
+	for lid in [4, 15, 35, 60, 100]:
+		var lv := lm.get_level(lid)
+		_assert_true((lv.get("obstacles", []) as Array).size() >= 2, "Stage %d has >= 2 terrain obstacles" % lid)
+
+	# 3. Verify skip-obstacle flow-around gravity (zero voids below obstacle, obstacle stays fixed)
+	BoardState.set_difficulty_grid("hard")
+	var b := BoardState.new()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2110
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			b.set_organ(Vector2i(c, r), "heart")
+	var obs_pos := Vector2i(3, 5)
+	b.set_obstacle(obs_pos, "island")
+	_assert_true(not ChainValidator.can_start_at(b, obs_pos), "ChainValidator rejects starting on obstacle cell")
+
+	# Clear 3 cells directly below the obstacle in column 3
+	b.clear_cell(Vector2i(3, 6))
+	b.clear_cell(Vector2i(3, 7))
+	b.clear_cell(Vector2i(3, 8))
+	var refill := b.apply_gravity_and_refill(rng, {"heart": 50, "brain": 50}, 0, 0)
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle stays anchored after gravity")
+	_assert_eq(str(b.get_cell(obs_pos).get("obstacle_type", "")), "island", "Obstacle type preserved after gravity")
+	_assert_eq(b.count_kind("empty"), 0, "Zero empty voids remain below or above obstacle after refill")
+	var saw_flow_around := false
+	for mv in refill.get("moves", []):
+		if bool(mv.get("passed_obstacle", false)):
+			saw_flow_around = true
+			break
+	_assert_true(saw_flow_around, "Falling tiles above obstacle flag passed_obstacle=true for flow-around animation")
+
+	# 4. Verify obstacle survives Detox Bomb and 10+ Grand Harmony Mega Blast
+	var lv_test := {"id": 9911, "moves": 10, "weights": {"heart": 50, "brain": 50}, "objectives": {"score": 99999}, "star_thresholds": [1000, 2000, 3000]}
+	var prog := LevelManager.create_initial_progress(lv_test)
+	prog["care_energy"] = 100
+	var bomb_res := BoosterSystem.cast_detox_bomb(b, lv_test, prog, rng)
+	_assert_true(bool(bomb_res.get("used", false)), "Detox bomb casts cleanly on board with obstacle")
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle is immune to Detox Bomb")
+
+	# Build a 10-tile chain to trigger Mega Tier 3 Board Reset and verify obstacle survives
+	for r in range(BoardState.ROWS):
+		for c in range(BoardState.COLS):
+			if Vector2i(c, r) != obs_pos:
+				b.set_organ(Vector2i(c, r), "brain")
+	var ch10: Array[Vector2i] = [
+		Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0),
+		Vector2i(4, 1), Vector2i(3, 1), Vector2i(2, 1), Vector2i(1, 1), Vector2i(0, 1)
+	]
+	for p in ch10:
+		b.set_organ(p, "heart")
+	var mega_res := ChainResolver.resolve_turn(b, ch10, lv_test, prog, rng, _game_mgr.config.get("balance", {}))
+	_assert_eq(int(mega_res.get("mega_tier", 0)), 3, "10-tile chain triggers Grand Harmony Mega Blast")
+	_assert_eq(str(b.get_cell(obs_pos).get("kind", "")), "obstacle", "Obstacle is immune to Grand Harmony Mega Blast")
+	_assert_eq(b.count_kind("empty"), 0, "Zero empty cells after Mega Blast around obstacle")
+
 

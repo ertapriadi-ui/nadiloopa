@@ -123,7 +123,8 @@ static func build_board_for_level(level_def: Dictionary, rng: RandomNumberGenera
 		level_def.get("care_positions", []),
 		level_def.get("overload_positions", []),
 		level_def.get("armored_overload_positions", []),
-		level_def.get("bloom_positions", [])
+		level_def.get("bloom_positions", []),
+		level_def.get("obstacles", [])
 	)
 	return board
 

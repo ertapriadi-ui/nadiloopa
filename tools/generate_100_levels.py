@@ -147,6 +147,29 @@ SAFE_BLOOM_SLOTS = [
     [3, 4], [2, 6], [4, 4], [3, 7], [1, 4], [5, 4]
 ]
 
+# Diverse board terrain obstacle layouts on canonical 7x12 grid (2-4 cells)
+OBSTACLE_PATTERNS = [
+    [[3, 5], [3, 6]],                      # Center Mini Island
+    [[1, 5], [5, 5]],                      # Twin Side Boulders
+    [[2, 6], [4, 6]],                      # Fallen Log Gate
+    [[2, 4], [4, 7]],                      # Diagonal Stepping Stones
+    [[1, 4], [5, 7], [3, 9]],              # Triple Archipelago Islands
+    [[1, 3], [5, 3], [1, 8], [5, 8]],      # Four Sanctuary Pillars
+]
+
+CHAPTER_OBSTACLE_THEMES = {
+    1: ["island", "rock"],
+    2: ["log", "rock"],
+    3: ["island", "log"],
+    4: ["rock", "island"],
+    5: ["log", "island"],
+    6: ["island", "log"],
+    7: ["log", "rock"],
+    8: ["rock", "island"],
+    9: ["island", "rock"],
+    10: ["island", "rock", "log"],
+}
+
 
 def pick_4_organs(level_id, rng):
     if level_id <= 20:
@@ -345,6 +368,35 @@ def build_level(lid):
     base_star = int(objs.get("score", 3600 + lid * 42 + (800 if is_boss else 0)))
     stars = [base_star, int(base_star * 1.22), int(base_star * 1.48)]
 
+    # Build chapter-thematic terrain obstacles for Stages 4-100 (Stages 1-3 stay obstacle-free for smooth FTUE)
+    obstacles = []
+    if lid >= 4:
+        occupied = {
+            (p[0], p[1])
+            for p in (care_pos + overload_pos + armored_pos + bloom_pos)
+        }
+        pat_idx = (lid - 4) % len(OBSTACLE_PATTERNS)
+        theme_types = CHAPTER_OBSTACLE_THEMES.get(ch_num, ["rock", "island"])
+        raw_pat = OBSTACLE_PATTERNS[pat_idx]
+        for oi, pos in enumerate(raw_pat):
+            c_p, r_p = pos[0], pos[1]
+            if (c_p, r_p) in occupied:
+                # Try gentle horizontal shift to keep layout symmetric and collision-free
+                found = None
+                for dc, dr in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+                    nc, nr = c_p + dc, r_p + dr
+                    if 0 <= nc <= 6 and 1 <= nr <= 10 and (nc, nr) not in occupied:
+                        found = [nc, nr]
+                        break
+                if found is None:
+                    continue
+                c_p, r_p = found[0], found[1]
+            occupied.add((c_p, r_p))
+            obstacles.append({
+                "pos": [c_p, r_p],
+                "type": theme_types[oi % len(theme_types)],
+            })
+
     return {
         "id": lid,
         "chapter": ch_num,
@@ -360,6 +412,7 @@ def build_level(lid):
         "initial_pulse": 100,
         "weights": weights,
         "objectives": objs,
+        "obstacles": obstacles,
         "care_positions": care_pos,
         "overload_positions": overload_pos,
         "armored_overload_positions": armored_pos,
