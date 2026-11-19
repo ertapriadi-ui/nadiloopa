@@ -2145,19 +2145,22 @@ func _build_modals() -> void:
 
 	_lbl_pass_title = _make_label("👑 dr. Erta Pass", 52, Color(0.18, 0.12, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
 	pass_vb.add_child(_lbl_pass_title)
-	_lbl_pass_sub = _make_label("", 30, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_pass_sub = _make_label("", 30, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pass_vb.add_child(_lbl_pass_sub)
 
 	var pass_status_card := PanelContainer.new()
 	pass_status_card.add_theme_stylebox_override("panel", _make_box(Color(0.98, 0.94, 0.82), 20, Color(0.90, 0.64, 0.14, 0.80), 3, 20, 16))
 	pass_vb.add_child(pass_status_card)
-	_lbl_pass_status = _make_label("", 28, Color(0.46, 0.24, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_pass_status = _make_label("", 28, Color(0.46, 0.24, 0.04), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pass_status_card.add_child(_lbl_pass_status)
 
 	var perks_card := PanelContainer.new()
 	perks_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.97, 0.95), 22, Color(0.12, 0.58, 0.48, 0.45), 3, 24, 18))
 	pass_vb.add_child(perks_card)
-	_lbl_pass_perks = _make_label("", 28, Color(0.08, 0.30, 0.28), true, HORIZONTAL_ALIGNMENT_LEFT, true)
+	_lbl_pass_perks = _make_label("", 28, Color(0.08, 0.30, 0.28), true, HORIZONTAL_ALIGNMENT_LEFT)
+	_lbl_pass_perks.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	perks_card.add_child(_lbl_pass_perks)
 
 	var plans_vb := VBoxContainer.new()
@@ -2182,7 +2185,8 @@ func _build_modals() -> void:
 	)
 	plans_vb.add_child(_btn_plan_monthly)
 
-	_lbl_pass_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_pass_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_msg.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_lbl_pass_msg.visible = false
 	pass_vb.add_child(_lbl_pass_msg)
 
@@ -2233,7 +2237,8 @@ func _build_modals() -> void:
 	)
 	pass_vb.add_child(_btn_pass_close)
 
-	_lbl_pass_legal = _make_label("", 22, Color(0.38, 0.44, 0.46), false, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_pass_legal = _make_label("", 22, Color(0.38, 0.44, 0.46), false, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_pass_legal.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pass_vb.add_child(_lbl_pass_legal)
 
 	# --- Full-Screen dr. Erta Account Modal (Cross-App Sync + Account Deletion) ---
@@ -2245,13 +2250,15 @@ func _build_modals() -> void:
 
 	_lbl_acc_title = _make_label("dr. Erta Account", 48, Color(0.18, 0.12, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
 	acc_vb.add_child(_lbl_acc_title)
-	_lbl_acc_sub = _make_label("", 28, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_acc_sub = _make_label("", 28, Color(0.24, 0.34, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	acc_vb.add_child(_lbl_acc_sub)
 
 	var acc_st_card := PanelContainer.new()
 	acc_st_card.add_theme_stylebox_override("panel", _make_box(Color(0.92, 0.96, 0.98), 18, Color(0.20, 0.46, 0.68, 0.50), 2, 18, 14))
 	acc_vb.add_child(acc_st_card)
-	_lbl_acc_status = _make_label("", 28, Color(0.12, 0.28, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_acc_status = _make_label("", 28, Color(0.12, 0.28, 0.42), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	acc_st_card.add_child(_lbl_acc_status)
 
 	_inp_acc_email = LineEdit.new()
@@ -2337,7 +2344,8 @@ func _build_modals() -> void:
 	)
 	acc_signed_hb.add_child(_btn_acc_delete)
 
-	_lbl_acc_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER, true)
+	_lbl_acc_msg = _make_label("", 26, Color(0.10, 0.44, 0.36), true, HORIZONTAL_ALIGNMENT_CENTER)
+	_lbl_acc_msg.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_lbl_acc_msg.visible = false
 	acc_vb.add_child(_lbl_acc_msg)
 
